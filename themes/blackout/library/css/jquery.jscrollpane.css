@@ -1,0 +1,97 @@
+.jspContainer {
+	overflow : hidden;
+	position : relative;
+}
+
+.jspPane {
+	position : absolute;
+}
+
+.jspVerticalBar {
+	background : red;
+	height : 100%;
+	position : absolute;
+	right : 0;
+	top : 0;
+	width : 4px;
+}
+
+.jspHorizontalBar {
+	background : red;
+	bottom : 0;
+	height : 4px;
+	left : 0;
+	position : absolute;
+	width : 100%;
+}
+
+.jspVerticalBar *, .jspHorizontalBar * {
+	margin : 0;
+	padding : 0;
+}
+
+.jspCap {
+	display : none;
+}
+
+.jspHorizontalBar .jspCap {
+	float : left;
+}
+
+.jspTrack {
+	background : #000000;
+	position : relative;
+}
+
+.jspDrag {
+	background : #1470cc;
+	cursor : pointer;
+	left : 0;
+	position : relative;
+	top : 0;
+}
+
+.jspDrag:hover {
+	background : #3399ff;
+}
+
+.jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag {
+	float : left;
+	height : 100%;
+}
+
+.jspArrow {
+	background : #1470cc;
+	cursor : pointer;
+	display : block;
+	text-indent : -20000px;
+}
+
+.jspArrow .jspDisabled {
+	background : #808080;
+	cursor : default;
+}
+
+.jspVerticalBar .jspArrow {
+	height : 4px;
+}
+
+.jspHorizontalBar .jspArrow {
+	float : left;
+	height : 100%;
+	width : 4px;
+}
+
+.jspVerticalBar .jspArrow:focus {
+	outline : none;
+}
+
+.jspCorner {
+	background : #eeeeee;
+	float : left;
+	height : 100%;
+}
+
+* html .jspCorner {
+	margin : 0 -3px 0 0;
+}

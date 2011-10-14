@@ -1,0 +1,387 @@
+th {
+    border: 1px solid #ddd;
+    background-color: #eee;
+    padding: 5px;
+}
+td {
+    padding: 4px;
+}
+.hidden {
+    display: none;
+}
+.centered {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+img.no-float, .no-float {
+    float: none !important;
+}
+.no-border {
+    border: none !important;
+}
+.bold, .bold a {
+    font-weight: bold !important;
+}
+fieldset textarea {
+    width: 70%;
+    height: 50px;
+}
+
+#container {
+	width: 920px;
+	margin: 0 auto 0 auto;
+}
+
+input.big, textarea.big {
+	padding : 5px 5px 5px 5px;
+	border : 1px solid #dddddd;
+}
+
+#ajax-message {
+    position: fixed; top: 100px; left: 50%;
+    z-index: 1000;
+    text-align: center;
+}
+#ajax-message p {
+    background-color: #eee;
+    border: 1px solid #aaa;
+    border-radius: 10pt;
+    padding: 4px 6px;
+}
+
+ol.top {
+    padding: 0px;
+}
+ol.top {
+    padding-left: 20px;
+}
+.block {
+    border: 1px dashed #aaa;
+    padding: 4px;
+    margin-bottom: 5px;
+}
+.block h4 {
+    margin: 0px;
+    border-bottom: 1px solid #aaa;
+}
+.answers ul {
+    list-style-type: none;
+    padding: 0px;
+}
+.artifact, .artifact-container {
+    vertical-align: middle;
+    margin-right: 4px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+.artifact-container {
+    margin: 0px;
+    padding:  0px;
+}
+.artifact-container span.sup {
+    position: relative; top: -100%;
+    background-color: yellow;
+    color: #000;
+    border-radius: 10pt;
+    padding: 1px;
+    font-size: 0.6em;
+    z-index: 100;
+    float: right;
+}
+span.points {
+    float: right
+}
+li input {
+    float: left;
+    clear: right;
+}
+li div.question {
+    clear: right;
+}
+li label {
+    display: block;
+    float: right;
+    width: 95%;
+    padding: 6px;
+}
+li label:hover {
+    background-color: #eee;
+}
+/* profile page */
+.profile {
+    padding-top: 10px;
+}
+.profile .points {
+    float: right;
+    text-align: center;
+}
+.profile .points-big {
+    width: 150px;
+    font-size: 42px;
+}
+img.avatar {
+    float: left;
+    margin: 4px 4px 4px 0px;
+    border: 2px solid #aaa;
+}
+.profile h2, .profile h3, .profile h4 {
+    margin: 1px;
+}
+.profile .tabs, .profile .tab_content {
+    margin-top: 3px;
+    clear: both;
+}
+.profile .tab_content {
+    padding: 4px;
+}
+.graf {
+    width: 500px;
+    height: 300px;
+}
+.actions {
+    margin: 6px;
+    clear: right;
+    float: right;
+}
+.actions a, a.button, button {
+    display: block;
+    float: left;
+    text-align: center;
+    min-width: 70px;
+    max-width: 150px;
+    border: 1px solid #aaa;
+    padding: 6px;
+    margin: 1px;
+    background-color: #ddd;
+    text-decoration: none;
+    color: black;
+    text-wrap: suppress;
+}
+span.button-list {
+    float:left;
+    display: block;
+}
+.actions a.default, button.default {
+    font-weight: bold;
+}
+.actions a:hover, a.button:hover {
+    background-color: #eee;
+}
+.profile ul.artifacts {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+.profile ul.artifacts li {
+    display: inline;
+}
+.subgroups {
+    width: 150px;
+    float: right;
+    margin-left: 40px;
+}
+/* topbar sidebar */
+#sidebar h2 {
+    clear: both;
+}
+
+.unread-count {
+    border-radius: 5pt;
+    background-color: red;
+    color: #ddd;
+    font-weight: bold;
+    padding:2px 4px;
+    font-size: 0.7em;
+    line-height: 0.8em;
+    vertical-align: top;
+}
+/* cpanel */
+fieldset label {
+    float: left;
+    min-width: 100px;
+}
+ul.menu, ul.submenu {
+    list-style-type: none;
+    padding: 0px;
+    border-top: 1px solid #ddd;
+}
+ul.submenu {
+    border: none;
+    font-weight: normal;
+}
+ul.menu li {
+    margin: 10px;
+    text-indent: 0px;
+}
+ul.menu li a {
+    text-decoration: none;
+}
+td.actions a, td.actions button, a.button-min {
+    min-width: 20px;
+}
+div.second {
+    font-size: 0.8em;
+    color: #444;
+    text-align: right;
+    clear: both;
+}
+.sort-list {
+}
+.sort-list li {
+    margin: 28px;
+}
+.handle {
+    cursor: move;
+    font-size: 2em;
+    float: right;
+    width: 30px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+}
+.ok {
+    color: green;
+}
+.wrong {
+    color: red;
+}
+/* messaging */
+tr.unread td {
+    font-weight: bold;
+}
+tr.read td {
+    font-weight: normal;
+    background-color: #efefef;
+}
+span.to_user {
+    border-radius: 9pt;
+    background-color: #99aaff;
+    padding: 2px 6px;
+}
+span.to_user a {
+    text-decoration: none;
+    color: #fff;
+}
+span.to_user a.to_reset {
+    border-left: 1px solid #fff;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 2px;
+    padding: 2px;
+}
+/* activity */
+ul.activity-stream {
+    padding-left: 0px;
+}
+li.activity-line {
+    margin: 0 auto;
+    clear:both;
+    list-style-type: none;
+    padding-top: 10px;
+}
+img.medium {
+    width: 38px;
+    height: 38px;
+}
+img.small {
+    width: 22px;
+    height: 22px;
+}
+div.activity-timestamp {
+    float: right;
+    text-align: right;
+    font-size: 0.9em;
+    color: #444;
+    clear: both;
+    margin-top: -1.8em;
+}
+div.activity-source {
+    float: right;
+    font-size: 0.9em;
+}
+div.activity-source a {
+    text-decoration:none;
+    color: #444;
+}
+div.activity-second div {
+    padding-top: 8px;
+}
+div.activity-second a {
+    text-decoration: none;
+}
+/* challenge */
+ul.answers {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 6px;
+}
+div.timer {
+    text-align: center;
+    font-size: 42px;
+    position: fixed; top: 100px; left: 50%;
+    background-color: white;
+    border: 2px solid #ddd;
+    padding: 6px;
+    border-radius: 20px;
+}
+ul.simple {
+    padding-left: 0px;
+    list-style-type: none;
+}
+ol#questions-list {
+}
+.vs {
+    margin: 0 30px;
+    text-align:center;
+}
+.vs div {
+    text-align: center;
+    width: 100px;
+}
+.vs .second {
+    width: auto;
+    margin-top: -50px;
+}
+.vs .to {
+    float:right;
+}
+.vs .left {
+    float: left;
+}
+/* artifacts and coins */
+.artifact-default-level-1 {
+    background-image:url(../images/icons/level-1.png);
+}
+.coin-amount {
+    display: inline-block;
+    padding-left: 20px;
+    line-height: 16px;
+}
+.coin-points {
+    background:url(../images/icons/points.png) left center no-repeat;
+}
+.coin-gold {
+    background:url(../images/icons/gold.png) left center no-repeat;
+}
+.artifact-spells {
+    background-color: transparent !important;
+}
+.artifact-neutral {
+    background:url(../images/icons/spell-neutral.png) center left no-repeat;
+}
+.artifact-negative{
+    background:url(../images/icons/spell-negative.png) center left no-repeat;
+}
+.artifact-positive {
+    background:url(../images/icons/spell-positive.png) center left no-repeat;
+}
+
+/* top */
+td div.artifacts {
+    float: right;
+}

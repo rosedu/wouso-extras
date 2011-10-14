@@ -1,0 +1,308 @@
+{% load user %}
+{% load artifacts %}
+{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<title>
+			{% block title %}
+				{{ config_title }}
+			{% endblock %}
+		</title>
+		<link href="/static/themes/{{ config_theme }}/styles.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/static/themes/{{ config_theme }}/library/css/default.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/static/themes/{{ config_theme }}/library/css/jquery.jscrollpane.css" media="all" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			@import url("/static/themes/blackout/library/css/autocomplete.css");
+
+			{% if config_logo %}
+				div#logo {
+					background : transparent url({{ config_logo }}) no-repeat;
+				}
+			{% endif %}
+			{% block css %}{% endblock %}
+		</style>
+		<script src="/static/js/jquery-1.6.2.min.js" type="text/javascript"></script>
+		<script src="/static/js/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="/static/js/jquery.autocomplete.js" type="text/javascript"></script>
+		<script src="/static/js/format.item.js" type="text/javascript"></script>
+		<script src="/static/themes/{{ config_theme }}/library/js/jquery.mousewheel.js" type="text/javascript"></script>
+		<script src="/static/themes/{{ config_theme }}/library/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+		{% block scripts %}{% endblock %}
+	</head>
+
+	<body>
+		<div class="wrapper page">
+			<div class="spacer-small">
+				<!-- -->
+			</div><!-- .spacer-small -->
+
+			<div id="header">
+				<div id="header-left">
+					<a href="{% url interface.views.homepage %}" id="header-logo" title="{{ config_title }}"></a>
+				</div><!-- #header-left -->
+
+				<div id="header-right">
+					<div id="header-top-links">
+						{% if user.is_authenticated %}
+							<a href="{% url django.contrib.auth.views.logout %}" id="header-logout">{% trans 'Logout' %}</a>
+
+							{% if user.is_staff %}
+								<a href="{% url wouso.interface.cpanel.views.dashboard %}" id="header-control-panel">Panou de control</a>
+							{% endif %}
+						{% else %}
+							<a href="{% url django.contrib.auth.views.login %}" id="header-logout">{% trans 'Login' %}</a>
+						{% endif %}
+
+						<div class="clear">
+							<!-- -->
+						</div><!-- .clear -->
+					</div><!-- #header-top-links -->
+
+					<div id="header-content">
+						<div id="header-menu">
+							{% for h in heads %}
+								<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
+							{% endfor %}
+
+							<div class="clear">
+								<!-- -->
+							</div><!-- .clear -->
+						</div><!-- #header-menu -->
+
+						<div id="header-player">
+							<div id="player-stats">
+								{% if user.is_authenticated %}
+									<div id="player-stats-blur">
+										{% player player %}
+
+										<p>
+											{{ player.level.title }}
+											<span class="player-points">{{ player.points }}</span>
+											<span class="player-gold">{{ player.coins.gold }}</span>
+										</p>
+
+										<div class="progress-bar">
+											<div class="progress" style="width : {{ player.level_progress.percent|floatformat }}%;">
+												<!-- -->
+											</div><!-- .progress-bar-value -->
+										</div><!-- .progress-bar -->
+
+										<p class="progress-bar-info">{{ player.level_progress.points_left }} {% trans 'until next level' %}</p>
+									</div><!-- #player-stats-blur -->
+
+									<div class="scroll-pane" id="player-stats-focus">
+										<p>
+											<b>{% trans 'Your rank' %}</b>
+											<br />
+											{% trans 'Global' %}: {{ top.position }}
+
+											{% for g in topgroups %}
+												<br />
+												{% player_group g %}: {{ g.position }}
+											{% endfor %}
+										</p>
+
+										{% if player.artifact_amounts.all %}
+											<div class="spacer">
+												<!-- -->
+											</div><!-- .spacer -->
+
+											<p>
+												<b>{% trans 'Artifacts' %}</b>
+												<br />
+												{% for a in player.artifact_amounts.all %}
+													{% artifact a %}
+												{% empty %}
+													{% trans 'None.' %}
+												{% endfor %}
+											</p>
+										{% endif %}
+
+										{% if not config_disable_Magic %}
+											{% if player.spell_amounts.all %}
+												<div class="spacer">
+													<!-- -->
+												</div><!-- .spacer -->
+
+												<b>{% trans 'Spells' %}</b>
+												<br />
+												{% for s in player.spell_amounts.all %}
+													{% artifact s %}
+												{% empty %}
+													{% trans 'None.' %}
+												{% endfor %}
+											{% endif %}
+
+											{% if player.spells_cast or player.spells %}
+												<br />
+												<a href="{% url magic_summary %}">{% trans 'Summary' %}</a>
+											{% endif %}
+										{% endif %}
+									</div><!-- .scroll-pane #player-stats-focus -->
+								{% else %}
+									<div id="player-stats-anonimous">
+										<span class="player">{% trans 'Anonimous' %}</span>
+									</div><!-- #player-stats-anonimous -->
+								{% endif %}
+							</div><!-- #player-stats -->
+
+							<div id="player-avatar">
+								{% if user.is_authenticated %}
+									<div id="gravatar" style="background-image : url({% player_avatar player %}&s=96&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg);">
+										<a href="{% url player_profile player.id %}" id="avatar-overlay"></a>
+									</div><!-- #gravatar -->
+								{% else %}
+									<div id="gravatar">
+										<a href="javascript:void(0);" id="avatar-overlay"></a>
+									</div><!-- #gravatar -->
+								{% endif %}
+							</div><!-- #player-avatar -->
+
+							<div class="clear">
+								<!-- -->
+							</div><!-- .clear -->
+						</div><!-- #header-player -->
+
+						<div class="clear">
+							<!-- -->
+						</div><!-- .clear -->
+					</div><!-- #header-content -->
+
+					{% block search %}
+						<div id="header-search">
+							<form action="/search/" method="post">
+								<input id="query" name="query" type="text" />
+								<input id="button-search" type="submit" value="{% trans 'Search' %}" />
+
+								<div class="clear">
+									<!-- -->
+								</div><!-- .clear -->
+							</form>
+						</div><!-- #header-search -->
+					{% endblock %}
+				</div><!-- #header-right -->
+
+				<div class="clear">
+					<!-- -->
+				</div><!-- .clear -->
+			</div><!-- #header -->
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<div id="content-top">
+				<!-- -->
+			</div><!-- #content-top -->
+
+			<div id="content-middle">
+				<div id="sidebar">
+					{% block sidebar %}
+						{% for w in sidebar %}
+							{{ w }}
+						{% endfor %}
+					{% endblock %}
+
+					{% if last10 %}
+						<div class="widget-top">
+							<!-- -->
+						</div><!-- .widget-top -->
+
+						<div class="widget-middle">
+							<h2>{% trans 'Online players' %}</h2>
+
+							<div class="widget-content">
+								{% for u in last10 %}
+									{% player u %}
+								{% endfor %}
+							</div><!-- .widget-content -->
+						</div><!-- .widget-middle -->
+
+						<div class="widget-bottom">
+							<!-- -->
+						</div><!-- .widget-bottom -->
+					{% endif %}
+				</div><!-- #sidebar -->
+
+				<div id="content">
+					<div id="ajax-message">
+						{% if message %}
+							<p class="ok">{{ message }}</p>
+						{% endif %}
+
+						{% if error %}
+							<p class="wrong">{{ error }}</p>
+						{% endif %}
+					</div><!-- #ajax-message -->
+
+					{% block content %}
+					{% endblock %}
+				</div><!-- #content -->
+
+				<div class="clear">
+					<!-- -->
+				</div><!-- .clear -->
+			</div><!-- #content-middle -->
+
+			<div id="content-bottom">
+				<!-- -->
+			</div><!-- #content-bottom -->
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+		</div><!-- .wrapper .page -->
+
+		<div id="footer">
+			<div id="footer-content">
+				<div class="footer-content-left">
+					{% autoescape off %}
+						{{ footer }}
+					{% endautoescape %}
+				</div><!-- .footer-content-left -->
+
+				<div class="footer-content-right">
+					<a href="http://rosedu.org/" id="logo-rosedu" target="_blank"></a>
+				</div><!-- .footer-content-right -->
+
+				<div class="footer-content-right">
+					<span>{% trans 'Powered by:' %}</span>
+				</div><!-- .footer-content-right -->
+
+				<div class="clear">
+					<!-- -->
+				</div><!-- .clear -->
+			</div><!-- #footer-content -->
+		</div><!-- #footer -->
+
+		{{ config_hidden_footer }}
+
+		<script type="text/javascript">
+			$('#header-player').mouseenter(function() {
+				$('div#player-stats-blur').stop().animate({ opacity : 0, height : 0 }, 'fast');
+			});
+
+			$('#header-player').mouseleave(function() {
+				$('div#player-stats-blur').stop().animate({ opacity : 1, height : 100 }, 'fast');
+			});
+
+			$('#query').autocomplete('/instantsearch/', {
+				minChars : 3,
+				matchSubset : 1,
+				matchContains : 1,
+				cacheLength : 10,
+				formatItem : formatItem,
+				onItemSelect : selectItem,
+				selectOnly : 1
+			});
+		</script>
+	</body>
+</html>
