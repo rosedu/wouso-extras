@@ -1,0 +1,71 @@
+{% extends base_template %}
+
+{% load artifacts %}
+{% load i18n %}
+
+{% block title %}{% trans 'Top' %}{% endblock %}
+
+{% block sidebar %}
+    {% include 'top/sidebar_series.html' %}
+    {% include 'top/sidebar_groups.html' %}
+    {% include 'top/sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+	<div class="section">
+		<h2>{% trans 'Top' %}</h2>
+
+		<div class="section-content">
+			{% if top.disabled %}
+				{% trans 'Top has been disabled.' %}
+			{% else %}
+				<table cellpadding="0" cellspacing="0" class="custom" id="clasament" width="100%">
+					<tr>
+						<th>&nbsp;</th>
+						<th width = "100%" align=left>{% trans 'Player' %}</th>
+						<th><a href="/top/toptype/{{ toptype }}/sortcrit/0/page/1/">{% trans 'Points' %}</a></th>
+						<th><a href="/top/toptype/{{ toptype }}/sortcrit/1/page/1/">{% trans 'Progress' %}</a></th>
+						<th nowrap><a href="/top/toptype/{{ toptype }}/sortcrit/2/page/1/">{% trans 'Last seen' %}</a></th>
+					</tr>
+					{% for user in allUsers.object_list %}
+						<tr>
+							<td align="center" class="td-artifact">{% artifact user.level %}</td>
+							<td>
+								<a href="{% url interface.profile.views.user_profile user.id %}">{{ user }}</a>
+								{% for artf in user.artifacts.all %}
+									<div class = "artifacts">
+									{% artifact artf %}
+									</div>
+								{% endfor %}
+							</td>
+							<td align="center">{{ user.points }}</td>
+							{% if toptype %}
+								<td align="center">{{ user.weeklyprogress }}</td>
+							{% else %}
+								<td align="center">{{ user.progress }}</td>
+							{% endif %}
+							<td nowrap>{% if user.last_seen %} {{ user.last_seen }} {% else %} {% trans 'Never' %} {% endif %}</td>
+						</tr>
+					{% endfor %}
+				</table>
+
+				{% if allUsers.has_previous %}
+					<a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.previous_page_number %}">Previous</a>
+				{% endif %}
+
+				{% if allUsers.has_next %}
+					<a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.next_page_number %}">Next</a>
+				{% endif %}
+
+				{% if page_top_prev %}
+					<a href="/top/toptype/{{ toptype }}/sortcrit/{{ sortcrit }}/page/{{ page_top_prev }}/">prev</a>
+				{% endif %}
+
+				{% if page_top_next %}
+					<a href="/top/toptype/{{ toptype }}/sortcrit/{{ sortcrit }}/page/{{ page_top_next }}/">next</a>
+				{% endif %}
+
+			{% endif %}
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+{% endblock %}

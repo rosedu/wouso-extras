@@ -1,0 +1,29 @@
+<div>
+	<div class="spacer">
+		<!-- -->
+	</div><!-- .spacer -->
+
+	<p>
+		Subject: <b>{{ m.subject }}</b>
+		<br />
+		From: <b>{{ m.sender }}</b>
+		<br />
+		To: <b>{{ m.receiver }}</b>
+	</p>
+
+	<div class="spacer">
+		<!-- -->
+	</div><!-- .spacer -->
+
+	<pre class="pre-message">{{m.text}}</pre>
+
+	<div class="spacer">
+		<!-- -->
+	</div><!-- .spacer -->
+
+	{% if m.sender.id != mess_user.id %}
+		<a href="{% url reply_to m.sender.id m.id %}" class="button button-invert-margin">Reply</a>
+	{% endif %}
+
+	<a href="#" onclick="messagingReload(); return false;" class="button button-invert-margin">Back</a>
+</div>

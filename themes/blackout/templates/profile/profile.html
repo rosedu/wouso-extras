@@ -1,0 +1,255 @@
+{% extends base_template %}
+
+{% load artifacts %}
+{% load user %}
+{% load i18n %}
+
+{% block title %}{{ profile }}{% endblock %}
+
+{% block scripts %}
+	<script src="/static/js/tabs.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.flot.min.js" type="text/javascript"></script>
+	<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+	<div class="section">
+		<div class="profile {% if profile.series %}group-{{ profile.series.name.lower }}{% endif %} {% if profile.proximate_group %}group-{{ profile.proximate_group.name.lower }}{% endif %}">
+			<img class="profile-avatar" height="84" src="{{ avatar }}&s=84&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="84" />
+
+			<div id="profile-info">
+				<h2>{{ profile }}</h2>
+
+				<div class="clear spacer-small">
+					<!-- -->
+				</div><!-- .clear .spacer-small -->
+
+				<p>
+					{% artifact_full profile.level %}
+
+					|
+
+					{% if profile.proximate_group %}
+						{% trans 'Group' %}: {% player_group profile.proximate_group %}
+					{% endif %}
+	
+					{% if profile.series %}
+						{% trans 'Series' %}: {% player_group profile.series %}
+					{% endif %}
+				</p>
+
+				<div class="clear spacer-small">
+					<!-- -->
+				</div><!-- .clear .spacer-small -->
+
+				{% if profile.artifact_amounts.all %}
+					<ul class="artifacts" id="player-artifacts">
+						{% for a in profile.artifact_amounts.all %}
+							<li>{% artifact a %}</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				<ul class="artifacts" id="player-spells">
+					{% for s in profile.spells.all %}
+						<li>
+							{% if s.source.id == player.id %}
+								{% spell_due s %}
+							{% else %}
+								{% if profile.id == player.id %}
+									{% spell_due s %}
+								{% else %}
+									{% spell_unknown s %}
+								{% endif %}
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div><!-- #profile-info -->
+
+			<div class="points">
+				<h1 class="points-big">{{ profile.points}}</h1>
+
+				<div class="spacer-small">
+					<!-- -->
+				</div><!-- .spacer-small -->
+
+				<p>{% if top.disabled %}-{% else %}{% trans 'rank' %}: {{ top.position }}{% endif %}</p>
+			</div>
+		</div><!-- #profile -->
+
+		<div class="clear spacer-small">
+			<!-- -->
+		</div><!-- .clear .spacer-small -->
+
+		<div class="section-content">
+			<div class="actions">
+				{% if profile.user.id != user.id %}
+					<a class="button button-min" href="{% url create_to profile.id %}" title="{% trans 'Send a message' %}">✉</a>
+				{% endif %}
+
+				{% if not config_disable_Magic %}
+					<a class="button button-min" href="{% url magic_cast profile.id%}" title="{% trans 'Cast a spell on this player' %}">✤</a>
+				{% endif %}
+
+				{% autoescape off %}
+					{{ profile_actions }}
+				{% endautoescape %}
+			</div>
+
+			{% if perms.config.change_setting %}
+				<div class="clear spacer-small">
+					<!-- -->
+				</div><!-- .clear .spacer-small -->
+
+				<div class="actions">
+					<span class="button-list">Staff:</span>
+					<a class="button" href="{% url group_set profile.id %}">Groups</a>
+					<a class="button" href="{% url artifact_set profile.id %}">Artifacts</a>
+					{% autoescape off %}
+						{{ profile_superuser_actions }}
+					{% endautoescape %}
+				</div>
+			{% endif %}
+
+			<div class="clear spacer-small">
+				<!-- -->
+			</div><!-- .clear .spacer-small -->
+
+			<div class="second">{% trans 'Last seen' %}:
+				{% if profile.last_seen %}
+					{{profile.last_seen}}
+				{% else %}
+					{% trans 'Never' %}
+				{% endif %}
+			</div>
+
+			<div class="clear spacer">
+				<!-- -->
+			</div><!-- .clear .spacer -->
+
+			<ul class="tabs">
+				<li><a href="#tab-1">{% trans 'Activity' %}</a></li>
+				<li><a href="#tab-2">{% trans 'Position' %}</a></li>
+				<li><a href="#tab-3">{% trans 'Points' %}</a></li>
+			</ul>
+
+			<div class="tab_container">
+				<div id="tab-1" class="tab_content">
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<div class="scroll-pane" id="wall">
+						{% include 'activity/stream.html' %}
+					</div><!-- #wall -->
+
+					{% if activity.has_previous %}
+						<a href="{% url wouso.interface.profile.views.user_profile id=profile.id page=activity.previous_page_number %}#tab-1"> Newer </a>
+					{% endif %}
+
+					{% if activity.has_next %}
+						<a href="{% url wouso.interface.profile.views.user_profile id=profile.id page=activity.next_page_number %}#tab-1"> Older </a>
+					{% endif %}
+				</div>
+
+				<div id="tab-2" class="tab_content">
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<div class="subgroups">
+						<b>{% trans 'Rank' %}</b>
+
+						<p>Global: <span class="points">{{ top.position }}</span></p>
+						{% for g in top.topgroups %}
+							<p>{{ g }}: <span class="points">{{ g.position }}</span></p>
+						{% endfor %}
+						<div id="legend"></div>
+					</div>
+
+					<div id="graf1" class="graf placeholder"></div>
+				</div>
+
+				<div id="tab-3" class="tab_content">
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<div class="subgroups">
+						{% for source,coins in scoring.iteritems %}
+							<b>{% trans source %}</b>
+							{% for coin, value in coins.iteritems %}
+								<p>{% coin_amount value coin %}</p>
+							{% endfor %}
+
+							<div class="spacer-small">
+								<!-- -->
+							</div><!-- .spacer-small -->
+						{% empty %}
+							{% trans 'No points registered for this player.' %}
+						{% endfor %}
+
+						<p><a class="goto" href="{% url player_points_history profile.id %}">{% trans 'History' %}</a></p>
+					</div>
+
+					<div id="graf2" class="graf placeholder"></div>
+				</div>
+			</div>
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+
+	<script id="source" language="javascript" type="text/javascript">
+		<!-- using flot to draw evolution -->
+		$(function () {
+			var d1 = [[null, 12],{% for p in top.week_evolution %}[{{p.0}},{{p.1}}],{% endfor %}[7, null]];
+
+			{% for g in top.topgroups %}
+				var dg{{g.id}} = [{% for p in g.week_evolution %}[{{p.0}},{{p.1}}],{% endfor %}];
+			{% endfor %}
+
+			var options = { lines: { show: true }, points: { show: true },
+				xaxis: {
+					ticks: [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]
+				},
+				yaxis: {
+					transform: function (v) { return -v; },
+					inverseTransform: function (v) { return -v; },
+				},
+				legend: {
+					container: $('#legend'),
+				},
+			};
+
+			var setup = [
+					{label: "Position evolution", color: "green", data: d1},
+
+					{% for g in top.topgroups %}
+						{label: "{{ g }}", data: dg{{g.id}}},
+					{% endfor %}
+				];
+
+			$("#tab-2").bind('custom', function() {
+				$.plot($("#graf1"), setup, options);
+				$('#tab-2').unbind('custom');
+			});
+		});
+	</script>
+
+	<script id="source2" language="javascript" type="text/javascript">
+		<!-- using flot to draw evolution -->
+		$(function () {
+			var d1 = [[null, 760],{% for p in top.week_points_evolution %}[{{p.0}},{{p.1}}],{% endfor %}[7, null]];
+			var options = { lines: { show: true }, points: { show: true },
+					xaxis: {
+						ticks: [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]
+					}
+			};
+
+			$("#tab-3").bind('custom', function() {
+				$.plot($("#graf2"), [{ label: "Weekly points evolution", color: "blue", data: d1}], options);
+				$('#tab-3').unbind('custom');
+			});
+		});
+	</script>
+{% endblock %}

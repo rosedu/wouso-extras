@@ -368,11 +368,14 @@ a#Magic:hover {
 span.menu-notification {
 	background-color : #f80000;
 	border-radius : 3px 3px 3px 3px;
+	color : #ffffff;
 	display : inline-block;
 	font-size : 8px;
+	font-weight : bold;
 	line-height : 8px;
 	padding : 2px 2px 2px 2px;
 	text-shadow : 0 -1px 0 #000000;
+	text-transform : uppercase;
 	vertical-align : top;
 
 	-khtml-border-radius : 3px 3px 3px 3px;
@@ -598,8 +601,74 @@ div.widget-content {
 
 div#content {
 	float : right;
+	width : 725px;
+}
+
+div.section {
+	width : 725px;
+}
+
+div.section h2 {
+	background : transparent url(library/images/section-heading.png) no-repeat;
+	height : 37px;
+	line-height : 35px;
+	margin : 0 0 5px 0;
+	padding : 5px 30px 10px 30px;
+	width : 665px;
+}
+
+div.section-content {
 	margin : 0 20px 0 20px;
 	width : 685px;
+}
+
+div.section-half-left {
+	float : left;
+	width : 360px;
+}
+
+div.section-half-right {
+	float : right;
+	width : 360px;
+}
+
+div.section-half-left h2, div.section-half-right h2 {
+	background : transparent url(library/images/section-half-heading.png) no-repeat;
+	height : 37px;
+	line-height : 35px;
+	margin : 0 0 5px 0;
+	padding : 5px 30px 10px 30px;
+	width : 300px;
+}
+
+div.section-half-left div.section-content, div.section-half-right div.section-content {
+	margin : 0 20px 0 20px;
+	width : 320px;
+}
+
+div#static-page {
+	background : #000000 url(library/images/static-page.jpg) no-repeat;
+	height : 470px;
+	padding : 10px 20px 20px 20px;
+	width : 460px;
+}
+
+a#static-page-logo {
+	background : transparent url(library/images/logo-static-page.png) no-repeat;
+	display : inline-block;
+	height : 130px;
+	margin : 0 50px 0 50px;
+	width : 360px;
+}
+
+div#map {
+	background : transparent url(library/images/map.png) center center no-repeat;
+	height : 260px;
+}
+
+div#static-page .scroll-pane {
+	height : 330px;
+	width : 460px;
 }
 
 div#footer {
@@ -675,6 +744,25 @@ div.spacer {
 
 div.spacer-small {
 	height : 10px;
+}
+
+div.profile {
+	height : 127px;
+}
+
+div.group-ca, div.group-cb, div.group-cc, div.group-others {
+	background : transparent url(library/images/profile.png) left top no-repeat;
+	height : 90px;
+	padding : 15px 30px 22px 30px;
+	width : 665px;
+}
+
+div.group-cb {
+	background-position : left center;
+}
+
+div.group-cc {
+	background-position : left bottom;
 }
 
 .artifact-ca-level-1 {
@@ -759,4 +847,48 @@ div.spacer-small {
 
 .artifact-cc-level-7 {
 	background : transparent url(library/images/icons/zota-level-7.png) 0 center no-repeat;
+}
+
+.artifact-negative {
+	background : transparent url(library/images/icons/spells-negative.png) 0 center no-repeat;
+}
+
+.artifact-positive {
+	background : transparent url(library/images/icons/spells-positive.png) 0 center no-repeat;
+}
+
+.artifact-spells-challenge-always-lose {
+	background : transparent url(library/images/icons/spells-challenge-always-lose.png) 0 center no-repeat;
+}
+
+.artifact-spells-challenge-cannot-be-challenged {
+	background : transparent url(library/images/icons/spells-challenge-cannot-be-challenged.png) 0 center no-repeat;
+}
+
+.artifact-spells-challenge-cannot-challenge {
+	background : transparent url(library/images/icons/spells-challenge-cannot-challenge.png) 0 center no-repeat;
+}
+
+.artifact-spells-cure {
+	background : transparent url(library/images/icons/spells-cure.png) 0 center no-repeat;
+}
+
+.artifact-spells-curse {
+	background : transparent url(library/images/icons/spells-curse.png) 0 center no-repeat;
+}
+
+.artifact-spells-dispell {
+	background : transparent url(library/images/icons/spells-dispell.png) 0 center no-repeat;
+}
+
+.artifact-spells-immunity {
+	background : transparent url(library/images/icons/spells-immunity.png) 0 center no-repeat;
+}
+
+.artifact-default-level-1, .artifact-default-level-2, .artifact-default-level-3, .artifact-default-level-4, .artifact-default-level-5, .artifact-default-level-6, .artifact-default-level-7, .artifact-unknown {
+	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
+}
+
+ol.top-left {
+	width: 480px;
 }

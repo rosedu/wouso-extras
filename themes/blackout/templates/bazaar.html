@@ -1,0 +1,174 @@
+{% extends base_template %}
+
+{% load i18n %}
+{% load artifacts %}
+{% load user %}
+
+{% block title %}{% trans 'Magic' %}{% endblock %}
+
+{% block scripts %}
+	<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="/static/js/tabs.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+	<div class="section">
+		<h2>{% trans 'Magic' %}</h2>
+
+		<div class="section-content">
+			<ul class="tabs">
+				<li><a href="#spells" id="spells-click">{% trans 'Bazaar' %}</a></li>
+				<li><a href="#exchange" id="exchange-click">{% trans 'Exchange' %}</a></li>
+				<li><a href="#summary" id="summary-click">{% trans 'Summary' %}</a></li>
+			</ul>
+
+			<div class="tab_container">
+				<div id="spells" class="tab_content">
+				<br/>
+				<table cellpadding="0" cellspacing="0">
+					{% for s in spells %}
+						<div style="clear:both">
+						<tr>
+							<td width="100%">
+								<b>{% artifact s %}{{ s.title }}</b>
+								<p class="artifact-description">{{ s.description }}</p>
+						</div>
+							</td>
+							<td nowrap="nowrap">
+								{% if s.due_days > 1 %}
+									{{ s.due_days }} {% trans 'days' %}
+								{% endif %}
+							</td>
+							<td align="right" >
+								{% coin_amount s.price 'gold' %}
+							</td>
+							<td>
+								<a href="{% url bazaar_buy s.id %}" class="button">{% trans 'Buy' %}</a>
+							</td>
+							<td>
+								{% spell_stock player s %}
+							</td>
+						</tr>
+				</div>
+						{% empty %}
+							{% trans 'Nothing' %}.
+					{% endfor %}
+				</table>
+			</div>
+
+			<div id="exchange" class="tab_content">
+				<br/>
+				<span class="points">{{ rate_text }}</span>
+				<p>{% trans 'Exchange points for gold or gold for points' %}</p>
+
+				<div class="spacer">
+					<!-- -->
+				</div><!-- .spacer -->
+
+				<form method="post" action="{% url bazaar_exchange %}">
+					<label class="label-small" for="exchange-points">{% trans 'Points' %}:</label> <input id="exchange-points" type="text" name="points" value="{{ rate }}" class="big" />
+					<div class="actions">
+						<button type="submit">{% trans 'Exchange' %}</button>
+					</div>
+					{% csrf_token %}
+				</form>
+
+				<div class="spacer">
+					<!-- -->
+				</div><!-- .spacer -->
+
+				<form method="post" style="clear:both" action="{% url bazaar_exchange %}">
+					<label class="label-small" for="exchange-gold">{% trans 'Gold' %}:</label> <input id="exchange-gold" type="text" name="gold" value="1" class="big" />
+					<div class="actions">
+						<button type="submit">{% trans 'Exchange' %}</button>
+					</div>
+					{% csrf_token %}
+				</form>
+			</div>
+
+			<div id="summary" class="tab_content">
+				<div class="spacer">
+					<!-- -->
+				</div><!-- .spacer -->
+
+				<b>{% trans 'Available' %}</b>
+
+				<div class="spacer-small">
+					<!-- -->
+				</div><!-- .spacer-small -->
+
+				{% if theowner.spell_amounts.all %}
+					<table cellpadding="0" cellspacing="0" class="custom" width="100%">
+						<tr>
+							<th>{% trans 'Spell' %}</th>
+							<th>{% trans 'Amount' %}</th>
+						</tr>
+						{% for s in theowner.spell_amounts.all %}
+							<tr>
+								<td>{% artifact s.spell %} {{ s.spell.title }}</td>
+								<td align="right">{% spell_stock theowner s.spell %}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% else %}
+					{% trans 'None.' %}
+				{% endif %}
+
+				{% if theowner.spells.all %}
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<b>{% trans 'Active on me' %}</b>
+
+					<div class="spacer-small">
+						<!-- -->
+					</div><!-- .spacer-small -->
+
+					<table cellpadding="0" cellspacing="0" class="custom" width="100%">
+						<tr>
+							<th>{% trans 'Spell' %}</th>
+							<th>{% trans 'Source' %}</th>
+							<th>{% trans 'Until' %}</th>
+						</tr>
+						{% for s in theowner.spells.all %}
+							<tr>
+								<td>{% artifact s.spell %} {{ s.spell.title }}</td>
+								<td>{% player_simple s.source %}</td>
+								<td>{{ s.due }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+
+				{% if theowner.spells_cast.all %}
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<b>{% trans 'Cast by me' %}</b>
+
+					<div class="spacer-small">
+						<!-- -->
+					</div><!-- .spacer-small -->
+
+					<table cellpadding="0" cellspacing="0" class="custom" width="100%">
+						<tr>
+							<th>{% trans 'Spell' %}</th>
+							<th>{% trans 'Target' %}</th>
+							<th>{% trans 'Until' %}</th>
+						</tr>
+						{% for s in theowner.spells_cast.all %}
+							<tr>
+								<td>{% artifact s.spell %} {{ s.spell.title }}</td>
+								<td>{% player_simple s.player %}</td>
+								<td>{{ s.due }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+			</div>
+		</div>
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+{% endblock %}

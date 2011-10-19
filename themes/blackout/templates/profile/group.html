@@ -1,0 +1,183 @@
+{% extends base_template %}
+
+{% load artifacts %}
+{% load user %}
+{% load i18n %}
+
+{% block title %}{{ group }}{% endblock %}
+
+{% block scripts %}
+	<script src="/static/js/tabs.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.flot.min.js" type="text/javascript"></script>
+	<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+	<div class="section">
+		<div class="profile {% if group.parent %}group-{{ group.parent.name.lower }}{% endif %} group-{{ group.name.lower }}">
+			<div id="profile-info">
+				<h2>{{ group }} {% if group.title != '' %}<small>[{{ group.name }}]</small>{% endif %}</h2>
+
+				<p>
+					{% if group.gclass == 0 %}
+						{% trans 'Group' %}
+					{% else %}
+						{% if group.gclass == 1 %}
+							{% trans 'Series' %}
+						{% endif %}
+					{% endif %}
+
+					{% if group.parent %}
+						{% trans 'part of' %} {% player_group group.parent %}
+					{% endif %}
+				</p>
+
+				<p>{{ group.player_set.count }} {% trans 'members' %}</p>
+			</div><!-- #profile-info -->
+
+			<div class="points">
+				<h1 class="points-big">{{ group.live_points}}</h1>
+
+				<div class="spacer-small">
+					<!-- -->
+				</div><!-- .spacer-small -->
+
+				<p>{% if top.disabled %}-{% else %}{% trans 'rank' %}: {{ top.position }}{% endif %}</p>
+			</div>
+		</div><!-- #profile -->
+
+		<div class="clear spacer-small">
+			<!-- -->
+		</div><!-- .clear .spacer-small -->
+
+		<div class="section-content">
+			{% if user.is_superuser %}
+				<div class="actions">
+					<span class="button-list">Superuser only: </span>
+					<a class="button button-min" href="{% url admin:user_playergroup_change group.id %}">✍</a>
+				</div>
+			{% endif %}
+
+			<ul class="tabs">
+				<li><a href="#tab-1">{% trans 'Top users' %}</a></li>
+				<li><a href="#tab-2">{% trans 'Activity' %}</a></li>
+				<li><a href="#tab-3">{% trans 'Evolution' %}</a></li>
+			</ul>
+
+			<div class="tab_container">
+				<div id="tab-1" class="tab_content">
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<div class="subgroups">
+						{% if group.children %}
+							<b>{% trans 'Top subgroups' %}</b>
+
+							<div class="spacer-small">
+								<!-- -->
+							</div><!-- .spacer-small -->
+
+							<ol class="top">
+								{% for g in subgroups %}
+									<li>{% player_group g %} <span class="points">{{ g.live_points }}</span></li>
+								{% endfor %}
+							</ol>
+						{% endif %}
+
+						{% if group.sisters %}
+							<b>{% trans 'Top same kind' %}</b>
+
+							<div class="spacer-small">
+								<!-- -->
+							</div><!-- .spacer-small -->
+
+							<ol class="top">
+								{% for g in sistergroups %}
+									<li>{% player_group g %} <span class="points">{{ g.live_points }}</span></li>
+								{% endfor %}
+							</ol>
+
+							<a href="{% url wouso.interface.profile.views.groups_index %}">{% trans 'View all' %}</a>
+						{% endif %}
+					</div>
+
+					<ol class="top top-left">
+						{% for u in top_users %}
+							<li>
+								{% player u %}
+								<span class="points w50">{{ u.points }}</span>
+								{% if not group.parent %}
+									<span class="points w50">{% player_group u.proximate_group  %}</span>
+								{% endif %}
+							</li>
+						{% empty %}
+							<li class="empty">{% trans 'Sorry, no users in this group' %}</li>
+						{% endfor %}
+					</ol>
+				</div>
+
+				<div id="tab-2" class="tab_content">
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<div class="scroll-pane" id="wall">
+						{% include 'activity/stream.html' %}
+					</div><!-- #wall -->
+				</div>
+
+				<div id="tab-3" class="tab_content">
+					<div class="spacer">
+						<!-- -->
+					</div><!-- .spacer -->
+
+					<div class="subgroups">
+						<h3>{% trans 'Rank' %}</h3>
+
+						<p>{% trans 'Global' %}: <span class="points">{{ top.position }}</span></p>
+						{% if group.parent %}
+							<p>{{group.parent}}: <span class="points">{{ top.position_in_parent }}</span></p>
+						{% endif %}
+
+						<h3>{% trans 'Position evolution' %}</h3>
+
+						<p>{% trans 'Position evolution compared with groups of the same kind.' %}</p>
+						<div id="legend"></div>
+					</div>
+
+					<div id="graf1" class="graf placeholder"></div>
+				</div>
+			</div>
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+
+	<script id="source" language="javascript" type="text/javascript">
+		<!-- using flot to draw evolution -->
+		$(function () {
+			var d{{ group.id }} = [[null, 12],{% for p in top.week_evolution %}[{{p.0}},{{p.1}}],{% endfor %}[7, null]];
+
+			{% for g in group.sisters %}
+				var d{{ g.id }} = [{% for p in g.top.week_evolution %}[{{ p.0 }},{{ p.1 }}],{% endfor %}];
+			{% endfor %}
+
+			var options = { lines: { show: true }, points: { show: true },
+				xaxis: {
+					ticks: [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]
+				},
+				yaxis: {
+					transform: function (v) { return -v; },
+					inverseTransform: function (v) { return -v; },
+				},
+				legend: {
+					container: $('#legend'),
+				},
+			};
+
+			$("#tab-3").bind('custom', function() {
+				$.plot($("#graf1"), [{ label: "<strong>{{ group.name }}</strong>", color: "green", data: d{{ group.id }} }, {% for g in group.sisters %}{label: "{{ g.name }}", data:d{{ g.id }}},{% endfor %}], options);
+				$('#tab-3').unbind('custom');
+			});
+		});
+	</script>
+{% endblock %}
