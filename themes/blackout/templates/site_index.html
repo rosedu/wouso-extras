@@ -47,7 +47,7 @@
 		<div class="section-content">
 		<ul class="simple">
 			{% for n in news %}
-				<li>{{ n }}</li>
+				<li><a href="{% url news_item_view n.pk %}">{{ n }}</a></li>
 			{% empty %}
 				<li class="empty">{% trans "No news." %}</li>
 			{% endfor %}

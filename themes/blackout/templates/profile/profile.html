@@ -29,7 +29,7 @@
 
 					|
 
-					{% if profile.proximate_group %}
+					{% if profile.proximate_group != profile.series %}
 						{% trans 'Group' %}: {% player_group profile.proximate_group %}
 					{% endif %}
 	
