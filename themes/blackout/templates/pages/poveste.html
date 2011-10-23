@@ -16,6 +16,8 @@
 
 		function displayChapter(chapter) {
 			$('div.chapter').animate({ opacity : 0, height : 0 }, 'fast', function() {
+				$('div#story h2 a').removeClass('chapter-active');
+				$('a.link-' + chapter).addClass('chapter-active');
 				$('div.chapter').css({ 'display' : 'none' });
 				$('div#' + chapter).css({ 'display' : 'block' });
 				$('div#' + chapter).animate({ opacity : 1, height : heights[chapter] }, 'fast', function() {
@@ -30,11 +32,11 @@
 	<div class="section" id="story">
 		<h2>
 			{{ staticpage.title }}:
-			<a href="javascript:displayChapter('chapter-1');">Intro</a> &gt;
-			<a href="javascript:displayChapter('chapter-2');">Isoropia</a> &gt;
-			<a href="javascript:displayChapter('chapter-3');">OZN</a> &gt;
-			<a href="javascript:displayChapter('chapter-4');">Jocurile Fonice</a> &gt;
-			<a href="javascript:displayChapter('chapter-5');">Outro</a>
+			<a class="link-chapter-1 chapter-active" href="javascript:displayChapter('chapter-1');">Intro</a> &gt;
+			<a class="link-chapter-2" href="javascript:displayChapter('chapter-2');">Isoropia</a> &gt;
+			<a class="link-chapter-3" href="javascript:displayChapter('chapter-3');">OZN</a> &gt;
+			<a class="link-chapter-4" href="javascript:displayChapter('chapter-4');">Jocurile Fonice</a> &gt;
+			<a class="link-chapter-5" href="javascript:displayChapter('chapter-5');">Outro</a>
 		</h2>
 
 		<div class="section-content">

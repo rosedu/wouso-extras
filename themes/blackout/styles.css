@@ -753,11 +753,15 @@ div.group-ca, div.group-cb, div.group-cc, div.group-others {
 }
 
 div.group-cb {
-	background-position : left center;
+	background-position : left -127px;
 }
 
 div.group-cc {
-	background-position : left bottom;
+	background-position : left -254px;
+}
+
+div.group-others {
+	background-position : left -381px;
 }
 
 .artifact-ca-level-1 {
@@ -885,6 +889,10 @@ div.group-cc {
 	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
 }
 
+a.chapter-active {
+	color : #ffffff;
+}
+
 div.chapter {
 	display : none;
 }
@@ -899,4 +907,20 @@ div#map {
 	float : left;
 	margin : 20px 20px 20px 0;
 	width : 360px;
+}
+
+div#race-oxynia, div#race-zota, div#race-nifes {
+	background : transparent url(library/images/races.png) left top no-repeat;
+	height : 110px;
+	float : right;
+	margin : 20px 0 20px 20px;
+	width : 230px;
+}
+
+div#race-zota {
+	background-position : left center;
+}
+
+div#race-nifes {
+	background-position : left bottom;
 }

@@ -132,7 +132,6 @@ ol.top li {
 
 #sidebar ol.top li, .subgroups ol.top li {
 	padding : 0;
-    clear: right;
 }
 
 .block {
@@ -627,4 +626,9 @@ td div.artifacts {
 
 .legendLabel {
 	color : #646464;
+}
+
+blockquote {
+	line-height : 18px;
+	margin : 0 0 0 20px;
 }
