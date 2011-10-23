@@ -51,7 +51,7 @@ ul {
 }
 
 .right {
-    text-align : right;
+	text-align : right;
 }
 
 img.no-float, .no-float {
@@ -69,6 +69,10 @@ img.no-float, .no-float {
 fieldset textarea {
 	height: 50px;
 	width: 70%;
+}
+
+ol.top-left {
+	width: 480px;
 }
 
 #sidebar .progress-bar {
@@ -244,7 +248,8 @@ li label:hover {
 }
 
 .profile .points-big {
-	font-size : 48px;
+	font-size : 42px;
+	margin : 10px 0 0 0;
 }
 
 img.avatar {

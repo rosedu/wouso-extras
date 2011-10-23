@@ -766,87 +766,88 @@ div.group-cc {
 }
 
 .artifact-ca-level-1 {
-	background : transparent url(library/images/icons/nifes-level-1.png) 0 center no-repeat;
-}
-
-.artifact-ca-level-2 {
-	background : transparent url(library/images/icons/nifes-level-2.png) 0 center no-repeat;
-}
-
-.artifact-ca-level-3 {
-	background : transparent url(library/images/icons/nifes-level-3.png) 0 center no-repeat;
-}
-
-.artifact-ca-level-4 {
-	background : transparent url(library/images/icons/nifes-level-4.png) 0 center no-repeat;
-}
-
-.artifact-ca-level-5 {
-	background : transparent url(library/images/icons/nifes-level-5.png) 0 center no-repeat;
-}
-
-.artifact-ca-level-6 {
-	background : transparent url(library/images/icons/nifes-level-6.png) 0 center no-repeat;
-}
-
-.artifact-ca-level-7 {
-	background : transparent url(library/images/icons/nifes-level-7.png) 0 center no-repeat;
-}
-
-.artifact-cb-level-1 {
 	background : transparent url(library/images/icons/oxynia-level-1.png) 0 center no-repeat;
 }
 
-.artifact-cb-level-2 {
+.artifact-ca-level-2 {
 	background : transparent url(library/images/icons/oxynia-level-2.png) 0 center no-repeat;
 }
 
-.artifact-cb-level-3 {
+.artifact-ca-level-3 {
 	background : transparent url(library/images/icons/oxynia-level-3.png) 0 center no-repeat;
 }
 
-.artifact-cb-level-4 {
+.artifact-ca-level-4 {
 	background : transparent url(library/images/icons/oxynia-level-4.png) 0 center no-repeat;
 }
 
-.artifact-cb-level-5 {
+.artifact-ca-level-5 {
 	background : transparent url(library/images/icons/oxynia-level-5.png) 0 center no-repeat;
 }
 
-.artifact-cb-level-6 {
+.artifact-ca-level-6 {
 	background : transparent url(library/images/icons/oxynia-level-6.png) 0 center no-repeat;
 }
 
-.artifact-cb-level-7 {
+.artifact-ca-level-7 {
 	background : transparent url(library/images/icons/oxynia-level-7.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-1 {
+.artifact-cb-level-1 {
 	background : transparent url(library/images/icons/zota-level-1.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-2 {
+.artifact-cb-level-2 {
 	background : transparent url(library/images/icons/zota-level-2.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-3 {
+.artifact-cb-level-3 {
 	background : transparent url(library/images/icons/zota-level-3.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-4 {
+.artifact-cb-level-4 {
 	background : transparent url(library/images/icons/zota-level-4.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-5 {
+.artifact-cb-level-5 {
 	background : transparent url(library/images/icons/zota-level-5.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-6 {
+.artifact-cb-level-6 {
 	background : transparent url(library/images/icons/zota-level-6.png) 0 center no-repeat;
 }
 
-.artifact-cc-level-7 {
+.artifact-cb-level-7 {
 	background : transparent url(library/images/icons/zota-level-7.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-1 {
+	background : transparent url(library/images/icons/nifes-level-1.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-2 {
+	background : transparent url(library/images/icons/nifes-level-2.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-3 {
+	background : transparent url(library/images/icons/nifes-level-3.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-4 {
+	background : transparent url(library/images/icons/nifes-level-4.png) 0 center no-repeat;
+}
+
+
+.artifact-cc-level-5 {
+	background : transparent url(library/images/icons/nifes-level-5.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-6 {
+	background : transparent url(library/images/icons/nifes-level-6.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-7 {
+	background : transparent url(library/images/icons/nifes-level-7.png) 0 center no-repeat;
 }
 
 .artifact-negative {
@@ -887,8 +888,4 @@ div.group-cc {
 
 .artifact-default-level-1, .artifact-default-level-2, .artifact-default-level-3, .artifact-default-level-4, .artifact-default-level-5, .artifact-default-level-6, .artifact-default-level-7, .artifact-unknown {
 	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
-}
-
-ol.top-left {
-	width: 480px;
 }
