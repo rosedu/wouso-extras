@@ -4,20 +4,6 @@
   var wouso_url = "https://wouso.cs.pub.ro";
   var notif_url = "https://wouso.cs.pub.ro/ajax/notifications/";
   var minutes_update = 2;
-    
-  chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.getAllInWindow(undefined, function(tabs) {
-    for (var i = 0, tab; tab = tabs[i]; i++) {
-      if (tab.url && (tab.url.indexOf(wouso_url) == 0)) {
-        chrome.tabs.update(tab.id, {selected: true});
-        return;
-      }
-    }
-    chrome.tabs.create({url: wouso_url});
-    });
-  });
-
-  chrome.browserAction.setBadgeBackgroundColor({color:[200, 0, 0, 255]});
 
   function refresh() {
     var the_object = {}; 
@@ -33,7 +19,7 @@
             else {
                 chrome.browserAction.setIcon({path:"icon.png"});
                 if (the_object.count == 0) 
-                    chrome.browserAction.setBadgeText({text: null});
+                    chrome.browserAction.setBadgeText({text: ""});
                 else
                     chrome.browserAction.setBadgeText({text:String(the_object.count)});
            }
@@ -41,6 +27,22 @@
     };
     http_request.send(null);
   }
+  
+  chrome.browserAction.onClicked.addListener(function(tab) {
+    refresh();
+    chrome.tabs.getAllInWindow(undefined, function(tabs) {
+    for (var i = 0, tab; tab = tabs[i]; i++) {
+      if (tab.url && (tab.url.indexOf(wouso_url) == 0)) {
+        chrome.tabs.update(tab.id, {selected: true});
+        return;
+      }
+    }
+    chrome.tabs.create({url: wouso_url});
+    });
+  });
+
+  chrome.browserAction.setBadgeBackgroundColor({color:[200, 0, 0, 255]});
+
   window.setInterval(refresh, minutes_update * 60000);
   refresh();
 </script>
