@@ -905,7 +905,7 @@ div#map {
 	background : transparent url(library/images/map.png) no-repeat;
 	height : 240px;
 	float : left;
-	margin : 20px 20px 20px 0;
+	margin : 10px 20px 20px 0;
 	width : 360px;
 }
 
