@@ -661,11 +661,6 @@ a#static-page-logo {
 	width : 360px;
 }
 
-div#map {
-	background : transparent url(library/images/map.png) center center no-repeat;
-	height : 260px;
-}
-
 div#static-page .scroll-pane {
 	height : 330px;
 	width : 460px;
@@ -888,4 +883,20 @@ div.group-cc {
 
 .artifact-default-level-1, .artifact-default-level-2, .artifact-default-level-3, .artifact-default-level-4, .artifact-default-level-5, .artifact-default-level-6, .artifact-default-level-7, .artifact-unknown {
 	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
+}
+
+div.chapter {
+	display : none;
+}
+
+div#chapter-1 {
+	display : block;
+}
+
+div#map {
+	background : transparent url(library/images/map.png) no-repeat;
+	height : 240px;
+	float : left;
+	margin : 20px 20px 20px 0;
+	width : 360px;
 }

@@ -16,8 +16,11 @@
 
 		function displayChapter(chapter) {
 			$('div.chapter').animate({ opacity : 0, height : 0 }, 'fast', function() {
-				alert($('div#' + chapter).height());
-				//$('div#' + chapter).animate({ opacity : 0, height : heights[chapter] }, 'fast');
+				$('div.chapter').css({ 'display' : 'none' });
+				$('div#' + chapter).css({ 'display' : 'block' });
+				$('div#' + chapter).animate({ opacity : 1, height : heights[chapter] }, 'fast', function() {
+					$('div#' + chapter).css({ 'height' : 'auto' });
+				});
 			});
 		};
 	</script>
@@ -27,10 +30,11 @@
 	<div class="section" id="story">
 		<h2>
 			{{ staticpage.title }}:
-			<a href="javascript:displayChapter('chapter-1');">Titlu 1</a>
-			<a href="javascript:displayChapter('chapter-2');">Titlu 2</a>
-			<a href="javascript:displayChapter('chapter-3');">Titlu 3</a>
-			<a href="javascript:displayChapter('chapter-4');">Titlu 4</a>
+			<a href="javascript:displayChapter('chapter-1');">Intro</a> &gt;
+			<a href="javascript:displayChapter('chapter-2');">Isoropia</a> &gt;
+			<a href="javascript:displayChapter('chapter-3');">OZN</a> &gt;
+			<a href="javascript:displayChapter('chapter-4');">Jocurile Fonice</a> &gt;
+			<a href="javascript:displayChapter('chapter-5');">Outro</a>
 		</h2>
 
 		<div class="section-content">
