@@ -632,3 +632,8 @@ blockquote {
 	line-height : 18px;
 	margin : 0 0 0 20px;
 }
+
+
+div#content {
+	min-height : 520px;
+}
