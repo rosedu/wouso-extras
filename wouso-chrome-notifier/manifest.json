@@ -1,0 +1,16 @@
+{
+  "name": "World of USO Notifier",
+  "version": "1.1",
+  "background_page": "background.html",
+  "permissions": [
+    "tabs", "https://wouso.cs.pub.ro/*"
+  ],
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "browser_action": {
+      "default_icon" : "icon-offline.png",
+      "name": "World of USO",
+      "icons": ["icon.png", "icon-offline.png"]
+  }
+}
