@@ -217,7 +217,7 @@
 					{% block search %}
 						<div id="header-search">
 							<form action="/search/" method="post">
-								<input id="query" name="query" type="text" />
+								<input id="query" name="query" type="text" value="{{ search_query }}"/>
 								<input id="button-search" type="submit" value="{% trans 'Search' %}" />
 
 								<div class="clear">
