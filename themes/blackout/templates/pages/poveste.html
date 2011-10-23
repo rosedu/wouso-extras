@@ -1,0 +1,42 @@
+{% extends 'site_base.html' %}
+
+{% load user %}
+{% load artifacts %}
+{% load i18n %}
+
+{% block scripts %}
+	<script type="text/javascript" language="JavaScript">
+		var heights = [];
+
+		$(document).ready(function () {
+			$('div.chapter').each(function() {
+				heights[$(this).attr('id')] = $(this).height();
+			});
+		});
+
+		function displayChapter(chapter) {
+			$('div.chapter').animate({ opacity : 0, height : 0 }, 'fast', function() {
+				alert($('div#' + chapter).height());
+				//$('div#' + chapter).animate({ opacity : 0, height : heights[chapter] }, 'fast');
+			});
+		};
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="section" id="story">
+		<h2>
+			{{ staticpage.title }}:
+			<a href="javascript:displayChapter('chapter-1');">Titlu 1</a>
+			<a href="javascript:displayChapter('chapter-2');">Titlu 2</a>
+			<a href="javascript:displayChapter('chapter-3');">Titlu 3</a>
+			<a href="javascript:displayChapter('chapter-4');">Titlu 4</a>
+		</h2>
+
+		<div class="section-content">
+			{% autoescape off %}
+				{{ staticpage.html_contents }}
+			{% endautoescape %}
+		</div><!-- .section-content -->
+	</div><!-- .section #story -->
+{% endblock %}
