@@ -135,14 +135,22 @@
 
 									<div class="scroll-pane" id="player-stats-focus">
 										<p>
+                                            {% if top.position %}
 											<b>{% trans 'Your rank' %}</b>
-											<br />
-											{% trans 'Global' %}: {{ top.position }}
 
 											{% for g in topgroups %}
 												<br />
 												{% player_group g %}: {{ g.position }}
 											{% endfor %}
+                                            <br/>
+											    {% trans 'Global' %}: {{ top.position }}
+                                            {% else %}
+                                                <b>{% trans 'Groups' %}</b>
+                                                <br/>
+                                                {% for g in player.groups.all %}
+                                                    {% player_group g %}
+                                                {% endfor %}
+                                            {% endif %}
 										</p>
 
 										{% if player.artifact_amounts.all %}
