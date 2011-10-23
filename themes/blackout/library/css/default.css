@@ -637,3 +637,8 @@ blockquote {
 div#content {
 	min-height : 520px;
 }
+
+div#story ul {
+	list-style-type : circle;
+	margin : 0 0 0 20px;
+}
