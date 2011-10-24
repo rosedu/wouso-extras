@@ -36,6 +36,10 @@
 					{% if profile.series %}
 						{% trans 'Series' %}: {% player_group profile.series %}
 					{% endif %}
+
+                    {% if profile.specialquestuser %}
+                        {% trans 'Special' %}: {{ profile.specialquestuser.group }}
+                    {% endif %}
 				</p>
 
 				<div class="clear spacer-small">
