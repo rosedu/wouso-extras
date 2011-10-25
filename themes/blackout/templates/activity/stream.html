@@ -9,7 +9,7 @@
 			</div>
 
 			<a class="player-avatar" href="{% url wouso.interface.profile.views.user_profile ac.user_from.id %}">
-				<img class="avatar medium player-avatar-image" src="{% player_avatar ac.user_from %}" />
+				<img class="avatar medium player-avatar-image" src="{% player_avatar ac.user_from %}&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" />
 
 				<div class="player-avatar-race player-avatar-race-{{ ac.user_from.series.name|lower}}"></div>
 			</a>
@@ -27,7 +27,7 @@
 			{% if ac.user_from != ac.user_to %}
 				<div class="activity-second">
 					<a class="player-avatar-small" href="{% url wouso.interface.profile.views.user_profile ac.user_to.id %}">
-						<img class="avatar small player-avatar-image" src="{%  player_avatar ac.user_to %}" />
+						<img class="avatar small player-avatar-image" src="{%  player_avatar ac.user_to %}&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" />
 
 						<div class="player-avatar-race player-avatar-race-{{ ac.user_to.series.name|lower }}"></div>
 					</a>
