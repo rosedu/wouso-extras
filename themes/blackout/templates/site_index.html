@@ -56,7 +56,7 @@
 	</div><!-- .section-half-left -->
 
 	<div class="section-half-right">
-		<h2>{% trans 'Online players' %}</h2>
+		<h2>{% trans 'Online players' %}<span class="points">{{ last10|length }}</span></h2>
 
 		<div class="section-content">
 			{% for u in last10 %}
