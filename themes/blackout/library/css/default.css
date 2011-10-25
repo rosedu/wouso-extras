@@ -248,7 +248,7 @@ li label:hover {
 }
 
 .profile .points-big {
-	font-size : 32px;
+	font-size : 42px;
 	margin : 10px 0 0 0;
 }
 
@@ -459,6 +459,10 @@ span.to_user {
 	-webkit-border-radius : 5px 5px 5px 5px;
 }
 
+span.to_user a{
+	color : #ffffff;
+}
+
 span.to_user a.to_reset {
 	border-left : 1px solid #3399ff;
 	color : #ffffff;
@@ -641,4 +645,53 @@ div#content {
 div#story ul {
 	list-style-type : circle;
 	margin : 0 0 0 20px;
+}
+
+.player-avatar {
+	display : block;
+	float : left;
+	height : 44px;
+	margin : 0 5px 0 0;
+	position : relative;
+	width : 44px;
+}
+
+.player-avatar-small {
+	display : block;
+	float : left;
+	height : 28px;
+	margin : 0 5px 0 0;
+	position : relative;
+	width : 28px;
+}
+
+.player-avatar-image {
+	left : 0;
+	position : absolute;
+	top : 0;
+}
+
+.player-avatar-race {
+	background : transparent url(../images/avatar-corners.png) no-repeat;
+	height : 15px;
+	left : 0;
+	padding-top : 0 !important;
+	position : absolute;
+	top : 0;
+	width : 15px;
+}
+
+.player-avatar-race-ca {
+	background-position : left top;
+}
+
+.player-avatar-race-cb {
+	background-position : left center;
+}
+
+.player-avatar-race-cc {
+	background-position : left bottom;
+}
+.player-avatar-race-others {
+	background: none;
 }
