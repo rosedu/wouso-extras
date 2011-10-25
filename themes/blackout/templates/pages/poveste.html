@@ -16,11 +16,13 @@
 
 		function displayChapter(chapter) {
 			$('div.chapter').animate({ opacity : 0, height : 0 }, 'fast', function() {
+				window.location.hash = chapter;
+
 				$('div#story h2 a').removeClass('chapter-active');
 				$('a.link-' + chapter).addClass('chapter-active');
 				$('div.chapter').css({ 'display' : 'none' });
 				$('div#' + chapter).css({ 'display' : 'block' });
-				$('div#' + chapter).animate({ opacity : 1, height : heights[chapter] }, 'fast', function() {
+				$('div#' + chapter).stop().animate({ opacity : 1, height : heights[chapter] }, 'fast', function() {
 					$('div#' + chapter).css({ 'height' : 'auto' });
 				});
 			});
