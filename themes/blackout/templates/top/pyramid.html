@@ -7,7 +7,7 @@
 {% block sectiontitle %}{% trans 'Pyramid' %}{% endblock %}
 
 {% block css %}
-    <style>td, th {padding: 0};</style>
+table.pyramid tr td, table.pyramid tr th {padding: 0};
 {% endblock %}
 
 {% block sidebar %}
@@ -18,10 +18,10 @@
 {% if top.disabled %}
     {% trans 'Top has been disabled.' %}
 {% else %}
-<table border="0" cellspacing="0" cellpadding="0">
+<table border="0" cellspacing="0" cellpadding="0" class="pyramid">
     {% for s in series %}
     <tr>
-    <th colspan="6" class="head-{{ s.name }}">{{ s }}</th>
+    <th colspan="6" class="head-{{ s.name }}">{{ s }}  - {{ s.player_set.all.count }} </th>
     </tr>
 
     <tr>
