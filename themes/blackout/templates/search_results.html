@@ -9,7 +9,7 @@
 		<div class="section-content">
 			<ul>
 				{% for sr in searchresults %}
-					<li><a href="{% url interface.profile.views.user_profile sr.id %}">{{ sr.user.first_name }} {{ sr.user.last_name }}</a></li>
+					<li>{% player_simple sr %}</li>
 				{% endfor %}
 			</ul>
             <ul>

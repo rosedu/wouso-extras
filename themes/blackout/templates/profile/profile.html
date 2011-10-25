@@ -30,12 +30,16 @@
 					|
 
 					{% if profile.proximate_group != profile.series %}
-						{% trans 'Group' %}: {% player_group profile.proximate_group %}
+					    {% player_group profile.proximate_group %} /
 					{% endif %}
 	
 					{% if profile.series %}
-						{% trans 'Series' %}: {% player_group profile.series %}
+						{% player_group profile.series %}
 					{% endif %}
+
+                    {% if profile.specialquestuser %}
+                        {% trans 'Special' %}: {{ profile.specialquestuser.group }}
+                    {% endif %}
 				</p>
 
 				<div class="clear spacer-small">
@@ -68,7 +72,7 @@
 			</div><!-- #profile-info -->
 
 			<div class="points">
-				<h1 class="points-big">{{ profile.points}}</h1>
+				<h1 class="points-big">{{ profile.points|floatformat}}</h1>
 
 				<div class="spacer-small">
 					<!-- -->
@@ -107,6 +111,7 @@
 					<a class="button" href="{% url group_set profile.id %}">Groups</a>
 					<a class="button" href="{% url staff_toggle profile.id %}">Staff: {% if profile.in_staff_group %}<span class="ok">ON</span>{% else %}<span class="wrong">OFF</span>{% endif %}</a>
                     <a class="button" href="{% url artifact_set profile.id %}">Artifacts</a>
+                    <a class="button button-min" href="{% url admin:auth_user_change profile.user.id %}">✍</a>
 					{% autoescape off %}
 						{{ profile_superuser_actions }}
 					{% endautoescape %}
