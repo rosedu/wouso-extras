@@ -30,11 +30,11 @@
 					|
 
 					{% if profile.proximate_group != profile.series %}
-						{% trans 'Group' %}: {% player_group profile.proximate_group %}
+					    {% player_group profile.proximate_group %} /
 					{% endif %}
 	
 					{% if profile.series %}
-						{% trans 'Series' %}: {% player_group profile.series %}
+						{% player_group profile.series %}
 					{% endif %}
 
                     {% if profile.specialquestuser %}
