@@ -80,7 +80,7 @@
 
 							<ol class="top">
 								{% for g in subgroups %}
-									<li>{% player_group g %} <span class="points">{{ g.live_points }}</span></li>
+									<li>{% player_group g %} </li>
 								{% endfor %}
 							</ol>
 						{% endif %}
@@ -94,11 +94,11 @@
 
 							<ol class="top">
 								{% for g in sistergroups %}
-									<li>{% player_group g %} <span class="points">{{ g.live_points }}</span></li>
+									<li>{% player_group g %} </li>
 								{% endfor %}
 							</ol>
 
-							<a href="{% url wouso.interface.profile.views.groups_index %}">{% trans 'View all' %}</a>
+							<a class="goto"  href="{% url wouso.interface.profile.views.groups_index %}">{% trans 'View all' %}</a>
 						{% endif %}
 					</div>
 

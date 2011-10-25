@@ -924,3 +924,17 @@ div#race-zota {
 div#race-nifes {
 	background-position : left bottom;
 }
+
+#sidebar ol.top li {
+	clear: right;
+}
+
+span.w50 {
+	width: 100px !important;
+	display: inline-block;
+	white-space: nowrap;
+}
+a.goto {
+	display: block;
+	text-align: right;
+}
