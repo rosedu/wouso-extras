@@ -38,8 +38,8 @@
 
 	<script language="JavaScript" type="text/javascript">
 		function days_select(days) {
-			if (days == 1)
-				return '<input type="hidden" name="days" value="1" />';
+			if (days <= 1)
+				return '<input type="hidden" name="days" value="' + days + '" />';
 
 			html = '{% trans 'for' %} <select name="days">';
 

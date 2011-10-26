@@ -32,12 +32,16 @@
 							<td width="100%">
 								<b>{% artifact s %}{{ s.title }}</b>
 								<p class="artifact-description">{{ s.description }}</p>
-						</div>
-							</td>
+							</div>
+                            </td>
 							<td nowrap="nowrap">
-								{% if s.due_days > 1 %}
-									{{ s.due_days }} {% trans 'days' %}
-								{% endif %}
+								    {% if s.due_days == 1 %}
+                                        {% trans '1 day' %}
+                                    {% else %}
+                                        {% if s.due_days > 1 %}
+                                            {{ s.due_days }} {% trans 'days' %}
+                                        {% endif %}
+                                    {% endif %}
 							</td>
 							<td align="right" >
 								{% coin_amount s.price 'gold' %}
