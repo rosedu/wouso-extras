@@ -36,10 +36,6 @@
 					{% if profile.series %}
 						{% player_group profile.series %}
 					{% endif %}
-
-                    {% if profile.specialquestuser %}
-                        {% trans 'Special' %}: {{ profile.specialquestuser.group }}
-                    {% endif %}
 				</p>
 
 				<div class="clear spacer-small">
@@ -87,6 +83,13 @@
 		</div><!-- .clear .spacer-small -->
 
 		<div class="section-content">
+
+			<div style="float: left">
+                    {% if profile.specialquestuser %}
+                        {% trans 'Special' %}: <a href="{% url specialquest_group profile.specialquestuser.group.id %}">{{ profile.specialquestuser.group.name }}</a>
+                    {% endif %}
+			</div>
+
 			<div class="actions">
 				{% if profile.user.id != user.id %}
 					<a class="button button-min" href="{% url create_to profile.id %}" title="{% trans 'Send a message' %}">✉</a>

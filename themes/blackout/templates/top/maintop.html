@@ -2,6 +2,7 @@
 
 {% load artifacts %}
 {% load i18n %}
+{% load user %}
 
 {% block title %}{% trans 'Top' %}{% endblock %}
 
@@ -29,9 +30,13 @@
 					</tr>
 					{% for user in allUsers.object_list %}
 						<tr>
-							<td align="center" class="td-artifact">{% artifact user.level %}</td>
-							<td>
-								<a href="{% url interface.profile.views.user_profile user.id %}">{{ user }}</a>
+			<td>
+<a class="player-avatar-small" href="{% url player_profile user.id %}">
+<img class="avatar small player-avatar-image" src="{%  player_avatar user %}&s=44&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="44" />
+						<div class="player-avatar-race player-avatar-race-{{ user.series.name|lower }}"></div>
+</a>
+			</td>
+	<td>{% player user %}
 								{% for artf in user.artifacts.all %}
 									<div class = "artifacts">
 									{% artifact artf %}
