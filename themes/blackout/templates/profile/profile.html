@@ -85,7 +85,7 @@
 		<div class="section-content">
 
 			<div style="float: left">
-                    {% if profile.specialquestuser %}
+                    {% if profile.specialquestuser.group %}
                         {% trans 'Special' %}: <a href="{% url specialquest_group profile.specialquestuser.group.id %}">{{ profile.specialquestuser.group.name }}</a>
                     {% endif %}
 			</div>
