@@ -53,15 +53,19 @@
 				<ul class="artifacts" id="player-spells">
 					{% for s in profile.spells.all %}
 						<li>
-							{% if s.source.id == player.id %}
+						{% if s.source.id == player.id %}
+							{% spell_due s %}
+						{% else %}
+							{% if profile.id == player.id %}
 								{% spell_due s %}
 							{% else %}
-								{% if profile.id == player.id %}
+								{% if perms.config.change_setting %}
 									{% spell_due s %}
 								{% else %}
 									{% spell_unknown s %}
 								{% endif %}
 							{% endif %}
+						{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
