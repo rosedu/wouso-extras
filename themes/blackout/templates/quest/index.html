@@ -25,7 +25,11 @@
 			{% else %}
 				<p style="color:red">{{ message }}</p>
 
-				<h3>Level #{{ progress.current_level }}:</h3>
+                                <h3>Nivel curent #{{ progress.current_level }} 
+
+{% if progress.current_level < quest.count|add:-1 %}. Nivelul următor #{{ progress.current_level|add:1 }}
+{% else %} - ultimul {% endif %}
+				</h3>
 
 				<div class="spacer">
 					<!-- -->
