@@ -35,7 +35,10 @@
 					<!-- -->
 				</div><!-- .spacer -->
 
-				<p>{{ progress.current_question.text }}</p>
+				<p>{%autoescape off %}
+				{{ progress.current_question.text }}
+				{% endautoescape %}
+				</p>
 
 				<div class="spacer">
 					<!-- -->
