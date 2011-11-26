@@ -62,7 +62,9 @@
 
 			<div id="exchange" class="tab_content">
 				<br/>
+				{% autoescape off %}
 				<span class="points">{{ rate_text }}</span>
+				{% endautoescape %}
 				<p>{% trans 'Exchange points for gold or gold for points' %}</p>
 
 				<div class="spacer">
