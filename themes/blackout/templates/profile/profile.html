@@ -143,8 +143,10 @@
 
 			<ul class="tabs">
 				<li><a href="#tab-1">{% trans 'Activity' %}</a></li>
+				{% if not top.disabled %}
 				<li><a href="#tab-2">{% trans 'Position' %}</a></li>
 				<li><a href="#tab-3">{% trans 'Points' %}</a></li>
+				{% endif %}
 			</ul>
 
 			<div class="tab_container">
@@ -166,6 +168,7 @@
 					{% endif %}
 				</div>
 
+				{% if not top.disabled %}
 				<div id="tab-2" class="tab_content">
 					<div class="spacer">
 						<!-- -->
@@ -208,6 +211,7 @@
 
 					<div id="graf2" class="graf placeholder"></div>
 				</div>
+				{% endif %}
 			</div>
 		</div><!-- .section-content -->
 	</div><!-- .section -->

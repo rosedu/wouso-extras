@@ -103,6 +103,7 @@
 					</div>
 
 					<ol class="top top-left">
+						{% if not top.disabled %}
 						{% for u in top_users %}
 							<li>
 								{% player u %}
@@ -114,6 +115,9 @@
 						{% empty %}
 							<li class="empty">{% trans 'Sorry, no users in this group' %}</li>
 						{% endfor %}
+						{% else %}
+							<li class="empty">{% trans 'Sorry, top is disabled' %}</li>
+						{% endif %}
 					</ol>
 				</div>
 
