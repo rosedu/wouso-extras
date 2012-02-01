@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Options from WoUSO Notifier</title>
+    <style>
+        * {font-family: Verdana}
+    </style>
+    <script>
+        function saveOptions() {
+            var bkg = chrome.extension.getBackgroundPage();
+            var select = document.getElementById("edition");
+            var edition = select.children[select.selectedIndex].value;
+            bkg.settings.edition = edition;
+            bkg.loadOptions();
+        }
+
+        function loadOptions() {
+            var bkg = chrome.extension.getBackgroundPage();
+            var select = document.getElementById("edition");
+            edition = bkg.settings.edition;
+
+            for (c=0; c<select.children.length; c++) {
+                if (select.children[c].value == edition)
+                    select.children[c].selected = true;
+            }
+        }
+    </script>
+</head>
+
+<body onload="loadOptions()">
+    <h1>WoUSO Notifier</h1>
+
+    Edition:
+    <select id="edition">
+        <option value="2011">USO 2011</option>
+        <option value="so-2012">SO 2012</option>
+    </select>
+
+    <button onclick="saveOptions()">Save</button>
+</body>
+</html>

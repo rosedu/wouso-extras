@@ -1,12 +1,35 @@
 <html>
 <head>
 <script>
+  var wouso_host = "wouso.cs.pub.ro";
+  var notif_base = "/ajax/notifications/";
+
   var wouso_url = "https://wouso.cs.pub.ro";
-  var notif_url = "https://wouso.cs.pub.ro/ajax/notifications/";
+  var notif_url = wouso_url + notif_base;
   var minutes_update = 2;
 
+  /* settings class */
+  settings = {
+    get edition() {
+      return localStorage['edition'];
+    },
+    set edition(val) {
+      localStorage['edition'] = val;
+    }
+  }
+
+  function loadOptions() {
+      var edition = settings.edition;
+      if (edition == undefined)
+         edition = "2011";
+      wouso_url = "https://" + wouso_host + "/" + edition;
+      notif_url = wouso_url + notif_base;
+
+      refresh();
+  }
+
   function refresh() {
-    var the_object = {}; 
+    var the_object = {};
     var http_request = new XMLHttpRequest();
     http_request.open( "GET", notif_url, true );
     http_request.onreadystatechange = function () {
@@ -14,11 +37,11 @@
             the_object = JSON.parse( http_request.responseText );
             if ( the_object.count == -1) {
                 chrome.browserAction.setIcon({path:"icon-offline.png"});
-                chrome.browserAction.setBadgeText({text: null});
+                chrome.browserAction.setBadgeText({text: ""});
             }
             else {
                 chrome.browserAction.setIcon({path:"icon.png"});
-                if (the_object.count == 0) 
+                if (the_object.count == 0)
                     chrome.browserAction.setBadgeText({text: ""});
                 else
                     chrome.browserAction.setBadgeText({text:String(the_object.count)});
@@ -27,7 +50,7 @@
     };
     http_request.send(null);
   }
-  
+
   chrome.browserAction.onClicked.addListener(function(tab) {
     refresh();
     chrome.tabs.getAllInWindow(undefined, function(tabs) {
@@ -44,7 +67,7 @@
   chrome.browserAction.setBadgeBackgroundColor({color:[200, 0, 0, 255]});
 
   window.setInterval(refresh, minutes_update * 60000);
-  refresh();
+  loadOptions();
 </script>
 </head>
 </html>
