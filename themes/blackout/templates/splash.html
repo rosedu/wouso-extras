@@ -63,6 +63,8 @@
                         {% if not config_disable_login %}
 						<input id="button-login" type="submit" value="Autentificare" />
                         {% endif %}
+
+						<input type="hidden" name="next" value="{{ next }}" />
 					</div><!-- #container-login-right -->
 
 					<div class="clear">
