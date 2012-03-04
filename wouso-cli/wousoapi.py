@@ -10,7 +10,7 @@ class WousoOAuthClient(oauth.OAuthClient):
     ACCESS_TOKEN_URL = '/api/oauth/access_token/'
     AUTHORIZATION_URL = '/api/oauth/authorize/'
 
-    def __init__(self, server, port=80, path='', consumer_key='', consumer_secret=''):
+    def __init__(self, server, port=80, path='', consumer_key='', consumer_secret='', https=False):
         self.server, self.port = server, port
         self.path = path
         self.consumer_key, self.consumer_secret = consumer_key, consumer_secret
@@ -19,7 +19,10 @@ class WousoOAuthClient(oauth.OAuthClient):
         self.access_token_url = self.ACCESS_TOKEN_URL
         self.authorization_url = self.AUTHORIZATION_URL
 
-        self.connection = httplib.HTTPConnection("%s:%d" % (self.server, self.port))
+        if https:
+            self.connection = httplib.HTTPSConnection('%s:%d' % (self.server, self.port))
+        else:
+            self.connection = httplib.HTTPConnection("%s:%d" % (self.server, self.port))
         self.consumer = oauth.OAuthConsumer(self.consumer_key, self.consumer_secret)
         self.signature_method_plaintext = oauth.OAuthSignatureMethod_PLAINTEXT()
         self.signature_method_hmac_sha1 = oauth.OAuthSignatureMethod_HMAC_SHA1()
@@ -28,7 +31,10 @@ class WousoOAuthClient(oauth.OAuthClient):
         self.connection.request(oauth_request.http_method, self.request_token_url,
                                 headers=oauth_request.to_header())
         response = self.connection.getresponse()
-        return oauth.OAuthToken.from_string(response.read())
+        data = response.read()
+        if 'Invalid consumer' not in data:
+            return oauth.OAuthToken.from_string(data)
+        return None
 
     def authorize_token(self, oauth_request, call=False):
         url =  '%s?%s' % (self.authorization_url, oauth_request.to_postdata())
@@ -90,7 +96,7 @@ class WousoClient(object):
         return self.access_token
 
     def notifications(self):
-        NOTIF_URL = '/api/notifications/count/'
+        NOTIF_URL = '/api/notifications/all/'
         oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
                                 token=self.access_token, http_method='GET', http_url=NOTIF_URL,
                                 parameters={})
@@ -101,10 +107,22 @@ class WousoClient(object):
         return response
 
 def run_new():
-    wc = WousoClient(server='127.0.0.1', port=8000)
+    wc = WousoClient(server='wouso-next.rosedu.org', port=80)
 
-    print wc.authorize()
+    wc.authorize()
+    print "Access token: '%s'" % wc.access_token
+    print wc.notifications()
+
+def run_existing(args):
+    wc = WousoClient(server='wouso-next.rosedu.org')
+
+    token = oauth.OAuthToken.from_string(args[0])
+    wc.access_token = token
     print wc.notifications()
 
 if __name__ == '__main__':
-    run_new()
+    import sys
+    if len(sys.argv) > 1:
+        run_existing(sys.argv[1:])
+    else:
+        run_new()
