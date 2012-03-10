@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, AWoUSOActivity!</string>
     <string name="app_name">AWoUSO</string>
+    <string name="buton_text">Push me!</string>
 
 </resources>

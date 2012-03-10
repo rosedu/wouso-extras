@@ -9,5 +9,12 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
 	    />
+	<Button
+	    android:id="@+id/buton_test"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/buton_text"
+	    android:layout_gravity="center"
+	    />
 
 </LinearLayout>
