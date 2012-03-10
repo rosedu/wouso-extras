@@ -4,10 +4,25 @@
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
     android:orientation="vertical" >
+	
 	<ImageView 
 	    android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
 	    />
+	
+	<Button
+	 android:id="@+id/b_red"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:text="Red"
+     android:visibility="visible" />
+	
+	<Button
+	 android:id="@+id/b_blue"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:text="Blue"
+     android:visibility="invisible" />
 
 </LinearLayout>
