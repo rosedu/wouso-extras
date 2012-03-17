@@ -1,59 +1,50 @@
 package cdl.android.ui;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.app.TabActivity;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.TabHost;
 import cdl.android.R;
 
-public class AWoUSOActivity extends Activity {
-    /** Called when the activity is first created. */
-	Button red;
-	Button blue;
+public class AWoUSOActivity extends TabActivity {
 
     @Override
+    //http://developer.android.com/resources/tutorials/views/hello-tabwidget.html
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-        Drawable red_bg = findViewById(R.id.b_red).getBackground();  
-    	PorterDuffColorFilter red_filter = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
-        red_bg.setColorFilter(red_filter);
-        Drawable blue_bg = findViewById(R.id.b_blue).getBackground();  
-    	PorterDuffColorFilter blue_filter = new PorterDuffColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
-        blue_bg.setColorFilter(blue_filter);
-        red = (Button) findViewById(R.id.b_red);
-        blue = (Button) findViewById(R.id.b_blue);
-        red.setOnClickListener(myListener);
-        blue.setOnClickListener(myListener);
+
+        Resources res = getResources(); // Resource object to get Drawables
+	    TabHost tabHost = getTabHost();  // The activity TabHost
+	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
+	    Intent intent;  // Reusable Intent for each tab
+
+	    // Create an Intent to launch an Activity for the tab (to be reused)
+	    intent = new Intent().setClass(this, Bazaar.class);
+
+	    // Initialize a TabSpec for each tab and add it to the TabHost
+	    spec = tabHost.newTabSpec("bazaar").setIndicator("Bazaar",
+	                      res.getDrawable(R.drawable.ic_tab_artists))
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+
+	    // Do the same for the other tabs
+	    intent = new Intent().setClass(this, Exchange.class);
+	    spec = tabHost.newTabSpec("exchange").setIndicator("Exchange",
+	                      res.getDrawable(R.drawable.ic_tab_albums))
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+
+	    intent = new Intent().setClass(this, Summary.class);
+	    spec = tabHost.newTabSpec("summary").setIndicator("Summary",
+	                      res.getDrawable(R.drawable.ic_tab_songs))
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
+
+	    tabHost.setCurrentTab(2);
     }
-
-    View.OnClickListener myListener = new View.OnClickListener() {
-
-	public void onClick(View v) {
-			if(((Button)v).getVisibility() == View.INVISIBLE) {
-				((Button)v).setVisibility(View.VISIBLE);
-				if(((Button)v).getId() == red.getId()) {
-					blue.setVisibility(View.INVISIBLE);
-				}
-				else {
-					red.setVisibility(View.INVISIBLE);
-				}
-			}
-			else {
-				((Button)v).setVisibility(View.INVISIBLE);
-				if(((Button)v).getId() == red.getId()) {
-					blue.setVisibility(View.VISIBLE);
-				}
-				else {
-					red.setVisibility(View.VISIBLE);
-				}
-			}
-		}
-    };
 }

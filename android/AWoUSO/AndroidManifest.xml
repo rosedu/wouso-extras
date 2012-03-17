@@ -17,6 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.Bazaar"></activity>
+        <activity android:name=".ui.Exchange"></activity>
+        <activity android:name=".ui.Summary"></activity>
+        <activity android:name=".ui.TabWidget"></activity>
     </application>
 
 </manifest>
