@@ -20,13 +20,13 @@ public class AWoUSOActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-        
-        Button button = (Button) findViewById(R.id.loginButton);
+
+        Button logButton = (Button) findViewById(R.id.loginButton);
         final Intent mainM = new Intent(this, MainMenu.class);
         final Toast loginNotification = Toast.makeText(getApplicationContext(), "Buffer", Toast.LENGTH_SHORT);
-        
-        button.setOnClickListener(new OnClickListener() {
-			
+
+        logButton.setOnClickListener(new OnClickListener() {
+
 			public void onClick(View v) {
 				loginNotification.cancel();
 				EditText userBuffer = (EditText) findViewById(R.id.username);
@@ -37,12 +37,12 @@ public class AWoUSOActivity extends Activity {
 
 
 				loginNotification.setGravity(Gravity.CENTER, 0, 0);
-		        
-				if ( userName.isEmpty() ){
+
+				/*if ( userName.isEmpty() ){
 					loginNotification.setText("Introduceti numele de utilizator!");
 					clear = 0;
 				}
-				
+
 				if ( password.isEmpty() ){
 					if ( clear == 0 ){
 						loginNotification.setText("Introduceti numele de utilizator\n                    si parola!");
@@ -52,13 +52,13 @@ public class AWoUSOActivity extends Activity {
 						clear = 0;
 					}
 				}
-				
-				if (clear == 1){
+
+				if (clear == 1){*/
 					startActivity(mainM);
-				}
+				/*}
 				else {
 					loginNotification.show();
-				}
+				}*/
 			}
 		});
     }
