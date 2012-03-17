@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    android:weightSum="8" >
+    
+    
+    // First segment
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+        
+        // Top-left logo
+    	<ImageView
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:contentDescription="@drawable/logo"
+        	android:src="@drawable/logo"
+        	android:adjustViewBounds="true"
+        	android:layout_weight="2"
+        	/>
+    
+    	// Invisible filler
+    	<Button 
+	        android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:visibility="invisible"
+        	android:layout_weight="1"
+        	/>
+    	
+    	// QotD button
+    	<Button 
+    	    android:layout_width="0dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="1"
+    	    android:text="@string/qotdMarker"
+    	    />
+    </LinearLayout>
+    
+    
+    // Second segment
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+    
+    	// Challenges button
+    	<Button 
+	        android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="2"
+        	android:text="@string/chalMarker"
+        	/>
+    	
+    	// Message button
+    	<Button 
+    	    android:layout_width="0dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="2"
+    	    android:text="@string/msgMarker"
+    	    />
+    </LinearLayout>
+    
+    
+    // Third segment
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+    
+    	// Shop button
+    	<Button 
+	        android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="2"
+        	android:text="@string/shopMarker"
+        	/>
+    	
+    	// Top button
+    	<Button 
+    	    android:layout_width="0dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="2"
+    	    android:text="@string/topMarker"
+    	    />
+    </LinearLayout>
+    
+    
+    // Fourth segment
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+        
+            	
+    	// Test button 1
+    	<Button 
+    	    android:layout_width="0dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_gravity="center_vertical"
+    	    android:layout_weight="1"
+    	    android:text="@string/spQuestMarker"
+    	    />
+    
+    	// Test button 2
+    	<Button 
+	        android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:visibility="invisible"
+        	android:layout_weight="2"
+        	/>
+    	
+        // Bottom-right logo
+    	<ImageView
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:contentDescription="@drawable/logo"
+        	android:src="@drawable/avatar"
+        	android:adjustViewBounds="true"
+        	android:layout_weight="1"
+        	/>
+    </LinearLayout>
+    
+    
+</LinearLayout>
