@@ -28,20 +28,20 @@ public class AWoUSOActivity extends TabActivity {
 
 	    // Initialize a TabSpec for each tab and add it to the TabHost
 	    spec = tabHost.newTabSpec("bazaar").setIndicator("Bazaar",
-	                      res.getDrawable(R.drawable.ic_tab_artists))
+	                      res.getDrawable(R.drawable.spell_purple))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, Exchange.class);
 	    spec = tabHost.newTabSpec("exchange").setIndicator("Exchange",
-	                      res.getDrawable(R.drawable.ic_tab_albums))
+	                      res.getDrawable(R.drawable.spell_yellow))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
 	    intent = new Intent().setClass(this, Summary.class);
 	    spec = tabHost.newTabSpec("summary").setIndicator("Summary",
-	                      res.getDrawable(R.drawable.ic_tab_songs))
+	                      res.getDrawable(R.drawable.spell_green))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
