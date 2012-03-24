@@ -17,12 +17,12 @@
         
         // Top-left logo
         <ImageView
-            android:layout_width="130dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:adjustViewBounds="true"
-            android:contentDescription="@drawable/logo"
-            android:src="@drawable/logo" />
+            android:contentDescription="@drawable/menu_logo"
+            android:src="@drawable/menu_logo" />
         
         // QotD button
         <FrameLayout
@@ -32,8 +32,8 @@
             android:layout_marginRight="50dp" >
             
         	<Button
-        	    android:layout_height="80dp"
         	    android:layout_gravity="right|center_vertical"
+            	android:textSize="30dp"
             	android:id="@+id/qotdbtn"
             	style="@style/specialButtons"
             	android:text="@string/qotdMarker" />
@@ -109,26 +109,25 @@
             android:layout_marginLeft="40dp" >
         	
         	<Button
-            	android:layout_height="wrap_content"
             	android:id="@+id/spcQbtn"
             	style="@style/specialButtons"
+            	android:textSize="20dp"
             	android:text="@string/spQuestMarker" />
         </FrameLayout>
         
         // Bottom-right logo
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="right" >
+            android:gravity="right" >
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
                 android:adjustViewBounds="true"
                 android:contentDescription="@drawable/avatar"
                 android:src="@drawable/avatar" />
-        </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
