@@ -1,18 +1,36 @@
 package cdl.android.ui;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import cdl.android.R;
 
-public class Bazaar extends Activity {
+public class Bazaar extends ListActivity {
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 	
-		TextView textview = new TextView(this);
-		textview.setText("This is the Bazaar tab");
-		setContentView(textview);
+	public void onCreate(Bundle savedInstanceState) {
+	  super.onCreate(savedInstanceState);
+
+	  final String[] countries = getResources().getStringArray(R.array.countries_array);
+	  setListAdapter(new ArrayAdapter<String>(this, R.layout.bazaar_list_item, countries));
+
+	  ListView lv = getListView();
+	  lv.setTextFilterEnabled(true);
+
+	  lv.setOnItemClickListener(new OnItemClickListener() {
+	    public void onItemClick(AdapterView<?> parent, View view,
+	        int position, long id) {
+	      // When clicked, show a toast with the TextView text
+	      Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
+	          Toast.LENGTH_SHORT).show();
+	    }
+	  });
 	}
+
 }

@@ -3,5 +3,23 @@
 
     <string name="hello">Hello World, AWoUSOActivity!</string>
     <string name="app_name">AWoUSO</string>
+    <string-array name="countries_array">
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+        <item>WoUSO</item>
+    </string-array>
 
 </resources>

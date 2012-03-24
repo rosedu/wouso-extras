@@ -13,12 +13,12 @@ import cdl.android.R;
 public class Tabs extends TabActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_secondary);
 		
 		Button button = (Button) findViewById(R.id.button_back);
-		
 		Resources res = getResources();
 		TabHost tabHost = getTabHost();
 		TabHost.TabSpec spec;
@@ -49,6 +49,7 @@ public class Tabs extends TabActivity {
 		tabHost.addTab(spec);
 		
 		tabHost.setCurrentTab(0);
+		
 	}
 	
 }
