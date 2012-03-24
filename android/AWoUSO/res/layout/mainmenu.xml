@@ -105,8 +105,7 @@
         <FrameLayout 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="40dp" >
+            android:layout_gravity="left" >
         	
         	<Button
             	android:id="@+id/spcQbtn"
@@ -117,16 +116,25 @@
         
         // Bottom-right logo
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right" >
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:background="@drawable/placeholder_frame"
+            android:orientation="vertical" >
 
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
+                style="@style/profileFrame"
                 android:adjustViewBounds="true"
                 android:contentDescription="@drawable/avatar"
                 android:src="@drawable/avatar" />
+            
+            <TextView 
+            	android:id="@+id/profileName"
+            	android:layout_width="wrap_content"
+            	android:maxWidth="130dp"
+            	style="@style/profileFrame"
+            	android:singleLine="true" />
         </LinearLayout>
     </LinearLayout>
 

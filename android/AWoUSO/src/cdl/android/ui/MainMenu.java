@@ -2,10 +2,12 @@ package cdl.android.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 
@@ -18,8 +20,13 @@ public class MainMenu extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.mainmenu);
 
+        final TextView userProfile = (TextView) findViewById(R.id.profileName);
+        userProfile.setText(getIntent().getExtras().getString("userName"));
+
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
-        final Toast hello = Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT);
+
+        final Toast hello = Toast.makeText(getApplicationContext(), "Sorry, no special quest!", Toast.LENGTH_SHORT);
+        hello.setGravity(Gravity.CENTER, 0, 0);
 
         specialQuest.setOnClickListener(new OnClickListener() {
 
@@ -29,6 +36,7 @@ public class MainMenu extends Activity {
 
 			}
 		});
+
 	}
 
 }

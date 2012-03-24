@@ -29,21 +29,25 @@ public class AWoUSOActivity extends Activity {
 
 			public void onClick(View v) {
 				loginNotification.cancel();
+
 				EditText userBuffer = (EditText) findViewById(R.id.username);
 				String userName = userBuffer.getText().toString();
+
 				EditText passBuffer = (EditText) findViewById(R.id.password);
 		        String password = passBuffer.getText().toString();
 		        int clear = 1;
 
-
 				loginNotification.setGravity(Gravity.CENTER, 0, 0);
 
-				/*if ( userName.isEmpty() ){
+				if ( userName.isEmpty() ){
 					loginNotification.setText("Introduceti numele de utilizator!");
 					clear = 0;
 				}
+				else{
+					mainM.putExtra("userName", userName);
+				}
 
-				if ( password.isEmpty() ){
+				/*if ( password.isEmpty() ){
 					if ( clear == 0 ){
 						loginNotification.setText("Introduceti numele de utilizator\n                    si parola!");
 					}
@@ -51,14 +55,14 @@ public class AWoUSOActivity extends Activity {
 						loginNotification.setText("Introduceti parola!");
 						clear = 0;
 					}
-				}
+				}*/
 
-				if (clear == 1){*/
+				if (clear == 1){
 					startActivity(mainM);
-				/*}
+				}
 				else {
 					loginNotification.show();
-				}*/
+				}
 			}
 		});
     }
