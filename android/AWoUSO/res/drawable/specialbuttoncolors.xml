@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_focused="true" android:state_pressed="false" android:color="#F0E90F" />
-    <item android:state_focused="true" android:state_pressed="true" android:color="#F0E90F" />
-    <item android:state_focused="false" android:state_pressed="true" android:color="#000000" />
-    <item android:color="#0A59A2" />
+    <item android:state_focused="true" android:state_pressed="false" android:color="#00C5CD" />
+    <item android:state_focused="true" android:state_pressed="true" android:color="#C8F526" />
+    <item android:state_focused="false" android:state_pressed="true" android:color="#C8F526" />
+    <item android:color="#00C5CD" />
 
 </selector>

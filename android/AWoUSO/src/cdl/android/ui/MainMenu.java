@@ -19,11 +19,12 @@ public class MainMenu extends Activity {
         setContentView(R.layout.mainmenu);
 
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
+        final Toast hello = Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT);
 
         specialQuest.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				Toast hello = Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT);
+				hello.cancel();
 				hello.show();
 
 			}
