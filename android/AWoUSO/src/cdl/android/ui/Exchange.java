@@ -1,5 +1,6 @@
 package cdl.android.ui;
 
+import cdl.android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -13,6 +14,6 @@ public class Exchange extends Activity {
 	
 		TextView textview = new TextView(this);
 		textview.setText("This is the Exchange tab");
-		setContentView(textview);
+		setContentView(R.layout.exchange);
 	}
 }

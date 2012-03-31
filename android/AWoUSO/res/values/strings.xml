@@ -21,5 +21,7 @@
         <item>WoUSO</item>
         <item>WoUSO</item>
     </string-array>
+    <string name="exchange_left">Exchange points for gold or gold for points</string>
+    <string name="exchange_right">Rate: 1 gold = 9 points, 1 gold = 10.0 points</string>
 
 </resources>
