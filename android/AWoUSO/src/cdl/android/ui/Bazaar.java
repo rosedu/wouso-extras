@@ -13,24 +13,24 @@ import cdl.android.R;
 
 public class Bazaar extends ListActivity {
 
-	
+
 	public void onCreate(Bundle savedInstanceState) {
-	  super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 
-	  final String[] countries = getResources().getStringArray(R.array.countries_array);
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.bazaar_list_item, countries));
+		final String[] list = getResources().getStringArray(R.array.list_array);
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.bazaar_list_item, list));
 
-	  ListView lv = getListView();
-	  lv.setTextFilterEnabled(true);
+		ListView lv = getListView();
+		lv.setTextFilterEnabled(true);
 
-	  lv.setOnItemClickListener(new OnItemClickListener() {
-	    public void onItemClick(AdapterView<?> parent, View view,
-	        int position, long id) {
-	      // When clicked, show a toast with the TextView text
-	      Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-	          Toast.LENGTH_SHORT).show();
-	    }
-	  });
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// When clicked, show a toast with the TextView text
+				Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
+						Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 }

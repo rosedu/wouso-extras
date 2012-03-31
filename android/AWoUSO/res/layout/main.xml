@@ -25,8 +25,7 @@
 
 		<Button
 			android:id="@+id/button_magic"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			style="@style/BlueButton"
 			android:layout_gravity="center"
 			android:text="Magic" />
 
