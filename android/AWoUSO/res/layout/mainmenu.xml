@@ -94,18 +94,18 @@
     
     
     // Fourth segment
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center"
         android:orientation="horizontal" >
         
         // Special Quest button
         <FrameLayout 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left" >
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="40dp" >
         	
         	<Button
             	android:id="@+id/spcQbtn"
@@ -116,26 +116,85 @@
         
         // Bottom-right logo
         <LinearLayout
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="fill_parent"
-            android:gravity="center"
-            android:background="@drawable/placeholder_frame"
+            android:layout_alignParentRight="true"
             android:orientation="vertical" >
 
-            <ImageView
-                android:layout_width="100dp"
-                style="@style/profileFrame"
-                android:adjustViewBounds="true"
-                android:contentDescription="@drawable/avatar"
-                android:src="@drawable/avatar" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+                
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+                    
+                    // Level icon
+                    <ImageView 
+                        android:id="@+id/level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    
+                    // Buff icon
+                    <ImageView 
+                        android:id="@+id/debuff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/spell_blue"
+                        android:contentDescription="@drawable/spell_blue"/>
+                    
+                    // Debuff icon
+                    <ImageView 
+                        android:id="@+id/buff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/spell_yellow"
+                        android:contentDescription="@drawable/spell_yellow"/>
+                </LinearLayout>
+                
+                // Profile
+            	<ImageView
+            	    android:id="@+id/profileImage"
+	                android:layout_width="70dp"
+                	style="@style/profileFrame"
+                	android:adjustViewBounds="true"
+                	android:paddingTop="10dp"
+                	android:contentDescription="@drawable/avatar"
+	                android:src="@drawable/avatar" />
+            </LinearLayout>
             
-            <TextView 
+            // Profile name
+            <TextView
             	android:id="@+id/profileName"
             	android:layout_width="wrap_content"
-            	android:maxWidth="130dp"
+            	android:maxWidth="115dp"
             	style="@style/profileFrame"
             	android:singleLine="true" />
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                style="@style/profileFrame"
+                android:orientation="horizontal" >
+                
+                // Gold amount
+            	<TextView 
+                	android:id="@+id/gold"
+                	android:layout_width="wrap_content"
+                	android:layout_height="wrap_content"
+                	android:paddingRight="5dp"
+                	android:maxWidth="115dp"/>
+            	
+            	// Gold icon
+            	<ImageView 
+            	    android:id="@+id/goldicon"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:src="@drawable/spell_green"
+            	    android:contentDescription="@drawable/spell_green"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

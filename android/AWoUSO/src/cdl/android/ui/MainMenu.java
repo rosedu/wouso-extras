@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -22,6 +23,12 @@ public class MainMenu extends Activity {
 
         final TextView userProfile = (TextView) findViewById(R.id.profileName);
         userProfile.setText(getIntent().getExtras().getString("userName"));
+        
+        final TextView goldCount = (TextView) findViewById(R.id.gold);
+        goldCount.setText("500");
+        
+        final ImageView playerLevel = (ImageView) findViewById(R.id.level);
+        playerLevel.setImageResource(R.drawable.levelex);
 
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
 
