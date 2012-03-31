@@ -24,8 +24,10 @@ public class MainMenu extends Activity {
         final TextView userProfile = (TextView) findViewById(R.id.profileName);
         userProfile.setText(getIntent().getExtras().getString("userName"));
         
+        final TextView pointsCount = (TextView) findViewById(R.id.points);
+        pointsCount.setText("420");
         final TextView goldCount = (TextView) findViewById(R.id.gold);
-        goldCount.setText("500");
+        goldCount.setText("0");
         
         final ImageView playerLevel = (ImageView) findViewById(R.id.level);
         playerLevel.setImageResource(R.drawable.levelex);
