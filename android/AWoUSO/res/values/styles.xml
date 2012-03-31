@@ -3,7 +3,6 @@
     <style name="mainMenuButtons">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">60dp</item>
-        <item name="android:background">#FFFFFF</item>
 	</style>
 
     <style name="specialButtons">
