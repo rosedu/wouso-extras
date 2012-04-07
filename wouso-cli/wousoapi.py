@@ -75,7 +75,8 @@ class WousoClient(object):
         Returns: access_token, for further unattended use
         """
         oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
-                                http_url=self.client.request_token_url)
+                                http_url=self.client.request_token_url,
+                                http_method='POST')
         oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, None)
         token = self.client.fetch_request_token(oauth_request)
 
@@ -106,11 +107,28 @@ class WousoClient(object):
 
         return response
 
-def run_new():
-    wc = WousoClient(server='wouso-next.rosedu.org', port=80)
+    def info(self):
+        INFO_URL = '/api/info/'
+        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
+            token=self.access_token, http_method='GET', http_url=INFO_URL,
+            parameters={})
+        oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
+
+        response = self.client.access_resource(oauth_request, INFO_URL)
+
+        return response
+
+def run_new(*args):
+    server, port = 'wouso-next.rosedu.org', 80
+    if len(args) > 0:
+        server = args[0]
+        if len(args) > 1:
+            port = int(args[1])
+    wc = WousoClient(server=server, port=port)
 
     wc.authorize()
     print "Access token: '%s'" % wc.access_token
+    print wc.info()
     print wc.notifications()
 
 def run_existing(args):
@@ -118,11 +136,16 @@ def run_existing(args):
 
     token = oauth.OAuthToken.from_string(args[0])
     wc.access_token = token
+    print wc.info()
     print wc.notifications()
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) > 1:
-        run_existing(sys.argv[1:])
+    if len(sys.argv) >= 2:
+        if sys.argv[1] == 'help':
+            print 'Usage %s [token <string>] or <server> <port>' % sys.argv[0]
+            sys.exit(0)
+    if len(sys.argv) >= 3 and sys.argv[1] == 'token':
+        run_existing(sys.argv[2:])
     else:
-        run_new()
+        run_new(*sys.argv[1:])
