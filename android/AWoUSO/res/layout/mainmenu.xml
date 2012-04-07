@@ -7,7 +7,7 @@
     android:orientation="vertical" >
     
     
-    // First segment
+    <!-- First segment -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:orientation="horizontal" >
         
-        // Top-left logo
+        <!-- Top-left logo -->
         <ImageView
             android:layout_width="150dp"
             android:layout_height="match_parent"
@@ -24,7 +24,7 @@
             android:contentDescription="@drawable/menu_logo"
             android:src="@drawable/menu_logo" />
         
-        // QotD button
+        <!-- QotD button -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -41,7 +41,7 @@
     </LinearLayout>
     
     
-    // Second segment
+    <!-- Second segment -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -49,7 +49,7 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        // Challenges button
+        <!-- Challenges button -->
         <Button
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -57,7 +57,7 @@
             style="@style/mainMenuButtons"
             android:text="@string/chalMarker" />
         
-        // Message button
+        <!-- Message button -->
         <Button
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
@@ -67,7 +67,7 @@
     </LinearLayout>
     
     
-    // Third segment
+    <!-- Third segment -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -75,7 +75,7 @@
         android:gravity="center"
         android:orientation="horizontal" >
         
-        // Shop button
+        <!-- Shop button -->
         <Button
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
@@ -83,7 +83,7 @@
             style="@style/mainMenuButtons"
             android:text="@string/shopMarker" />
         
-        // Top button
+        <!-- Top button -->
         <Button
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
@@ -93,14 +93,14 @@
     </LinearLayout>
     
     
-    // Fourth segment
+    <!-- Fourth segment -->
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal" >
         
-        // Special Quest button
+        <!-- Special Quest button -->
         <FrameLayout 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -114,7 +114,7 @@
             	android:text="@string/spQuestMarker" />
         </FrameLayout>
         
-        // Bottom-right logo
+        <!-- Bottom-right logo -->
         <LinearLayout
             android:layout_width="120dp"
             android:layout_height="fill_parent"
@@ -131,13 +131,14 @@
                     android:layout_height="fill_parent"
                     android:orientation="vertical" >
                     
-                    // Level icon
+                    <!-- Level icon -->
                     <ImageView 
                         android:id="@+id/level"
+                        android:contentDescription="@drawable/levelex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     
-                    // Buff icon
+                    <!-- Buff icon -->
                     <ImageView 
                         android:id="@+id/debuff"
                         android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
                         android:src="@drawable/spell_blue"
                         android:contentDescription="@drawable/spell_blue"/>
                     
-                    // Debuff icon
+                    <!-- Debuff icon -->
                     <ImageView 
                         android:id="@+id/buff"
                         android:layout_width="wrap_content"
@@ -154,14 +155,14 @@
                         android:contentDescription="@drawable/spell_yellow"/>
                 </LinearLayout>
                 
-                // Profile
+                <!-- Profile -->
                 <RelativeLayout 
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="85dp" >
                     
             		<ImageView
             	    	android:id="@+id/profileImage"
-	                	android:layout_width="85dp"
+	                	android:layout_width="wrap_content"
                 		style="@style/profileFrame"
                 		android:layout_alignParentLeft="true"
                 		android:adjustViewBounds="true"
@@ -174,10 +175,36 @@
             		    android:layout_height="fill_parent"
             		    android:visibility="invisible"
             		    android:layout_alignParentLeft="true" />
-            	</RelativeLayout>
+            	
+                <!-- Progress bar -->
+            		<RelativeLayout
+            	    	android:layout_width="wrap_content"
+            	    	android:layout_height="fill_parent"
+            	    	android:layout_toRightOf="@id/profileOverlay" >
+            		
+                    	<!-- Empty background -->
+                		<ImageView
+	                	    android:src="@drawable/v_progress_bar_empty"
+                	    	android:contentDescription="@drawable/v_progress_bar_empty" 
+                    		android:layout_width="wrap_content"
+                    		android:layout_height="fill_parent"
+                    		android:adjustViewBounds="true"
+                    		android:layout_alignParentLeft="true" />
+                	
+                		<!-- Full -->
+                		<ImageView
+	                	    android:id="@+id/levelBar"
+                	    	android:src="@drawable/v_progress_bar_full"
+                	    	android:contentDescription="@drawable/v_progress_bar_full"
+                	    	android:layout_width="wrap_content"
+                	    	android:layout_height="fill_parent"
+                	    	android:adjustViewBounds="true"
+                	    	android:layout_alignParentLeft="true" />
+                	</RelativeLayout>
+                </RelativeLayout>
             </LinearLayout>
             
-            // Profile name
+            <!-- Profile name -->
             <TextView
             	android:id="@+id/profileName"
             	android:layout_width="wrap_content"
@@ -189,7 +216,7 @@
                 style="@style/profileFrame"
                 android:orientation="horizontal" >
                 
-                // Points icon
+                <!-- Points icon -->
                 <ImageView
                     android:id="@+id/pointsicon"
                     android:layout_width="wrap_content"
@@ -197,7 +224,7 @@
             	    android:src="@drawable/points"
             	    android:contentDescription="@drawable/points"/>
                 
-                // Points amount
+                <!-- Points amount -->
                 <TextView
                     android:id="@+id/points"
                     android:layout_width="wrap_content"
@@ -205,7 +232,7 @@
                     android:maxLength="6"
                     android:paddingRight="5dp"/>
             	
-            	// Gold icon
+            	<!-- Gold icon -->
             	<ImageView 
             	    android:id="@+id/goldicon"
             	    android:layout_width="wrap_content"
@@ -213,7 +240,7 @@
             	    android:src="@drawable/gold"
             	    android:contentDescription="@drawable/gold"/>
                                 
-                // Gold amount
+                <!-- Gold amount -->
             	<TextView 
                 	android:id="@+id/gold"
                 	android:layout_width="wrap_content"

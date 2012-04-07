@@ -3,6 +3,8 @@
     <style name="mainMenuButtons">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">60dp</item>
+        <item name="android:background">@drawable/menubutton</item>
+        <item name="android:textColor">#FFF</item>
 	</style>
 
     <style name="specialButtons">

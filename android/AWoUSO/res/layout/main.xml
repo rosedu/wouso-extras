@@ -5,7 +5,7 @@
     android:background="@drawable/bg"
     android:orientation="vertical" >
      
-    // Logo
+    <!-- Logo -->
 	<ImageView 
 	    android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:contentDescription="@drawable/logo"
 	    />
 	
-	// Account-box
+	<!-- Account-box -->
 	<TextView 
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
 	    android:inputType="text"
 	    />
 	
-	// Password-box
+	<!-- Password-box -->
 	<TextView 
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
 	    android:inputType="textPassword"
 	    />
 	
-	// Login-button
+	<!-- Login-button -->
 	<Button
 	    android:id="@+id/loginButton"
 	    android:layout_width="120sp"
