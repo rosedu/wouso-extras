@@ -16,7 +16,7 @@ public class Tabs extends TabActivity {
 		
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.tab_secondary);
+		setContentView(R.layout.tab_layout);
 		
 		Button button = (Button) findViewById(R.id.button_back);
 		Resources res = getResources();

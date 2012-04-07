@@ -18,7 +18,7 @@ public class Bazaar extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		final String[] list = getResources().getStringArray(R.array.list_array);
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.bazaar_list_item, list));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, list));
 
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(true);
