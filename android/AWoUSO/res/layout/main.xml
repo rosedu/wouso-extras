@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:background="@drawable/bg"
-	android:orientation="vertical" >
-
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
+     
+    <!-- Logo -->
+	<ImageView 
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:contentDescription="@drawable/logo"
+	    />
 	
-		<ImageView
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:layout_gravity="top"
-			android:src="@drawable/logo" />
+	<!-- Account-box -->
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textStyle="bold"
+	    android:text="@string/account"
+	    />
+	<EditText 
+	    android:id="@+id/username"
+	    android:layout_width="200sp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:inputType="text"
+	    />
 	
-	</LinearLayout>
-
-	<LinearLayout
-		android:orientation="vertical"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" >
-
-		<Button
-			android:id="@+id/button_magic"
-			style="@style/BlueButton"
-			android:layout_gravity="center"
-			android:text="Magic" />
-
-	</LinearLayout>
+	<!-- Password-box -->
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textStyle="bold"
+	    android:text="@string/passwd"
+	    />
+	<EditText 
+	    android:id="@+id/password"
+	    android:layout_width="200sp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:inputType="textPassword"
+	    />
+	
+	<!-- Login-button -->
+	<!-- 
+	<Button
+	    android:id="@+id/loginButton"
+	    android:layout_width="120sp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/loginText"
+	    />
+	     -->
+	<Button
+	    android:id="@+id/loginButton"
+	    style="@style/BlueButton"
+	    android:layout_gravity="center"
+	    android:text="@string/loginText"
+	    />
 
 </LinearLayout>

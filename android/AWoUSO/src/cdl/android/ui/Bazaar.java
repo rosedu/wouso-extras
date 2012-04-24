@@ -18,7 +18,7 @@ public class Bazaar extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		final String[] list = getResources().getStringArray(R.array.list_array);
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, list));
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.bazaar_list_item, list));
 
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(true);
@@ -26,7 +26,6 @@ public class Bazaar extends ListActivity {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// When clicked, show a toast with the TextView text
 				Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
 						Toast.LENGTH_SHORT).show();
 			}

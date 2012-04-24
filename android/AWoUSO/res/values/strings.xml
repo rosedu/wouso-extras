@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, AWoUSOActivity!</string>
     <string name="app_name">AWoUSO</string>
+    <string name="loginText">Autentificare</string>
+    <string name="account">Nume utilizator:</string>
+    <string name="passwd">Parola:</string>
+    <string name="qotdMarker">QotD</string>
+    <string name="chalMarker">Provocari</string>
+    <string name="msgMarker">Mesaje</string>
+    <string name="shopMarker">Bazar</string>
+    <string name="topMarker">Clasament</string>
+    <string name="spQuestMarker">Special Quest!</string>
 
     <string-array name="list_array">
         <item>WoUSO</item>

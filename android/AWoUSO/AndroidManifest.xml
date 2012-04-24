@@ -7,9 +7,10 @@
     <uses-sdk android:minSdkVersion="10" />
 
     <application
-        android:label="@string/app_name" >
+        android:label="@string/app_name" android:icon="@drawable/androidicon">
         <activity
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:name=".ui.AWoUSOActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +22,10 @@
         <activity android:name=".ui.Exchange"></activity>
         <activity android:name=".ui.Summary"></activity>
         <activity android:name=".ui.Tabs"></activity>
+        <activity 
+            android:name=".ui.MainMenu"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
