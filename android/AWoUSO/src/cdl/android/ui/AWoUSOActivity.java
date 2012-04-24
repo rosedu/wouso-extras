@@ -47,7 +47,7 @@ public class AWoUSOActivity extends Activity {
 					mainM.putExtra("userName", userName);
 				}
 
-				/*if ( password.isEmpty() ){
+				if ( password.isEmpty() ){
 					if ( clear == 0 ){
 						loginNotification.setText("Introduceti numele de utilizator\n                    si parola!");
 					}
@@ -55,7 +55,7 @@ public class AWoUSOActivity extends Activity {
 						loginNotification.setText("Introduceti parola!");
 						clear = 0;
 					}
-				}*/
+				}
 
 				if (clear == 1){
 					startActivity(mainM);

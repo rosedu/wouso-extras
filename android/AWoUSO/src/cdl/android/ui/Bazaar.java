@@ -23,11 +23,14 @@ public class Bazaar extends ListActivity {
 		ListView lv = getListView();
 		lv.setTextFilterEnabled(true);
 
+		final Toast listItem = Toast.makeText(getApplicationContext(), "Buffer", Toast.LENGTH_SHORT);
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-						Toast.LENGTH_SHORT).show();
+				listItem.cancel();
+				listItem.setText(((TextView) view).getText());
+				listItem.show();
 			}
 		});
 	}
