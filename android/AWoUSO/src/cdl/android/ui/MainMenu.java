@@ -38,8 +38,8 @@ public class MainMenu extends Activity {
 
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
 
-        final Toast hello = Toast.makeText(getApplicationContext(), "Sorry, no special quest!", Toast.LENGTH_SHORT);
-        hello.setGravity(Gravity.CENTER, 0, 0);
+        final Toast weekQ = Toast.makeText(getApplicationContext(), "Sorry, no weekly quest!", Toast.LENGTH_SHORT);
+        weekQ.setGravity(Gravity.CENTER, 0, 0);
 
         bazaarButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
@@ -50,12 +50,11 @@ public class MainMenu extends Activity {
         specialQuest.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				hello.cancel();
-				hello.show();
+				weekQ.cancel();
+				weekQ.show();
 
 			}
 		});
-
 	}	
 	
 }
