@@ -34,7 +34,7 @@ public class Bazaar extends Activity {
 		mItems = req.getBazaar(username);
 		
 		mListView.setAdapter(new BazaarAdapter(this, mItems, new OnClickListener() {
-			@Override
+			//@Override
 			public void onClick(View v) {
 			}
 		}));
