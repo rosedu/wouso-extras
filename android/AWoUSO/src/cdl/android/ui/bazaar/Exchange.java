@@ -1,10 +1,13 @@
-package cdl.android.ui;
+package cdl.android.ui.bazaar;
 
 import cdl.android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * Bazaar exchange tab
+ */
 public class Exchange extends Activity {
 
 	/** Called when the activity is first created. */

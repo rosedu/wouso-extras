@@ -1,4 +1,4 @@
-package cdl.android.ui;
+package cdl.android.ui.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,12 +20,16 @@ import cdl.android.R;
 import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
+import cdl.android.server.Auth;
+import cdl.android.ui.bazaar.BazaarTabs;
 
+/** 
+ * User's profile and main application menu 
+ */
 public class MainMenu extends Activity {
 	SharedPreferences mPreferences;
 	UserInfo userInfo;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -37,32 +41,35 @@ public class MainMenu extends Activity {
 	    super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.mainmenu);
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         
-		// get auth token/info from Shared Preferences
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String username = mPreferences.getString("username", null);
-        // get user info from server and set activity content
+
+        /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
         userInfo = req.getUserInfo(username);
 
-        final TextView userProfile = (TextView) findViewById(R.id.profileName);
+        /** Fill Activity Views */
+        TextView userProfile = (TextView) findViewById(R.id.profileName);
         userProfile.setText(username);
         
-        final TextView pointsCount = (TextView) findViewById(R.id.points);
+        TextView pointsCount = (TextView) findViewById(R.id.points);
         pointsCount.setText(userInfo.getPoints()+"");
         
-		final TextView goldCount = (TextView) findViewById(R.id.gold);
+		TextView goldCount = (TextView) findViewById(R.id.gold);
         goldCount.setText("0");
         
-        final ImageView playerLevel = (ImageView) findViewById(R.id.level);
+        ImageView playerLevel = (ImageView) findViewById(R.id.level);
         playerLevel.setImageResource(R.drawable.levelex);
         
-        final Intent bazaarMenu = new Intent(this, Tabs.class);
+        final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
         Button qotdButton = (Button) findViewById(R.id.qotdbtn);
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
+        Button logoutButton = (Button) findViewById(R.id.logtbtn);
 
-        final Toast weekQ = Toast.makeText(getApplicationContext(), "Sorry, no weekly quest!", Toast.LENGTH_SHORT);
+        final Toast weekQ = Toast.makeText(getApplicationContext(), 
+        		"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
         weekQ.setGravity(Gravity.CENTER, 0, 0);
 
         bazaarButton.setOnClickListener(new View.OnClickListener() {
@@ -73,17 +80,16 @@ public class MainMenu extends Activity {
 
         specialQuest.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				weekQ.cancel();
 				weekQ.show();
-
 			}
 		});
-        
+                
         qotdButton.setOnClickListener(new OnClickListener() {
+        	//TODO 1: Handle Question of the Day
 			public void onClick(View v) {
 		        String username = mPreferences.getString("username", null);
 				ApiRequests req = new ApiRequests();
-				Qotd qotd = req.getQOTD(username);
+				final Qotd qotd = req.getQOTD(username);
 				
 				final CharSequence[] items = new String[qotd.getAnswers().size()];
 				for (int i = 0; i < qotd.getAnswers().size(); i++) {
@@ -94,12 +100,19 @@ public class MainMenu extends Activity {
 				builder.setTitle(qotd.getQuestion());
 				builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int item) {
-				        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+				        Toast.makeText(getApplicationContext(), items[item] + ":" + 
+				        		qotd.getKeys().get(item), Toast.LENGTH_SHORT).show();
 				    }
 				});
 				AlertDialog alert = builder.create();
 				alert.show();
-				
+			}
+		});
+        
+        logoutButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Auth authHelper = new Auth(v.getContext());
+				authHelper.logOut();
 			}
 		});
 	}	

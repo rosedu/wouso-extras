@@ -12,7 +12,7 @@
         android:icon="@drawable/androidicon"
         android:label="@string/app_name" >
         <activity
-            android:name=".ui.AWoUSOActivity"
+            android:name=".ui.main.AWoUSOActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -21,16 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Bazaar" >
+        <activity android:name=".ui.bazaar.Bazaar" >
         </activity>
-        <activity android:name=".ui.Exchange" >
+        <activity android:name=".ui.bazaar.Exchange" >
         </activity>
-        <activity android:name=".ui.Summary" >
+        <activity android:name=".ui.bazaar.Summary" >
         </activity>
-        <activity android:name=".ui.Tabs" >
+        <activity android:name=".ui.bazaar.BazaarTabs" >
         </activity>
         <activity
-            android:name=".ui.MainMenu"
+            android:name=".ui.main.MainMenu"
             android:screenOrientation="portrait" >
         </activity>
     </application>

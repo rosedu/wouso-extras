@@ -100,20 +100,28 @@
         android:layout_weight="1"
         android:orientation="horizontal" >
         
-        <!-- Special Quest button -->
-        <FrameLayout 
+        <!-- Special Quest + Logout buttons -->
+        <LinearLayout 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:paddingLeft="40dp" >
+            android:paddingLeft="40dp"
+            android:orientation="vertical" >
         	
         	<Button
             	android:id="@+id/spcQbtn"
             	style="@style/specialButtons"
             	android:textSize="20dp"
             	android:text="@string/spQuestMarker" />
-        </FrameLayout>
+        	
+        	<Button
+            	android:id="@+id/logtbtn"
+            	style="@style/specialButtons"
+            	android:textSize="20dp"
+            	android:text="@string/logout" />
+        </LinearLayout>
         
+ 
         <!-- Bottom-right logo -->
         <LinearLayout
             android:layout_width="120dp"
