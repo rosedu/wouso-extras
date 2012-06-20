@@ -3,8 +3,13 @@ package cdl.android.ui.message;
 import cdl.android.R;
 import cdl.android.server.ApiRequests;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class CreateMessage extends Activity{
@@ -16,13 +21,27 @@ public class CreateMessage extends Activity{
 		EditText toEdit = (EditText) findViewById(R.id.to);
 		EditText subjectEdit = (EditText) findViewById(R.id.subject);
 		EditText textEdit = (EditText) findViewById(R.id.text);
-
+		Button sendButton = (Button) findViewById(R.id.send);
+		
 		final Editable to = toEdit.getText();
 		final Editable subject = subjectEdit.getText();
 		final Editable text = textEdit.getText();
 		
-		ApiRequests req = new ApiRequests();
-		req.sendMessage(to.toString(), subject.toString(), text.toString());
+		SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		
+        sendButton.setOnClickListener(new View.OnClickListener() {
+    		public void onClick(View v) {
+    			ApiRequests req = new ApiRequests();
+    			req.sendMessage(to.toString(), subject.toString(), text.toString());
+    			onExit();
+    		}
+    	});
+	}
+	
+	protected void onExit() {
+		Intent in = new Intent();
+		setResult(RESULT_OK, in);
+		finish();
 	}
 
 }
