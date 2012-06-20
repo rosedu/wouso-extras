@@ -12,7 +12,7 @@ import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
-//import android.view.MenuItem;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -96,7 +96,7 @@ public class MainMenu extends Activity {
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
         Button qotdButton = (Button) findViewById(R.id.qotdbtn);
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
-  //      Button logoutButton = (Button) findViewById(R.id.logtbtn);
+        Button logoutButton = (Button) findViewById(R.id.logtbtn);
 
         final Toast weekQ = Toast.makeText(getApplicationContext(), 
         		"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
@@ -140,13 +140,13 @@ public class MainMenu extends Activity {
 			
 		});
 
- /*      
+       
     logoutButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Auth authHelper = new Auth(v.getContext());
 				authHelper.logOut();
 			}
-		});*/
+		});
 	}
 
 	@Override
@@ -176,7 +176,6 @@ public class MainMenu extends Activity {
 	    
 	}
 
-	}
 	private void showMsg(String msg) {
 		Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
 		toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
