@@ -7,6 +7,7 @@
     android:orientation="vertical" >
 
     <!-- First segment -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -15,27 +16,73 @@
         android:orientation="horizontal" >
 
         <!-- Top-left logo -->
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:adjustViewBounds="true"
             android:contentDescription="@drawable/menu_logo"
             android:src="@drawable/menu_logo" />
-
     </LinearLayout>
 
     <!-- User Profile Info -->
+
     <LinearLayout
         android:id="@+id/usercontainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="90dp"
+        android:gravity="center_vertical|left"
         android:orientation="horizontal" >
-        
 
+        <ImageView
+            android:id="@+id/useravatar"
+            android:layout_width="@dimen/avatarSize"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"  />
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:gravity="top|left"
+            android:orientation="vertical" >
+            
+            <TextView 
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/userProfileColor"
+                android:textSize="13sp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical" >
+
+            <TextView 
+                android:id="@+id/userpoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/userProfileColor"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp" />
+            
+            <TextView 
+                android:id="@+id/userrank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/userProfileColor"
+                android:textStyle="normal"
+                android:textSize="9sp" />
+        </LinearLayout>
     </LinearLayout>
-    
+
     <!-- User Profile Commands -->
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dip"

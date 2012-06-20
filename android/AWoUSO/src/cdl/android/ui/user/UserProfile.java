@@ -1,11 +1,11 @@
 package cdl.android.ui.user;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,11 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.StrictMode;
-import android.preference.PreferenceManager;
-import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,57 +21,113 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
-import cdl.android.server.Auth;
-import cdl.android.ui.bazaar.BazaarTabs;
 
-/** 
+/**
  * Other users' profiles
  */
 public class UserProfile extends Activity {
 	SharedPreferences mPreferences;
 	UserInfo userInfo;
+	Button messageButton;
+	Button spellButton;
+	Button challengeButton;
+	LinearLayout userInfoLayout;
+	ImageView userAvatar;
+	TextView userName;
+	TextView userPoints;
+	TextView userRank;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.user_profile);
-        
-        Button messageButton = (Button) findViewById(R.id.usermsgbtn);
-        Button spellButton = (Button) findViewById(R.id.userspellbtn);
-        Button challengeButton = (Button) findViewById(R.id.userchalbtn);
-        LinearLayout userInfoLayout = (LinearLayout) findViewById(R.id.usercontainer);
-        
-        
-        File sdcard = Environment.getExternalStorageDirectory();
-        File background = new File(sdcard + File.separator + "awouso" + File.separator +
-        		"profiles", "CA.png");
-        Bitmap backgroundBitmap = BitmapFactory.decodeFile(background.toString());
-        System.err.println(background);
-        @SuppressWarnings("deprecation")
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.user_profile);
+
+		final String username = getIntent().getExtras().getString("username");
+		final ApiRequests req = new ApiRequests();
+		try {
+			userInfo = req.getUserInfo(username);
+		} catch (NullPointerException ex) {
+			// User does not exist.
+			Toast.makeText(getApplicationContext(),
+					"Username is not in the database", Toast.LENGTH_SHORT)
+					.show();
+			return;
+		}
+
+		// Get interface elements.
+		messageButton = (Button) findViewById(R.id.usermsgbtn);
+		spellButton = (Button) findViewById(R.id.userspellbtn);
+		challengeButton = (Button) findViewById(R.id.userchalbtn);
+		userInfoLayout = (LinearLayout) findViewById(R.id.usercontainer);
+		userAvatar = (ImageView) findViewById(R.id.useravatar);
+		userName = (TextView) findViewById(R.id.username);
+		userPoints = (TextView) findViewById(R.id.userpoints);
+		userRank = (TextView) findViewById(R.id.userrank);
+
+		// Set background for main user profile.
+		File sdcard = Environment.getExternalStorageDirectory();
+		File background = new File(sdcard + File.separator + "awouso"
+				+ File.separator + "profiles", "CA.png");
+		Bitmap backgroundBitmap = BitmapFactory.decodeFile(background
+				.toString());
+		System.err.println(background);
+		@SuppressWarnings("deprecation")
 		Drawable backgroundImage = new BitmapDrawable(backgroundBitmap);
-        userInfoLayout.setBackgroundDrawable(backgroundImage);
-        
-        messageButton.setOnClickListener(new View.OnClickListener() {
-    		public void onClick(View v) {
-    			Toast.makeText(getApplicationContext(), "Send a message to ", Toast.LENGTH_SHORT).show();
-    		}
-    	});
-        
-        spellButton.setOnClickListener(new View.OnClickListener() {
-    		public void onClick(View v) {
-    			Toast.makeText(getApplicationContext(), "Cast a spell on ", Toast.LENGTH_SHORT).show();
-    		}
-    	});
-        
-        challengeButton.setOnClickListener(new View.OnClickListener() {
-    		public void onClick(View v) {
-    			Toast.makeText(getApplicationContext(), "Challenge ", Toast.LENGTH_SHORT).show();
-    		}
-    	});
-	}	
+		userInfoLayout.setBackgroundDrawable(backgroundImage);
+
+		// Display user avatar.
+		try {
+			HttpURLConnection con = (HttpURLConnection) (new URL(
+					userInfo.getAvatar())).openConnection();
+			con.connect();
+			Bitmap b = BitmapFactory.decodeStream(con.getInputStream());
+			userAvatar.setImageBitmap(b);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Display user name.
+		userName.setText(userInfo.getFirstName() + " " + userInfo.getLastName());
+
+		// Display user points.
+		userPoints.setText(userInfo.getPoints() + "");
+
+		// Display user rank.
+		userRank.setText("rank: " + userInfo.getRank());
+
+		// Set buttons listeners.
+		messageButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// TODO add send message action
+				Toast.makeText(
+						getApplicationContext(),
+						"Send a message to " + userInfo.getFirstName() + " "
+								+ userInfo.getLastName(), Toast.LENGTH_SHORT)
+						.show();
+			}
+		});
+
+		spellButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				// TODO add cast spell action
+				Toast.makeText(
+						getApplicationContext(),
+						"Cast a spell on " + userInfo.getFirstName() + " "
+								+ userInfo.getLastName(), Toast.LENGTH_SHORT)
+						.show();
+			}
+		});
+
+		challengeButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				req.startChallenge(username); // Start a challenge from logged
+												// user to currently visited
+												// user.
+			}
+		});
+	}
 
 }

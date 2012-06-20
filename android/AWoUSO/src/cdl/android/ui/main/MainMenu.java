@@ -44,7 +44,7 @@ public class MainMenu extends Activity {
         setContentView(R.layout.mainmenu);
         
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = mPreferences.getString("username", null);
+        final String username = mPreferences.getString("username", null);
 
         /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
@@ -73,7 +73,6 @@ public class MainMenu extends Activity {
         playerLevel.setImageResource(R.drawable.levelex);
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
-        final Intent otherUserProfile = new Intent(this, UserProfile.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
         Button userButton = (Button) findViewById(R.id.userbtn); // to be removed
         Button qotdButton = (Button) findViewById(R.id.qotdbtn);
@@ -86,7 +85,7 @@ public class MainMenu extends Activity {
         
         userButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			startActivity(otherUserProfile);
+    			startUserProfileActivity(username);
     		}
     	});
 
@@ -134,5 +133,14 @@ public class MainMenu extends Activity {
 			}
 		});
 	}	
+	
+	public void startUserProfileActivity(String username){
+		final Intent otherUserProfile = new Intent(this, UserProfile.class);
+        Bundle b = new Bundle();
+    	b.putString("username", username);
+    	otherUserProfile.putExtras(b);
+    	
+    	startActivity(otherUserProfile);
+	}
 
 }

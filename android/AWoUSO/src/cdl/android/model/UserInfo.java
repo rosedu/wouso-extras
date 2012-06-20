@@ -7,22 +7,43 @@ import org.json.JSONObject;
  * User info container class
  */
 public class UserInfo {
+	int levelNo;
+	int points;
+	int rank;
+
 	String firstName;
 	String lastName;
-	LevelInfo levelInfo;
-	int levelNo;
 	String race;
 	String email;
-	int points;
-	
+	String avatar;
+
+	LevelInfo levelInfo;
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	public UserInfo(JSONObject obj) {
 		try {
 			firstName = obj.getString("first_name");
 			lastName = obj.getString("last_name");
 			points = obj.getInt("points");
+			avatar = obj.getString("avatar");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public String getLastName() {

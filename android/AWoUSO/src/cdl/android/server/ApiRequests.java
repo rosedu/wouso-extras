@@ -76,6 +76,12 @@ public class ApiRequests {
 
 		return jObject;
 	}
+	
+	public boolean startChallenge(String otherPlayer) {
+		//TODO this is implemented in the fork by Nichita & Taygun
+		
+		return true;
+	}
 
 
 	/**
