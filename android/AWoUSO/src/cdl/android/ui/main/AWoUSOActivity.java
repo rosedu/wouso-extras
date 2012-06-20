@@ -45,13 +45,14 @@ public class AWoUSOActivity extends Activity {
 		logButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				loginNotification.cancel();
+				//loginNotification.cancel();
 
 				EditText userBuffer = (EditText) findViewById(R.id.username);
 				String userName = userBuffer.getText().toString();
 				loginNotification.setGravity(Gravity.CENTER, 0, 0);
-
-				if (userName.isEmpty()) {
+				
+				if (userName.length() == 0) {
+					
 					loginNotification
 							.setText("Insert username!");
 					loginNotification.show();

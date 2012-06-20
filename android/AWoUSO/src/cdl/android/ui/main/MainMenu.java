@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -42,7 +43,7 @@ public class MainMenu extends Activity {
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-		
+	
 	    super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.mainmenu);
