@@ -2,6 +2,7 @@ package cdl.android.ui.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,7 +48,16 @@ public class MainMenu extends Activity {
 
         /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
+        
+        try{
         userInfo = req.getUserInfo(username);
+        } catch(NullPointerException ex) {
+        	Auth helper= new Auth(this); //Logout if an error occurs during login.
+        	helper.logOut();
+        	Toast.makeText(this, "Login error, please relogin!", 1);
+        	return;
+        	
+        }
 
         /** Fill Activity Views */
         TextView userProfile = (TextView) findViewById(R.id.profileName);
