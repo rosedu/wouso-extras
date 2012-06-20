@@ -58,16 +58,25 @@ public class MainMenu extends Activity {
         
         /** Fill Activity Views */
         TextView userProfile = (TextView) findViewById(R.id.profileName);
-        userProfile.setText(username);
+        userProfile.setText(userInfo.getFirstName()+"");
         
         TextView pointsCount = (TextView) findViewById(R.id.points);
         pointsCount.setText(userInfo.getPoints()+"");
         
 		TextView goldCount = (TextView) findViewById(R.id.gold);
-        goldCount.setText("0");
+        goldCount.setText(userInfo.getGold()+"");
+        
+        TextView levelNo = (TextView) findViewById(R.id.levelNo);
+        levelNo.setText("Level"+userInfo.getLevelNo()+"");
+        
+        TextView group = (TextView) findViewById(R.id.group);
+        group.setText(userInfo.getGroup()+" ");
         
         ImageView playerLevel = (ImageView) findViewById(R.id.level);
         playerLevel.setImageResource(R.drawable.levelex);
+        
+//      ImageView avatar = (ImageView) findViewById(R.id.profileImage);
+
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);

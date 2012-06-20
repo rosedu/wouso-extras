@@ -1,7 +1,17 @@
 package cdl.android.model;
 
+import android.content.res.Resources;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
+import cdl.android.R;
 
 /**
  * User info container class
@@ -11,18 +21,52 @@ public class UserInfo {
 	String lastName;
 	LevelInfo levelInfo;
 	int levelNo;
+	int gold;
+	String group;
 	String race;
 	String email;
+	String avatarUrl;
+	ImageView avatar;
 	int points;
 	
 	public UserInfo(JSONObject obj) {
 		try {
+			levelNo = obj.getInt("level_no");
 			firstName = obj.getString("first_name");
 			lastName = obj.getString("last_name");
 			points = obj.getInt("points");
+			gold = obj.getInt("gold");
+			group = obj.getString("group");
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+
+    public void setAvatar() {
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.empty);
+        avatar.setImageBitmap(b);
+        try
+        {
+                HttpURLConnection con = (HttpURLConnection)(new URL(avatarUrl)).openConnection();
+                con.connect();
+                b = BitmapFactory.decodeStream(con.getInputStream());
+                avatar.setImageBitmap(b);
+        } catch (IOException e) {
+                e.printStackTrace();
+        } catch (NullPointerException e) {
+                e.printStackTrace();
+        }
+}
+    
+    public ImageView getAvatar(){
+    	setAvatar();
+    	return avatar;
+    }
+	
+	private Resources getResources() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public String getLastName() {
@@ -52,11 +96,27 @@ public class UserInfo {
 	public int getLevelNo() {
 		return levelNo;
 	}
+	
+	public String getGroup() {
+		return group;
+	}
 
+	public int getGold() {
+		return gold;
+	}
+	
 	public void setLevelNo(int levelNo) {
 		this.levelNo = levelNo;
 	}
 
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	
+	public void setGroup(String group) {
+		this.group = group;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
