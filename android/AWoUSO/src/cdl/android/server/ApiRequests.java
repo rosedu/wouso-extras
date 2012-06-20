@@ -90,23 +90,6 @@ public class ApiRequests {
 		return jObject;
 	}
 	
-	/*
-	public void sendMessage(String to, String subject, String text){
-		msgSendAPICallURL = msgSendAPICallURL + "/receiver=" + to + "&text=" + text + "&subject=" + subject;
-		
-		HttpClient client = new DefaultHttpClient();
-		HttpPost request = new HttpPost(msgSendAPICallURL);
-		HttpResponse response = null;
-		
-		try {
-			response = client.execute(request);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}*/
-	
 	public void sendMessage(String to, String subject, String text){
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(msgSendAPICallURL);
