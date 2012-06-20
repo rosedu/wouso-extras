@@ -32,11 +32,14 @@
             android:layout_marginRight="45dp" >
             
         	<Button
+        	    android:id="@+id/qotdbtn"
+        	    style="@style/specialButtons"
+        	    android:layout_width="match_parent"
+        	    android:layout_height="match_parent"
         	    android:layout_gravity="right|center_vertical"
-            	android:textSize="30dp"
-            	android:id="@+id/qotdbtn"
-            	style="@style/specialButtons"
-            	android:text="@string/qotdMarker" />
+        	    android:text="@string/qotdMarker"
+        	    android:textSize="30dp" />
+
         </FrameLayout>
     </LinearLayout>
     
@@ -84,12 +87,15 @@
             android:text="@string/shopMarker" />
         
         <!-- Top button -->
+
         <Button
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
             android:id="@+id/topbtn"
             style="@style/mainMenuButtons"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
             android:text="@string/topMarker" />
+
     </LinearLayout>
     
     
