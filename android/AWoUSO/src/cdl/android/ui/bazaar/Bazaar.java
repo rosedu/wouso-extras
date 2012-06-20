@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import cdl.android.R;
-import cdl.android.model.BazaarItem;
+import cdl.android.general.BazaarItem;
 import cdl.android.server.GeneralHandler;
 
 public class Bazaar extends Activity {

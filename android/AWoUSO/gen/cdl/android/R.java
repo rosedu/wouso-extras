@@ -18,27 +18,28 @@ public final class R {
     }
     public static final class drawable {
         public static final int androidicon=0x7f020000;
-        public static final int avatar=0x7f020001;
-        public static final int avataroverlay=0x7f020002;
-        public static final int bg=0x7f020003;
-        public static final int button_bg=0x7f020004;
-        public static final int button_bg_pressed=0x7f020005;
-        public static final int gold=0x7f020006;
-        public static final int home_frame=0x7f020007;
-        public static final int levelex=0x7f020008;
-        public static final int logo=0x7f020009;
-        public static final int map=0x7f02000a;
-        public static final int menu_logo=0x7f02000b;
-        public static final int menubutton=0x7f02000c;
-        public static final int placeholder_frame=0x7f02000d;
-        public static final int points=0x7f02000e;
-        public static final int specialbuttoncolors=0x7f02000f;
-        public static final int spell_blue=0x7f020010;
-        public static final int spell_green=0x7f020011;
-        public static final int spell_purple=0x7f020012;
-        public static final int spell_yellow=0x7f020013;
-        public static final int v_progress_bar_empty=0x7f020014;
-        public static final int v_progress_bar_full=0x7f020015;
+        public static final int androidicon_small=0x7f020001;
+        public static final int avatar=0x7f020002;
+        public static final int avataroverlay=0x7f020003;
+        public static final int bg=0x7f020004;
+        public static final int button_bg=0x7f020005;
+        public static final int button_bg_pressed=0x7f020006;
+        public static final int gold=0x7f020007;
+        public static final int home_frame=0x7f020008;
+        public static final int levelex=0x7f020009;
+        public static final int logo=0x7f02000a;
+        public static final int map=0x7f02000b;
+        public static final int menu_logo=0x7f02000c;
+        public static final int menubutton=0x7f02000d;
+        public static final int placeholder_frame=0x7f02000e;
+        public static final int points=0x7f02000f;
+        public static final int specialbuttoncolors=0x7f020010;
+        public static final int spell_blue=0x7f020011;
+        public static final int spell_green=0x7f020012;
+        public static final int spell_purple=0x7f020013;
+        public static final int spell_yellow=0x7f020014;
+        public static final int v_progress_bar_empty=0x7f020015;
+        public static final int v_progress_bar_full=0x7f020016;
     }
     public static final class id {
         public static final int buff=0x7f08001c;

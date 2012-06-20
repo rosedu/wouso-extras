@@ -1,4 +1,4 @@
-package cdl.android.ui.challenge;
+package cdl.android.ui.challenge.menu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.server.ChallengeHandler;
+import cdl.android.ui.challenge.ActiveChallenge;
 
 public class ChallengeMenu extends ListActivity {
 

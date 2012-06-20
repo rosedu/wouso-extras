@@ -6,9 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cdl.android.model.BazaarItem;
-import cdl.android.model.Qotd;
-import cdl.android.model.UserInfo;
+import cdl.android.general.BazaarItem;
+import cdl.android.general.Qotd;
+import cdl.android.general.UserInfo;
 
 public class GeneralHandler {
 	private static final String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
@@ -34,8 +34,9 @@ public class GeneralHandler {
 	/**
 	 * Gets Question of the Day and parses the response
 	 * @return an Qotd instance
+	 * @throws JSONException 
 	 */
-	public static Qotd getQOTD(String username) {
+	public static Qotd getQOTD(String username) throws JSONException {
 		JSONObject result = ApiHandler.get(qotdAPICallURL + username);
 		Qotd qotd = new Qotd(result);
 		return qotd;

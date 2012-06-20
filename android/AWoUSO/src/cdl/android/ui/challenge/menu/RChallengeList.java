@@ -1,4 +1,4 @@
-package cdl.android.ui.challenge;
+package cdl.android.ui.challenge.menu;
 
 import java.util.ArrayList;
 import java.util.List;

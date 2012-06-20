@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cdl.android.model.BazaarItem;
+import cdl.android.general.BazaarItem;
 import cdl.android.R;
 
 /**

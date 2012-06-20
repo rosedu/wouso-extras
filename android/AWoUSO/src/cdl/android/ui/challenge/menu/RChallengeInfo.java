@@ -1,4 +1,4 @@
-package cdl.android.ui.challenge;
+package cdl.android.ui.challenge.menu;
 
 import org.json.JSONException;
 import org.json.JSONObject;

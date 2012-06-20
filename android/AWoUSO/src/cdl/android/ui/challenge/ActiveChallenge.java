@@ -13,10 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.server.ChallengeHandler;
+import cdl.android.ui.challenge.menu.ChallengeMenu;
 
 /**
  * Represents an active challenge.
- *
+ * 
  */
 public class ActiveChallenge extends Activity {
 
@@ -30,31 +31,32 @@ public class ActiveChallenge extends Activity {
 	private Button back, next;
 	private Boolean[][] ticked = new Boolean[5][4];
 
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.achallenge);
-		
-		for(int i=0;i<=4;i++)
-			for(int j=0;j<=3;j++)
+
+		for (int i = 0; i <= 4; i++)
+			for (int j = 0; j <= 3; j++)
 				ticked[i][j] = false;
-		
+
 		startChallenge(ChallengeMenu.currentSelected.getChallengeId());
 	}
 
 	/**
 	 * Starts the challenge which has that id.
-	 * @param challenge_id The challenge's id.
+	 * 
+	 * @param challenge_id
+	 *            The challenge's id.
 	 */
 	public void startChallenge(int challenge_id) {
 		this.challenge_id = challenge_id;
 		info = ChallengeHandler.getChallengeInfo(challenge_id);
-		
+
 		int remainingSeconds = info.getSeconds();
-		if(remainingSeconds<0) {
-			Toast.makeText(getApplication(), "The timer for this challenge has expired!", 1).show();
+		if (remainingSeconds < 0) {
+			Toast.makeText(getApplication(),
+					"The timer for this challenge has expired!", 1).show();
 			finish();
 			postAnswers();
 			return;
@@ -65,7 +67,7 @@ public class ActiveChallenge extends Activity {
 		back = (Button) findViewById(R.id.chalback);
 		next = (Button) findViewById(R.id.chalnext);
 		chtext = (TextView) findViewById(R.id.chaltext);
-		
+
 		back.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -86,17 +88,26 @@ public class ActiveChallenge extends Activity {
 				saveCurrent();
 				activeChallenge++;
 				if (activeChallenge == totalChallenges) {
-					postAnswers();
-					Toast.makeText(getApplication(), "Challenge finished!", 1).show();
+					Toast.makeText(getApplication(), "Sending answers...",
+							Toast.LENGTH_SHORT).show();
+					try {
+						postAnswers();
+					} catch(Exception ex) {
+						Toast.makeText(getApplication(), "Error sending answers",
+								Toast.LENGTH_SHORT).show();
+					} finally {
+						Toast.makeText(getApplication(), "Challenge finished!",
+								Toast.LENGTH_SHORT).show();
+					}
 					finish();
 					return;
-					
+
 				}
 				refreshForActiveQuestion();
 
 			}
 		});
-		
+
 		cboxes[0] = (CheckBox) findViewById(R.id.fposa);
 		cboxes[1] = (CheckBox) findViewById(R.id.sposa);
 		cboxes[2] = (CheckBox) findViewById(R.id.tposa);
@@ -109,25 +120,25 @@ public class ActiveChallenge extends Activity {
 	 * Sends the current answers to the server.
 	 */
 	private void postAnswers() {
-		(new ChallengeConnection()).post(this);
-		
+		ChallengeHandler.post(this);
+
 	}
 
 	/**
 	 * Save the current ticked boxes to the matrix.
 	 */
 	private void saveCurrent() {
-		for(int i=0;i<4;i++) {
+		for (int i = 0; i < 4; i++) {
 			ticked[activeChallenge][i] = cboxes[i].isChecked();
 		}
-		
+
 	}
 
 	/**
 	 * Refreshes the activity for the current question.
 	 */
 	private void refreshForActiveQuestion() {
-		for(int i=0;i<=3;i++) {
+		for (int i = 0; i <= 3; i++) {
 			cboxes[i].setChecked(ticked[activeChallenge][i]);
 		}
 		if (activeChallenge == 0) {
@@ -142,19 +153,18 @@ public class ActiveChallenge extends Activity {
 		} else {
 			next.setText("Next");
 		}
-		
+
 		ChallengeQuestion curQuestion = info.getQuestion(activeChallenge);
 		chtext.setText(curQuestion.getText());
-		for(int i=0;i<=3;i++) {
+		for (int i = 0; i <= 3; i++) {
 			cboxes[i].setText(curQuestion.getAnswer(i));
 		}
-		
-		
-		
+
 	}
 
 	/**
 	 * Gets the current challenge id.
+	 * 
 	 * @return The challenge id.
 	 */
 	public int getChallengeId() {
@@ -163,6 +173,7 @@ public class ActiveChallenge extends Activity {
 
 	/**
 	 * Gets information about the current question.
+	 * 
 	 * @return a Wrapper around the information.
 	 */
 	public ChallengeInfo getInfo() {
@@ -170,23 +181,25 @@ public class ActiveChallenge extends Activity {
 	}
 
 	/**
-	 * Converts the tick data to a Map which can be sent through POST to the server.
+	 * Converts the tick data to a Map which can be sent through POST to the
+	 * server.
+	 * 
 	 * @return A wrapped map.
 	 */
 	public Map<String, String> getWrappable() {
 		Map<String, String> toRet = new HashMap<String, String>();
-		for(int i=0;i<=4;i++) {
+		for (int i = 0; i <= 4; i++) {
 			ChallengeQuestion curQuestion = info.getQuestion(i);
 			String toBuild = "";
-			for(int tick = 0;tick<=3;tick++) {
-				if(ticked[i][tick]) {
+			for (int tick = 0; tick <= 3; tick++) {
+				if (ticked[i][tick]) {
 					Map<Integer, AnswerPair> pp = curQuestion.getAnswers();
 					AnswerPair pair = pp.get(tick);
-					String key = pair.getKey()+",";
-					toBuild+=key;
+					String key = pair.getKey() + ",";
+					toBuild += key;
 				}
 			}
-			if(toBuild.length() > 1)
+			if (toBuild.length() > 1)
 				toBuild = toBuild.substring(0, toBuild.length() - 1);
 			toRet.put(curQuestion.getKey(), toBuild);
 		}

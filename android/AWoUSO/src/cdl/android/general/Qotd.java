@@ -1,4 +1,4 @@
-package cdl.android.model;
+package cdl.android.general;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -65,14 +65,17 @@ public class Qotd {
 	}
 
 	/**
-	 * Creates a new QOTD object from a JSONObject probably taken from the website's API.
-	 * @param obj The object to be parsed.
+	 * Creates a new QOTD object from a JSONObject probably taken from the
+	 * website's API.
+	 * 
+	 * @param obj
+	 *            The object to be parsed.
+	 * @throws JSONException
 	 */
-	public Qotd(JSONObject obj) {
+	public Qotd(JSONObject obj) throws JSONException {
 		answers = new ArrayList<String>();
 		keys = new ArrayList<String>();
 		
-		try {
 			question = obj.getString("text");
 			hadAnswered = obj.getBoolean("had_answered");
 			JSONObject vObj = obj.getJSONObject("answers");
@@ -85,10 +88,6 @@ public class Qotd {
 				answers.add(value);
 				keys.add(key);
 			}
-
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
