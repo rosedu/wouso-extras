@@ -38,5 +38,7 @@
     <string name="userChalMarker">Challenge</string>
     <dimen name="avatarSize">80dp</dimen>
     <color name="userProfileColor">#FFF</color>
+    <color name="userInfoColor">#AAA</color>
+    <color name="userLinkColor">#22A</color>
 
 </resources>

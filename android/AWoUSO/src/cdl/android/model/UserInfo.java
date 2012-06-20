@@ -16,16 +16,9 @@ public class UserInfo {
 	String race;
 	String email;
 	String avatar;
+	String group;
 
 	LevelInfo levelInfo;
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
 
 	public UserInfo(JSONObject obj) {
 		try {
@@ -33,9 +26,28 @@ public class UserInfo {
 			lastName = obj.getString("last_name");
 			points = obj.getInt("points");
 			avatar = obj.getString("avatar");
+			levelNo = obj.getInt("level_no");
+			group = obj.getString("group");
+			race = obj.getString("race");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 
 	public String getAvatar() {

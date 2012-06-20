@@ -35,9 +35,13 @@ public class UserProfile extends Activity {
 	Button challengeButton;
 	LinearLayout userInfoLayout;
 	ImageView userAvatar;
+	ImageView userLevelImage;
 	TextView userName;
 	TextView userPoints;
 	TextView userRank;
+	TextView userLevel;
+	TextView userRace;
+	TextView userGroup;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,17 +67,20 @@ public class UserProfile extends Activity {
 		challengeButton = (Button) findViewById(R.id.userchalbtn);
 		userInfoLayout = (LinearLayout) findViewById(R.id.usercontainer);
 		userAvatar = (ImageView) findViewById(R.id.useravatar);
+		userLevelImage = (ImageView) findViewById(R.id.userlevelimg);
 		userName = (TextView) findViewById(R.id.username);
 		userPoints = (TextView) findViewById(R.id.userpoints);
 		userRank = (TextView) findViewById(R.id.userrank);
+		userLevel = (TextView) findViewById(R.id.userlevel);
+		userRace = (TextView) findViewById(R.id.userrace);
+		userGroup = (TextView) findViewById(R.id.usergroup);
 
 		// Set background for main user profile.
 		File sdcard = Environment.getExternalStorageDirectory();
 		File background = new File(sdcard + File.separator + "awouso"
-				+ File.separator + "profiles", "CA.png");
+				+ File.separator + "profiles", userInfo.getRace()+".png");
 		Bitmap backgroundBitmap = BitmapFactory.decodeFile(background
 				.toString());
-		System.err.println(background);
 		@SuppressWarnings("deprecation")
 		Drawable backgroundImage = new BitmapDrawable(backgroundBitmap);
 		userInfoLayout.setBackgroundDrawable(backgroundImage);
@@ -97,6 +104,23 @@ public class UserProfile extends Activity {
 
 		// Display user rank.
 		userRank.setText("rank: " + userInfo.getRank());
+		
+		// Display user level icon.
+		File iconFile = new File(sdcard + File.separator + "awouso"
+				+ File.separator + "levels", userInfo.getRace()+"-level-"+userInfo.getLevelNo()+".png");
+		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
+		userLevelImage.setImageBitmap(iconBitmap);
+
+		// Display user level.
+		userLevel.setText("Level " + userInfo.getLevelNo());
+
+		// Display user race.
+		userRace.setText(userInfo.getRace());
+
+		// Display user group.
+		userGroup.setText(userInfo.getGroup());
+		
+		//TODO Add spell list.
 
 		// Set buttons listeners.
 		messageButton.setOnClickListener(new View.OnClickListener() {
