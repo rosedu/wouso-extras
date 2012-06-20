@@ -48,6 +48,7 @@ public class Qotd {
 			had_answered = obj.getBoolean("had_answered");
 			JSONObject vObj = obj.getJSONObject("answers");
 			
+			@SuppressWarnings("rawtypes")
 			Iterator iter = vObj.keys();
 			while (iter.hasNext()) {
 				String key = (String) iter.next();

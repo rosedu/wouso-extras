@@ -2,7 +2,6 @@ package cdl.android.ui.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,11 +17,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
+
 import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
-import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
+import cdl.android.server.GeneralHandler;
 import cdl.android.ui.bazaar.BazaarTabs;
+import cdl.android.ui.challenge.ChallengeMenu;
 
 /** 
  * User's profile and main application menu 
@@ -30,6 +31,7 @@ import cdl.android.ui.bazaar.BazaarTabs;
 public class MainMenu extends Activity {
 	SharedPreferences mPreferences;
 	UserInfo userInfo;
+	public static String globalUsername;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,12 @@ public class MainMenu extends Activity {
         
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String username = mPreferences.getString("username", null);
+        globalUsername = username;
 
         /** Gets user info from the server */
-        ApiRequests req = new ApiRequests();
         
         try{
-        userInfo = req.getUserInfo(username);
+        userInfo = GeneralHandler.getUserInfo(username);
         } catch(NullPointerException ex) {
         	Auth helper= new Auth(this); //Logout if an error occurs during login.
         	helper.logOut();
@@ -73,7 +75,9 @@ public class MainMenu extends Activity {
         playerLevel.setImageResource(R.drawable.levelex);
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
+        final Intent challMenu = new Intent(this, ChallengeMenu.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
+        Button challButton = (Button) findViewById(R.id.chalbtn);
         Button qotdButton = (Button) findViewById(R.id.qotdbtn);
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
         Button logoutButton = (Button) findViewById(R.id.logtbtn);
@@ -87,6 +91,14 @@ public class MainMenu extends Activity {
     			startActivity(bazaarMenu);
     		}
     	});
+        
+        challButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				startActivity(challMenu);
+				
+			}
+		});
 
         specialQuest.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -98,8 +110,7 @@ public class MainMenu extends Activity {
         	//TODO 1: Handle Question of the Day
 			public void onClick(View v) {
 		        String username = mPreferences.getString("username", null);
-				ApiRequests req = new ApiRequests();
-				final Qotd qotd = req.getQOTD(username);
+				final Qotd qotd = GeneralHandler.getQOTD(username);
 				
 				final CharSequence[] items = new String[qotd.getAnswers().size()];
 				for (int i = 0; i < qotd.getAnswers().size(); i++) {

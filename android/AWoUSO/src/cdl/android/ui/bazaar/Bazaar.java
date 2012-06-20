@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 import cdl.android.R;
 import cdl.android.model.BazaarItem;
-import cdl.android.server.ApiRequests;
+import cdl.android.server.GeneralHandler;
 
 public class Bazaar extends Activity {
 	private ArrayList<BazaarItem> mItems;
@@ -27,8 +27,7 @@ public class Bazaar extends Activity {
 		String username = mPreferences.getString("username", null);
 		
 		//TODO 3: get bazaar info from the local config file 
-		ApiRequests req = new ApiRequests();
-		mItems = req.getBazaar(username);
+		mItems = GeneralHandler.getBazaar(username);
 		mListView.setAdapter(new BazaarAdapter(this, mItems, new OnClickListener() {
 			public void onClick(View v) {
 			}
