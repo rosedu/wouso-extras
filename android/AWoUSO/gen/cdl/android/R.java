@@ -95,6 +95,9 @@ public final class R {
         public static final int qotdMarker=0x7f050004;
         public static final int shopMarker=0x7f050007;
         public static final int spQuestMarker=0x7f050009;
+        public static final int subject=0x7f05000f;
+        public static final int text=0x7f050010;
+        public static final int to=0x7f05000e;
         public static final int topMarker=0x7f050008;
     }
     public static final class style {
