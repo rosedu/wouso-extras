@@ -2,6 +2,8 @@ package cdl.android.ui.message;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,16 +34,5 @@ public class MessageItemView extends LinearLayout {
 		
 		TextView text = (TextView) findViewById(R.id.text);
 		text.setText(item.getContent());
-		
-		/*
-		EditText subject = (EditText) findViewById(R.id.subject);
-		subject.setText(item.getSubject());
-		
-		EditText from = (EditText) findViewById(R.id.from);
-		from.setText(item.getAuthor());
-		
-		EditText text = (EditText) findViewById(R.id.text);
-		text.setText(item.getContent());*/
-	
 	}
 }

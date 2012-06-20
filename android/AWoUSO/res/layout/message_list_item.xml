@@ -69,4 +69,10 @@
             android:inputType="text"
             android:textSize="10dp" />
     </RelativeLayout>
+    
+	<Button 
+	    android:id="@+id/readmsg"
+	    android:layout_width="60dp"
+	    android:layout_height="40dp"
+	    android:text="@string/back"/>
 </LinearLayout>

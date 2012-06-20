@@ -39,5 +39,6 @@
     <string name="text">Text:</string>
     <string name="send">Send</string>
     <string name="from">From:</string>
+    <string name="back">Back</string>
 
 </resources>
