@@ -14,6 +14,10 @@ import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.server.ChallengeHandler;
 
+/**
+ * Represents an active challenge.
+ *
+ */
 public class ActiveChallenge extends Activity {
 
 	private int challenge_id;
@@ -40,6 +44,10 @@ public class ActiveChallenge extends Activity {
 		startChallenge(ChallengeMenu.currentSelected.getChallengeId());
 	}
 
+	/**
+	 * Starts the challenge which has that id.
+	 * @param challenge_id The challenge's id.
+	 */
 	public void startChallenge(int challenge_id) {
 		this.challenge_id = challenge_id;
 		info = ChallengeHandler.getChallengeInfo(challenge_id);
@@ -68,7 +76,7 @@ public class ActiveChallenge extends Activity {
 					Toast.makeText(getApplicationContext(),
 							"How did you even do that? >__>", 1).show();
 				}
-				refreshForActiveChallenge();
+				refreshForActiveQuestion();
 			}
 		});
 
@@ -84,7 +92,7 @@ public class ActiveChallenge extends Activity {
 					return;
 					
 				}
-				refreshForActiveChallenge();
+				refreshForActiveQuestion();
 
 			}
 		});
@@ -94,23 +102,31 @@ public class ActiveChallenge extends Activity {
 		cboxes[2] = (CheckBox) findViewById(R.id.tposa);
 		cboxes[3] = (CheckBox) findViewById(R.id.foposa);
 
-		refreshForActiveChallenge();
+		refreshForActiveQuestion();
 	}
 
+	/**
+	 * Sends the current answers to the server.
+	 */
 	private void postAnswers() {
 		(new ChallengeConnection()).post(this);
 		
 	}
 
-	protected void saveCurrent() {
+	/**
+	 * Save the current ticked boxes to the matrix.
+	 */
+	private void saveCurrent() {
 		for(int i=0;i<4;i++) {
 			ticked[activeChallenge][i] = cboxes[i].isChecked();
 		}
 		
 	}
 
-	private void refreshForActiveChallenge() {
-		//TODO get current stuff, etc. etc.
+	/**
+	 * Refreshes the activity for the current question.
+	 */
+	private void refreshForActiveQuestion() {
 		for(int i=0;i<=3;i++) {
 			cboxes[i].setChecked(ticked[activeChallenge][i]);
 		}
@@ -137,14 +153,26 @@ public class ActiveChallenge extends Activity {
 		
 	}
 
+	/**
+	 * Gets the current challenge id.
+	 * @return The challenge id.
+	 */
 	public int getChallengeId() {
 		return challenge_id;
 	}
 
+	/**
+	 * Gets information about the current question.
+	 * @return a Wrapper around the information.
+	 */
 	public ChallengeInfo getInfo() {
 		return info;
 	}
 
+	/**
+	 * Converts the tick data to a Map which can be sent through POST to the server.
+	 * @return A wrapped map.
+	 */
 	public Map<String, String> getWrappable() {
 		Map<String, String> toRet = new HashMap<String, String>();
 		for(int i=0;i<=4;i++) {

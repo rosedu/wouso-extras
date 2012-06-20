@@ -11,9 +11,9 @@ import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
 
 public class GeneralHandler {
-	private static String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
-	private static String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
-	private static String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
+	private static final String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
+	private static final String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
+	private static final String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
 	
 	private GeneralHandler() {
 		
@@ -36,17 +36,20 @@ public class GeneralHandler {
 	 * @return an Qotd instance
 	 */
 	public static Qotd getQOTD(String username) {
-		qotdAPICallURL += username;
-		JSONObject result = ApiHandler.get(qotdAPICallURL);
+		JSONObject result = ApiHandler.get(qotdAPICallURL + username);
 		Qotd qotd = new Qotd(result);
 		return qotd;
 	}
 
-	//TODO 3: remove this, the bazaar info will be retrieved from a local config file 
+	/**
+	 * Gets the available bazaar items for a username.
+	 * @param username The player's username.
+	 * @return A List of the parsed available items.
+	 */
+	//TODO 3: remove this, the bazaar info will be retrieved from a local config file
 	public static ArrayList<BazaarItem> getBazaar(String username) {
 		ArrayList<BazaarItem> items = new ArrayList<BazaarItem>();
-		bazaarAPICallURL += username;
-		JSONObject result = ApiHandler.get(bazaarAPICallURL);
+		JSONObject result = ApiHandler.get(bazaarAPICallURL + username);
 
 		try {
 			JSONArray arr = result.getJSONArray("spells");

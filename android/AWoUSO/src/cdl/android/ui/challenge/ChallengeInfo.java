@@ -7,6 +7,9 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Represents wrapped info about a specific challenge, without the id! This is the differnce to RChallengeInfo
+ */
 public class ChallengeInfo {
 
 	private boolean success;
@@ -17,6 +20,10 @@ public class ChallengeInfo {
 	private Map<Integer, ChallengeQuestion> questions = new HashMap<Integer, ChallengeQuestion>();
 	
 	
+	/**
+	 * Creates a new wrapper around the specified JSONObject,
+	 * @param object The object to be wrapped.
+	 */
 	public ChallengeInfo(JSONObject object) {
 		try{
 		success = object.getBoolean("success");
@@ -40,43 +47,76 @@ public class ChallengeInfo {
 	}
 
 
+	/**
+	 * Checkes whether the challenge request was a success.
+	 * @return Whether the request was successfull.
+	 */
 	public boolean isSuccess() {
 		return success;
 	}
 
 
+	/**
+	 * Gets the challenge's status.
+	 * @return The status.
+	 */
 	public String getStatus() {
 		return status;
 	}
 
 
+	/**
+	 * Gets the challenge's date.
+	 * @return The date.
+	 */
 	public String getDate() {
 		return date;
 	}
 
 
+	/**
+	 * Gets who the challenge is from.
+	 * @return Who sent the challenge;
+	 */
 	public String getFrom() {
 		return from;
 	}
 
 
+	/**
+	 * Gets who the challenge is to.
+	 * @return Who received the challenge.
+	 */
 	public String getTo() {
 		return to;
 	}
 
 
+	/**
+	 * Gets the challenge's seconds.
+	 * @return The challenge's remaining seconds.
+	 */
 	public int getSeconds() {
 		return seconds;
 	}
 
 
+	/**
+	 * Gets the challenge's questions.
+	 * @return The challenge's questions.
+	 */
 	public Map<Integer, ChallengeQuestion> getQuestions() {
 		return questions;
 	}
 
 
-	public ChallengeQuestion getQuestion(int activeChallenge) {
-		return questions.get(activeChallenge);
+	/**
+	 * Gets the question at a certain number.
+	 * @param which The challenge's number.
+	 * @return The specific question.
+	 */
+	public ChallengeQuestion getQuestion(int which) {
+		return questions.get(which);
 	}
 
 }

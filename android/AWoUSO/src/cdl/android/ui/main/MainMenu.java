@@ -20,7 +20,7 @@ import cdl.android.R;
 
 import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
-import cdl.android.server.Auth;
+import cdl.android.server.AuthHandler;
 import cdl.android.server.GeneralHandler;
 import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.challenge.ChallengeMenu;
@@ -31,7 +31,7 @@ import cdl.android.ui.challenge.ChallengeMenu;
 public class MainMenu extends Activity {
 	SharedPreferences mPreferences;
 	UserInfo userInfo;
-	public static String globalUsername;
+	private static String globalUsername;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MainMenu extends Activity {
         try{
         userInfo = GeneralHandler.getUserInfo(username);
         } catch(NullPointerException ex) {
-        	Auth helper= new Auth(this); //Logout if an error occurs during login.
+        	AuthHandler helper= new AuthHandler(this); //Logout if an error occurs during login.
         	helper.logOut();
         	Toast.makeText(this, "Login error, please relogin!", 1);
         	return;
@@ -132,10 +132,14 @@ public class MainMenu extends Activity {
         
         logoutButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Auth authHelper = new Auth(v.getContext());
+				AuthHandler authHelper = new AuthHandler(v.getContext());
 				authHelper.logOut();
 			}
 		});
 	}	
+	
+	public static String getLoggedUsername() {
+		return globalUsername;
+	}
 	
 }

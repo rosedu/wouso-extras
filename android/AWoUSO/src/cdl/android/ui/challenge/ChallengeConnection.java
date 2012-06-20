@@ -24,7 +24,7 @@ public class ChallengeConnection {
 	 * Sends a post to the server using the data received as parameter
 	 */
 	public void sendPost(int challenge_id,List<NameValuePair> data) {
-		String url = "http://wouso-next.rosedu.org/api/challenge/"+challenge_id+"/?user="+MainMenu.globalUsername;
+		String url = "http://wouso-next.rosedu.org/api/challenge/"+challenge_id+"/?user="+MainMenu.getLoggedUsername();
 		HttpPost httpost = new HttpPost(url);
 
 		/** Send post */

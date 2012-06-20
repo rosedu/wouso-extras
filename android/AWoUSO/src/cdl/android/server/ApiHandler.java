@@ -73,6 +73,13 @@ public class ApiHandler {
 		return jObject;
 	}
 	
+	
+
+	/**
+	 * Generic HTTP GET data request
+	 * @param req The request
+	 * @return JSONArray with the server response
+	 */
 	public static JSONArray getArray(String req) {
 		JSONArray jObject = null;
 

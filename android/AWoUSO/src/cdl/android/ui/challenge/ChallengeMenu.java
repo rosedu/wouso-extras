@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.server.ChallengeHandler;
-import cdl.android.ui.main.MainMenu;
 
 public class ChallengeMenu extends ListActivity {
 
@@ -86,7 +85,7 @@ public class ChallengeMenu extends ListActivity {
 		});
 
 		// Set the challenge list
-		RChallengeList list = ChallengeHandler.getChallengeList(MainMenu.globalUsername);
+		RChallengeList list = ChallengeHandler.getChallengeList();
 		for (int l = 0; l < list.getTotalChallenges(); l++) {
 			RChallengeInfo rc = list.getChallenge(l);
 			String toAdd = "From " + rc.getFrom() + " to " + rc.getTo();
@@ -143,7 +142,6 @@ public class ChallengeMenu extends ListActivity {
 
 	// METHOD WHICH WILL HANDLE DYNAMIC INSERTION
 	public void addItems(View v) {
-		listItems.add("Clicked : " + clickCounter++);
 		adapter.notifyDataSetChanged();
 	}
 }
