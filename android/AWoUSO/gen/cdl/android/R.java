@@ -9,22 +9,14 @@ package cdl.android;
 
 public final class R {
     public static final class array {
-<<<<<<< HEAD
-        public static final int list_array=0x7f050000;
-=======
         public static final int list_array=0x7f060000;
->>>>>>> 4a82077562257e2ec55ac1b4c08c5763b3b7ffdf
     }
     public static final class attr {
     }
     public static final class color {
-<<<<<<< HEAD
-        public static final int colors=0x7f070000;
-=======
         public static final int colors=0x7f040002;
         public static final int msg_button_black=0x7f040001;
         public static final int white=0x7f040000;
->>>>>>> 4a82077562257e2ec55ac1b4c08c5763b3b7ffdf
     }
     public static final class drawable {
         public static final int androidicon=0x7f020000;
@@ -51,44 +43,8 @@ public final class R {
         public static final int v_progress_bar_full=0x7f020015;
     }
     public static final class id {
-<<<<<<< HEAD
-        public static final int buff=0x7f080011;
-        public static final int button_back=0x7f080021;
-        public static final int buyButton=0x7f080004;
-        public static final int chalbtn=0x7f080009;
-        public static final int days=0x7f080002;
-        public static final int debuff=0x7f080010;
-        public static final int description=0x7f080001;
-        public static final int gold=0x7f080019;
-        public static final int goldicon=0x7f080018;
-        public static final int level=0x7f08000f;
-        public static final int levelBar=0x7f080014;
-        public static final int loginButton=0x7f080007;
-        public static final int logtbtn=0x7f08000e;
-        public static final int msgbtn=0x7f08000a;
-        public static final int points=0x7f080017;
-        public static final int pointsicon=0x7f080016;
-        public static final int price=0x7f080003;
-        public static final int profileImage=0x7f080012;
-        public static final int profileName=0x7f080015;
-        public static final int profileOverlay=0x7f080013;
-        public static final int qotdbtn=0x7f080008;
-        public static final int shopbtn=0x7f08000b;
-        public static final int spcQbtn=0x7f08000d;
-        public static final int tab1=0x7f08001b;
-        public static final int tab2=0x7f08001d;
-        public static final int tab3=0x7f08001f;
-        public static final int tabHost=0x7f08001a;
-        public static final int title=0x7f080000;
-        public static final int topbtn=0x7f08000c;
-        public static final int txt1=0x7f08001c;
-        public static final int txt2=0x7f08001e;
-        public static final int txt3=0x7f080020;
-        public static final int username=0x7f080006;
-        public static final int usernameLabel=0x7f080005;
-=======
         public static final int buff=0x7f080014;
-        public static final int button_back=0x7f08001d;
+        public static final int button_back=0x7f080024;
         public static final int buyButton=0x7f080004;
         public static final int chalbtn=0x7f08000c;
         public static final int days=0x7f080002;
@@ -111,53 +67,31 @@ public final class R {
         public static final int shopbtn=0x7f08000e;
         public static final int spcQbtn=0x7f080010;
         public static final int subject=0x7f080006;
+        public static final int tab1=0x7f08001e;
+        public static final int tab2=0x7f080020;
+        public static final int tab3=0x7f080022;
+        public static final int tabHost=0x7f08001d;
         public static final int text=0x7f080007;
         public static final int title=0x7f080000;
         public static final int to=0x7f080005;
         public static final int topbtn=0x7f08000f;
+        public static final int txt1=0x7f08001f;
+        public static final int txt2=0x7f080021;
+        public static final int txt3=0x7f080023;
         public static final int username=0x7f080009;
         public static final int usernameLabel=0x7f080008;
->>>>>>> 4a82077562257e2ec55ac1b4c08c5763b3b7ffdf
     }
     public static final class layout {
         public static final int bazaar=0x7f030000;
         public static final int bazaar_list_item=0x7f030001;
-<<<<<<< HEAD
-        public static final int exchange=0x7f030002;
-        public static final int main=0x7f030003;
-        public static final int mainmenu=0x7f030004;
-        public static final int message=0x7f030005;
-        public static final int profileoverlay=0x7f030006;
-        public static final int received=0x7f030007;
-        public static final int tab_layout=0x7f030008;
-    }
-    public static final class string {
-        public static final int account=0x7f040002;
-        public static final int app_name=0x7f040000;
-        public static final int chalMarker=0x7f040005;
-        public static final int exchange_left=0x7f04000a;
-        public static final int exchange_right=0x7f04000b;
-        public static final int loginText=0x7f040001;
-        public static final int logout=0x7f04000c;
-        public static final int msgMarker=0x7f040006;
-        public static final int passwd=0x7f040003;
-        public static final int qotdMarker=0x7f040004;
-        public static final int shopMarker=0x7f040007;
-        public static final int spQuestMarker=0x7f040009;
-        public static final int topMarker=0x7f040008;
-    }
-    public static final class style {
-        public static final int BlueButton=0x7f060000;
-        public static final int mainMenuButtons=0x7f060001;
-        public static final int profileFrame=0x7f060003;
-        public static final int specialButtons=0x7f060002;
-=======
         public static final int compose_msg_layout=0x7f030002;
         public static final int exchange=0x7f030003;
         public static final int main=0x7f030004;
         public static final int mainmenu=0x7f030005;
-        public static final int profileoverlay=0x7f030006;
-        public static final int tab_layout=0x7f030007;
+        public static final int message=0x7f030006;
+        public static final int profileoverlay=0x7f030007;
+        public static final int received=0x7f030008;
+        public static final int tab_layout=0x7f030009;
     }
     public static final class string {
         public static final int account=0x7f050002;
@@ -183,6 +117,5 @@ public final class R {
         public static final int mainMenuButtons=0x7f070001;
         public static final int profileFrame=0x7f070003;
         public static final int specialButtons=0x7f070002;
->>>>>>> 4a82077562257e2ec55ac1b4c08c5763b3b7ffdf
     }
 }
