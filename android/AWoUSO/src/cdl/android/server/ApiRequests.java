@@ -85,6 +85,7 @@ public class ApiRequests {
 	
 	public void sendMessage(String to, String subject, String text){
 		HttpPost request = new HttpPost(msgSendAPICallURL);
+		request += "/?user"
 	}
 
 	/**
