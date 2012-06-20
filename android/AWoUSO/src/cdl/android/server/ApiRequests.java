@@ -4,10 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
@@ -22,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cdl.android.model.BazaarItem;
+import cdl.android.model.MessageItem;
 import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
 
@@ -33,7 +30,8 @@ public class ApiRequests {
 	private String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
 	private String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
 	private String msgSendAPICallURL = "http://wouso-next.rosedu.org/api/messages/send";
-
+	private String msgReceivedAPICallURL = "http://wouso-next.rosedu.org/api/messages/recv/?user=";
+	
 	/**
 	 * Generic HTTP GET data request
 	 * @param request
@@ -83,6 +81,58 @@ public class ApiRequests {
 		return jObject;
 	}
 	
+	
+	
+	public JSONArray getJArray(String req) {
+		JSONArray jArray = null;
+		
+		/** HTTP request */
+		StringBuilder info = new StringBuilder();
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request = new HttpGet(req);
+		HttpResponse response = null;
+
+		try {
+			response = client.execute(request);
+			int code = response.getStatusLine().getStatusCode();
+			System.out.println("code - " + code);
+
+			HttpEntity entity = response.getEntity();
+
+			if (entity != null) {
+				InputStream inStream = entity.getContent();
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+						inStream), 8192);
+				String line;
+				while ((line = br.readLine()) != null) {
+					info.append(line + "\n");
+				}
+				System.out.println("Received " + info);
+			} else
+				return null;
+			
+		} catch (ClientProtocolException e) {
+			System.err.println("Exception: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("Exception: " + e.getMessage());
+		}
+
+		/** TODO: Check invalid response from server or error */
+		try {
+			jArray = new JSONArray(info.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return jArray;
+	}
+	
+	/**
+	 * Send message to a user
+	 * @param to 
+	 * @param subject
+	 * @param text
+	 */
 	public void sendMessage(String to, String subject, String text){
 		msgSendAPICallURL = msgSendAPICallURL + "receiver=" + to + "&text=" + text + "&subject=" + subject;
 		
@@ -98,6 +148,25 @@ public class ApiRequests {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public ArrayList<MessageItem> getReceived(String username) {
+		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
+		msgReceivedAPICallURL = msgReceivedAPICallURL + username;
+		JSONArray jArray = getJArray(msgReceivedAPICallURL);
+
+		try {
+			for (int i = 0; i < jArray.length(); i++) {
+				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
+				items.add(msg);
+			}
+		} catch (JSONException ex) {
+			ex.printStackTrace();
+		}
+		return items;
+		
+	}
+	
 
 	/**
 	 * Gets User Info and parses the response
