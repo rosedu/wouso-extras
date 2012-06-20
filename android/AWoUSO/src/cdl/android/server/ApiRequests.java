@@ -27,6 +27,7 @@ public class ApiRequests {
 	private String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
 	private String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
 	private String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
+	private String challAPICallURL = "http://wouso-next.rosedu.org/api/challenge/";
 
 	/**
 	 * Generic HTTP GET data request
@@ -76,6 +77,11 @@ public class ApiRequests {
 
 		return jObject;
 	}
+	
+	/**
+	 * Gets challenge info.
+	 */
+	
 
 
 	/**
