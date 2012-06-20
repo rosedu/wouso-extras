@@ -23,8 +23,18 @@ public class MessageItemView extends LinearLayout {
 		mItem = item;
 		
 		LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layoutInflater.inflate(R.layout.message_list_item, this, true);
+		layoutInflater.inflate(R.layout.simple_message_list, this, true);
 		
+		TextView subject = (TextView) findViewById(R.id.subject);
+		subject.setText(item.getSubject());
+		
+		TextView from = (TextView) findViewById(R.id.from);
+		from.setText(item.getAuthor());
+		
+		TextView text = (TextView) findViewById(R.id.text);
+		text.setText(item.getContent());
+		
+		/*
 		EditText subject = (EditText) findViewById(R.id.subject);
 		subject.setText(item.getSubject());
 		
@@ -32,7 +42,7 @@ public class MessageItemView extends LinearLayout {
 		from.setText(item.getAuthor());
 		
 		EditText text = (EditText) findViewById(R.id.text);
-		text.setText(item.getContent());
+		text.setText(item.getContent());*/
 	
 	}
 }
