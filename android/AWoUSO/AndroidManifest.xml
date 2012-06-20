@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".ui.message.All" >
         </activity>
+        <activity android:name=".ui.message.CreateMessage" >
+        </activity>
         <activity
             android:name=".ui.main.MainMenu"
             android:screenOrientation="portrait" >

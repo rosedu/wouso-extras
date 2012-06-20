@@ -48,6 +48,11 @@ public class MessageTabs extends TabActivity {
 		spec.setContent(intent);
 		tabHost.addTab(spec);
 		
+		intent = new Intent().setClass(this, CreateMessage.class);
+		spec = tabHost.newTabSpec("compose").setIndicator("Compose");
+		spec.setContent(intent);
+		tabHost.addTab(spec);
+		
 		tabHost.setCurrentTab(0);
 	}
 }
