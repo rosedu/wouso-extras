@@ -33,12 +33,12 @@
     <string name="exchange_left">Exchange points for gold or gold for points</string>
     <string name="exchange_right">Rate: 1 gold = 9 points, 1 gold = 10.0 points</string>
     <string name="logout">Log out</string>
-    <string name="userMsgMarker">Message</string>
-    <string name="userSpellMarker">Cast Spell</string>
-    <string name="userChalMarker">Challenge</string>
+    <string name="userMsgMarker">msg</string>
+    <string name="userSpellMarker">spell</string>
+    <string name="userChalMarker">CHALLENGE!</string>
     <dimen name="avatarSize">80dp</dimen>
     <color name="userProfileColor">#FFF</color>
     <color name="userInfoColor">#AAA</color>
-    <color name="userLinkColor">#22A</color>
+    <color name="userLinkColor">#55C</color>
 
 </resources>

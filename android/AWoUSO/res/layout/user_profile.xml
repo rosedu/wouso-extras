@@ -66,30 +66,31 @@
                     android:id="@+id/userlevelimg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
                     android:gravity="center_vertical|left" />
 
                 <TextView
                     android:id="@+id/userlevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical|left"
                     android:textColor="@color/userInfoColor"
-                    android:textSize="9sp"
-                    android:gravity="center_vertical|left" />
+                    android:textSize="9sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical|left"
                     android:text=" | "
                     android:textColor="@color/userInfoColor"
-                    android:gravity="center_vertical|left"
                     android:textSize="9sp" />
 
                 <TextView
                     android:id="@+id/userrace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/userLinkColor"
                     android:gravity="center_vertical|left"
+                    android:textColor="@color/userLinkColor"
                     android:textSize="9sp" />
 
                 <TextView
@@ -103,8 +104,8 @@
                     android:id="@+id/usergroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/userLinkColor"
                     android:gravity="center_vertical|left"
+                    android:textColor="@color/userLinkColor"
                     android:textSize="9sp" />
             </LinearLayout>
         </LinearLayout>

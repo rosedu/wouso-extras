@@ -24,8 +24,8 @@ import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.user.UserProfile;
 
-/** 
- * User's profile and main application menu 
+/**
+ * User's profile and main application menu
  */
 public class MainMenu extends Activity {
 	SharedPreferences mPreferences;
@@ -39,108 +39,110 @@ public class MainMenu extends Activity {
 			StrictMode.setThreadPolicy(policy);
 		}
 
-	    super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.mainmenu);
-        
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final String username = mPreferences.getString("username", null);
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.mainmenu);
 
-        /** Gets user info from the server */
-        ApiRequests req = new ApiRequests();
-        
-        try{
-        userInfo = req.getUserInfo(username);
-        } catch(NullPointerException ex) {
-        	Auth helper= new Auth(this); //Logout if an error occurs during login.
-        	helper.logOut();
-        	Toast.makeText(this, "Login error, please relogin!", 1);
-        	return;
-        	
-        }
+		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		final String username = mPreferences.getString("username", null);
 
-        /** Fill Activity Views */
-        TextView userProfile = (TextView) findViewById(R.id.profileName);
-        userProfile.setText(username);
-        
-        TextView pointsCount = (TextView) findViewById(R.id.points);
-        pointsCount.setText(userInfo.getPoints()+"");
-        
+		/** Gets user info from the server */
+		ApiRequests req = new ApiRequests();
+
+		try {
+			userInfo = req.getUserInfo(username);
+		} catch (NullPointerException ex) {
+			Auth helper = new Auth(this); // Logout if an error occurs during
+											// login.
+			helper.logOut();
+			Toast.makeText(this, "Login error, please relogin!", 1);
+			return;
+
+		}
+
+		/** Fill Activity Views */
+		TextView userProfile = (TextView) findViewById(R.id.profileName);
+		userProfile.setText(username);
+
+		TextView pointsCount = (TextView) findViewById(R.id.points);
+		pointsCount.setText(userInfo.getPoints() + "");
+
 		TextView goldCount = (TextView) findViewById(R.id.gold);
-        goldCount.setText("0");
-        
-        ImageView playerLevel = (ImageView) findViewById(R.id.level);
-        playerLevel.setImageResource(R.drawable.levelex);
-        
-        final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
-        Button bazaarButton = (Button) findViewById(R.id.shopbtn);
-        Button userButton = (Button) findViewById(R.id.userbtn); // to be removed
-        Button qotdButton = (Button) findViewById(R.id.qotdbtn);
-        Button specialQuest = (Button) findViewById(R.id.spcQbtn);
-        Button logoutButton = (Button) findViewById(R.id.logtbtn);
+		goldCount.setText("0");
 
-        final Toast weekQ = Toast.makeText(getApplicationContext(), 
-        		"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
-        weekQ.setGravity(Gravity.CENTER, 0, 0);
-        
-        userButton.setOnClickListener(new View.OnClickListener() {
-    		public void onClick(View v) {
-    			startUserProfileActivity(username);
-    		}
-    	});
+		ImageView playerLevel = (ImageView) findViewById(R.id.level);
+		playerLevel.setImageResource(R.drawable.levelex);
 
-        bazaarButton.setOnClickListener(new View.OnClickListener() {
-    		public void onClick(View v) {
-    			startActivity(bazaarMenu);
-    		}
-    	});
+		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
+		Button bazaarButton = (Button) findViewById(R.id.shopbtn);
+		Button qotdButton = (Button) findViewById(R.id.qotdbtn);
+		Button specialQuest = (Button) findViewById(R.id.spcQbtn);
+		Button logoutButton = (Button) findViewById(R.id.logtbtn);
 
-        specialQuest.setOnClickListener(new OnClickListener() {
+		final Toast weekQ = Toast.makeText(getApplicationContext(),
+				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
+		weekQ.setGravity(Gravity.CENTER, 0, 0);
+
+		bazaarButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				startActivity(bazaarMenu);
+			}
+		});
+
+		specialQuest.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				weekQ.show();
 			}
 		});
-                
-        qotdButton.setOnClickListener(new OnClickListener() {
-        	//TODO 1: Handle Question of the Day
+
+		qotdButton.setOnClickListener(new OnClickListener() {
+			// TODO 1: Handle Question of the Day
 			public void onClick(View v) {
-		        String username = mPreferences.getString("username", null);
+				String username = mPreferences.getString("username", null);
 				ApiRequests req = new ApiRequests();
 				final Qotd qotd = req.getQOTD(username);
 
-				final CharSequence[] items = new String[qotd.getAnswers().size()];
+				final CharSequence[] items = new String[qotd.getAnswers()
+						.size()];
 				for (int i = 0; i < qotd.getAnswers().size(); i++) {
 					items[i] = qotd.getAnswers().get(i);
 				}
 
-				AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+				AlertDialog.Builder builder = new AlertDialog.Builder(v
+						.getContext());
 				builder.setTitle(qotd.getQuestion());
-				builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-				    public void onClick(DialogInterface dialog, int item) {
-				        Toast.makeText(getApplicationContext(), items[item] + ":" + 
-				        		qotd.getKeys().get(item), Toast.LENGTH_SHORT).show();
-				    }
-				});
+				builder.setSingleChoiceItems(items, -1,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int item) {
+								Toast.makeText(
+										getApplicationContext(),
+										items[item] + ":"
+												+ qotd.getKeys().get(item),
+										Toast.LENGTH_SHORT).show();
+							}
+						});
 				AlertDialog alert = builder.create();
 				alert.show();
 			}
 		});
-        
-        logoutButton.setOnClickListener(new OnClickListener() {
+
+		logoutButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Auth authHelper = new Auth(v.getContext());
 				authHelper.logOut();
 			}
 		});
-	}	
-	
-	public void startUserProfileActivity(String username){
+	}
+
+	// Use this method to display a user profile. You need to provide the
+	// username, which is checked against the database
+	public void startUserProfileActivity(String username) {
 		final Intent otherUserProfile = new Intent(this, UserProfile.class);
-        Bundle b = new Bundle();
-    	b.putString("username", username);
-    	otherUserProfile.putExtras(b);
-    	
-    	startActivity(otherUserProfile);
+		Bundle b = new Bundle();
+		b.putString("username", username);
+		otherUserProfile.putExtras(b);
+
+		startActivity(otherUserProfile);
 	}
 
 }

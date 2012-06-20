@@ -33,7 +33,7 @@ public class UserInfo {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String getGroup() {
 		return group;
 	}

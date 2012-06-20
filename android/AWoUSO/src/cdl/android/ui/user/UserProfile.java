@@ -78,7 +78,7 @@ public class UserProfile extends Activity {
 		// Set background for main user profile.
 		File sdcard = Environment.getExternalStorageDirectory();
 		File background = new File(sdcard + File.separator + "awouso"
-				+ File.separator + "profiles", userInfo.getRace()+".png");
+				+ File.separator + "profiles", userInfo.getRace() + ".png");
 		Bitmap backgroundBitmap = BitmapFactory.decodeFile(background
 				.toString());
 		@SuppressWarnings("deprecation")
@@ -104,10 +104,11 @@ public class UserProfile extends Activity {
 
 		// Display user rank.
 		userRank.setText("rank: " + userInfo.getRank());
-		
+
 		// Display user level icon.
 		File iconFile = new File(sdcard + File.separator + "awouso"
-				+ File.separator + "levels", userInfo.getRace()+"-level-"+userInfo.getLevelNo()+".png");
+				+ File.separator + "levels", userInfo.getRace() + "-level-"
+				+ userInfo.getLevelNo() + ".png");
 		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
 		userLevelImage.setImageBitmap(iconBitmap);
 
@@ -119,9 +120,11 @@ public class UserProfile extends Activity {
 
 		// Display user group.
 		userGroup.setText(userInfo.getGroup());
-		
-		//TODO Add spell list.
 
+		
+		// TODO Add spell list.
+
+		
 		// Set buttons listeners.
 		messageButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
