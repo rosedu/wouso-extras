@@ -30,11 +30,10 @@ public class Received extends Activity {
 		
 		ApiRequests req = new ApiRequests();
 		mItems = req.getReceived(username);
-		/**
+		
 		mListView.setAdapter(new MessageAdapter(this, mItems, new OnClickListener() {
 			public void onClick(View v) {
 			}
 		}));
-		**/
 	}
 }

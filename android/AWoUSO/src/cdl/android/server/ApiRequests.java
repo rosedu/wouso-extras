@@ -37,8 +37,10 @@ public class ApiRequests {
 	private String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
 	private String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
 	private String msgReceivedAPICallURL = "http://wouso-next.rosedu.org/api/messages/recv/?user=";
+	private String msgSentAPICallURL = "http://wouso-next.rosedu.org/api/messages/sent/?user=";
+	private String msgAllAPICallURL = "http://wouso-next.rosedu.org/api/messages/all/?user=";
 	private String msgSendAPICallURL = "http://wouso-next.rosedu.org/api/messages/send/?user=";
-
+	
 	/**
 	 * Generic HTTP GET data request
 	 * @param request
@@ -114,7 +116,7 @@ public class ApiRequests {
 				while ((line = br.readLine()) != null) {
 					info.append(line + "\n");
 				}
-				System.out.println("Received " + info);
+				//System.out.println("Received " + info);
 			} else
 				return null;
 			
@@ -161,7 +163,11 @@ public class ApiRequests {
 
 	}
 	
-	
+	/**
+	 * Get received messages
+	 * @param username
+	 * @return
+	 */
 	public ArrayList<MessageItem> getReceived(String username) {
 		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
 		msgReceivedAPICallURL = msgReceivedAPICallURL + username;
@@ -171,13 +177,57 @@ public class ApiRequests {
 			for (int i = 0; i < jArray.length(); i++) {
 				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
 				items.add(msg);
+				System.out.println("Author " + msg.getAuthor() + " wrote " + msg.getContent());
 			}
 		} catch (JSONException ex) {
 			ex.printStackTrace();
 		}
 		return items;
-		
 	}
+	
+	/**
+	 * Get sent messages
+	 * @param username
+	 * @return
+	 */
+	public ArrayList<MessageItem> getSent(String username) {
+		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
+		msgSentAPICallURL = msgSentAPICallURL + username;
+		JSONArray jArray = getJArray(msgSentAPICallURL);
+
+		try {
+			for (int i = 0; i < jArray.length(); i++) {
+				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
+				items.add(msg);
+				//System.out.println("Author " + msg.getAuthor() + " wrote " + msg.getContent());
+			}
+		} catch (JSONException ex) {
+			ex.printStackTrace();
+		}
+		return items;
+	}
+	
+	/**
+	 * Get all messages
+	 * @param username
+	 * @return
+	 */
+	public ArrayList<MessageItem> getAll(String username) {
+		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
+		msgAllAPICallURL = msgAllAPICallURL + username;
+		JSONArray jArray = getJArray(msgAllAPICallURL);
+
+		try {
+			for (int i = 0; i < jArray.length(); i++) {
+				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
+				items.add(msg);
+				//System.out.println("Author " + msg.getAuthor() + " wrote " + msg.getContent());
+			}
+		} catch (JSONException ex) {
+			ex.printStackTrace();
+		}
+		return items;
+	}	
 	
 
 	/**
