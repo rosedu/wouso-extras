@@ -161,21 +161,26 @@ public class MainMenu extends Activity {
 
 	
 	//@Override
-	/*
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    
-	    switch (item.getItemId()) {
-	        case R.id.top:	
-	        	
-                return true;
-	        case R.id.map: 
-	        	
-	        	return true;
-                
+		switch (item.getItemId()) {
+	        case R.id.top:
+	        	showMsg("Not yet");	        	
+	        case R.id.map:	        	
+	        	showMsg("Not yet");
+	        case R.id.search:
+	        	showMsg("Not yet");
 	        default:
 	        	return true;
 	    }
 	    
-	}*/
+	}
+
+	}
+	private void showMsg(String msg) {
+		Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
+		toast.show();
+	}
 }
 
