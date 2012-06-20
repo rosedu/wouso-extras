@@ -33,5 +33,9 @@
     <string name="exchange_left">Exchange points for gold or gold for points</string>
     <string name="exchange_right">Rate: 1 gold = 9 points, 1 gold = 10.0 points</string>
     <string name="logout">Log out</string>
+    <string name="create_msg">Create message</string>
+    <string name="to">To:</string>
+    <string name="subject">Subject:</string>
+    <string name="text">Text:</string>
 
 </resources>

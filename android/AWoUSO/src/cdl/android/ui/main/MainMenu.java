@@ -22,7 +22,11 @@ import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
+<<<<<<< HEAD
 import cdl.android.ui.message.*;
+=======
+import osss.android.ui.message.*;
+>>>>>>> 4a82077562257e2ec55ac1b4c08c5763b3b7ffdf
 
 /** 
  * User's profile and main application menu 
@@ -74,7 +78,7 @@ public class MainMenu extends Activity {
         final Toast weekQ = Toast.makeText(getApplicationContext(), 
         		"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
         weekQ.setGravity(Gravity.CENTER, 0, 0);
-
+        
         bazaarButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			startActivity(bazaarMenu);
@@ -119,12 +123,20 @@ public class MainMenu extends Activity {
 			}
 		});
         
+<<<<<<< HEAD
         msgButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			System.out.println("APASA MESSAGEANANBAIN");
     			startActivity(messageMenu);
     		}
     	});
+=======
+        msgButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v){
+        		startActivity(messageMenu);
+        	}
+        });
+>>>>>>> 4a82077562257e2ec55ac1b4c08c5763b3b7ffdf
 	}	
 	
 }
