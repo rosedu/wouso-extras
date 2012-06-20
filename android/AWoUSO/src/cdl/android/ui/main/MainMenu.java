@@ -79,6 +79,7 @@ public class MainMenu extends Activity {
         ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
         mProgress.setProgress((int)userInfo.getLevelPercent());
         
+       
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
