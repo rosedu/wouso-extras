@@ -33,5 +33,8 @@
     <string name="exchange_left">Exchange points for gold or gold for points</string>
     <string name="exchange_right">Rate: 1 gold = 9 points, 1 gold = 10.0 points</string>
     <string name="logout">Log out</string>
+    <string name="userMsgMarker">Send Message</string>
+    <string name="userSpellMarker">Cast Spell</string>
+    <string name="userChalMarker">Challenge</string>
 
 </resources>

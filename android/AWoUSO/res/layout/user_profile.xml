@@ -5,24 +5,65 @@
     android:background="@drawable/bg"
     android:baselineAligned="false"
     android:orientation="vertical" >
-    
-    
+
     <!-- First segment -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="150dp"
+        android:layout_weight="0.00"
         android:gravity="center"
         android:orientation="horizontal" >
-        
+
         <!-- Top-left logo -->
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
             android:adjustViewBounds="true"
             android:contentDescription="@drawable/menu_logo"
             android:src="@drawable/menu_logo" />
-        
+
     </LinearLayout>
+
+    <!-- User Profile Info -->
+    <LinearLayout
+        android:id="@+id/usercontainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        
+
+    </LinearLayout>
+    
+    <!-- User Profile Commands -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.03"
+        android:gravity="left|top"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/usermsgbtn"
+            style="@style/userProfileButtons"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userMsgMarker" />
+
+        <Button
+            android:id="@+id/userspellbtn"
+            style="@style/userProfileButtons"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userSpellMarker" />
+
+        <Button
+            android:id="@+id/userchalbtn"
+            style="@style/userProfileButtons"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userChalMarker" />
+    </LinearLayout>
+
 </LinearLayout>
