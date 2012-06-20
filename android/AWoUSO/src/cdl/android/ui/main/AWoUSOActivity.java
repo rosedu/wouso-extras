@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import cdl.android.R;
 import cdl.android.server.Auth;
+import cdl.android.R;
 
 /**
  * Main class that is loaded when the application starts Checks if the user is

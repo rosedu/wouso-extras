@@ -5,9 +5,8 @@ import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cdl.android.R;
 import cdl.android.model.MessageItem;
-
+import cdl.android.R;
 
 /**
  * 

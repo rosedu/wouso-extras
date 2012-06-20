@@ -16,14 +16,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import cdl.android.R;
 import cdl.android.model.Qotd;
 import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.message.*;
-import cdl.android.ui.message.*;
+import cdl.android.R;
 
 /** 
  * User's profile and main application menu 

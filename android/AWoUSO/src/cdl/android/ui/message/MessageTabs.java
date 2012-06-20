@@ -15,6 +15,7 @@ import cdl.android.R;
  */
 public class MessageTabs extends TabActivity {
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);

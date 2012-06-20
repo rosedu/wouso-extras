@@ -1,9 +1,9 @@
 package cdl.android.ui.bazaar;
 
-import cdl.android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+import cdl.android.R;
 
 /**
  * Bazaar exchange tab

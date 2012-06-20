@@ -2,6 +2,7 @@ package cdl.android.ui.message;
 
 import java.util.ArrayList;
 
+import cdl.android.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
-import cdl.android.R;
 import cdl.android.model.MessageItem;
 import cdl.android.server.ApiRequests;
 import cdl.android.ui.bazaar.BazaarAdapter;

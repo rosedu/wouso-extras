@@ -1,6 +1,5 @@
 package cdl.android.ui.message;
 
-import cdl.android.R;
 import cdl.android.server.ApiRequests;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,9 +10,11 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import cdl.android.R;
 
 public class CreateMessage extends Activity{
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.compose_msg_layout);

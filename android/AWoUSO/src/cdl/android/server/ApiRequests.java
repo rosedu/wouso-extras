@@ -21,9 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import cdl.android.model.BazaarItem;
 import cdl.android.model.MessageItem;
 import cdl.android.model.Qotd;
