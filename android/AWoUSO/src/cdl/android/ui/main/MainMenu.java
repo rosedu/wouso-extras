@@ -22,7 +22,7 @@ import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
-import osss.android.ui.message.*;
+import cdl.android.ui.message.*;
 
 /** 
  * User's profile and main application menu 
