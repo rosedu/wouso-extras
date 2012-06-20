@@ -1,5 +1,11 @@
 package cdl.android.ui.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.model.Qotd;
+import cdl.android.model.ServerResponse;
 import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
@@ -91,21 +98,42 @@ public class MainMenu extends Activity {
 				ApiRequests req = new ApiRequests();
 				final Qotd qotd = req.getQOTD(username);
 				
-				final CharSequence[] items = new String[qotd.getAnswers().size()];
-				for (int i = 0; i < qotd.getAnswers().size(); i++) {
-					items[i] = qotd.getAnswers().get(i);
+				Boolean ans = qotd.hadAnswered();
+				if ( ans == false ){
+					
+					final CharSequence[] items = new String[qotd.getAnswers().size()];
+					for (int i = 0; i < qotd.getAnswers().size(); i++) {
+						items[i] = qotd.getAnswers().get(i);
+					}
+					
+					AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+					builder.setIcon(R.drawable.androidicon_small);
+					builder.setTitle(qotd.getQuestion());
+					builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+						
+					    public void onClick(DialogInterface dialog, int item) {
+					    	
+					        Toast.makeText(getApplicationContext(), items[item] + ":" + 
+					        		qotd.getKeys().get(item), Toast.LENGTH_SHORT).show();
+					        
+					        ApiRequests req2 = new ApiRequests();
+					    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);  
+							nameValuePairs.add(new BasicNameValuePair("answer", qotd.getKeys().get(item)));  
+							String url = "http://wouso-next.rosedu.org/api/qotd/today/?user=" + mPreferences.getString("username", null);
+					        ServerResponse res = req2.sendPost(url, nameValuePairs);
+					        if (res.getResponse() == false)
+					        	Toast.makeText(getApplicationContext(), res.getError(), Toast.LENGTH_SHORT).show();
+					    }
+					});
+
+					AlertDialog alert = builder.create();
+					alert.show();
+					
 				}
 				
-				AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-				builder.setTitle(qotd.getQuestion());
-				builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-				    public void onClick(DialogInterface dialog, int item) {
-				        Toast.makeText(getApplicationContext(), items[item] + ":" + 
-				        		qotd.getKeys().get(item), Toast.LENGTH_SHORT).show();
-				    }
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
+				else {
+					Toast.makeText(getApplicationContext(), "Deja ai raspuns", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
         

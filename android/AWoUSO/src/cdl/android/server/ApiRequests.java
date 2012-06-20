@@ -4,13 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +23,7 @@ import org.json.JSONObject;
 
 import cdl.android.model.BazaarItem;
 import cdl.android.model.Qotd;
+import cdl.android.model.ServerResponse;
 import cdl.android.model.UserInfo;
 
 /**
@@ -30,6 +36,7 @@ public class ApiRequests {
 
 	/**
 	 * Generic HTTP GET data request
+	 * 
 	 * @param request
 	 * @return JSONObject with the server response
 	 */
@@ -60,7 +67,7 @@ public class ApiRequests {
 				System.out.println("Received " + info);
 			} else
 				return null;
-			
+
 		} catch (ClientProtocolException e) {
 			System.err.println("Exception: " + e.getMessage());
 		} catch (IOException e) {
@@ -77,9 +84,80 @@ public class ApiRequests {
 		return jObject;
 	}
 
+	public ServerResponse sendPost(String host, List<NameValuePair> data) {
+		ServerResponse res;
+		String url = host;
+		HttpPost httpost = new HttpPost(url);
+		HttpResponse res2 = null;
+		DefaultHttpClient mHttpClient = new DefaultHttpClient();
 
+		/** Send post */
+		try {
+			httpost.setEntity(new UrlEncodedFormEntity(data));
+			res2 = mHttpClient.execute(httpost);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		/** Read post result */
+		res = new ServerResponse(true, null);
+		HttpEntity entity = res2.getEntity();
+		if (entity != null) {
+			InputStream instream;
+			try {
+				instream = entity.getContent();
+				String result = convertStreamToString(instream);
+				instream.close();
+				JSONObject server = new JSONObject(result);
+				if (server.getBoolean("succes")== false)
+					res =  new ServerResponse(server.getBoolean("succes"), server.getString("error"));
+				else 
+					res = new ServerResponse(server.getBoolean("succes"), server.getString("correct"));
+				
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+		return res;
+	}
+
+	
+	private static String convertStreamToString(InputStream is) {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return sb.toString();
+	}
+	
 	/**
 	 * Gets User Info and parses the response
+	 * 
 	 * @return an UserInfo instance
 	 */
 	public UserInfo getUserInfo(String username) {
@@ -91,6 +169,7 @@ public class ApiRequests {
 
 	/**
 	 * Gets Question of the Day and parses the response
+	 * 
 	 * @return an Qotd instance
 	 */
 	public Qotd getQOTD(String username) {
@@ -100,7 +179,8 @@ public class ApiRequests {
 		return qotd;
 	}
 
-	//TODO 3: remove this, the bazaar info will be retrieved from a local config file 
+	// TODO 3: remove this, the bazaar info will be retrieved from a local
+	// config file
 	public ArrayList<BazaarItem> getBazaar(String username) {
 		ArrayList<BazaarItem> items = new ArrayList<BazaarItem>();
 		bazaarAPICallURL += username;
