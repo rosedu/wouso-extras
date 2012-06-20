@@ -35,6 +35,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/to"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:inputType="text" />
@@ -54,6 +55,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/subject"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:inputType="text" />
@@ -73,6 +75,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:inputType="text" />

@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
@@ -11,6 +15,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +32,7 @@ public class ApiRequests {
 	private String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
 	private String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
 	private String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
+	private String msgSendAPICallURL = "http://wouso-next.rosedu.org/api/messages/send";
 
 	/**
 	 * Generic HTTP GET data request
@@ -76,7 +82,10 @@ public class ApiRequests {
 
 		return jObject;
 	}
-
+	
+	public void sendMessage(String to, String subject, String text){
+		HttpPost request = new HttpPost(msgSendAPICallURL);
+	}
 
 	/**
 	 * Gets User Info and parses the response
