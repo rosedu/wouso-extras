@@ -47,8 +47,15 @@ public class MainMenu extends Activity {
 
         /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
-        userInfo = req.getUserInfo(username);
-
+        try{
+        	userInfo = req.getUserInfo(username);
+        } catch(NullPointerException ex){
+        	Auth helper= new Auth(this);
+        	helper.logOut();
+        	Toast.makeText(this, "Login error, please relogin", 1);
+        	return;
+        }
+        
         /** Fill Activity Views */
         TextView userProfile = (TextView) findViewById(R.id.profileName);
         userProfile.setText(username);
@@ -66,7 +73,7 @@ public class MainMenu extends Activity {
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
         Button qotdButton = (Button) findViewById(R.id.qotdbtn);
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
-        Button logoutButton = (Button) findViewById(R.id.logtbtn);
+  //      Button logoutButton = (Button) findViewById(R.id.logtbtn);
 
         final Toast weekQ = Toast.makeText(getApplicationContext(), 
         		"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
@@ -82,7 +89,7 @@ public class MainMenu extends Activity {
 			public void onClick(View v) {
 				weekQ.show();
 			}
-		});
+		}); 
                 
         qotdButton.setOnClickListener(new OnClickListener() {
         	//TODO 1: Handle Question of the Day
@@ -108,13 +115,13 @@ public class MainMenu extends Activity {
 				alert.show();
 			}
 		});
-        
-        logoutButton.setOnClickListener(new OnClickListener() {
+ /*      
+    logoutButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Auth authHelper = new Auth(v.getContext());
 				authHelper.logOut();
 			}
-		});
-	}	
+		});*/
+	} 
 	
 }

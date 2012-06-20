@@ -83,13 +83,13 @@
             style="@style/mainMenuButtons"
             android:text="@string/shopMarker" />
         
-        <!-- Top button -->
+        <!-- Weekly Quest button -->
         <Button
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/topbtn"
+            android:id="@+id/spcQbtn"
             style="@style/mainMenuButtons"
-            android:text="@string/topMarker" />
+            android:text="@string/spQuestMarker" /> 
     </LinearLayout>
     
     
@@ -100,7 +100,7 @@
         android:layout_weight="1"
         android:orientation="horizontal" >
         
-        <!-- Special Quest + Logout buttons -->
+        <!-- Special Quest + Logout buttons 
         <LinearLayout 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -119,7 +119,7 @@
             	style="@style/specialButtons"
             	android:textSize="20dp"
             	android:text="@string/logout" />
-        </LinearLayout>
+        </LinearLayout>-->
         
  
         <!-- Bottom-right logo -->
