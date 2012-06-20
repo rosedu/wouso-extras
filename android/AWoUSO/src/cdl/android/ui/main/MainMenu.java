@@ -1,5 +1,6 @@
 package cdl.android.ui.main;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,6 +10,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+//import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -22,6 +26,7 @@ import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
+import android.widget.ProgressBar;
 
 /** 
  * User's profile and main application menu 
@@ -48,14 +53,16 @@ public class MainMenu extends Activity {
         /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
         try{
-        	userInfo = req.getUserInfo(username);
-        } catch(NullPointerException ex){
-        	Auth helper= new Auth(this);
+
+        userInfo = req.getUserInfo(username);
+        } catch(NullPointerException ex) {
+        	Auth helper = new Auth(this);
         	helper.logOut();
-        	Toast.makeText(this, "Login error, please relogin", 1);
+        	Toast.makeText(this, "Login error, please relogin!", 1);
         	return;
         }
-        
+
+
         /** Fill Activity Views */
         TextView userProfile = (TextView) findViewById(R.id.profileName);
         userProfile.setText(userInfo.getFirstName()+"");
@@ -71,12 +78,19 @@ public class MainMenu extends Activity {
         
         TextView group = (TextView) findViewById(R.id.group);
         group.setText(userInfo.getGroup()+" ");
+
         
         ImageView playerLevel = (ImageView) findViewById(R.id.level);
         playerLevel.setImageResource(R.drawable.levelex);
         
 //      ImageView avatar = (ImageView) findViewById(R.id.profileImage);
 
+        
+        /** Status Bar */
+//        ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
+//        mProgress.setProgress((int)userInfo.getLevelPercent());
+        
+       
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
@@ -123,7 +137,9 @@ public class MainMenu extends Activity {
 				AlertDialog alert = builder.create();
 				alert.show();
 			}
+			
 		});
+
  /*      
     logoutButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -131,6 +147,35 @@ public class MainMenu extends Activity {
 				authHelper.logOut();
 			}
 		});*/
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    //return true;
+		return super.onCreateOptionsMenu(menu);
 	} 
 	
+
+	
+	//@Override
+	/*
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    
+	    switch (item.getItemId()) {
+	        case R.id.top:	
+	        	
+                return true;
+	        case R.id.map: 
+	        	
+	        	return true;
+                
+	        default:
+	        	return true;
+	    }
+	    
+	}*/
 }
+

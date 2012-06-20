@@ -99,8 +99,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal" >
-        
-        
+                      
         <!-- Special Quest + Logout buttons 
         
         <LinearLayout 
@@ -236,7 +235,17 @@
             		    android:layout_height="fill_parent"
             		    android:visibility="invisible"
             		    android:layout_alignParentLeft="true" />
-            	
+  		
+            			
+                	<!-- Progress bar -->
+                	
+                	<ProgressBar
+						android:id="@+id/vertical_progressbar"
+						android:layout_width="12dip"
+						android:layout_height="300dip"
+						style="@style/Widget.ProgressBar.Vertical"
+					/>
+                	
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

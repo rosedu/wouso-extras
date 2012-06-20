@@ -28,6 +28,7 @@ public class UserInfo {
 	String avatarUrl;
 	ImageView avatar;
 	int points;
+	double level_percent;
 	
 	public UserInfo(JSONObject obj) {
 		try {
@@ -37,6 +38,8 @@ public class UserInfo {
 			points = obj.getInt("points");
 			gold = obj.getInt("gold");
 			group = obj.getString("group");
+			levelNo = obj.getInt("level_no");
+			level_percent = obj.getJSONObject("level_progress").getDouble("percent");
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -139,5 +142,13 @@ public class UserInfo {
 
 	public void setPoints(int points) {
 		this.points = points;
+	}
+	
+	
+	public double getLevelPercent() {
+		return level_percent;
+	}
+	public void setLevelPercent(double level_percent) {
+		this.level_percent = level_percent;
 	}
 }
