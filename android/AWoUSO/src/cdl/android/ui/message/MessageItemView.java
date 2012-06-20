@@ -2,6 +2,7 @@ package cdl.android.ui.message;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cdl.android.R;
@@ -24,14 +25,14 @@ public class MessageItemView extends LinearLayout {
 		LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutInflater.inflate(R.layout.message_list_item, this, true);
 		
-		TextView subject = (TextView) findViewById(R.id.subject);
+		EditText subject = (EditText) findViewById(R.id.subject);
 		subject.setText(item.getSubject());
 		
-		TextView author = (TextView) findViewById(R.id.author);
-		author.setText(item.getAuthor());
+		EditText from = (EditText) findViewById(R.id.from);
+		from.setText(item.getAuthor());
 		
-		TextView content = (TextView) findViewById(R.id.content);
-		content.setText(item.getContent());
+		EditText text = (EditText) findViewById(R.id.text);
+		text.setText(item.getContent());
 	
 	}
 }
