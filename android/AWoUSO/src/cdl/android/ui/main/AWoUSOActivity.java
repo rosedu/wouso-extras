@@ -1,5 +1,6 @@
 package cdl.android.ui.main;
 
+import cdl.android.ui.user.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+    
+    
+    <!-- First segment -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        
+        <!-- Top-left logo -->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:adjustViewBounds="true"
+            android:contentDescription="@drawable/menu_logo"
+            android:src="@drawable/menu_logo" />
+        
+    </LinearLayout>
+</LinearLayout>

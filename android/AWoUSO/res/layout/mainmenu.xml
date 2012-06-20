@@ -49,21 +49,29 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <!-- Challenges button -->
+        <!-- Challenges button || Change margin back to 20 -->
         <Button
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:id="@+id/chalbtn"
             style="@style/mainMenuButtons"
             android:text="@string/chalMarker" />
         
-        <!-- Message button -->
+        <!-- Message button || Change margin back to 20 -->
         <Button
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:id="@+id/msgbtn"
             style="@style/mainMenuButtons"
             android:text="@string/msgMarker" />
+        
+        <!-- To remove -->
+        <Button
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/userbtn"
+            style="@style/mainMenuButtons"
+            android:text="User Profile" />
     </LinearLayout>
     
     

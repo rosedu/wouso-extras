@@ -22,6 +22,7 @@ import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
+import cdl.android.ui.user.UserProfile;
 
 /** 
  * User's profile and main application menu 
@@ -37,7 +38,7 @@ public class MainMenu extends Activity {
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-		
+
 	    super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.mainmenu);
@@ -47,7 +48,16 @@ public class MainMenu extends Activity {
 
         /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
+        
+        try{
         userInfo = req.getUserInfo(username);
+        } catch(NullPointerException ex) {
+        	Auth helper= new Auth(this); //Logout if an error occurs during login.
+        	helper.logOut();
+        	Toast.makeText(this, "Login error, please relogin!", 1);
+        	return;
+        	
+        }
 
         /** Fill Activity Views */
         TextView userProfile = (TextView) findViewById(R.id.profileName);
@@ -63,7 +73,9 @@ public class MainMenu extends Activity {
         playerLevel.setImageResource(R.drawable.levelex);
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
+        final Intent otherUserProfile = new Intent(this, UserProfile.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
+        Button userButton = (Button) findViewById(R.id.userbtn); // to be removed
         Button qotdButton = (Button) findViewById(R.id.qotdbtn);
         Button specialQuest = (Button) findViewById(R.id.spcQbtn);
         Button logoutButton = (Button) findViewById(R.id.logtbtn);
@@ -71,6 +83,12 @@ public class MainMenu extends Activity {
         final Toast weekQ = Toast.makeText(getApplicationContext(), 
         		"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
         weekQ.setGravity(Gravity.CENTER, 0, 0);
+        
+        userButton.setOnClickListener(new View.OnClickListener() {
+    		public void onClick(View v) {
+    			startActivity(otherUserProfile);
+    		}
+    	});
 
         bazaarButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
@@ -90,12 +108,12 @@ public class MainMenu extends Activity {
 		        String username = mPreferences.getString("username", null);
 				ApiRequests req = new ApiRequests();
 				final Qotd qotd = req.getQOTD(username);
-				
+
 				final CharSequence[] items = new String[qotd.getAnswers().size()];
 				for (int i = 0; i < qotd.getAnswers().size(); i++) {
 					items[i] = qotd.getAnswers().get(i);
 				}
-				
+
 				AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 				builder.setTitle(qotd.getQuestion());
 				builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
@@ -116,5 +134,5 @@ public class MainMenu extends Activity {
 			}
 		});
 	}	
-	
+
 }
