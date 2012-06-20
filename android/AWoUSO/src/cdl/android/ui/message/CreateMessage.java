@@ -1,6 +1,7 @@
 package cdl.android.ui.message;
 
 import cdl.android.R;
+import cdl.android.server.ApiRequests;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +20,9 @@ public class CreateMessage extends Activity{
 		final Editable to = toEdit.getText();
 		final Editable subject = subjectEdit.getText();
 		final Editable text = textEdit.getText();
+		
+		ApiRequests req = new ApiRequests();
+		req.sendMessage(to.toString(), subject.toString(), text.toString());
 	}
 
 }
