@@ -1,23 +1,16 @@
 package cdl.android.model;
 
+/**
+ * Game level info container class
+ */
 public class LevelInfo {
-	private String name;
-	private String title;
-	
-	private String image;
-	private String _state;
-	private int percents;
-	private int groupID;
-	private int id;
-	
-	public LevelInfo(String name, String title) {
-		this.setName(name);
-		this.setTitle(title);
-	}
-	
-	public LevelInfo() {
-		this("", "");
-	}
+	String name;
+	String title;
+	String image;
+	String _state;
+	int percents;
+	int groupID;
+	int id;
 
 	public String getName() {
 		return name;

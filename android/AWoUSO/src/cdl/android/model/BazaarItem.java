@@ -3,6 +3,9 @@ package cdl.android.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Bazaar item (spell) container class
+ */
 public class BazaarItem {
 	String title;
 	String description;
@@ -11,13 +14,11 @@ public class BazaarItem {
 	public BazaarItem(JSONObject obj) {
 		try {
 			title = obj.getString("title");
-			//description = obj.getString("description");
 			due_days = obj.getString("due_days") + " days";
 			price = obj.getString("price");
 		} catch (JSONException ex) {
 			ex.printStackTrace();
 		}
-
 	}
 
 	public String getTitle() {
@@ -44,11 +45,11 @@ public class BazaarItem {
 		this.price = price;
 	}
 
-	public String getDue_days() {
+	public String getDueDays() {
 		return due_days;
 	}
 
-	public void setDue_days(String due_days) {
+	public void setDueDays(String due_days) {
 		this.due_days = due_days;
 	}
 }

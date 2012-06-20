@@ -3,22 +3,17 @@ package cdl.android.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * User info container class
+ */
 public class UserInfo {
-	private String firstName;
-	private String lastName;
-	
-	private LevelInfo levelInfo;
-	
-	private int levelNo;
-	private String race;
-	private String email;
-	private int points;
-	
-	public UserInfo(String firstName, String lastName, LevelInfo levelInfo) {
-		this.setFirstName(firstName);
-		this.setLastName(lastName);
-		this.setLevelInfo(this.levelInfo);
-	}
+	String firstName;
+	String lastName;
+	LevelInfo levelInfo;
+	int levelNo;
+	String race;
+	String email;
+	int points;
 	
 	public UserInfo(JSONObject obj) {
 		try {
@@ -29,18 +24,7 @@ public class UserInfo {
 			e.printStackTrace();
 		}
 	}
-	
-	public UserInfo(String firstName, String lastName) {
-		this.setFirstName(firstName);
-		this.setLastName(lastName);
-		
-		this.setLevelInfo(new LevelInfo());
-	}
-	
-	public UserInfo() {
-		this("", "");
-	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}

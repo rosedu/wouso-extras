@@ -1,16 +1,25 @@
 package cdl.android.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Question of the Day container class
+ */
 public class Qotd {
-	public boolean isHad_answered() {
+	boolean had_answered;
+	String question;
+	ArrayList<String> answers;
+	ArrayList<String> keys;
+
+	public boolean hadAnswered() {
 		return had_answered;
 	}
 
-	public void setHad_answered(boolean had_answered) {
+	public void hadAnswered(boolean had_answered) {
 		this.had_answered = had_answered;
 	}
 
@@ -21,37 +30,34 @@ public class Qotd {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-
+	
 	public ArrayList<String> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(ArrayList<String> answers) {
-		this.answers = answers;
+	public ArrayList<String> getKeys() {
+		return keys;
 	}
-
-	boolean had_answered;
-	String question;
-	ArrayList<String> answers;
 
 	public Qotd(JSONObject obj) {
 		answers = new ArrayList<String>();
+		keys = new ArrayList<String>();
+		
 		try {
 			question = obj.getString("text");
 			had_answered = obj.getBoolean("had_answered");
 			JSONObject vObj = obj.getJSONObject("answers");
-			int length = vObj.length();
+			
+			Iterator iter = vObj.keys();
+			while (iter.hasNext()) {
+				String key = (String) iter.next();
+				String value = vObj.getString(key);
+				answers.add(value);
+				keys.add(key);
+			}
 
-			for (int i = 0; i < length; i++)
-				answers.add(i, vObj.getString((i+1)+""));
-	
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
-		
-		System.out.println("Checkkk ");
-		for (int i = 0; i < answers.size(); i++) {
-			System.out.println("a " + answers.get(i));
 		}
 	}
 

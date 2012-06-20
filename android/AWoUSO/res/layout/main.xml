@@ -15,9 +15,11 @@
 	
 	<!-- Account-box -->
 	<TextView 
+	    android:id="@+id/usernameLabel"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center"
+	    android:textSize="23sp"
 	    android:textStyle="bold"
 	    android:text="@string/account"
 	    />
@@ -29,36 +31,15 @@
 	    android:inputType="text"
 	    />
 	
-	<!-- Password-box -->
-	<TextView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:textStyle="bold"
-	    android:text="@string/passwd"
-	    />
-	<EditText 
-	    android:id="@+id/password"
-	    android:layout_width="200sp"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:inputType="textPassword"
-	    />
 	
 	<!-- Login-button -->
-	<!-- 
-	<Button
-	    android:id="@+id/loginButton"
-	    android:layout_width="120sp"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:text="@string/loginText"
-	    />
-	     -->
 	<Button
 	    android:id="@+id/loginButton"
 	    style="@style/BlueButton"
 	    android:layout_gravity="center"
+	    android:layout_marginTop="30dp"
+	    android:textStyle="bold"
+	    android:textSize="30sp"
 	    android:text="@string/loginText"
 	    />
 

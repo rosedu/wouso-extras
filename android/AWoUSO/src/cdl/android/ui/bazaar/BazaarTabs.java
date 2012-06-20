@@ -1,4 +1,4 @@
-package cdl.android.ui;
+package cdl.android.ui.bazaar;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -10,7 +10,10 @@ import android.widget.Button;
 import android.widget.TabHost;
 import cdl.android.R;
 
-public class Tabs extends TabActivity {
+/**
+ * Bazaar Tab Activity
+ */
+public class BazaarTabs extends TabActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		
@@ -49,7 +52,6 @@ public class Tabs extends TabActivity {
 		tabHost.addTab(spec);
 		
 		tabHost.setCurrentTab(0);
-		
 	}
 	
 }

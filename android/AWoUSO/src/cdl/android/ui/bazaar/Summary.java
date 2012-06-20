@@ -1,9 +1,12 @@
-package cdl.android.ui;
+package cdl.android.ui.bazaar;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * Bazaar Summary Tab
+ */
 public class Summary extends Activity {
 
 	/** Called when the activity is first created. */

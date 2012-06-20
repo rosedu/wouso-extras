@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AWoUSO</string>
-    <string name="loginText">Autentificare</string>
+    <string name="loginText">Play</string>
     <string name="account">Nume utilizator:</string>
     <string name="passwd">Parola:</string>
     <string name="qotdMarker">QotD</string>
-    <string name="chalMarker">Provocari</string>
-    <string name="msgMarker">Mesaje</string>
-    <string name="shopMarker">Bazar</string>
-    <string name="topMarker">Clasament</string>
+    <string name="chalMarker">Challenges</string>
+    <string name="msgMarker">Messages</string>
+    <string name="shopMarker">Bazaar</string>
+    <string name="topMarker">Tops</string>
     <string name="spQuestMarker">Weekly Quest!</string>
 
     <string-array name="list_array">
@@ -32,5 +32,6 @@
 
     <string name="exchange_left">Exchange points for gold or gold for points</string>
     <string name="exchange_right">Rate: 1 gold = 9 points, 1 gold = 10.0 points</string>
+    <string name="logout">Log out</string>
 
 </resources>
