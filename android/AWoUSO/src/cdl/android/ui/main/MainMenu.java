@@ -177,9 +177,10 @@ public class MainMenu extends Activity {
 	}
 
 	private void showMsg(String msg) {
-		Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(getApplicationContext(), msg, 1);
 		toast.setGravity(Gravity.CENTER, toast.getXOffset() / 2, toast.getYOffset() / 2);
 		toast.show();
+		//finish();
 	}
 }
 
