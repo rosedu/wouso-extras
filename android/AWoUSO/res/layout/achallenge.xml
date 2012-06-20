@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/chalback"
+        style="@style/specialButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="34dp"
+        android:text="@string/back" />
+
+    <Button
+        android:id="@+id/chalnext"
+        style="@style/specialButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/chalback"
+        android:layout_alignBottom="@+id/chalback"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="44dp"
+        android:text="@string/next" />
+
+    <TextView
+        android:id="@+id/chaltext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="37dp"
+        android:text="@string/neversee"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <CheckBox
+        android:id="@+id/foposa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/chalback"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="42dp"
+        android:text="@string/neversee" />
+
+    <CheckBox
+        android:id="@+id/sposa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/foposa"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="92dp"
+        android:text="@string/neversee" />
+
+    <CheckBox
+        android:id="@+id/fposa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sposa"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="17dp"
+        android:text="@string/neversee" />
+
+    <CheckBox
+        android:id="@+id/tposa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/foposa"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/neversee" />
+
+</RelativeLayout>
