@@ -14,12 +14,16 @@ public class UserInfo {
 	String race;
 	String email;
 	int points;
+	int gold;
+	
 	
 	public UserInfo(JSONObject obj) {
 		try {
 			firstName = obj.getString("first_name");
 			lastName = obj.getString("last_name");
 			points = obj.getInt("points");
+			gold = obj.getInt("gold");
+			levelNo = obj.getJSONObject("levelNo").getInt("levelNo");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -80,4 +84,13 @@ public class UserInfo {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+	
+	public void setGold(int gold){
+		this.gold = gold;
+	}
+	
+	public int getGold(){
+		return gold;
+	}
+	
 }

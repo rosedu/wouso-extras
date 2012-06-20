@@ -68,7 +68,7 @@ public class MainMenu extends Activity {
         pointsCount.setText(userInfo.getPoints()+"");
         
 		TextView goldCount = (TextView) findViewById(R.id.gold);
-        goldCount.setText("0");
+        goldCount.setText(userInfo.getGold()+"");
         
         ImageView playerLevel = (ImageView) findViewById(R.id.level);
         playerLevel.setImageResource(R.drawable.levelex);
@@ -139,14 +139,17 @@ public class MainMenu extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	} 
 	
+
+	
 	//@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    
 	    switch (item.getItemId()) {
 	        case R.id.top:	
-	        	//Toast.makeText(this, "You pressed the icon!", Toast.LENGTH_LONG).show();
+	        	
                 return true;
-	        case R.id.map:    
+	        case R.id.map: 
+	        	
 	        	return true;
                 
 	        default:
