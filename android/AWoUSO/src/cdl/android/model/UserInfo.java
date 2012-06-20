@@ -1,5 +1,6 @@
 package cdl.android.model;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,11 +16,11 @@ public class UserInfo {
 	String email;
 	int points;
 	
-	public UserInfo(JSONObject obj) {
+	public UserInfo(JSONObject result) {
 		try {
-			firstName = obj.getString("first_name");
-			lastName = obj.getString("last_name");
-			points = obj.getInt("points");
+			firstName = result.getString("first_name");
+			lastName = result.getString("last_name");
+			points = result.getInt("points");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
