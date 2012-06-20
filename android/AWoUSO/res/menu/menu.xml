@@ -1,0 +1,11 @@
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        
+        <item android:id="@+id/icon"
+        	android:icon="@drawable/avatar" />
+    	<item android:id="@+id/text"
+        	android:title="Text" />
+   		<item android:id="@+id/gold"
+        	android:title="Icon and text"
+        	android:icon="drawable/icon" /> 		
+</menu>

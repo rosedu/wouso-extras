@@ -1,5 +1,6 @@
 package cdl.android.ui.main;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,6 +10,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -114,7 +118,9 @@ public class MainMenu extends Activity {
 				AlertDialog alert = builder.create();
 				alert.show();
 			}
+			
 		});
+
  /*      
     logoutButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -122,6 +128,29 @@ public class MainMenu extends Activity {
 				authHelper.logOut();
 			}
 		});*/
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    //return true;
+		return super.onCreateOptionsMenu(menu);
 	} 
 	
+	//@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    
+	    switch (item.getItemId()) {
+	        case R.id.icon:	
+	        	//Toast.makeText(this, "You pressed the icon!", Toast.LENGTH_LONG).show();
+                return true;
+	        case R.id.text:
+	            return true;
+	        default:
+	        	return true;
+	    }
+	    
+	}
 }
