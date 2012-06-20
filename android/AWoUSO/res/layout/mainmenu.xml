@@ -100,29 +100,7 @@
         android:layout_weight="1"
         android:orientation="horizontal" >
         
-        <!-- Special Quest + Logout buttons 
-        <LinearLayout 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="40dp"
-            android:orientation="vertical" >
-        	
-        	<Button
-            	android:id="@+id/spcQbtn"
-            	style="@style/specialButtons"
-            	android:textSize="20dp"
-            	android:text="@string/spQuestMarker" />
-        	
-        	<Button
-            	android:id="@+id/logtbtn"
-            	style="@style/specialButtons"
-            	android:textSize="20dp"
-            	android:text="@string/logout" />
-        </LinearLayout>-->
-        
- 
-        <!-- Bottom-right logo -->
+         <!-- Bottom-right logo -->
         <LinearLayout
             android:layout_width="120dp"
             android:layout_height="fill_parent"
@@ -183,32 +161,17 @@
             		    android:layout_height="fill_parent"
             		    android:visibility="invisible"
             		    android:layout_alignParentLeft="true" />
-            	
-                <!-- Progress bar -->
-            		<RelativeLayout
-            	    	android:layout_width="wrap_content"
-            	    	android:layout_height="fill_parent"
-            	    	android:layout_toRightOf="@id/profileOverlay" >
             		
-                    	<!-- Empty background -->
-                		<ImageView
-	                	    android:src="@drawable/v_progress_bar_empty"
-                	    	android:contentDescription="@drawable/v_progress_bar_empty" 
-                    		android:layout_width="wrap_content"
-                    		android:layout_height="fill_parent"
-                    		android:adjustViewBounds="true"
-                    		android:layout_alignParentLeft="true" />
+            			
+                	<!-- Progress bar -->
                 	
-                		<!-- Full -->
-                		<ImageView
-	                	    android:id="@+id/levelBar"
-                	    	android:src="@drawable/v_progress_bar_full"
-                	    	android:contentDescription="@drawable/v_progress_bar_full"
-                	    	android:layout_width="wrap_content"
-                	    	android:layout_height="fill_parent"
-                	    	android:adjustViewBounds="true"
-                	    	android:layout_alignParentLeft="true" />
-                	</RelativeLayout>
+                	<ProgressBar
+						android:id="@+id/vertical_progressbar"
+						android:layout_width="12dip"
+						android:layout_height="300dip"
+						style="@style/Widget.ProgressBar.Vertical"
+					/>
+                	
                 </RelativeLayout>
             </LinearLayout>
             

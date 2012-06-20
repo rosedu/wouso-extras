@@ -26,7 +26,7 @@ import cdl.android.model.UserInfo;
 import cdl.android.server.ApiRequests;
 import cdl.android.server.Auth;
 import cdl.android.ui.bazaar.BazaarTabs;
-
+import android.widget.ProgressBar;
 /** 
  * User's profile and main application menu 
  */
@@ -52,14 +52,16 @@ public class MainMenu extends Activity {
         /** Gets user info from the server */
         ApiRequests req = new ApiRequests();
         try{
-        	userInfo = req.getUserInfo(username);
-        } catch(NullPointerException ex){
-        	Auth helper= new Auth(this);
+
+        userInfo = req.getUserInfo(username);
+        } catch(NullPointerException ex) {
+        	Auth helper = new Auth(this);
         	helper.logOut();
-        	Toast.makeText(this, "Login error, please relogin", 1);
+        	Toast.makeText(this, "Login error, please relogin!", 1);
         	return;
         }
-        
+
+
         /** Fill Activity Views */
         TextView userProfile = (TextView) findViewById(R.id.profileName);
         userProfile.setText(username);
@@ -72,6 +74,11 @@ public class MainMenu extends Activity {
         
         ImageView playerLevel = (ImageView) findViewById(R.id.level);
         playerLevel.setImageResource(R.drawable.levelex);
+        
+        /** Status Bar */
+        ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
+        mProgress.setProgress((int)userInfo.getLevelPercent());
+        
         
         final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
         Button bazaarButton = (Button) findViewById(R.id.shopbtn);
@@ -158,3 +165,4 @@ public class MainMenu extends Activity {
 	    
 	}
 }
+

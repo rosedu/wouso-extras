@@ -15,7 +15,7 @@ public class UserInfo {
 	String email;
 	int points;
 	int gold;
-	
+	double level_percent;
 	
 	public UserInfo(JSONObject obj) {
 		try {
@@ -24,6 +24,7 @@ public class UserInfo {
 			points = obj.getInt("points");
 			gold = obj.getInt("gold");
 			levelNo = obj.getJSONObject("levelNo").getInt("levelNo");
+			level_percent = obj.getJSONObject("level_progress").getDouble("percent");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -93,4 +94,11 @@ public class UserInfo {
 		return gold;
 	}
 	
+	public double getLevelPercent() {
+		return level_percent;
+	}
+	public void setLevelPercent() {
+		this.level_percent = level_percent;
+	}
+>>>>>>> Vertical progress bar added
 }
