@@ -1,5 +1,6 @@
 package cdl.android.ui.message;
 
+<<<<<<< HEAD
 import android.app.*;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -50,4 +51,8 @@ public class MessageTabs extends TabActivity {
 		
 		tabHost.setCurrentTab(0);
 	}
+=======
+public class MessageTabs {
+
+>>>>>>> 7b08c37c268a92e86a522e41889deb35f876d613
 }
