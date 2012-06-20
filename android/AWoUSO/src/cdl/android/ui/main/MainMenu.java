@@ -143,11 +143,12 @@ public class MainMenu extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    
 	    switch (item.getItemId()) {
-	        case R.id.icon:	
+	        case R.id.top:	
 	        	//Toast.makeText(this, "You pressed the icon!", Toast.LENGTH_LONG).show();
                 return true;
-	        case R.id.text:
-	            return true;
+	        case R.id.map:    
+	        	return true;
+                
 	        default:
 	        	return true;
 	    }
