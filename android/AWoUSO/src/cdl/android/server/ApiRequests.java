@@ -5,17 +5,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import cdl.android.model.BazaarItem;
 import cdl.android.model.MessageItem;
@@ -29,9 +36,9 @@ public class ApiRequests {
 	private String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
 	private String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
 	private String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
-	private String msgSendAPICallURL = "http://wouso-next.rosedu.org/api/messages/send";
 	private String msgReceivedAPICallURL = "http://wouso-next.rosedu.org/api/messages/recv/?user=";
-	
+	private String msgSendAPICallURL = "http://wouso-next.rosedu.org/api/messages/send/?user=";
+
 	/**
 	 * Generic HTTP GET data request
 	 * @param request
@@ -127,26 +134,31 @@ public class ApiRequests {
 		return jArray;
 	}
 	
-	/**
-	 * Send message to a user
-	 * @param to 
-	 * @param subject
-	 * @param text
-	 */
-	public void sendMessage(String to, String subject, String text){
-		msgSendAPICallURL = msgSendAPICallURL + "receiver=" + to + "&text=" + text + "&subject=" + subject;
-		
-		HttpClient client = new DefaultHttpClient();
-		HttpPost request = new HttpPost(msgSendAPICallURL);
-		HttpResponse response = null;
-		
+	public void sendMessage(String user, String to, String subject, String text){
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost(msgSendAPICallURL + user);
+
 		try {
-			response = client.execute(request);
+		    /**
+		     * Add data
+		     */
+		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		    nameValuePairs.add(new BasicNameValuePair("receiver", to));
+		    nameValuePairs.add(new BasicNameValuePair("text", text));
+		    nameValuePairs.add(new BasicNameValuePair("subject", subject));
+		    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+		    /** 
+		     * Execute HTTP Post Request
+		     */
+		    HttpResponse response = httpclient.execute(httppost);
+
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+		    e.printStackTrace();
 		}
+
 	}
 	
 	

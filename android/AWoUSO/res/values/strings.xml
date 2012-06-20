@@ -37,5 +37,6 @@
     <string name="to">To:</string>
     <string name="subject">Subject:</string>
     <string name="text">Text:</string>
+    <string name="send">Send</string>
 
 </resources>
