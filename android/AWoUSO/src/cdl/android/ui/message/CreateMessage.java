@@ -28,11 +28,12 @@ public class CreateMessage extends Activity{
 		final Editable text = textEdit.getText();
 		
 		SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		final String user = mPreferences.getString("username", null);
 		
         sendButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			ApiRequests req = new ApiRequests();
-    			req.sendMessage(to.toString(), subject.toString(), text.toString());
+    			req.sendMessage(user, to.toString(), subject.toString(), text.toString());
     			onExit();
     		}
     	});

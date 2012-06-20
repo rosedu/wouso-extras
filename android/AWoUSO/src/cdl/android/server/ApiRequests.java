@@ -90,9 +90,9 @@ public class ApiRequests {
 		return jObject;
 	}
 	
-	public void sendMessage(String to, String subject, String text){
+	public void sendMessage(String user, String to, String subject, String text){
 		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost(msgSendAPICallURL);
+		HttpPost httppost = new HttpPost(msgSendAPICallURL + user);
 
 		try {
 		    /**
