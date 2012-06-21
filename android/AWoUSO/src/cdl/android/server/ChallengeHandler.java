@@ -22,9 +22,9 @@ import cdl.android.ui.challenge.menu.RChallengeList;
 import cdl.android.ui.main.MainMenu;
 
 public class ChallengeHandler {
-	private static final String chalInfoAPICallURL = "http://wouso-next.rosedu.org/api/challenge/list/?user=";
-	private static final String challAPICallURL = "http://wouso-next.rosedu.org/api/challenge/";
-	private static final String lchallAPICallURL = "http://wouso-next.rosedu.org/api/challenge/launch/";
+	private static final String baseChallengeURL = GeneralHandler.getBaseURL()+"challenge/";
+	private static final String challengeListURL = GeneralHandler.getBaseURL()+"challenge/list/?user=";
+	private static final String challengeLaunchURL = GeneralHandler.getBaseURL()+"challenge/launch/";
 	private static HttpClient mHttpClient = new DefaultHttpClient();
 	
 	private ChallengeHandler() {
@@ -78,7 +78,7 @@ public class ChallengeHandler {
 	 * @param otherState The state, 0 to accept, 2 to refuse!
 	 */
 	public static void changeChallengeState(int challenge_id, int otherState) {
-		String myCall = challAPICallURL+challenge_id+"/";
+		String myCall = baseChallengeURL+challenge_id+"/";
 		if(otherState == 0) {
 			ApiHandler.get(myCall+"accept/?user="+MainMenu.getLoggedUsername());
 		}
@@ -93,7 +93,7 @@ public class ChallengeHandler {
 	 * @return The parsed Challenge Info.
 	 */
 	public static ChallengeInfo getChallengeInfo(int challenge_id) {
-		JSONObject object = ApiHandler.get(challAPICallURL+challenge_id+"/?user="+MainMenu.getLoggedUsername());
+		JSONObject object = ApiHandler.get(baseChallengeURL+challenge_id+"/?user="+MainMenu.getLoggedUsername());
 		return new ChallengeInfo(object);
 	}
 	
@@ -104,7 +104,7 @@ public class ChallengeHandler {
 	 * @return whether the challenge was successfully started.
 	 */
 	public static boolean startChallenge(String otherPlayer) {
-		JSONObject object = ApiHandler.get(lchallAPICallURL+otherPlayer+"/?user="+MainMenu.getLoggedUsername());
+		JSONObject object = ApiHandler.get(challengeLaunchURL+otherPlayer+"/?user="+MainMenu.getLoggedUsername());
 		return object!=null;
 	}
 	
@@ -113,7 +113,7 @@ public class ChallengeHandler {
 	 * @return A wrapper class describing all the challenges.
 	 */
 	public static RChallengeList getChallengeList() {
-		JSONArray result = ApiHandler.getArray(chalInfoAPICallURL+MainMenu.getLoggedUsername());
+		JSONArray result = ApiHandler.getArray(challengeListURL+MainMenu.getLoggedUsername());
 		return new RChallengeList(result);
 	}
 

@@ -83,13 +83,13 @@
             style="@style/mainMenuButtons"
             android:text="@string/shopMarker" />
         
-        <!-- Top button -->
+        <!-- Weekly Quest button -->
         <Button
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/topbtn"
+            android:id="@+id/spcQbtn"
             style="@style/mainMenuButtons"
-            android:text="@string/topMarker" />
+            android:text="@string/spQuestMarker" /> 
     </LinearLayout>
     
     
@@ -99,68 +99,94 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal" >
-        
-        <!-- Special Quest + Logout buttons -->
-        <LinearLayout 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="40dp"
-            android:orientation="vertical" >
-        	
-        	<Button
-            	android:id="@+id/spcQbtn"
-            	style="@style/specialButtons"
-            	android:textSize="20dp"
-            	android:text="@string/spQuestMarker" />
-        	
-        	<Button
-            	android:id="@+id/logtbtn"
-            	style="@style/specialButtons"
-            	android:textSize="20dp"
-            	android:text="@string/logout" />
-        </LinearLayout>
-        
  
         <!-- Bottom-right logo -->
-        <LinearLayout
-            android:layout_width="120dp"
-            android:layout_height="fill_parent"
-            android:layout_alignParentRight="true"
-            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
                 android:orientation="horizontal" >
                 
                 <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical" >
-                    
-                    <!-- Level icon -->
-                    <ImageView 
-                        android:id="@+id/level"
-                        android:contentDescription="@drawable/levelex"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    
-                    <!-- Buff icon -->
-                    <ImageView 
-                        android:id="@+id/debuff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="right" >
+					
+                    <LinearLayout 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/spell_blue"
-                        android:contentDescription="@drawable/spell_blue"/>
-                    
-                    <!-- Debuff icon -->
-                    <ImageView 
-                        android:id="@+id/buff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/spell_yellow"
-                        android:contentDescription="@drawable/spell_yellow"/>
+                        android:orientation="horizontal">
+                        
+                         <!-- Level icon -->
+                        <ImageView  
+                	   	     android:id="@+id/level"
+                 	  	     android:contentDescription="@drawable/levelex"
+                 	 	     android:layout_width="wrap_content"
+                 	  	     android:layout_height="wrap_content"/>
+                        
+             			<TextView
+       	    				android:id="@+id/profileName"
+            				android:layout_width="wrap_content"
+            				style="@style/profileFrame" />
+          			</LinearLayout>   
+
+          		    <LinearLayout
+          		        style="@style/profileFrame"
+          		        android:layout_width="60dp"
+          		        android:orientation="horizontal" >
+                
+          		       <TextView 
+        		    	    android:id="@+id/levelNo"
+        		    	    android:layout_width="wrap_content"
+        		    	    android:layout_height="wrap_content"
+        		    	    android:maxLength="6"
+                    		android:paddingRight="5dp" />
+          		        
+                <!-- Points icon -->
+               			 <ImageView
+                   			 android:id="@+id/pointsicon"
+                   	 		 android:layout_width="wrap_content"
+            	    		 android:layout_height="wrap_content"
+            	    		 android:src="@drawable/points"
+            	    		 android:contentDescription="@drawable/points"/>
+                
+                <!-- Points amount -->
+               			 <TextView
+                    		 android:id="@+id/points"
+                    		 android:layout_width="wrap_content"
+                    		 android:layout_height="wrap_content"
+                    		 android:maxLength="6"
+                    		 android:paddingRight="5dp"/>
+            	
+            	<!-- Gold icon -->
+            			<ImageView 
+            	    		 android:id="@+id/goldicon"
+            	    		 android:layout_width="wrap_content"
+            	    		 android:layout_height="wrap_content"
+            	    		 android:src="@drawable/gold"
+            	    		 android:contentDescription="@drawable/gold"/>
+                                
+                <!-- Gold amount -->
+        		    	<TextView 
+                		 	android:id="@+id/gold"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:maxLength="6"/>
+
+            		</LinearLayout>
+            	
+          		<!--  Group -->
+          		        <TextView 
+          		  	    android:layout_width="wrap_content"
+          		  	    android:layout_height="wrap_content"
+          		  	    android:textColor="@android:color/holo_blue_dark"
+          		  	    android:text="Group  " />
+          		  	<TextView 
+          		  	    android:id="@+id/group"
+          		  	    android:layout_width="wrap_content"
+          		  	    android:layout_height="wrap_content" />
                 </LinearLayout>
                 
                 <!-- Profile -->
@@ -183,79 +209,28 @@
             		    android:layout_height="fill_parent"
             		    android:visibility="invisible"
             		    android:layout_alignParentLeft="true" />
-            	
-                <!-- Progress bar -->
-            		<RelativeLayout
-            	    	android:layout_width="wrap_content"
-            	    	android:layout_height="fill_parent"
-            	    	android:layout_toRightOf="@id/profileOverlay" >
-            		
-                    	<!-- Empty background -->
-                		<ImageView
-	                	    android:src="@drawable/v_progress_bar_empty"
-                	    	android:contentDescription="@drawable/v_progress_bar_empty" 
-                    		android:layout_width="wrap_content"
-                    		android:layout_height="fill_parent"
-                    		android:adjustViewBounds="true"
-                    		android:layout_alignParentLeft="true" />
+  		
+            			
+                	<!-- Progress bar -->
                 	
-                		<!-- Full -->
-                		<ImageView
-	                	    android:id="@+id/levelBar"
-                	    	android:src="@drawable/v_progress_bar_full"
-                	    	android:contentDescription="@drawable/v_progress_bar_full"
-                	    	android:layout_width="wrap_content"
-                	    	android:layout_height="fill_parent"
-                	    	android:adjustViewBounds="true"
-                	    	android:layout_alignParentLeft="true" />
-                	</RelativeLayout>
+                	<ProgressBar
+						android:id="@+id/vertical_progressbar"
+						android:layout_width="12dip"
+						android:layout_height="300dip"
+						style="@style/Widget.ProgressBar.Vertical"
+					/>
+                	
                 </RelativeLayout>
             </LinearLayout>
-            
-            <!-- Profile name -->
-            <TextView
-            	android:id="@+id/profileName"
-            	android:layout_width="wrap_content"
-            	style="@style/profileFrame"
-            	android:singleLine="true" />
-            
-            <LinearLayout
-                android:layout_width="wrap_content"
-                style="@style/profileFrame"
-                android:orientation="horizontal" >
-                
-                <!-- Points icon -->
-                <ImageView
-                    android:id="@+id/pointsicon"
-                    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
-            	    android:src="@drawable/points"
-            	    android:contentDescription="@drawable/points"/>
-                
-                <!-- Points amount -->
-                <TextView
-                    android:id="@+id/points"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLength="6"
-                    android:paddingRight="5dp"/>
-            	
-            	<!-- Gold icon -->
-            	<ImageView 
-            	    android:id="@+id/goldicon"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
-            	    android:src="@drawable/gold"
-            	    android:contentDescription="@drawable/gold"/>
-                                
-                <!-- Gold amount -->
-            	<TextView 
-                	android:id="@+id/gold"
-                	android:layout_width="wrap_content"
-                	android:layout_height="wrap_content"
-                	android:maxLength="6"/>
-            </LinearLayout>
-        </LinearLayout>
+
+        <Button
+            android:id="@+id/logtbtn"
+            style="@style/specialButtons"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/logout"
+            android:textSize="20dp" />
+
     </RelativeLayout>
 
 </LinearLayout>

@@ -15,7 +15,7 @@ import cdl.android.server.GeneralHandler;
 
 public class Bazaar extends Activity {
 	private ArrayList<BazaarItem> mItems;
-	SharedPreferences mPreferences;
+	private SharedPreferences mPreferences;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

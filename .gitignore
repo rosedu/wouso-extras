@@ -12,7 +12,7 @@ target
 *.so
 *.dex
 *.ap_
-
+/android/AWoUSO/gen/
 
 # Git #
 #######

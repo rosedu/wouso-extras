@@ -11,22 +11,25 @@ import cdl.android.general.Qotd;
 import cdl.android.general.UserInfo;
 
 public class GeneralHandler {
-	private static final String userInfoAPICallURL = "http://wouso-next.rosedu.org/api/info/?user=";
-	private static final String bazaarAPICallURL = "http://wouso-next.rosedu.org/api/bazaar/?user=";
-	private static final String qotdAPICallURL = "http://wouso-next.rosedu.org/api/qotd/today/?user=";
+	private static final String baseURL = "http://wouso-next.rosedu.org/api/";
+	private static final String userInfoURL = baseURL+"info/?user=";
+	private static final String bazaarInfoURL = baseURL+"bazaar/?user=";
+	private static final String qotdInfoURL = baseURL+"qotd/today/?user=";
 	
 	private GeneralHandler() {
 		
 	}
 	
-
+	public static String getBaseURL() {
+		return baseURL;
+	}
 
 	/**
 	 * Gets User Info and parses the response
 	 * @return an UserInfo instance
 	 */
 	public static UserInfo getUserInfo(String username) {
-		JSONObject result = ApiHandler.get(userInfoAPICallURL+username);
+		JSONObject result = ApiHandler.get(userInfoURL+username);
 		UserInfo user = new UserInfo(result);
 		return user;
 	}
@@ -37,7 +40,7 @@ public class GeneralHandler {
 	 * @throws JSONException 
 	 */
 	public static Qotd getQOTD(String username) throws JSONException {
-		JSONObject result = ApiHandler.get(qotdAPICallURL + username);
+		JSONObject result = ApiHandler.get(qotdInfoURL + username);
 		Qotd qotd = new Qotd(result);
 		return qotd;
 	}
@@ -50,7 +53,7 @@ public class GeneralHandler {
 	//TODO 3: remove this, the bazaar info will be retrieved from a local config file
 	public static ArrayList<BazaarItem> getBazaar(String username) {
 		ArrayList<BazaarItem> items = new ArrayList<BazaarItem>();
-		JSONObject result = ApiHandler.get(bazaarAPICallURL + username);
+		JSONObject result = ApiHandler.get(bazaarInfoURL + username);
 
 		try {
 			JSONArray arr = result.getJSONArray("spells");

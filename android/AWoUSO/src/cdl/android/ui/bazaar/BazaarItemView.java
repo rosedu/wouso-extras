@@ -13,12 +13,10 @@ import cdl.android.R;
  * Bazaar List Item View
  */
 public class BazaarItemView extends LinearLayout {
-	BazaarItem mItem;
-	Context mContext;
+	private BazaarItem mItem;
 	
 	public BazaarItemView(Context context, BazaarItem item) {
 		super(context);
-		mContext = context;
 		mItem = item;
 		
 		LayoutInflater layoutInflater = (LayoutInflater) 

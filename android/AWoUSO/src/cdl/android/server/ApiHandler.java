@@ -79,6 +79,8 @@ public class ApiHandler {
 	public static JSONObject get(String req) {
 		JSONObject jObject;
 		String info = getHTTP(req);
+		for(int i=1;i<=10;i++)
+			System.out.println("Got "+info); 
 
 		/** TODO: Check invalid response from server or error */
 		try {
@@ -152,7 +154,8 @@ public class ApiHandler {
 				String result = convertStreamToString(instream);
 				instream.close();
 				JSONObject server = new JSONObject(result);
-				if (server.getBoolean("succes") == false)
+				System.out.println("Server: "+server.toString(2));
+				if (server.getBoolean("success") == false)
 					res = new ServerResponse(server.getBoolean("succes"),
 							server.getString("error"));
 				else

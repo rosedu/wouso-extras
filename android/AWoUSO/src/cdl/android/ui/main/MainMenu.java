@@ -16,6 +16,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -24,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
-
 import cdl.android.general.Qotd;
 import cdl.android.general.ServerResponse;
 import cdl.android.general.UserInfo;
@@ -63,26 +65,36 @@ public class MainMenu extends Activity {
 		try {
 			userInfo = GeneralHandler.getUserInfo(username);
 		} catch (NullPointerException ex) {
-			AuthHandler helper = new AuthHandler(this); // Logout if an error
-														// occurs during login.
+			AuthHandler helper = new AuthHandler(this); 
 			helper.logOut();
-			Toast.makeText(this, "Login error, please relogin!", 1);
+			Toast.makeText(this, "Login error, please relogin!", Toast.LENGTH_SHORT).show();
 			return;
 
 		}
 
 		/** Fill Activity Views */
 		TextView userProfile = (TextView) findViewById(R.id.profileName);
-		userProfile.setText(username);
+		userProfile.setText(userInfo.getLastName());
 
 		TextView pointsCount = (TextView) findViewById(R.id.points);
 		pointsCount.setText(userInfo.getPoints() + "");
 
 		TextView goldCount = (TextView) findViewById(R.id.gold);
-		goldCount.setText("0");
+		goldCount.setText(userInfo.getGold()+"");
+		
+		TextView levelNo = (TextView) findViewById(R.id.levelNo);
+		levelNo.setText("Level "+userInfo.getLevelNo()+"-");
+		
+		TextView group = (TextView) findViewById(R.id.group);
+		group.setText(userInfo.getGroup());
 
 		ImageView playerLevel = (ImageView) findViewById(R.id.level);
 		playerLevel.setImageResource(R.drawable.levelex);
+		
+		/*ImageView avatar = (ImageView) findViewById(R.id.profileImage);
+		
+		ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
+		mProgress.setProgress((int)userInfo.getLevelPercent());*/
 
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
@@ -146,12 +158,6 @@ public class MainMenu extends Activity {
 								public void onClick(DialogInterface dialog,
 										int item) {
 
-									Toast.makeText(
-											getApplicationContext(),
-											items[item] + ":"
-													+ qotd.getKeys().get(item),
-											Toast.LENGTH_SHORT).show();
-
 									List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
 											1);
 									nameValuePairs
@@ -167,6 +173,10 @@ public class MainMenu extends Activity {
 										Toast.makeText(getApplicationContext(),
 												res.getError(),
 												Toast.LENGTH_SHORT).show();
+									else {
+										Toast.makeText(getApplicationContext(), "QotD answered!", Toast.LENGTH_SHORT);
+									}
+									dialog.dismiss();
 								}
 							});
 
@@ -192,6 +202,35 @@ public class MainMenu extends Activity {
 
 	public static String getLoggedUsername() {
 		return globalUsername;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) { 
+		MenuInflater inflater = getMenuInflater();
+		 inflater.inflate(R.menu.menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		String toast = "";
+		switch (item.getItemId()) {
+		case R.id.top:
+			toast = "Not yet";
+			break;
+		case R.id.map:
+			toast = "Not yet";
+			break;
+		case R.id.search:
+			toast = "Not yet";
+			break;
+		default:
+			return true;
+		}
+		Toast myToast = Toast.makeText(this, toast, Toast.LENGTH_SHORT);
+		myToast.setGravity(Gravity.CENTER, myToast.getXOffset() /2, myToast.getYOffset()/2);
+		myToast.show();
+		return false;
 	}
 
 }

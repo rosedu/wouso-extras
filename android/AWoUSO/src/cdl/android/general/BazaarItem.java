@@ -7,9 +7,7 @@ import org.json.JSONObject;
  * Bazaar item (spell) container class
  */
 public class BazaarItem {
-	String title;
-	String description;
-	String price, due_days;
+	private String title, description, price, due_days;
 
 	
 	/**

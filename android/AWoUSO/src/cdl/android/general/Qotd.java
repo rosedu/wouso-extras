@@ -10,10 +10,9 @@ import org.json.JSONObject;
  * Question of the Day container class
  */
 public class Qotd {
-	boolean hadAnswered;
-	String question;
-	ArrayList<String> answers;
-	ArrayList<String> keys;
+	private boolean hadAnswered;
+	private String question;
+	private ArrayList<String> answers, keys;
 
 	
 	/**

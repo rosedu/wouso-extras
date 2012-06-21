@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.server.ChallengeHandler;
-import cdl.android.ui.challenge.menu.ChallengeMenu;
 
 /**
  * Represents an active challenge.
@@ -21,13 +20,11 @@ import cdl.android.ui.challenge.menu.ChallengeMenu;
  */
 public class ActiveChallenge extends Activity {
 
-	private int challenge_id;
-	private ChallengeInfo info;
-	private int activeChallenge;
+	private int challenge_id, activeChallenge;
 	private final int totalChallenges = 5;
+	private ChallengeInfo info;
 	private CheckBox[] cboxes = new CheckBox[4];
 	private TextView chtext;
-
 	private Button back, next;
 	private Boolean[][] ticked = new Boolean[5][4];
 
@@ -40,7 +37,7 @@ public class ActiveChallenge extends Activity {
 			for (int j = 0; j <= 3; j++)
 				ticked[i][j] = false;
 
-		startChallenge(ChallengeMenu.currentSelected.getChallengeId());
+		startChallenge(getIntent().getExtras().getInt("data"));
 	}
 
 	/**

@@ -19,15 +19,13 @@ import cdl.android.ui.challenge.ActiveChallenge;
 
 public class ChallengeMenu extends ListActivity {
 
-	ArrayList<String> listItems = new ArrayList<String>();
-	Map<String, RChallengeInfo> mapped = new HashMap<String, RChallengeInfo>();
-	ArrayAdapter<String> adapter;
-	int clickCounter = 0;
-	public static RChallengeInfo currentSelected;
-	String currentSelectedName;
+	private RChallengeInfo currentSelected;
+	private ArrayList<String> listItems = new ArrayList<String>();
+	private Map<String, RChallengeInfo> mapped = new HashMap<String, RChallengeInfo>();
+	private ArrayAdapter<String> adapter;
+	private String currentSelectedName;
 
 	private Button accept, play, reject;
-
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
@@ -63,6 +61,9 @@ public class ChallengeMenu extends ListActivity {
 				if (arg0.getVisibility()==4||currentSelected == null)
 					return;
 				Intent x = new Intent(javaSucks, ActiveChallenge.class);
+				Bundle b = new Bundle();
+				b.putInt("data", currentSelected.getChallengeId());
+				x.putExtras(b);
 				startActivity(x);
 				finish();
 				

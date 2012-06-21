@@ -15,9 +15,9 @@ import cdl.android.general.BazaarItem;
  */
 public class BazaarAdapter extends BaseAdapter {
 
-	ArrayList<BazaarItem> mItems;
-	OnClickListener mOnItemClick;
-	Context mContext;
+	private ArrayList<BazaarItem> mItems;
+	private OnClickListener mOnItemClick;
+	private Context mContext;
 
 	public BazaarAdapter(Context context, ArrayList<BazaarItem> items, 
 			OnClickListener onItemClick) {
