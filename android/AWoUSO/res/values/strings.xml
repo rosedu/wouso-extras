@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">AWoUSO</string>
     <string name="loginText">Play</string>
     <string name="account">Nume utilizator:</string>
@@ -39,5 +40,14 @@
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>
     <string name="play">Play</string>
+    <string name="userMsgMarker">msg</string>
+    <string name="userSpellMarker">spell</string>
+    <string name="userChalMarker">CHALLENGE!</string>
+
+    <dimen name="avatarSize">80dp</dimen>
+
+    <color name="userProfileColor">#FFF</color>
+    <color name="userInfoColor">#AAA</color>
+    <color name="userLinkColor">#55C</color>
 
 </resources>

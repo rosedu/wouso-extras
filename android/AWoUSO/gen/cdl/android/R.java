@@ -14,7 +14,13 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int colors=0x7f070000;
+        public static final int colors=0x7f070003;
+        public static final int userInfoColor=0x7f070001;
+        public static final int userLinkColor=0x7f070002;
+        public static final int userProfileColor=0x7f070000;
+    }
+    public static final class dimen {
+        public static final int avatarSize=0x7f060000;
     }
     public static final class drawable {
         public static final int androidicon=0x7f020000;
@@ -44,46 +50,57 @@ public final class R {
         public static final int vertical_progress_bar=0x7f020018;
     }
     public static final class id {
-        public static final int buttback=0x7f09000d;
-        public static final int buttleft=0x7f09000e;
-        public static final int buttmid=0x7f09000c;
-        public static final int button_back=0x7f090024;
-        public static final int buttright=0x7f09000f;
-        public static final int buyButton=0x7f09000b;
-        public static final int chalback=0x7f090000;
-        public static final int chalbtn=0x7f090014;
-        public static final int chalnext=0x7f090001;
-        public static final int chaltext=0x7f090002;
-        public static final int days=0x7f090009;
-        public static final int description=0x7f090008;
-        public static final int foposa=0x7f090003;
-        public static final int fposa=0x7f090005;
-        public static final int gold=0x7f09001e;
-        public static final int goldicon=0x7f09001d;
-        public static final int group=0x7f09001f;
-        public static final int level=0x7f090018;
-        public static final int levelNo=0x7f09001a;
-        public static final int loginButton=0x7f090012;
-        public static final int logtbtn=0x7f090023;
-        public static final int map=0x7f090026;
-        public static final int msgbtn=0x7f090015;
-        public static final int points=0x7f09001c;
-        public static final int pointsicon=0x7f09001b;
-        public static final int price=0x7f09000a;
-        public static final int profileImage=0x7f090020;
-        public static final int profileName=0x7f090019;
-        public static final int profileOverlay=0x7f090021;
-        public static final int qotdbtn=0x7f090013;
-        public static final int search=0x7f090027;
-        public static final int shopbtn=0x7f090016;
-        public static final int spcQbtn=0x7f090017;
-        public static final int sposa=0x7f090004;
-        public static final int title=0x7f090007;
-        public static final int top=0x7f090025;
-        public static final int tposa=0x7f090006;
-        public static final int username=0x7f090011;
-        public static final int usernameLabel=0x7f090010;
-        public static final int vertical_progressbar=0x7f090022;
+        public static final int buttback=0x7f0a000d;
+        public static final int buttleft=0x7f0a000e;
+        public static final int buttmid=0x7f0a000c;
+        public static final int button_back=0x7f0a0024;
+        public static final int buttright=0x7f0a000f;
+        public static final int buyButton=0x7f0a000b;
+        public static final int chalback=0x7f0a0000;
+        public static final int chalbtn=0x7f0a0014;
+        public static final int chalnext=0x7f0a0001;
+        public static final int chaltext=0x7f0a0002;
+        public static final int days=0x7f0a0009;
+        public static final int description=0x7f0a0008;
+        public static final int foposa=0x7f0a0003;
+        public static final int fposa=0x7f0a0005;
+        public static final int gold=0x7f0a001e;
+        public static final int goldicon=0x7f0a001d;
+        public static final int group=0x7f0a001f;
+        public static final int level=0x7f0a0018;
+        public static final int levelNo=0x7f0a001a;
+        public static final int loginButton=0x7f0a0012;
+        public static final int logtbtn=0x7f0a0023;
+        public static final int map=0x7f0a0031;
+        public static final int msgbtn=0x7f0a0015;
+        public static final int points=0x7f0a001c;
+        public static final int pointsicon=0x7f0a001b;
+        public static final int price=0x7f0a000a;
+        public static final int profileImage=0x7f0a0020;
+        public static final int profileName=0x7f0a0019;
+        public static final int profileOverlay=0x7f0a0021;
+        public static final int qotdbtn=0x7f0a0013;
+        public static final int search=0x7f0a0032;
+        public static final int shopbtn=0x7f0a0016;
+        public static final int spcQbtn=0x7f0a0017;
+        public static final int sposa=0x7f0a0004;
+        public static final int title=0x7f0a0007;
+        public static final int top=0x7f0a0030;
+        public static final int tposa=0x7f0a0006;
+        public static final int useravatar=0x7f0a0026;
+        public static final int userchalbtn=0x7f0a002f;
+        public static final int usercontainer=0x7f0a0025;
+        public static final int usergroup=0x7f0a002a;
+        public static final int userlevel=0x7f0a0028;
+        public static final int userlevelimg=0x7f0a0027;
+        public static final int usermsgbtn=0x7f0a002d;
+        public static final int username=0x7f0a0011;
+        public static final int usernameLabel=0x7f0a0010;
+        public static final int userpoints=0x7f0a002b;
+        public static final int userrace=0x7f0a0029;
+        public static final int userrank=0x7f0a002c;
+        public static final int userspellbtn=0x7f0a002e;
+        public static final int vertical_progressbar=0x7f0a0022;
     }
     public static final class layout {
         public static final int achallenge=0x7f030000;
@@ -95,10 +112,11 @@ public final class R {
         public static final int mainmenu=0x7f030006;
         public static final int profileoverlay=0x7f030007;
         public static final int tab_layout=0x7f030008;
-        public static final int vertical_progress_bar=0x7f030009;
+        public static final int user_profile=0x7f030009;
+        public static final int vertical_progress_bar=0x7f03000a;
     }
     public static final class menu {
-        public static final int menu=0x7f080000;
+        public static final int menu=0x7f090000;
     }
     public static final class string {
         public static final int accept=0x7f040010;
@@ -120,17 +138,21 @@ public final class R {
         public static final int shopMarker=0x7f040007;
         public static final int spQuestMarker=0x7f040009;
         public static final int topMarker=0x7f040008;
+        public static final int userChalMarker=0x7f040015;
+        public static final int userMsgMarker=0x7f040013;
+        public static final int userSpellMarker=0x7f040014;
     }
     public static final class style {
-        public static final int BlueButton=0x7f060000;
+        public static final int BlueButton=0x7f080000;
         /**  Vertical progress bar 
          */
-        public static final int Widget=0x7f060004;
-        public static final int Widget_ProgressBar=0x7f060005;
-        public static final int Widget_ProgressBar_Vertical=0x7f060006;
-        public static final int mainChallButtons=0x7f060007;
-        public static final int mainMenuButtons=0x7f060001;
-        public static final int profileFrame=0x7f060003;
-        public static final int specialButtons=0x7f060002;
+        public static final int Widget=0x7f080005;
+        public static final int Widget_ProgressBar=0x7f080006;
+        public static final int Widget_ProgressBar_Vertical=0x7f080007;
+        public static final int mainChallButtons=0x7f080008;
+        public static final int mainMenuButtons=0x7f080001;
+        public static final int profileFrame=0x7f080003;
+        public static final int specialButtons=0x7f080002;
+        public static final int userProfileButtons=0x7f080004;
     }
 }
