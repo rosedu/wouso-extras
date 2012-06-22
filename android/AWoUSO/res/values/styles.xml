@@ -24,7 +24,6 @@
     </style>
 
     <style name="profileFrame">
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">right</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>

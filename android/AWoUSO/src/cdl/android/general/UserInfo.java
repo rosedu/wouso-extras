@@ -18,9 +18,16 @@ import android.widget.ImageView;
  * User info container class
  */
 public class UserInfo {
-	private String firstName, lastName, group, race, email, avatarUrl;
-	int levelNo, gold, points;
+	String firstName;
+	String lastName;
+	int levelNo;
+	int gold;
+	String group;
+	String race;
+	String email;
+	String avatarUrl;
 	ImageView avatar;
+	int points;
 	double levelPercent;
 
 	/**

@@ -24,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -85,22 +86,21 @@ public class MainMenu extends Activity {
 		goldCount.setText(userInfo.getGold() + "");
 
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
-		levelNo.setText("Level " + userInfo.getLevelNo() + "-");
-
-		TextView group = (TextView) findViewById(R.id.group);
-		group.setText(userInfo.getGroup());
+		levelNo.setText("Level "+userInfo.getLevelNo()+"-");
+		
+	//	TextView group = (TextView) findViewById(R.id.group);
+	//	group.setText(userInfo.getGroup());
 
 		ImageView playerLevel = (ImageView) findViewById(R.id.level);
 		playerLevel.setImageResource(R.drawable.levelex);
-
 		
 		/*
 		 * ImageView avatar = (ImageView) findViewById(R.id.profileImage);
-		 * 
-		 * ProgressBar mProgress = (ProgressBar)
-		 * findViewById(R.id.vertical_progressbar);
-		 * mProgress.setProgress((int)userInfo.getLevelPercent());
 		 */
+		ProgressBar mProgress = (ProgressBar)
+		findViewById(R.id.vertical_progressbar);
+		mProgress.setProgress((int)userInfo.getLevelPercent());
+		
 
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
@@ -108,20 +108,18 @@ public class MainMenu extends Activity {
 		Button challButton = (Button) findViewById(R.id.chalbtn);
 		Button qotdButton = (Button) findViewById(R.id.qotdbtn);
 		Button specialQuest = (Button) findViewById(R.id.spcQbtn);
-		Button logoutButton = (Button) findViewById(R.id.logtbtn);
-		Button btn = (Button) findViewById(R.id.profileOverlay);
 
 		final Toast weekQ = Toast.makeText(getApplicationContext(),
 				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
 		weekQ.setGravity(Gravity.CENTER, 0, 0);
 		
-		
-		btn.setOnClickListener(new View.OnClickListener(){
-
-			public void onClick(View v) {
-				startUserProfileActivity(MainMenu.getLoggedUsername());
-				
-			}});
+		//TODO: start other user profile (from Tops/Groups/Search
+//		btn.setOnClickListener(new View.OnClickListener(){
+//
+//			public void onClick(View v) {
+//				startUserProfileActivity(MainMenu.getLoggedUsername());
+//				
+//			}});
 
 		bazaarButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -209,26 +207,20 @@ public class MainMenu extends Activity {
 				}
 			}
 		});
-
-		logoutButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				AuthHandler authHelper = new AuthHandler(v.getContext());
-				authHelper.logOut();
-			}
-		});
 	}
+
 
 	public static String getLoggedUsername() {
 		return globalUsername;
 	}
-
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) { 
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu, menu);
+		 inflater.inflate(R.menu.menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String toast = "";
@@ -242,12 +234,14 @@ public class MainMenu extends Activity {
 		case R.id.search:
 			toast = "Not yet";
 			break;
+		case R.id.logout:
+			AuthHandler authHelper = new AuthHandler(this);
+			authHelper.logOut();
 		default:
 			return true;
 		}
 		Toast myToast = Toast.makeText(this, toast, Toast.LENGTH_SHORT);
-		myToast.setGravity(Gravity.CENTER, myToast.getXOffset() / 2,
-				myToast.getYOffset() / 2);
+		myToast.setGravity(Gravity.CENTER, myToast.getXOffset() /2, myToast.getYOffset()/2);
 		myToast.show();
 		return false;
 	}
