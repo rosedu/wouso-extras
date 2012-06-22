@@ -33,12 +33,13 @@
         </activity>
         <activity android:name=".ui.user.UserProfile" >
         </activity>
+        <activity android:name=".ui.map.GroupsMap">
+        </activity>
         <activity
             android:name=".ui.main.MainMenu"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name=".ui.challenge.menu.ChallengeMenu" >
+        <activity android:name=".ui.challenge.menu.ChallengeMenu" >
         </activity>
     </application>
 

@@ -83,7 +83,7 @@ public class UserProfile extends Activity {
 		userInfoLayout.setBackgroundDrawable(backgroundImage);
 
 		// Display user avatar.
-		userAvatar.setImageBitmap(userInfo.getAvatar().getDrawingCache());
+		UserInfo.setAvatar(userAvatar, userInfo.getAvatarUrl());
 
 		// Display user name.
 		userName.setText(userInfo.getFirstName() + " " + userInfo.getLastName());

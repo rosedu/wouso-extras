@@ -1,5 +1,6 @@
 package cdl.android.ui.main;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -21,9 +24,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +41,7 @@ import cdl.android.server.AuthHandler;
 import cdl.android.server.GeneralHandler;
 import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.challenge.menu.ChallengeMenu;
+import cdl.android.ui.map.GroupsMap;
 import cdl.android.ui.user.UserProfile;
 
 /**
@@ -63,7 +69,6 @@ public class MainMenu extends Activity {
 		globalUsername = username;
 
 		/** Gets user info from the server */
-
 		try {
 			userInfo = GeneralHandler.getUserInfo(username);
 		} catch (NullPointerException ex) {
@@ -76,8 +81,15 @@ public class MainMenu extends Activity {
 		}
 
 		/** Fill Activity Views */
+		ImageView userLevelImage = (ImageView) findViewById(R.id.level);
+		File iconFile = new File("/mnt/sdcard" + File.separator + "awouso"
+				+ File.separator + "levels", userInfo.getRace() + "-level-"
+				+ userInfo.getLevelNo() + ".png");
+		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
+		userLevelImage.setImageBitmap(iconBitmap);
+		
 		TextView userProfile = (TextView) findViewById(R.id.profileName);
-		userProfile.setText(userInfo.getLastName());
+		userProfile.setText(userInfo.getFirstName() + " " + userInfo.getLastName());
 
 		TextView pointsCount = (TextView) findViewById(R.id.points);
 		pointsCount.setText(userInfo.getPoints() + "");
@@ -85,18 +97,22 @@ public class MainMenu extends Activity {
 		TextView goldCount = (TextView) findViewById(R.id.gold);
 		goldCount.setText(userInfo.getGold() + "");
 
+		System.out.println("leveel " + userInfo.getLevelNo());
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
 		levelNo.setText("Level "+userInfo.getLevelNo()+"-");
 		
-	//	TextView group = (TextView) findViewById(R.id.group);
-	//	group.setText(userInfo.getGroup());
-
-		ImageView playerLevel = (ImageView) findViewById(R.id.level);
-		playerLevel.setImageResource(R.drawable.levelex);
+		//TODO: just a display test, update this with real spells from the API call
+		LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);
+		for (int i = 0; i < 4; i++) {
+			ImageView spell = new ImageView(this);
+			spell.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			spell.setBackgroundResource(R.drawable.spell_blue);
+			hs.addView(spell);
+		}
 		
-		/*
-		 * ImageView avatar = (ImageView) findViewById(R.id.profileImage);
-		 */
+		ImageView avatar = (ImageView) findViewById(R.id.profileImage);
+		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl());
+		
 		ProgressBar mProgress = (ProgressBar)
 		findViewById(R.id.vertical_progressbar);
 		mProgress.setProgress((int)userInfo.getLevelPercent());
@@ -213,7 +229,7 @@ public class MainMenu extends Activity {
 	public static String getLoggedUsername() {
 		return globalUsername;
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) { 
 		MenuInflater inflater = getMenuInflater();
@@ -229,7 +245,7 @@ public class MainMenu extends Activity {
 			toast = "Not yet";
 			break;
 		case R.id.map:
-			toast = "Not yet";
+			startActivity(new Intent(this, GroupsMap.class));
 			break;
 		case R.id.search:
 			toast = "Not yet";

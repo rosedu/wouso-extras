@@ -79,9 +79,8 @@ public class ApiHandler {
 	public static JSONObject get(String req) {
 		JSONObject jObject;
 		String info = getHTTP(req);
-		for(int i=1;i<=10;i++)
-			System.out.println("Got "+info); 
-
+		System.out.println("Got " + info);
+		
 		/** TODO: Check invalid response from server or error */
 		try {
 			jObject = new JSONObject(info);
