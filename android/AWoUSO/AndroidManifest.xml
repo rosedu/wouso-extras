@@ -27,11 +27,31 @@
         </activity>
         <activity android:name=".ui.bazaar.Summary" >
         </activity>
+        <activity android:name=".ui.challenge.ActiveChallenge" >
+        </activity>
         <activity android:name=".ui.bazaar.BazaarTabs" >
+        </activity>
+        <activity android:name=".ui.user.UserProfile" >
+        </activity>
+        <activity android:name=".ui.map.GroupsMap">
+        </activity>
+        <activity android:name=".ui.message.MessageTabs" >
+        </activity>
+        <activity android:name=".ui.message.Received" >
+        </activity>
+        <activity android:name=".ui.message.Sent" >
+        </activity>
+        <activity android:name=".ui.message.ReadMessage" >
+        </activity>
+        <activity android:name=".ui.message.All" >
+        </activity>
+        <activity android:name=".ui.message.CreateMessage" >
         </activity>
         <activity
             android:name=".ui.main.MainMenu"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".ui.challenge.menu.ChallengeMenu" >
         </activity>
     </application>
 

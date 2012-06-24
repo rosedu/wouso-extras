@@ -1,4 +1,4 @@
-package cdl.android.ui.bazaar;
+package cdl.android.ui.message;
 
 import java.util.ArrayList;
 
@@ -10,29 +10,27 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import cdl.android.R;
-import cdl.android.general.BazaarItem;
-import cdl.android.server.GeneralHandler;
+import cdl.android.server.MessageHandler;
 
-public class Bazaar extends Activity {
-	private ArrayList<BazaarItem> mItems;
-	private SharedPreferences mPreferences;
-
+public class Sent extends Activity {
+	private ArrayList<MessageItem> mItems;
+	SharedPreferences mPreferences;
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.bazaar);
-
+		setContentView(R.layout.received);
+		
 		ListView mListView = (ListView) findViewById(android.R.id.list);
 		mListView.setEmptyView(findViewById(android.R.id.empty));
 		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		String username = mPreferences.getString("username", null);
 		
-		//TODO 3: get bazaar info from the local config file 
-		mItems = GeneralHandler.getBazaar(username);
-		mListView.setAdapter(new BazaarAdapter(this, mItems, new OnClickListener() {
+		mItems = MessageHandler.getSent(username);
+		
+		mListView.setAdapter(new MessageAdapter(this, mItems, new OnClickListener() {
 			public void onClick(View v) {
 			}
 		}));
-
 	}
-
 }

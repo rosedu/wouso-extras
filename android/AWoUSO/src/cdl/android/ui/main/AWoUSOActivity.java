@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.server.Auth;
+import cdl.android.server.AuthHandler;
 
 /**
  * Main class that is loaded when the application starts Checks if the user is
@@ -29,7 +29,7 @@ public class AWoUSOActivity extends Activity {
 		setContentView(R.layout.main);
 
 		/** Checks if the user is already logged in */
-		final Auth authHelper = new Auth(this);
+		final AuthHandler authHelper = new AuthHandler(this);
 		if (authHelper.checkLogin() == true) {
 			goToMainMenu();
 		}
@@ -45,13 +45,13 @@ public class AWoUSOActivity extends Activity {
 		logButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				loginNotification.cancel();
+				//loginNotification.cancel();
 
 				EditText userBuffer = (EditText) findViewById(R.id.username);
 				String userName = userBuffer.getText().toString();
 				loginNotification.setGravity(Gravity.CENTER, 0, 0);
 
-				if (userName.isEmpty()) {
+				if (userName.length() == 0) {
 					loginNotification
 							.setText("Insert username!");
 					loginNotification.show();

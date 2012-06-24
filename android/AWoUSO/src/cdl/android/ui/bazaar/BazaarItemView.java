@@ -6,19 +6,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cdl.android.model.BazaarItem;
+import cdl.android.general.BazaarItem;
 import cdl.android.R;
 
 /**
  * Bazaar List Item View
  */
 public class BazaarItemView extends LinearLayout {
-	BazaarItem mItem;
-	Context mContext;
+	private BazaarItem mItem;
 	
 	public BazaarItemView(Context context, BazaarItem item) {
 		super(context);
-		mContext = context;
 		mItem = item;
 		
 		LayoutInflater layoutInflater = (LayoutInflater) 
