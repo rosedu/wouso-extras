@@ -38,6 +38,7 @@
             android:id="@+id/useravatar"
             android:layout_width="@dimen/avatarSize"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/neversee"
             android:gravity="center_vertical|left" />
 
         <LinearLayout
@@ -67,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
+                    android:contentDescription="@string/neversee"
                     android:gravity="center_vertical|left" />
 
                 <TextView
@@ -80,8 +82,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/neversee"
                     android:gravity="center_vertical|left"
-                    android:text=" | "
+                    android:text="@string/firstBar"
                     android:textColor="@color/userInfoColor"
                     android:textSize="9sp" />
 
@@ -96,7 +99,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" / "
+                    android:text="@string/secondBar"
                     android:textColor="@color/userInfoColor"
                     android:textSize="9sp" />
 

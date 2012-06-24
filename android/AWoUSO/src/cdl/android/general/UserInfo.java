@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import cdl.android.R;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
@@ -81,12 +80,7 @@ public class UserInfo {
 			e.printStackTrace();
 		} 
 	}
-
-	private Resources getResources() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public int getGold() {
 		return gold;
 	}

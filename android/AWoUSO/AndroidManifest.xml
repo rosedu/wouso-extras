@@ -35,6 +35,18 @@
         </activity>
         <activity android:name=".ui.map.GroupsMap">
         </activity>
+        <activity android:name=".ui.message.MessageTabs" >
+        </activity>
+        <activity android:name=".ui.message.Received" >
+        </activity>
+        <activity android:name=".ui.message.Sent" >
+        </activity>
+        <activity android:name=".ui.message.ReadMessage" >
+        </activity>
+        <activity android:name=".ui.message.All" >
+        </activity>
+        <activity android:name=".ui.message.CreateMessage" >
+        </activity>
         <activity
             android:name=".ui.main.MainMenu"
             android:screenOrientation="portrait" >

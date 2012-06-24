@@ -14,21 +14,6 @@
 
     <string-array name="list_array">
         <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
     </string-array>
 
     <string name="exchange_left">Exchange points for gold or gold for points</string>
@@ -49,5 +34,14 @@
     <color name="userProfileColor">#FFF</color>
     <color name="userInfoColor">#AAA</color>
     <color name="userLinkColor">#55C</color>
-
+    
+    <string name = "firstBar"> | </string>
+    <string name = "secondBar"> / </string>
+    
+    <string name="create_msg">Create message</string>
+    <string name="to">To:</string>
+    <string name="subject">Subject:</string>
+    <string name="text">Text:</string>
+    <string name="send">Send</string>
+    <string name="from">From:</string>
 </resources>

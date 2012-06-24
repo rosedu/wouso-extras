@@ -42,6 +42,7 @@ import cdl.android.server.GeneralHandler;
 import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.challenge.menu.ChallengeMenu;
 import cdl.android.ui.map.GroupsMap;
+import cdl.android.ui.message.MessageTabs;
 import cdl.android.ui.user.UserProfile;
 
 /**
@@ -97,7 +98,6 @@ public class MainMenu extends Activity {
 		TextView goldCount = (TextView) findViewById(R.id.gold);
 		goldCount.setText(userInfo.getGold() + "");
 
-		System.out.println("leveel " + userInfo.getLevelNo());
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
 		levelNo.setText("Level "+userInfo.getLevelNo()+"-");
 		
@@ -120,10 +120,12 @@ public class MainMenu extends Activity {
 
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
+		final Intent messageMenu = new Intent(this, MessageTabs.class);
 		Button bazaarButton = (Button) findViewById(R.id.shopbtn);
 		Button challButton = (Button) findViewById(R.id.chalbtn);
 		Button qotdButton = (Button) findViewById(R.id.qotdbtn);
 		Button specialQuest = (Button) findViewById(R.id.spcQbtn);
+		Button msgButton = (Button) findViewById(R.id.msgbtn);
 
 		final Toast weekQ = Toast.makeText(getApplicationContext(),
 				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
@@ -154,6 +156,12 @@ public class MainMenu extends Activity {
 		specialQuest.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				weekQ.show();
+			}
+		});
+		
+		msgButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				startActivity(messageMenu);
 			}
 		});
 
