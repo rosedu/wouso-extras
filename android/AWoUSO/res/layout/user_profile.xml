@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <!-- First segment -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_weight="0.00"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- Top-left logo -->
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@drawable/menu_logo"
+            android:src="@drawable/menu_logo" />
+    </LinearLayout>
+
+    <!-- User Profile Info -->
+
+    <LinearLayout
+        android:id="@+id/usercontainer"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center_vertical|left"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/useravatar"
+            android:layout_width="@dimen/avatarSize"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/neversee"
+            android:gravity="center_vertical|left" />
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:gravity="top|left"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/userProfileColor"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|left"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/userlevelimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:contentDescription="@string/neversee"
+                    android:gravity="center_vertical|left" />
+
+                <TextView
+                    android:id="@+id/userlevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|left"
+                    android:textColor="@color/userInfoColor"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/neversee"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/firstBar"
+                    android:textColor="@color/userInfoColor"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/userrace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|left"
+                    android:textColor="@color/userLinkColor"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/secondBar"
+                    android:textColor="@color/userInfoColor"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/usergroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|left"
+                    android:textColor="@color/userLinkColor"
+                    android:textSize="9sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/userpoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/userProfileColor"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userrank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/userProfileColor"
+                android:textSize="9sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- User Profile Commands -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.03"
+        android:gravity="left|top"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/usermsgbtn"
+            style="@style/userProfileButtons"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userMsgMarker" />
+
+        <Button
+            android:id="@+id/userspellbtn"
+            style="@style/userProfileButtons"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userSpellMarker" />
+
+        <Button
+            android:id="@+id/userchalbtn"
+            style="@style/userProfileButtons"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userChalMarker" />
+    </LinearLayout>
+
+</LinearLayout>

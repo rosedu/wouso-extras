@@ -12,7 +12,9 @@ import cdl.android.R;
 
 /**
  * Bazaar Tab Activity
+ * TODO this is all deprecated, should be switched to using Fragments instead!
  */
+@SuppressWarnings("deprecation")
 public class BazaarTabs extends TabActivity {
 
 	public void onCreate(Bundle savedInstanceState) {

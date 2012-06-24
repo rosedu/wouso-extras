@@ -11,20 +11,31 @@ import android.preference.PreferenceManager;
 /**
  * Class that handles user authentication
  */
-public class Auth {
+public class AuthHandler {
 	private Context mContext;
 	private SharedPreferences mAppInfo;
 	
-	public Auth(Context context) {
+	/**
+	 * Creates a new AuthHandler with the set context.
+	 * @param context The context for the auth handler.
+	 */
+	public AuthHandler(Context context) {
 		mContext = context;
 		mAppInfo = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 
+	/**
+	 * Checks whether the user is logged in.
+	 * @return whether the user is currently logged in.
+	 */
 	public boolean checkLogin() {
 		String username = mAppInfo.getString("username", null);
 		return username != null;
 	}
 	
+	/**
+	 * Logs the user out of the application.
+	 */
 	public void logOut() {
 		/** Clear Shared Preferences */
 		Editor ed = mAppInfo.edit();
@@ -39,6 +50,10 @@ public class Auth {
 		((Activity)mContext).finish();
 	}
 	
+	/**
+	 * Logs the user in, authenticating him with the server.
+	 * @param username The username.
+	 */
 	public void login(String username) {
 		Editor ed = mAppInfo.edit();
 		ed.putString("username", username);

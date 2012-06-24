@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">AWoUSO</string>
     <string name="loginText">Play</string>
     <string name="account">Nume utilizator:</string>
@@ -13,25 +14,34 @@
 
     <string-array name="list_array">
         <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
-        <item>WoUSO</item>
     </string-array>
 
     <string name="exchange_left">Exchange points for gold or gold for points</string>
     <string name="exchange_right">Rate: 1 gold = 9 points, 1 gold = 10.0 points</string>
     <string name="logout">Log out</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="neversee">You should never see this 12321</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="play">Play</string>
+    <string name="userMsgMarker">msg</string>
+    <string name="userSpellMarker">spell</string>
+    <string name="userChalMarker">CHALLENGE!</string>
 
+    <dimen name="avatarSize">80dp</dimen>
+
+    <color name="userProfileColor">#FFF</color>
+    <color name="userInfoColor">#AAA</color>
+    <color name="userLinkColor">#55C</color>
+    
+    <string name = "firstBar"> | </string>
+    <string name = "secondBar"> / </string>
+    
+    <string name="create_msg">Create message</string>
+    <string name="to">To:</string>
+    <string name="subject">Subject:</string>
+    <string name="text">Text:</string>
+    <string name="send">Send</string>
+    <string name="from">From:</string>
 </resources>
