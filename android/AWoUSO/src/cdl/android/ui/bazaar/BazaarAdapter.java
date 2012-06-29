@@ -10,8 +10,7 @@ import android.widget.BaseAdapter;
 import cdl.android.general.BazaarItem;
 
 /**
- *  Adapter class for the bazaar's content 
- *  Manages the items in the list
+ * Adapter class for the bazaar's content Manages the items in the list
  */
 public class BazaarAdapter extends BaseAdapter {
 
@@ -19,8 +18,7 @@ public class BazaarAdapter extends BaseAdapter {
 	private OnClickListener mOnItemClick;
 	private Context mContext;
 
-	public BazaarAdapter(Context context, ArrayList<BazaarItem> items, 
-			OnClickListener onItemClick) {
+	public BazaarAdapter(Context context, ArrayList<BazaarItem> items, OnClickListener onItemClick) {
 		mItems = new ArrayList<BazaarItem>();
 		mOnItemClick = onItemClick;
 		mContext = context;

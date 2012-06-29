@@ -12,32 +12,34 @@ import cdl.android.general.UserInfo;
 
 public class GeneralHandler {
 	private static final String baseURL = "http://wouso-next.rosedu.org/api/";
-	private static final String userInfoURL = baseURL+"info/?user=";
-	private static final String bazaarInfoURL = baseURL+"bazaar/?user=";
-	private static final String qotdInfoURL = baseURL+"qotd/today/?user=";
-	
+	private static final String userInfoURL = baseURL + "info/?user=";
+	private static final String bazaarInfoURL = baseURL + "bazaar/?user=";
+	private static final String qotdInfoURL = baseURL + "qotd/today/?user=";
+
 	private GeneralHandler() {
-		
+
 	}
-	
+
 	public static String getBaseURL() {
 		return baseURL;
 	}
 
 	/**
 	 * Gets User Info and parses the response
+	 * 
 	 * @return an UserInfo instance
 	 */
 	public static UserInfo getUserInfo(String username) {
-		JSONObject result = ApiHandler.get(userInfoURL+username);
+		JSONObject result = ApiHandler.get(userInfoURL + username);
 		UserInfo user = new UserInfo(result);
 		return user;
 	}
 
 	/**
 	 * Gets Question of the Day and parses the response
+	 * 
 	 * @return an Qotd instance
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
 	public static Qotd getQOTD(String username) throws JSONException {
 		JSONObject result = ApiHandler.get(qotdInfoURL + username);
@@ -47,10 +49,12 @@ public class GeneralHandler {
 
 	/**
 	 * Gets the available bazaar items for a username.
-	 * @param username The player's username.
+	 * 
+	 * @param username
+	 *            The player's username.
 	 * @return A List of the parsed available items.
 	 */
-	//TODO 3: remove this, the bazaar info will be retrieved from a local config file
+	// TODO 3: remove this, the bazaar info will be retrieved from a local config file <= perhaps just cache it locally and check for changes?
 	public static ArrayList<BazaarItem> getBazaar(String username) {
 		ArrayList<BazaarItem> items = new ArrayList<BazaarItem>();
 		JSONObject result = ApiHandler.get(bazaarInfoURL + username);

@@ -25,8 +25,6 @@ public class Bazaar extends Activity {
 		mListView.setEmptyView(findViewById(android.R.id.empty));
 		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		String username = mPreferences.getString("username", null);
-		
-		//TODO 3: get bazaar info from the local config file 
 		mItems = GeneralHandler.getBazaar(username);
 		mListView.setAdapter(new BazaarAdapter(this, mItems, new OnClickListener() {
 			public void onClick(View v) {

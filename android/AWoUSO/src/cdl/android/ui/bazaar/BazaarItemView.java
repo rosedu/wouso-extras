@@ -14,34 +14,33 @@ import cdl.android.R;
  */
 public class BazaarItemView extends LinearLayout {
 	private BazaarItem mItem;
-	
+
 	public BazaarItemView(Context context, BazaarItem item) {
 		super(context);
 		mItem = item;
-		
-		LayoutInflater layoutInflater = (LayoutInflater) 
-		getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutInflater.inflate(R.layout.bazaar_list_item, this, true);
-		
+
 		TextView title = (TextView) findViewById(R.id.title);
 		title.setText(item.getTitle());
-		
+
 		TextView desc = (TextView) findViewById(R.id.description);
 		desc.setText(item.getDescription());
 
 		TextView price = (TextView) findViewById(R.id.price);
 		price.setText(item.getPrice());
-		
+
 		TextView due = (TextView) findViewById(R.id.days);
 		due.setText(item.getDueDays());
-		
+
 		Button buy = (Button) findViewById(R.id.buyButton);
 		buy.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				System.out.println("Buuuuuy " + mItem.getTitle());				
+				System.out.println("Buuuuuy " + mItem.getTitle());
 			}
 		});
-		
+
 	}
 
 }

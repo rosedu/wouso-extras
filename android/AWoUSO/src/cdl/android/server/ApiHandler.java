@@ -32,7 +32,9 @@ public class ApiHandler {
 
 	/**
 	 * Gets a general HTTP string.
-	 * @param req The url to get it from.
+	 * 
+	 * @param req
+	 *            The url to get it from.
 	 * @return A String containing the data.
 	 */
 	public static String getHTTP(String req) {
@@ -52,8 +54,7 @@ public class ApiHandler {
 
 			if (entity != null) {
 				InputStream inStream = entity.getContent();
-				BufferedReader br = new BufferedReader(new InputStreamReader(
-						inStream), 8192);
+				BufferedReader br = new BufferedReader(new InputStreamReader(inStream), 8192);
 				String line;
 				while ((line = br.readLine()) != null) {
 					info.append(line + "\n");
@@ -80,7 +81,7 @@ public class ApiHandler {
 		JSONObject jObject;
 		String info = getHTTP(req);
 		System.out.println("Got " + info);
-		
+
 		/** TODO: Check invalid response from server or error */
 		try {
 			jObject = new JSONObject(info);
@@ -153,13 +154,10 @@ public class ApiHandler {
 				String result = convertStreamToString(instream);
 				instream.close();
 				JSONObject server = new JSONObject(result);
-				System.out.println("Server: "+server.toString(2));
 				if (server.getBoolean("success") == false)
-					res = new ServerResponse(server.getBoolean("succes"),
-							server.getString("error"));
+					res = new ServerResponse(server.getBoolean("succes"), server.getString("error"));
 				else
-					res = new ServerResponse(server.getBoolean("succes"),
-							server.getString("correct"));
+					res = new ServerResponse(server.getBoolean("succes"), server.getString("correct"));
 
 			} catch (JSONException e) {
 				e.printStackTrace();

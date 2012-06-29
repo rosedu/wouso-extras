@@ -45,8 +45,7 @@ public class UserInfo {
 			group = jObj.getString("group");
 			levelNo = jObj.getInt("level_no");
 			avatarUrl = jObj.getString("avatar");
-			levelPercent = jObj.getJSONObject("level_progress").getDouble(
-					"percent");
+			levelPercent = jObj.getJSONObject("level_progress").getDouble("percent");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -60,17 +59,14 @@ public class UserInfo {
 		this.levelPercent = levelPercent;
 	}
 
-	
-	//TODO: http request on a new thread
+	// TODO: http request on a new thread
 	// and decide where to keep the method for a more general purpose
 	public static void setAvatar(ImageView avatar, String url) {
-		
-		Bitmap b = BitmapFactory.decodeResource
-		(avatar.getContext().getResources(), R.drawable.empty);
+
+		Bitmap b = BitmapFactory.decodeResource(avatar.getContext().getResources(), R.drawable.empty);
 		avatar.setImageBitmap(b);
-		try
-		{
-			HttpURLConnection con = (HttpURLConnection)(new URL(url)).openConnection();
+		try {
+			HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
 			con.connect();
 			b = BitmapFactory.decodeStream(con.getInputStream());
 			avatar.setImageBitmap(b);
@@ -78,9 +74,9 @@ public class UserInfo {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
-	
+
 	public int getGold() {
 		return gold;
 	}

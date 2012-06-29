@@ -13,7 +13,7 @@ public class Summary extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		TextView textview = new TextView(this);
 		textview.setText("This is the Summary tab");
 		setContentView(textview);

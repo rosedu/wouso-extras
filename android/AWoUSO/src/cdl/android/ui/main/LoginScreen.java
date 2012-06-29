@@ -20,7 +20,7 @@ import cdl.android.server.AuthHandler;
  * already logged in if so, it moves further to the main menu/profile view else,
  * it tries to authenticate at the server
  */
-public class AWoUSOActivity extends Activity {
+public class LoginScreen extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,7 @@ public class AWoUSOActivity extends Activity {
 
 		/** Init login view */
 		Button logButton = (Button) findViewById(R.id.loginButton);
-		final Toast loginNotification = Toast.makeText(getApplicationContext(),
-				"Buffer", Toast.LENGTH_SHORT);
+		final Toast loginNotification = Toast.makeText(getApplicationContext(), "Buffer", Toast.LENGTH_SHORT);
 
 		TextView bauhs = null;
 		setFont(bauhs, "fonts/handsean.ttf", R.id.usernameLabel);
@@ -45,15 +44,14 @@ public class AWoUSOActivity extends Activity {
 		logButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				//loginNotification.cancel();
+				// loginNotification.cancel();
 
 				EditText userBuffer = (EditText) findViewById(R.id.username);
 				String userName = userBuffer.getText().toString();
 				loginNotification.setGravity(Gravity.CENTER, 0, 0);
 
 				if (userName.length() == 0) {
-					loginNotification
-							.setText("Insert username!");
+					loginNotification.setText("Insert username!");
 					loginNotification.show();
 				} else {
 					authHelper.login(userName);
@@ -62,7 +60,7 @@ public class AWoUSOActivity extends Activity {
 			}
 		});
 	}
-	
+
 	public void goToMainMenu() {
 		final Intent mainM = new Intent(this, MainMenu.class);
 		startActivity(mainM);

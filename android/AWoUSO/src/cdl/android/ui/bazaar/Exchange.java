@@ -13,7 +13,6 @@ public class Exchange extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
 		TextView textview = new TextView(this);
 		textview.setText("This is the Exchange tab");
 		setContentView(R.layout.exchange);

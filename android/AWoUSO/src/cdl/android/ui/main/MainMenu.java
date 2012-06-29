@@ -56,8 +56,7 @@ public class MainMenu extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-					.permitAll().build();
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
 
@@ -75,20 +74,17 @@ public class MainMenu extends Activity {
 		} catch (NullPointerException ex) {
 			AuthHandler helper = new AuthHandler(this);
 			helper.logOut();
-			Toast.makeText(this, "Login error, please relogin!",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Login error, please relogin!", Toast.LENGTH_SHORT).show();
 			return;
 
 		}
 
 		/** Fill Activity Views */
 		ImageView userLevelImage = (ImageView) findViewById(R.id.level);
-		File iconFile = new File("/mnt/sdcard" + File.separator + "awouso"
-				+ File.separator + "levels", userInfo.getRace() + "-level-"
-				+ userInfo.getLevelNo() + ".png");
+		File iconFile = new File("/mnt/sdcard" + File.separator + "awouso" + File.separator + "levels", userInfo.getRace() + "-level-" + userInfo.getLevelNo() + ".png");
 		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
 		userLevelImage.setImageBitmap(iconBitmap);
-		
+
 		TextView userProfile = (TextView) findViewById(R.id.profileName);
 		userProfile.setText(userInfo.getFirstName() + " " + userInfo.getLastName());
 
@@ -99,9 +95,10 @@ public class MainMenu extends Activity {
 		goldCount.setText(userInfo.getGold() + "");
 
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
-		levelNo.setText("Level "+userInfo.getLevelNo()+"-");
-		
-		//TODO: just a display test, update this with real spells from the API call
+		levelNo.setText("Level " + userInfo.getLevelNo() + "-");
+
+		// TODO: just a display test, update this with real spells from the API
+		// call
 		LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);
 		for (int i = 0; i < 4; i++) {
 			ImageView spell = new ImageView(this);
@@ -109,14 +106,12 @@ public class MainMenu extends Activity {
 			spell.setBackgroundResource(R.drawable.spell_blue);
 			hs.addView(spell);
 		}
-		
+
 		ImageView avatar = (ImageView) findViewById(R.id.profileImage);
 		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl());
-		
-		ProgressBar mProgress = (ProgressBar)
-		findViewById(R.id.vertical_progressbar);
-		mProgress.setProgress((int)userInfo.getLevelPercent());
-		
+
+		ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
+		mProgress.setProgress((int) userInfo.getLevelPercent());
 
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
@@ -127,17 +122,16 @@ public class MainMenu extends Activity {
 		Button specialQuest = (Button) findViewById(R.id.spcQbtn);
 		Button msgButton = (Button) findViewById(R.id.msgbtn);
 
-		final Toast weekQ = Toast.makeText(getApplicationContext(),
-				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
+		final Toast weekQ = Toast.makeText(getApplicationContext(), "Sorry, no weekly quest!", Toast.LENGTH_SHORT);
 		weekQ.setGravity(Gravity.CENTER, 0, 0);
-		
-		//TODO: start other user profile (from Tops/Groups/Search
-//		btn.setOnClickListener(new View.OnClickListener(){
-//
-//			public void onClick(View v) {
-//				startUserProfileActivity(MainMenu.getLoggedUsername());
-//				
-//			}});
+
+		// TODO: start other user profile (from Tops/Groups/Search
+		// btn.setOnClickListener(new View.OnClickListener(){
+		//
+		// public void onClick(View v) {
+		// startUserProfileActivity(MainMenu.getLoggedUsername());
+		//
+		// }});
 
 		bazaarButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -158,7 +152,7 @@ public class MainMenu extends Activity {
 				weekQ.show();
 			}
 		});
-		
+
 		msgButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				startActivity(messageMenu);
@@ -172,53 +166,37 @@ public class MainMenu extends Activity {
 				try {
 					qotd = GeneralHandler.getQOTD(username);
 				} catch (JSONException e) {
-					Toast.makeText(getApplication(), "No QOTD today!",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplication(), "No QOTD today!", Toast.LENGTH_SHORT).show();
 					return;
 				}
 
 				Boolean ans = qotd.hadAnswered();
 				if (ans == false) {
 
-					final CharSequence[] items = new String[qotd.getAnswers()
-							.size()];
+					final CharSequence[] items = new String[qotd.getAnswers().size()];
 					for (int i = 0; i < qotd.getAnswers().size(); i++) {
 						items[i] = qotd.getAnswers().get(i);
 					}
 
-					AlertDialog.Builder builder = new AlertDialog.Builder(v
-							.getContext());
+					AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 					builder.setIcon(R.drawable.androidicon_small);
 					builder.setTitle(qotd.getQuestion());
-					builder.setSingleChoiceItems(items, -1,
-							new DialogInterface.OnClickListener() {
+					builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
 
-								public void onClick(DialogInterface dialog,
-										int item) {
+						public void onClick(DialogInterface dialog, int item) {
 
-									List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-											1);
-									nameValuePairs
-											.add(new BasicNameValuePair(
-													"answer", qotd.getKeys()
-															.get(item)));
-									String url = "http://wouso-next.rosedu.org/api/qotd/today/?user="
-											+ mPreferences.getString(
-													"username", null);
-									ServerResponse res = ApiHandler.sendPost(
-											url, nameValuePairs);
-									if (res.getResponse() == false)
-										Toast.makeText(getApplicationContext(),
-												res.getError(),
-												Toast.LENGTH_SHORT).show();
-									else {
-										Toast.makeText(getApplicationContext(),
-												"QotD answered!",
-												Toast.LENGTH_SHORT);
-									}
-									dialog.dismiss();
-								}
-							});
+							List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+							nameValuePairs.add(new BasicNameValuePair("answer", qotd.getKeys().get(item)));
+							String url = "http://wouso-next.rosedu.org/api/qotd/today/?user=" + mPreferences.getString("username", null);
+							ServerResponse res = ApiHandler.sendPost(url, nameValuePairs);
+							if (res.getResponse() == false)
+								Toast.makeText(getApplicationContext(), res.getError(), Toast.LENGTH_SHORT).show();
+							else {
+								Toast.makeText(getApplicationContext(), "QotD answered!", Toast.LENGTH_SHORT);
+							}
+							dialog.dismiss();
+						}
+					});
 
 					AlertDialog alert = builder.create();
 					alert.show();
@@ -226,25 +204,23 @@ public class MainMenu extends Activity {
 				}
 
 				else {
-					Toast.makeText(getApplicationContext(),
-							"You already answered!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "You already answered!", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
 	}
-
 
 	public static String getLoggedUsername() {
 		return globalUsername;
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) { 
+	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		 inflater.inflate(R.menu.menu, menu);
+		inflater.inflate(R.menu.menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String toast = "";
@@ -265,7 +241,7 @@ public class MainMenu extends Activity {
 			return true;
 		}
 		Toast myToast = Toast.makeText(this, toast, Toast.LENGTH_SHORT);
-		myToast.setGravity(Gravity.CENTER, myToast.getXOffset() /2, myToast.getYOffset()/2);
+		myToast.setGravity(Gravity.CENTER, myToast.getXOffset() / 2, myToast.getYOffset() / 2);
 		myToast.show();
 		return false;
 	}

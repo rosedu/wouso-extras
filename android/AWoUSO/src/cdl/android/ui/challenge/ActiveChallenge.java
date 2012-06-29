@@ -52,8 +52,7 @@ public class ActiveChallenge extends Activity {
 
 		int remainingSeconds = info.getSeconds();
 		if (remainingSeconds < 0) {
-			Toast.makeText(getApplication(),
-					"The timer for this challenge has expired!", 1).show();
+			Toast.makeText(getApplication(), "The timer for this challenge has expired!", 1).show();
 			finish();
 			postAnswers();
 			return;
@@ -72,8 +71,7 @@ public class ActiveChallenge extends Activity {
 				activeChallenge--;
 				if (activeChallenge == -1) {
 					activeChallenge = 0;
-					Toast.makeText(getApplicationContext(),
-							"How did you even do that? >__>", 1).show();
+					Toast.makeText(getApplicationContext(), "How did you even do that? >__>", 1).show();
 				}
 				refreshForActiveQuestion();
 			}
@@ -85,16 +83,13 @@ public class ActiveChallenge extends Activity {
 				saveCurrent();
 				activeChallenge++;
 				if (activeChallenge == totalChallenges) {
-					Toast.makeText(getApplication(), "Sending answers...",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplication(), "Sending answers...", Toast.LENGTH_SHORT).show();
 					try {
 						postAnswers();
-					} catch(Exception ex) {
-						Toast.makeText(getApplication(), "Error sending answers",
-								Toast.LENGTH_SHORT).show();
+					} catch (Exception ex) {
+						Toast.makeText(getApplication(), "Error sending answers", Toast.LENGTH_SHORT).show();
 					} finally {
-						Toast.makeText(getApplication(), "Challenge finished!",
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplication(), "Challenge finished!", Toast.LENGTH_SHORT).show();
 					}
 					finish();
 					return;

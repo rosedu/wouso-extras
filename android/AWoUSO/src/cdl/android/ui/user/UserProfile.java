@@ -28,18 +28,10 @@ import cdl.android.server.GeneralHandler;
 public class UserProfile extends Activity {
 	SharedPreferences mPreferences;
 	UserInfo userInfo;
-	Button messageButton;
-	Button spellButton;
-	Button challengeButton;
+	Button messageButton, spellButton, challengeButton;
 	LinearLayout userInfoLayout;
-	ImageView userAvatar;
-	ImageView userLevelImage;
-	TextView userName;
-	TextView userPoints;
-	TextView userRank;
-	TextView userLevel;
-	TextView userRace;
-	TextView userGroup;
+	ImageView userAvatar, userLevelImage;
+	TextView userName, userPoints, userRank, userLevel, userRace, userGroup;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,9 +44,7 @@ public class UserProfile extends Activity {
 			userInfo = GeneralHandler.getUserInfo(username);
 		} catch (NullPointerException ex) {
 			// User does not exist.
-			Toast.makeText(getApplicationContext(),
-					"Username is not in the database", Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(getApplicationContext(), "Username is not in the database", Toast.LENGTH_SHORT).show();
 			return;
 		}
 
@@ -74,10 +64,8 @@ public class UserProfile extends Activity {
 
 		// Set background for main user profile.
 		File sdcard = Environment.getExternalStorageDirectory();
-		File background = new File(sdcard + File.separator + "awouso"
-				+ File.separator + "profiles", userInfo.getRace() + ".png");
-		Bitmap backgroundBitmap = BitmapFactory.decodeFile(background
-				.toString());
+		File background = new File(sdcard + File.separator + "awouso" + File.separator + "profiles", userInfo.getRace() + ".png");
+		Bitmap backgroundBitmap = BitmapFactory.decodeFile(background.toString());
 		@SuppressWarnings("deprecation")
 		Drawable backgroundImage = new BitmapDrawable(backgroundBitmap);
 		userInfoLayout.setBackgroundDrawable(backgroundImage);
@@ -95,9 +83,7 @@ public class UserProfile extends Activity {
 		userRank.setText("rank: " + "wat?");
 
 		// Display user level icon.
-		File iconFile = new File(sdcard + File.separator + "awouso"
-				+ File.separator + "levels", userInfo.getRace() + "-level-"
-				+ userInfo.getLevelNo() + ".png");
+		File iconFile = new File(sdcard + File.separator + "awouso" + File.separator + "levels", userInfo.getRace() + "-level-" + userInfo.getLevelNo() + ".png");
 		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
 		userLevelImage.setImageBitmap(iconBitmap);
 
@@ -116,31 +102,21 @@ public class UserProfile extends Activity {
 		messageButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// TODO add send message action
-				Toast.makeText(
-						getApplicationContext(),
-						"Send a message to " + userInfo.getFirstName() + " "
-								+ userInfo.getLastName(), Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(getApplicationContext(), "Send a message to " + userInfo.getFirstName() + " " + userInfo.getLastName(), Toast.LENGTH_SHORT).show();
 			}
 		});
 
 		spellButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				// TODO add cast spell action
-				Toast.makeText(
-						getApplicationContext(),
-						"Cast a spell on " + userInfo.getFirstName() + " "
-								+ userInfo.getLastName(), Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(getApplicationContext(), "Cast a spell on " + userInfo.getFirstName() + " " + userInfo.getLastName(), Toast.LENGTH_SHORT).show();
 			}
 		});
 
 		challengeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				ChallengeHandler.startChallenge(username); // Start a challenge
-															// from logged
-				// user to currently visited
-				// user.
+				ChallengeHandler.startChallenge(username);
+				Toast.makeText(getApplicationContext(), "Challenge started!", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}

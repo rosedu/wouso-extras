@@ -14,9 +14,9 @@ public class Qotd {
 	private String question;
 	private ArrayList<String> answers, keys;
 
-	
 	/**
 	 * Returns whether the question has been answered.
+	 * 
 	 * @return boolean representing whether the question has been answered.
 	 */
 	public boolean hadAnswered() {
@@ -25,7 +25,9 @@ public class Qotd {
 
 	/**
 	 * Sets whether the question has been answered.
-	 * @param hadAnswered the new answered value.
+	 * 
+	 * @param hadAnswered
+	 *            the new answered value.
 	 */
 	public void setHadAnswered(boolean hadAnswered) {
 		this.hadAnswered = hadAnswered;
@@ -33,6 +35,7 @@ public class Qotd {
 
 	/**
 	 * Gets the QOTD question.
+	 * 
 	 * @return The question.
 	 */
 	public String getQuestion() {
@@ -41,14 +44,17 @@ public class Qotd {
 
 	/**
 	 * Sets the question to a new value.
-	 * @param question The new question's value.
+	 * 
+	 * @param question
+	 *            The new question's value.
 	 */
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	
+
 	/**
 	 * Gets the possible answers for the question.
+	 * 
 	 * @return The possible answers.
 	 */
 	public ArrayList<String> getAnswers() {
@@ -57,6 +63,7 @@ public class Qotd {
 
 	/**
 	 * Gets the keys for the question.
+	 * 
 	 * @return The keys.
 	 */
 	public ArrayList<String> getKeys() {
@@ -74,19 +81,19 @@ public class Qotd {
 	public Qotd(JSONObject obj) throws JSONException {
 		answers = new ArrayList<String>();
 		keys = new ArrayList<String>();
-		
-			question = obj.getString("text");
-			hadAnswered = obj.getBoolean("had_answered");
-			JSONObject vObj = obj.getJSONObject("answers");
-			
-			@SuppressWarnings("rawtypes")
-			Iterator iter = vObj.keys();
-			while (iter.hasNext()) {
-				String key = (String) iter.next();
-				String value = vObj.getString(key);
-				answers.add(value);
-				keys.add(key);
-			}
+
+		question = obj.getString("text");
+		hadAnswered = obj.getBoolean("had_answered");
+		JSONObject vObj = obj.getJSONObject("answers");
+
+		@SuppressWarnings("rawtypes")
+		Iterator iter = vObj.keys();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = vObj.getString(key);
+			answers.add(value);
+			keys.add(key);
+		}
 	}
 
 }

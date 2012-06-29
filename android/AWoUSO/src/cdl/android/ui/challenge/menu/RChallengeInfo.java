@@ -14,7 +14,9 @@ public class RChallengeInfo {
 
 	/**
 	 * Creates a new wrapper from a compiled JSONObject.
-	 * @param jo The parsed JSONObject, will be read for Challenge information.
+	 * 
+	 * @param jo
+	 *            The parsed JSONObject, will be read for Challenge information.
 	 */
 	public RChallengeInfo(JSONObject jo) {
 		try {
@@ -23,7 +25,7 @@ public class RChallengeInfo {
 			fromId = jo.getString("user_from");
 			date = jo.getString("date");
 			challengeId = jo.getInt("id");
-			
+
 		} catch (JSONException jex) {
 			jex.printStackTrace();
 		}
@@ -31,6 +33,7 @@ public class RChallengeInfo {
 
 	/**
 	 * Gets the challenge's id.
+	 * 
 	 * @return
 	 */
 	public int getChallengeId() {
@@ -39,6 +42,7 @@ public class RChallengeInfo {
 
 	/**
 	 * Gets the full name of whoever sent the challenge.
+	 * 
 	 * @return The challenger's name.
 	 */
 	public String getFrom() {
@@ -47,6 +51,7 @@ public class RChallengeInfo {
 
 	/**
 	 * Gets the full name of whoever received the challenge.
+	 * 
 	 * @return The challenged's name.
 	 */
 	public String getTo() {
@@ -54,9 +59,8 @@ public class RChallengeInfo {
 	}
 
 	/**
-	 * Returns the status of the challenge
-	 * L = not started
-	 * A = started
+	 * Returns the status of the challenge L = not started A = started
+	 * 
 	 * @return The challenge's status.
 	 */
 	public String getStatus() {
@@ -65,7 +69,9 @@ public class RChallengeInfo {
 
 	/**
 	 * Sets a new status for the challenge.
-	 * @param string The new status.
+	 * 
+	 * @param string
+	 *            The new status.
 	 */
 	public void setStatus(String string) {
 		status = string;
@@ -73,6 +79,7 @@ public class RChallengeInfo {
 
 	/**
 	 * Returns the date at which the challenge was started.
+	 * 
 	 * @return The starting date.
 	 */
 	public String getDate() {

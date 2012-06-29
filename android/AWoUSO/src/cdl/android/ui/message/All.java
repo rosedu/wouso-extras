@@ -15,17 +15,17 @@ import cdl.android.server.MessageHandler;
 public class All extends Activity {
 	private ArrayList<MessageItem> mItems;
 	SharedPreferences mPreferences;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.received);
-		
+
 		ListView mListView = (ListView) findViewById(android.R.id.list);
 		mListView.setEmptyView(findViewById(android.R.id.empty));
 		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		String username = mPreferences.getString("username", null);
-		
+
 		mItems = MessageHandler.getAll(username);
 		mListView.setAdapter(new MessageAdapter(this, mItems, new OnClickListener() {
 			public void onClick(View v) {

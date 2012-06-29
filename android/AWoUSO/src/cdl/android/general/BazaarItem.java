@@ -9,10 +9,12 @@ import org.json.JSONObject;
 public class BazaarItem {
 	private String title, description, price, due_days;
 
-	
 	/**
-	 * Creates a new Bazaar Item from a JSONObject probably taken from the website's API.
-	 * @param obj The JSONObject to parse for bazaar info.
+	 * Creates a new Bazaar Item from a JSONObject probably taken from the
+	 * website's API.
+	 * 
+	 * @param obj
+	 *            The JSONObject to parse for bazaar info.
 	 */
 	public BazaarItem(JSONObject obj) {
 		try {
@@ -26,6 +28,7 @@ public class BazaarItem {
 
 	/**
 	 * Get the item's title.
+	 * 
 	 * @return The title of the item.
 	 */
 	public String getTitle() {
@@ -34,7 +37,9 @@ public class BazaarItem {
 
 	/**
 	 * Set a new title.
-	 * @param title The new title to be set.
+	 * 
+	 * @param title
+	 *            The new title to be set.
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -42,6 +47,7 @@ public class BazaarItem {
 
 	/**
 	 * Get the item's description.
+	 * 
 	 * @return A String with the item's description.
 	 */
 	public String getDescription() {
@@ -50,7 +56,9 @@ public class BazaarItem {
 
 	/**
 	 * Set the item's description.
-	 * @param description The new description.
+	 * 
+	 * @param description
+	 *            The new description.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -58,7 +66,8 @@ public class BazaarItem {
 
 	/**
 	 * Get the item's price.
-	 * @return A string containing the price. 
+	 * 
+	 * @return A string containing the price.
 	 */
 	public String getPrice() {
 		return price;
@@ -66,7 +75,9 @@ public class BazaarItem {
 
 	/**
 	 * Set a new price for the item.
-	 * @param price The new price.
+	 * 
+	 * @param price
+	 *            The new price.
 	 */
 	public void setPrice(String price) {
 		this.price = price;
@@ -74,6 +85,7 @@ public class BazaarItem {
 
 	/**
 	 * Get the due days before the item expires.
+	 * 
 	 * @return The number of remaining days.
 	 */
 	public String getDueDays() {
@@ -82,7 +94,9 @@ public class BazaarItem {
 
 	/**
 	 * Set the remaining days until the item expires.
-	 * @param dueDays The new number of days.
+	 * 
+	 * @param dueDays
+	 *            The new number of days.
 	 */
 	public void setDueDays(String dueDays) {
 		this.due_days = dueDays;

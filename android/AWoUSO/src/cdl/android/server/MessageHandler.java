@@ -12,17 +12,12 @@ import cdl.android.general.ServerResponse;
 import cdl.android.ui.message.MessageItem;
 
 public class MessageHandler {
-	private static final String msgReceivedAPICallURL = GeneralHandler
-			.getBaseURL() + "messages/recv/?user=";
-	private static final String msgSentAPICallURL = GeneralHandler.getBaseURL()
-			+ "messages/sent/?user=";
-	private static final String msgAllAPICallURL = GeneralHandler.getBaseURL()
-			+ "messages/all/?user=";
-	private static final String msgSendAPICallURL = GeneralHandler.getBaseURL()
-			+ "messages/send/?user=";
+	private static final String msgReceivedAPICallURL = GeneralHandler.getBaseURL() + "messages/recv/?user=";
+	private static final String msgSentAPICallURL = GeneralHandler.getBaseURL() + "messages/sent/?user=";
+	private static final String msgAllAPICallURL = GeneralHandler.getBaseURL() + "messages/all/?user=";
+	private static final String msgSendAPICallURL = GeneralHandler.getBaseURL() + "messages/send/?user=";
 
-	public static ServerResponse sendMessage(String user, String to, String subject,
-			String text) {
+	public static ServerResponse sendMessage(String user, String to, String subject, String text) {
 		/**
 		 * Add data
 		 */
@@ -42,15 +37,13 @@ public class MessageHandler {
 	 */
 	public static ArrayList<MessageItem> getReceived(String username) {
 		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
-		JSONArray jArray = ApiHandler
-				.getArray(msgReceivedAPICallURL + username);
+		JSONArray jArray = ApiHandler.getArray(msgReceivedAPICallURL + username);
 
 		try {
 			for (int i = 0; i < jArray.length(); i++) {
 				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
 				items.add(msg);
-				System.out.println("Author " + msg.getAuthor() + " wrote "
-						+ msg.getContent());
+				System.out.println("Author " + msg.getAuthor() + " wrote " + msg.getContent());
 			}
 		} catch (JSONException ex) {
 			ex.printStackTrace();
@@ -72,8 +65,6 @@ public class MessageHandler {
 			for (int i = 0; i < jArray.length(); i++) {
 				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
 				items.add(msg);
-				// System.out.println("Author " + msg.getAuthor() + " wrote " +
-				// msg.getContent());
 			}
 		} catch (JSONException ex) {
 			ex.printStackTrace();
@@ -95,8 +86,6 @@ public class MessageHandler {
 			for (int i = 0; i < jArray.length(); i++) {
 				MessageItem msg = new MessageItem(jArray.getJSONObject(i));
 				items.add(msg);
-				// System.out.println("Author " + msg.getAuthor() + " wrote " +
-				// msg.getContent());
 			}
 		} catch (JSONException ex) {
 			ex.printStackTrace();

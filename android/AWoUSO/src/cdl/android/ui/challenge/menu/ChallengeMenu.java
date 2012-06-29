@@ -26,6 +26,7 @@ public class ChallengeMenu extends ListActivity {
 	private String currentSelectedName;
 
 	private Button accept, play, reject;
+
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class ChallengeMenu extends ListActivity {
 		accept = (Button) findViewById(R.id.buttleft);
 		play = (Button) findViewById(R.id.buttmid);
 		reject = (Button) findViewById(R.id.buttright);
-		
+
 		accept.setVisibility(4);
 		play.setVisibility(4);
 		reject.setVisibility(4);
@@ -42,7 +43,7 @@ public class ChallengeMenu extends ListActivity {
 		accept.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				if (arg0.getVisibility()==4||currentSelected == null)
+				if (arg0.getVisibility() == 4 || currentSelected == null)
 					return;
 				accept.setVisibility(4);
 				play.setVisibility(0);
@@ -52,13 +53,13 @@ public class ChallengeMenu extends ListActivity {
 				Toast.makeText(getApplicationContext(), "Challenge accepted!", 1).show();
 			}
 		});
-		
+
 		final ChallengeMenu javaSucks = this;
 
 		play.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				if (arg0.getVisibility()==4||currentSelected == null)
+				if (arg0.getVisibility() == 4 || currentSelected == null)
 					return;
 				Intent x = new Intent(javaSucks, ActiveChallenge.class);
 				Bundle b = new Bundle();
@@ -66,15 +67,15 @@ public class ChallengeMenu extends ListActivity {
 				x.putExtras(b);
 				startActivity(x);
 				finish();
-				
+
 			}
 		});
 		reject.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				if (arg0.getVisibility()==4||currentSelected == null)
+				if (arg0.getVisibility() == 4 || currentSelected == null)
 					return;
-				
+
 				accept.setVisibility(4);
 				play.setVisibility(4);
 				reject.setVisibility(4);
@@ -96,8 +97,7 @@ public class ChallengeMenu extends ListActivity {
 		}
 
 		// Android stuff
-		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, listItems);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 		setListAdapter(adapter);
 
 		// Set the back button
@@ -119,8 +119,8 @@ public class ChallengeMenu extends ListActivity {
 		currentSelectedName = clicked;
 		RChallengeInfo rinfo = mapped.get(clicked);
 		currentSelected = rinfo;
-		
-		if(rinfo.getStatus().equals("L")) {
+
+		if (rinfo.getStatus().equals("L")) {
 			accept.setVisibility(0);
 			play.setVisibility(4);
 			reject.setVisibility(0);
