@@ -4,6 +4,8 @@ __author__ = 'alex'
 from oauth import oauth
 import httplib
 import webbrowser
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 class WousoOAuthClient(oauth.OAuthClient):
     REQUEST_TOKEN_URL = '/api/oauth/request_token/'
@@ -33,7 +35,11 @@ class WousoOAuthClient(oauth.OAuthClient):
         response = self.connection.getresponse()
         data = response.read()
         if 'Invalid consumer' not in data:
-            return oauth.OAuthToken.from_string(data)
+            try:
+                return oauth.OAuthToken.from_string(data)
+            except KeyError:
+                logging.debug(data)
+                return None
         return None
 
     def authorize_token(self, oauth_request, call=False):
