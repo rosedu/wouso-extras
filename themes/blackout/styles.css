@@ -938,3 +938,15 @@ a.goto {
 	display: block;
 	text-align: right;
 }
+
+/* Cpanel styles */
+div#content-cp {
+    background: transparent url(library/images/content-middle.jpg) left top;
+    min-height: 580px;;
+}
+div#header-cp {
+    height: 20px;
+}
+div.spacer-search, #sidebar, #footer {
+    border: none;
+}
