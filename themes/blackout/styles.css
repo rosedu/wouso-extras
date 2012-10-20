@@ -627,6 +627,7 @@ div.section-content ol {
 }
 div.section-content h2, div.section-content h3, div.section-content h4 {
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 div.section-half-left {
