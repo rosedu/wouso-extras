@@ -73,11 +73,11 @@
 				</table>
 
 				{% if allUsers.has_previous %}
-					<a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.previous_page_number %}">Previous</a>
+					<a href="{% url view_top sortcrit=sortcrit toptype=toptype page=allUsers.previous_page_number %}">Previous</a>
 				{% endif %}
 
 				{% if allUsers.has_next %}
-					<a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.next_page_number %}">Next</a>
+					<a href="{% url view_top sortcrit=sortcrit toptype=toptype page=allUsers.next_page_number %}">Next</a>
 				{% endif %}
 
 				{% if page_top_prev %}
