@@ -622,7 +622,7 @@ div.section-content {
 	width : 685px;
 }
 
-div.section-content ol, div.section-content ul {
+div.section-content ol {
     margin-left: 30px;
 }
 div.section-content h2, div.section-content h3, div.section-content h4 {
