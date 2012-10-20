@@ -90,13 +90,13 @@
 				<div id="header-right">
 					<div id="header-top-links">
 						{% if user.is_authenticated %}
-							<a href="{% url django.contrib.auth.views.logout %}" id="header-logout">{% trans 'Logout' %}</a>
+							<a href="{% url logout_view %}" id="header-logout">{% trans 'Logout' %}</a>
 
 							{% if user.is_staff %}
 								<a href="{% url wouso.interface.cpanel.views.dashboard %}" id="header-control-panel">Panou de control</a>
 							{% endif %}
 						{% else %}
-							<a href="{% url django.contrib.auth.views.login %}" id="header-logout">{% trans 'Login' %}</a>
+							<a href="{% url login_view %}" id="header-login">{% trans 'Login' %}</a>
 						{% endif %}
 
 						<div class="clear">
