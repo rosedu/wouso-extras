@@ -622,6 +622,13 @@ div.section-content {
 	width : 685px;
 }
 
+div.section-content ol, div.section-content ul {
+    margin-left: 30px;
+}
+div.section-content h2, div.section-content h3, div.section-content h4 {
+    margin-bottom: 10px;
+}
+
 div.section-half-left {
 	float : left;
 	width : 360px;
