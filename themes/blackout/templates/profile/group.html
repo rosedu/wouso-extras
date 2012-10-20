@@ -28,11 +28,11 @@
 					{% endif %}
 
 					{% if group.parent %}
-						{% trans 'part of' %} {% player_group group.parent %}
+						{% trans 'part of' %} {% player_race group.parent %}
 					{% endif %}
 				</p>
 
-				<p>{{ group.player_set.count }} {% trans 'members' %}</p>
+				<p>{{ group.players.count }} {% trans 'members' %}</p>
 			</div><!-- #profile-info -->
 
 			<div class="points">

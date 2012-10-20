@@ -14,7 +14,7 @@
 
 {% block content %}
 	<div class="section">
-		<div class="profile {% if profile.series %}group-{{ profile.series.name.lower }}{% endif %} {% if profile.proximate_group %}group-{{ profile.proximate_group.name.lower }}{% endif %}">
+		<div class="profile {% if profile.race %}group-{{ profile.race.name.lower }}{% endif %} {% if profile.group %}group-{{ profile.group.name.lower }}{% endif %}">
 			<img class="profile-avatar" height="84" src="{{ avatar }}&s=84&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="84" />
 
 			<div id="profile-info">
@@ -29,12 +29,12 @@
 
 					|
 
-					{% if profile.proximate_group != profile.series %}
-					    {% player_group profile.proximate_group %} /
+					{% if profile.group %}
+					    {% player_group profile.group %} /
 					{% endif %}
 	
-					{% if profile.series %}
-						{% player_group profile.series %}
+					{% if profile.race %}
+						{% player_race profile.race %}
 					{% endif %}
 				</p>
 

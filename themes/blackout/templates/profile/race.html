@@ -1,0 +1,164 @@
+{% extends base_template %}
+
+{% load artifacts %}
+{% load user %}
+{% load i18n %}
+
+{% block title %}{{ group }}{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/tabs.js" type="text/javascript"></script>
+<script src="/static/js/jquery.flot.min.js" type="text/javascript"></script>
+<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="profile group-{{ race.name.lower }}">
+        <div id="profile-info">
+            <h2>{{ race }} {% if race.title != '' %}<small>[{{ race.name }}]</small>{% endif %}</h2>
+
+            <p>
+                {% trans 'Race' %}
+            </p>
+
+            <p>{{ race.player_set.count }} {% trans 'members' %}</p>
+        </div><!-- #profile-info -->
+
+        <div class="points">
+            <h1 class="points-big">{{ race.live_points|floatformat}}</h1>
+
+            <div class="spacer-small">
+                <!-- -->
+            </div><!-- .spacer-small -->
+
+            <p>{% if top.disabled %}-{% else %}{% trans 'rank' %}: {{ top_rank }}{% endif %}</p>
+        </div>
+    </div><!-- #profile -->
+
+    <div class="clear spacer-small">
+        <!-- -->
+    </div><!-- .clear .spacer-small -->
+
+    <div class="section-content">
+        {% if user.is_superuser %}
+        <div class="actions">
+            <span class="button-list">Superuser only: </span>
+            <a class="button button-min" href="{% url admin:user_race_change race.id %}">✍</a>
+        </div>
+        {% endif %}
+
+        <ul class="tabs">
+            <li><a href="#tab-1">{% trans 'Top users' %}</a></li>
+            <li><a href="#tab-2">{% trans 'Activity' %}</a></li>
+            <li><a href="#tab-3">{% trans 'Evolution' %}</a></li>
+        </ul>
+
+        <div class="tab_container">
+            <div id="tab-1" class="tab_content">
+                <div class="spacer">
+                    <!-- -->
+                </div><!-- .spacer -->
+
+                <div class="subgroups">
+                    {% if race.children %}
+                    <b>{% trans 'Top groups' %}</b>
+
+                    <div class="spacer-small">
+                        <!-- -->
+                    </div><!-- .spacer-small -->
+
+                    <ol class="top">
+                        {% for g in children %}
+                        <li>{% player_group g %} </li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+
+
+                    <a class="goto"  href="{% url groups_index %}">{% trans 'View all' %}</a>
+                </div>
+
+                <ol class="top top-left">
+                    {% if not top.disabled %}
+                    {% for u in top_users %}
+                    <li>
+                        {% player u %}
+                        <span class="points w50">{{ u.points }}</span>
+                        {% if not race.parent %}
+                        <span class="points w50">{% player_group u.proximate_group  %}</span>
+                        {% endif %}
+                    </li>
+                    {% empty %}
+                    <li class="empty">{% trans 'Sorry, no users in this group' %}</li>
+                    {% endfor %}
+                    {% else %}
+                    <li class="empty">{% trans 'Sorry, top is disabled' %}</li>
+                    {% endif %}
+                </ol>
+            </div>
+
+            <div id="tab-2" class="tab_content">
+                <div class="spacer">
+                    <!-- -->
+                </div><!-- .spacer -->
+
+                <div class="scroll-pane" id="wall">
+                    {% include 'activity/stream.html' %}
+                </div><!-- #wall -->
+            </div>
+
+            <div id="tab-3" class="tab_content">
+                <div class="spacer">
+                    <!-- -->
+                </div><!-- .spacer -->
+
+                <div class="subgroups">
+                    <h3>{% trans 'Rank' %}</h3>
+
+                    <p>{% trans 'Global' %}: <span class="points">{{ top.position }}</span></p>
+                    {% if race.parent %}
+                    <p>{{race.parent}}: <span class="points">{{ top.position_in_parent }}</span></p>
+                    {% endif %}
+
+                    <h3>{% trans 'Position evolution' %}</h3>
+
+                    <p>{% trans 'Position evolution compared with groups of the same kind.' %}</p>
+                    <div id="legend"></div>
+                </div>
+
+                <div id="graf1" class="graf placeholder"></div>
+            </div>
+        </div>
+    </div><!-- .section-content -->
+</div><!-- .section -->
+
+<script id="source" language="javascript" type="text/javascript">
+    <!-- using flot to draw evolution -->
+    $(function () {
+        var d{{ race.id }} = [[null, 12],{% for p in top.week_evolution %}[{{p.0}},{{p.1}}],{% endfor %}[7, null]];
+
+    {% for g in race.sisters %}
+        var d{{ g.id }} = [{% for p in g.top.week_evolution %}[{{ p.0 }},{{ p.1 }}],{% endfor %}];
+    {% endfor %}
+
+    var options = { lines: { show: true }, points: { show: true },
+        xaxis: {
+            ticks: [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]
+        },
+        yaxis: {
+            transform: function (v) { return -v; },
+            inverseTransform: function (v) { return -v; },
+        },
+        legend: {
+            container: $('#legend'),
+        },
+    };
+
+    $("#tab-3").bind('custom', function() {
+        $.plot($("#graf1"), [{ label: "<strong>{{ race.name }}</strong>", color: "green", data: d{{ race.id }} }, {% for g in race.sisters %}{label: "{{ g.name }}", data:d{{ g.id }}},{% endfor %}], options);
+        $('#tab-3').unbind('custom');
+    });
+    });
+</script>
+{% endblock %}
