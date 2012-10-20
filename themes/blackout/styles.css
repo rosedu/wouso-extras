@@ -337,7 +337,7 @@ a#ChallengeGame {
 	background : transparent url(library/images/header-menu.jpg) 0 70px no-repeat;
 }
 
-a#ChallengeGame:hover {
+a#SpecialQuestGame:hover {
 	background-position : 0 0;
 }
 
@@ -345,7 +345,7 @@ a#SpecialQuestGame {
 	background : transparent url(library/images/header-menu.jpg) -105px 70px no-repeat;
 }
 
-a#SpecialQuestGame:hover {
+a#ChallengeGame:hover {
 	background-position : -105px 0;
 }
 
