@@ -986,3 +986,6 @@ div.section-content ul.tabs li a {
 div.section-content ul.tabs li.active a {
     color: #222;
 }
+a.button strong {
+    color: black
+}
