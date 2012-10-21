@@ -989,3 +989,8 @@ div.section-content ul.tabs li.active a {
 a.button strong {
     color: black
 }
+
+/* workshop */
+ul.spaced li {
+    margin: 10px;
+}
