@@ -958,3 +958,31 @@ div#header-cp {
 div.spacer-search, #sidebar, #footer {
     border: none;
 }
+fieldset {
+    padding: 8px;
+    color: #eeeeee;
+}
+legend {
+    font-weight: bold;
+}
+
+th {
+    border: none;
+    background-color: #222;
+}
+tr.selected {
+    background-color: #111;
+    color: #eeeeee;
+}
+div.second {
+    color: #dddddd;
+}
+div.section-content ul.tabs li {
+    background-color: #444;
+}
+div.section-content ul.tabs li a {
+    color: #ddd;
+}
+div.section-content ul.tabs li.active a {
+    color: #222;
+}
