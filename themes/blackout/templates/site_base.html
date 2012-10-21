@@ -92,7 +92,7 @@
 						{% if user.is_authenticated %}
 							<a href="{% url logout_view %}" id="header-logout">{% trans 'Logout' %}</a>
 
-							{% if user.is_staff %}
+							{% if perms.config.change_setting %}
 								<a href="{% url dashboard %}" id="header-control-panel">Panou de control</a>
 							{% endif %}
 						{% else %}
