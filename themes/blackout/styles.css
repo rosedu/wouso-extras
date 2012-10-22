@@ -865,6 +865,14 @@ div.group-others, div.group-noparent {
 	background : transparent url(library/images/icons/spells-positive.png) 0 center no-repeat;
 }
 
+.artifact-neutral {
+	background : transparent url(library/images/icons/spells-neutral.png) 0 center no-repeat;
+}
+
+.artifact-self {
+	background : transparent url(library/images/icons/spells-self.png) 0 center no-repeat;
+}
+
 .artifact-spells-challenge-always-lose {
 	background : transparent url(library/images/icons/spells-challenge-always-lose.png) 0 center no-repeat;
 }
