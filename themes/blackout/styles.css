@@ -1020,15 +1020,6 @@ tr.selected {
 div.second {
     color: #dddddd;
 }
-div.section-content ul.tabs li {
-    background-color: #444;
-}
-div.section-content ul.tabs li a {
-    color: #ddd;
-}
-div.section-content ul.tabs li.active a {
-    color: #222;
-}
 a.button strong {
     color: black
 }
@@ -1036,4 +1027,14 @@ a.button strong {
 /* workshop */
 ul.spaced li {
     margin: 10px;
+}
+
+/* contactbox */
+div#Contactbox {
+    z-index: 1;
+    border: none;
+    background: transparent;
+}
+td.separator hr {
+    display: none;
 }

@@ -11,6 +11,7 @@
 				{{ config_title }}
 			{% endblock %}
 		</title>
+		<link href="/static/css/contactbox.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/static/themes/{{ config_theme }}/styles.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/static/themes/{{ config_theme }}/library/css/default.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="/static/themes/{{ config_theme }}/library/css/jquery.jscrollpane.css" media="all" rel="stylesheet" type="text/css" />
@@ -72,12 +73,22 @@
 					'width' : 500
 				});
 			});
+        // contactbox ...
+        var myID = '{{player.id}}'
+        var myName = '{{player.nickname}}'
 		</script>
-		{% block scripts %}{% endblock %}
+        {% if user.is_authenticated %}
+        <script type="text/javascript" src="{{ basepath }}/static/js/contactbox.js"></script>
+        {% endif %}
+        {% block scripts %}{% endblock %}
 	</head>
 
 	<body>
-		<div class="wrapper page">
+        {% block contactbox %}
+        {% include 'interface/contactbox.html' %}
+        {% endblock %}
+
+        <div class="wrapper page">
 			<div class="spacer-small">
 				<!-- -->
 			</div><!-- .spacer-small -->
