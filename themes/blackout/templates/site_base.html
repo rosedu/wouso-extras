@@ -78,7 +78,9 @@
         var myName = '{{player.nickname}}'
 		</script>
         {% if user.is_authenticated %}
-        <script type="text/javascript" src="{{ basepath }}/static/js/contactbox.js"></script>
+            {% if not config_disable_contactbox %}
+            <script type="text/javascript" src="{{ basepath }}/static/js/contactbox.js"></script>
+            {% endif %}
         {% endif %}
         {% block scripts %}{% endblock %}
 	</head>
