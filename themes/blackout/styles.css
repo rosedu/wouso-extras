@@ -1038,3 +1038,8 @@ div#Contactbox {
 td.separator hr {
     display: none;
 }
+
+/* misc */
+div.subgroups ol {
+    margin-left: 0px;
+}
