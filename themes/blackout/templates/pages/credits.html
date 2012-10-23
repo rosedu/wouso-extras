@@ -1,0 +1,48 @@
+{% extends 'site_base.html' %}
+
+{% load user %}
+{% load artifacts %}
+{% load i18n %}
+
+
+{% block scripts %}
+	<script type="text/javascript" language="JavaScript">
+		var heights = [];
+
+		$(document).ready(function () {
+			$('div.credits').each(function() {
+				heights[$(this).attr('id')] = $(this).height();
+			});
+		});
+
+		function displayCredits(credits) {
+			$('div.credits').animate({ opacity : 0, height : 0 }, 'fast', function() {
+				window.location.hash = chapter;
+
+				$('div#credits h2 a').removeClass('credits-active');
+				$('a.link-' + credits).addClass('credits-active');
+				$('div.credits').css({ 'display' : 'none' });
+				$('div#' + credits).css({ 'display' : 'block' });
+				$('div#' + credits).stop().animate({ opacity : 1, height : heights[credits] }, 'fast', function() {
+					$('div#' + credits).css({ 'height' : 'auto' });
+				});
+			});
+		};
+	</script>
+{% endblock %}
+
+
+{% block content %}
+	<div class="section" id="credits">
+		<h2>
+			{{ staticpage.title }}:
+			<a class="link-credits-1 credits-active" href="javascript:displayCredits('credits-1');">Credits</a> &gt;
+		</h2>
+
+		<div class="section-content">
+			{% autoescape off %}
+				{{ staticpage.html_contents }}
+			{% endautoescape %}
+		</div><!-- .section-content -->
+	</div><!-- .section #credits -->
+{% endblock %}
