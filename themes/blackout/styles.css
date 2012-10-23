@@ -1031,6 +1031,9 @@ div.second {
 a.button strong {
     color: black
 }
+ul.menu, ul.submenu {
+    border-top: 1px solid #444;
+}
 
 /* workshop */
 ul.spaced li {
