@@ -113,7 +113,7 @@ p.error {
 	-webkit-border-radius : 5px 5px 5px 5px;
 }
 
-p.error b, .red, .red strong {
+p.error b, .red, .red strong, .red * {
 	color : #dd3300;
 }
 
