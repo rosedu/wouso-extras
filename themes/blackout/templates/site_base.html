@@ -136,7 +136,7 @@
 
 										<p>
 											{{ player.level.title }}
-											<span class="player-points">{{ player.points }}</span>
+											<span class="player-points">{{ player.points|floatformat:0 }}</span>
 											<span class="player-gold">{{ player.coins.gold }}</span>
 										</p>
 
@@ -146,7 +146,7 @@
 											</div><!-- .progress-bar-value -->
 										</div><!-- .progress-bar -->
 
-										<p class="progress-bar-info">{{ player.level_progress.points_left }} {% trans 'until next level' %}</p>
+										<p class="progress-bar-info">{{ player.level_progress.points_left|floatformat:0 }} {% trans 'until next level' %}</p>
 									</div><!-- #player-stats-blur -->
 
 									<div class="scroll-pane" id="player-stats-focus">

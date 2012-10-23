@@ -43,7 +43,7 @@
 									</div>
 								{% endfor %}
 							</td>
-							<td align="center">{{ user.points }}</td>
+							<td align="center">{{ user.points|floatformat:0 }}</td>
                                 <td align="center">
 							{% if toptype %}
                                 {% if user.weeklyprogress == 0 %}

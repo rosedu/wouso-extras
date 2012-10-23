@@ -26,7 +26,7 @@
         </div><!-- #profile-info -->
 
         <div class="points">
-            <h1 class="points-big">{{ race.live_points|floatformat}}</h1>
+            <h1 class="points-big">{{ race.live_points|floatformat:0}}</h1>
 
             <div class="spacer-small">
                 <!-- -->
@@ -84,7 +84,7 @@
                     {% for u in top_users %}
                     <li>
                         {% player u %}
-                        <span class="points w50">{{ u.points }}</span>
+                        <span class="points w50">{{ u.points|floatformat:0 }}</span>
                         {% if not race.parent %}
                         <span class="points w50">{% player_group u.proximate_group  %}</span>
                         {% endif %}
