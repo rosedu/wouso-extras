@@ -614,6 +614,10 @@ ul.simple {
 	background : url(../images/icons/gold.png) left center no-repeat;
 }
 
+.coin-penalty {
+    background: url(../images/icons/penalty-points-16.png) left center no-repeat;
+}
+
 p.artifact-description {
 	margin : 0 0 0 28px;
 }
