@@ -1054,3 +1054,6 @@ td.separator hr {
 div.subgroups ol {
     margin-left: 0px;
 }
+table.pyramid td {
+    padding: 0;
+}
