@@ -3,8 +3,8 @@
 {% block title %}{{ block.super }} -- Chatbox{% endblock %}
 
 {% block scripts %}
-	<link href="/static/css/chatbox.css" media="screen" rel="stylesheet" type="text/css" />
-	<script src="/static/js/chatbox.js" type="text/javascript"></script>
+	<link href="{{ basepath }}/static/css/chatbox.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="{{ basepath }}/static/js/chatbox.js" type="text/javascript"></script>
 {% endblock %}
 
 {% csrf_token %}
