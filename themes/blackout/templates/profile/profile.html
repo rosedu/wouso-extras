@@ -7,15 +7,15 @@
 {% block title %}{{ profile }}{% endblock %}
 
 {% block scripts %}
-	<script src="{{ basepath }}/static/js/tabs.js" type="text/javascript"></script>
-	<script src="{{ basepath }}/static/js/jquery.flot.min.js" type="text/javascript"></script>
-	<link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="/static/js/tabs.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.flot.min.js" type="text/javascript"></script>
+	<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
 	<div class="section">
-		<div class="profile {% if profile.series %}group-{{ profile.series.name.lower }}{% endif %} {% if profile.proximate_group %}group-{{ profile.proximate_group.name.lower }}{% endif %}">
-			<img class="profile-avatar" height="84" src="{{ avatar }}&s=84&d=http://wouso.eftimie.ro{{ basepath }}/static/themes/blackout/library/images/avatar.jpg" width="84" />
+		<div class="profile {% if profile.race %}group-{{ profile.race.name.lower }}{% endif %} {% if profile.group %}group-{{ profile.group.name.lower }}{% endif %}">
+			<img class="profile-avatar" height="84" src="{{ avatar }}&s=84&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="84" />
 
 			<div id="profile-info">
 				<h2>{{ profile }}</h2>
@@ -29,12 +29,12 @@
 
 					|
 
-					{% if profile.proximate_group != profile.series %}
-					    {% player_group profile.proximate_group %} /
+					{% if profile.group %}
+					    {% player_group profile.group %} /
 					{% endif %}
-
-					{% if profile.series %}
-						{% player_group profile.series %}
+	
+					{% if profile.race %}
+						{% player_race profile.race %}
 					{% endif %}
 				</p>
 
@@ -42,16 +42,16 @@
 					<!-- -->
 				</div><!-- .clear .spacer-small -->
 
-				{% if profile.artifact_amounts.all %}
+				{% if profile.magic.artifact_amounts.all %}
 					<ul class="artifacts" id="player-artifacts">
-						{% for a in profile.artifact_amounts.all %}
+						{% for a in profile.magic.artifact_amounts.all %}
 							<li>{% artifact a %}</li>
 						{% endfor %}
 					</ul>
 				{% endif %}
 
 				<ul class="artifacts" id="player-spells">
-					{% for s in profile.spells.all %}
+					{% for s in profile.magic.spells.all %}
 						<li>
 						{% if s.source.id == player.id %}
 							{% spell_due s %}
@@ -72,7 +72,7 @@
 			</div><!-- #profile-info -->
 
 			<div class="points">
-				<h1 class="points-big">{{ profile.points|floatformat}}</h1>
+				<h1 class="points-big">{{ profile.points|floatformat:0}}</h1>
 
 				<div class="spacer-small">
 					<!-- -->
@@ -160,11 +160,11 @@
 					</div><!-- #wall -->
 
 					{% if activity.has_previous %}
-						<a href="{% url wouso.interface.profile.views.user_profile id=profile.id page=activity.previous_page_number %}#tab-1"> Newer </a>
+						<a href="{% url player_profile id=profile.id page=activity.previous_page_number %}#tab-1"> Newer </a>
 					{% endif %}
 
 					{% if activity.has_next %}
-						<a href="{% url wouso.interface.profile.views.user_profile id=profile.id page=activity.next_page_number %}#tab-1"> Older </a>
+						<a href="{% url player_profile id=profile.id page=activity.next_page_number %}#tab-1"> Older </a>
 					{% endif %}
 				</div>
 

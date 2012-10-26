@@ -24,7 +24,7 @@
     {% for group in groups %}
         <tr>
             <th align="left" colspan="2" width="100%"><strong>{% player_group group %}</strong></th>
-            <th align="center"><strong>{{ group.player_set.count }}</strong></th>
+            <th align="center"><strong>{{ group.players.count }}</strong></th>
             <th align="center"><strong>{{ group.top.position }}</strong></th>
             <th align="center"><strong>{{group.live_points}}</strong></th>
         </tr>
@@ -32,7 +32,7 @@
             <tr>
                 <td></td>
                 <td>{% player_group g %}</td>
-                <td align="center">{{ g.player_set.count }}</td>
+                <td align="center">{{ g.players.count }}</td>
                 <td align="center">{{ g.top.position}}</td>
                 <td align="center">{{ g.live_points }}</td>
             {% endfor %}

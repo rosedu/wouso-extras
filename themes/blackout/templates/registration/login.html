@@ -58,7 +58,7 @@
 					</p>
 				</div><!-- .scroll-pane #container-login-intro -->
 
-				<form {% if not config_disable_login %}action="{% url django.contrib.auth.views.login %}"{% else %}action="/"{% endif %} method="post">
+				<form {% if not config_disable_login %}action="{% url login_view %}"{% else %}action="/"{% endif %} method="post">
 					{% csrf_token %}
 
 					<div id="container-login-left">

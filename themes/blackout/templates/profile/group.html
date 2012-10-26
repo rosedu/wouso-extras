@@ -14,25 +14,19 @@
 
 {% block content %}
 	<div class="section">
-		<div class="profile {% if group.parent %}group-{{ group.parent.name.lower }}{% endif %} group-{{ group.name.lower }}">
+		<div class="profile {% if group.parent %}group-{{ group.parent.name.lower }}{% else %}group-noparent{% endif %} group-{{ group.name.lower }}">
 			<div id="profile-info">
 				<h2>{{ group }} {% if group.title != '' %}<small>[{{ group.name }}]</small>{% endif %}</h2>
 
 				<p>
-					{% if group.gclass == 0 %}
-						{% trans 'Group' %}
-					{% else %}
-						{% if group.gclass == 1 %}
-							{% trans 'Series' %}
-						{% endif %}
-					{% endif %}
+					{% trans 'Group' %}
 
 					{% if group.parent %}
-						{% trans 'part of' %} {% player_group group.parent %}
+						{% trans 'part of' %} {% player_race group.parent %}
 					{% endif %}
 				</p>
 
-				<p>{{ group.player_set.count }} {% trans 'members' %}</p>
+				<p>{{ group.players.count }} {% trans 'members' %}</p>
 			</div><!-- #profile-info -->
 
 			<div class="points">
@@ -98,7 +92,7 @@
 								{% endfor %}
 							</ol>
 
-							<a class="goto"  href="{% url wouso.interface.profile.views.groups_index %}">{% trans 'View all' %}</a>
+							<a class="goto"  href="{% url groups_index %}">{% trans 'View all' %}</a>
 						{% endif %}
 					</div>
 

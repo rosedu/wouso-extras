@@ -30,12 +30,12 @@
 					</tr>
 					{% for user in allUsers.object_list %}
 						<tr>
-			<td>
-<a class="player-avatar-small" href="{% url player_profile user.id %}">
-<img class="avatar small player-avatar-image" src="{%  player_avatar user %}&s=44&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="44" />
-						<div class="player-avatar-race player-avatar-race-{{ user.series.name|lower }}"></div>
-</a>
-			</td>
+                        <td>
+                        <a class="player-avatar-small" href="{% url player_profile user.id %}">
+                            <img class="avatar small player-avatar-image" src="{%  player_avatar user %}&s=44&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="44" />
+                            <div class="player-avatar-race player-avatar-race-{{ user.race.name|lower }}"></div>
+                        </a>
+                        </td>
 	<td>{% player user %}
 								{% for artf in user.artifacts.all %}
 									<div class = "artifacts">
@@ -43,7 +43,7 @@
 									</div>
 								{% endfor %}
 							</td>
-							<td align="center">{{ user.points }}</td>
+							<td align="center">{{ user.points|floatformat:0 }}</td>
                                 <td align="center">
 							{% if toptype %}
                                 {% if user.weeklyprogress == 0 %}
@@ -73,11 +73,11 @@
 				</table>
 
 				{% if allUsers.has_previous %}
-					<a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.previous_page_number %}">Previous</a>
+					<a href="{% url view_top sortcrit=sortcrit toptype=toptype page=allUsers.previous_page_number %}">Previous</a>
 				{% endif %}
 
 				{% if allUsers.has_next %}
-					<a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.next_page_number %}">Next</a>
+					<a href="{% url view_top sortcrit=sortcrit toptype=toptype page=allUsers.next_page_number %}">Next</a>
 				{% endif %}
 
 				{% if page_top_prev %}

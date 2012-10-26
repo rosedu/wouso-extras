@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <!-- First segment -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- Top-left logo -->
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:adjustViewBounds="true"
+            android:contentDescription="@drawable/menu_logo"
+            android:src="@drawable/menu_logo" />
+
+        <!-- QotD button -->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="45dp" >
+
+            <Button
+                android:id="@+id/qotdbtn"
+                style="@style/specialButtons"
+                android:layout_gravity="right|center_vertical"
+                android:text="@string/qotdMarker"
+                android:textSize="30dp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Second segment -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- Challenges button -->
+
+        <Button
+            android:id="@+id/chalbtn"
+            style="@style/mainMenuButtons"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/chalMarker" />
+
+        <!-- Message button -->
+
+        <Button
+            android:id="@+id/msgbtn"
+            style="@style/mainMenuButtons"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/msgMarker" />
+    </LinearLayout>
+
+    <!-- Third segment -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- Shop button -->
+
+        <Button
+            android:id="@+id/shopbtn"
+            style="@style/mainMenuButtons"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/shopMarker" />
+
+        <!-- Weekly Quest button -->
+
+        <Button
+            android:id="@+id/spcQbtn"
+            style="@style/mainMenuButtons"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/spQuestMarker" />
+    </LinearLayout>
+
+    <!-- Fourth segment -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <!-- User Info -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+            <!-- Icon and name -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/level"
+                    android:contentDescription="@string/neversee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/profileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right" />
+            </LinearLayout>
+
+            <!-- Level, points and gold -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/levelNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="6"
+                    android:paddingRight="5dp" />
+
+                <!-- Points icon -->
+
+                <ImageView
+                    android:id="@+id/pointsicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@drawable/points"
+                    android:src="@drawable/points" />
+
+                <!-- Points amount -->
+
+                <TextView
+                    android:id="@+id/points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="6"
+                    android:paddingRight="5dp" />
+
+                <!-- Gold icon -->
+
+                <ImageView
+                    android:id="@+id/goldicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@drawable/gold"
+                    android:src="@drawable/gold" />
+
+                <!-- Gold amount -->
+
+                <TextView
+                    android:id="@+id/gold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="6" />
+            </LinearLayout>
+
+            <!-- Groups -->
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/group_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Spells -->
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/spells_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <!-- User avatar -->
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/avatar" />
+
+        <!-- Level progress -->
+
+        <ProgressBar
+            android:id="@+id/vertical_progressbar"
+            style="@style/Widget.ProgressBar.Vertical"
+            android:layout_width="12dip"
+            android:layout_height="100dip"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+</LinearLayout>

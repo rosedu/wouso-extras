@@ -38,7 +38,7 @@ AUTHOR URI: http://swarm.cs.pub.ro/~cdogaru/
 
 body {
 	background : #191d26 url(library/images/background.jpg) center top no-repeat;
-	color : #969696;
+	color : #c5c5c5;
 	font-family : Verdana, Geneva, sans-serif;
 	font-size : 12px;
 }
@@ -113,7 +113,7 @@ p.error {
 	-webkit-border-radius : 5px 5px 5px 5px;
 }
 
-p.error b {
+p.error b, .red, .red strong, .red * {
 	color : #dd3300;
 }
 
@@ -622,6 +622,14 @@ div.section-content {
 	width : 685px;
 }
 
+div.section-content ol {
+    margin-left: 30px;
+}
+div.section-content h2, div.section-content h3, div.section-content h4 {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
 div.section-half-left {
 	float : left;
 	width : 360px;
@@ -745,7 +753,7 @@ div.profile {
 	height : 127px;
 }
 
-div.group-ca, div.group-cb, div.group-cc, div.group-others {
+div.group-ca, div.group-cb, div.group-cc, div.group-others, div.group-noparent {
 	background : transparent url(library/images/profile.png) left top no-repeat;
 	height : 90px;
 	padding : 15px 30px 22px 30px;
@@ -760,7 +768,7 @@ div.group-cc {
 	background-position : left -254px;
 }
 
-div.group-others {
+div.group-others, div.group-noparent {
 	background-position : left -381px;
 }
 
@@ -857,6 +865,14 @@ div.group-others {
 	background : transparent url(library/images/icons/spells-positive.png) 0 center no-repeat;
 }
 
+.artifact-neutral {
+	background : transparent url(library/images/icons/spells-neutral.png) 0 center no-repeat;
+}
+
+.artifact-self {
+	background : transparent url(library/images/icons/spells-self.png) 0 center no-repeat;
+}
+
 .artifact-spells-challenge-always-lose {
 	background : transparent url(library/images/icons/spells-challenge-always-lose.png) 0 center no-repeat;
 }
@@ -889,6 +905,49 @@ div.group-others {
 	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
 }
 
+/* achievements */
+.artifact-default-ach-login-10 {
+    background : transparent url(library/images/icons/ach-login-10.png) 0 center no-repeat;
+}
+
+.artifact-default-ach-bad-start {
+	background : transparent url(library/images/icons/ach-bad-start.png) 0 center no-repeat;
+}
+.artifact-default-ach-chall-30 {
+	background : transparent url(library/images/icons/ach-chall-30.png) 0 center no-repeat;
+}
+.artifact-default-ach-chall-def-big {
+	background : transparent url(library/images/icons/ach-chall-def-big.png) 0 center no-repeat;
+}
+.artifact-default-ach-chall-won-10 {
+	background : transparent url(library/images/icons/ach-chall-won-10.png) 0 center no-repeat;
+}
+.artifact-default-ach-early-bird {
+	background : transparent url(library/images/icons/ach-early-bird.png) 0 center no-repeat;
+}
+.artifact-default-ach-flawless-victory {
+	background : transparent url(library/images/icons/ach-flawless-victory.png) 0 center no-repeat;
+}
+.artifact-default-ach-god-mode-on {
+	background : transparent url(library/images/icons/ach-god-mode-on.png) 0 center no-repeat;
+}
+.artifact-default-ach-night-owl {
+	background : transparent url(library/images/icons/ach-night-owl.png) 0 center no-repeat;
+}
+.artifact-default-ach-popularity {
+	background : transparent url(library/images/icons/ach-popularity.png) 0 center no-repeat;
+}
+.artifact-default-ach-qotd-10 {
+	background : transparent url(library/images/icons/ach-qotd-10.png) 0 center no-repeat;
+}
+.artifact-default-ach-this-is-sparta {
+	background : transparent url(library/images/icons/ach-this-is-sparta.png) 0 center no-repeat;
+}
+.artifact-default-ach-win-fast {
+	background : transparent url(library/images/icons/ach-win-fast.png) 0 center no-repeat;
+}
+
+/* story */
 a.chapter-active {
 	color : #ffffff;
 }
@@ -937,4 +996,61 @@ span.w50 {
 a.goto {
 	display: block;
 	text-align: right;
+}
+
+/* Cpanel styles */
+div#content-cp {
+    background: transparent url(library/images/content-middle.jpg) left top;
+    min-height: 580px;;
+}
+div#header-cp {
+    height: 20px;
+}
+div.spacer-search, #sidebar, #footer {
+    border: none;
+}
+fieldset {
+    padding: 8px;
+    color: #eeeeee;
+}
+legend {
+    font-weight: bold;
+}
+
+th {
+    border: none;
+    background-color: #222;
+}
+tr.selected {
+    background-color: #111;
+    color: #eeeeee;
+}
+div.second {
+    color: #dddddd;
+}
+a.button strong {
+    color: black
+}
+ul.menu, ul.submenu {
+    border-top: 1px solid #444;
+}
+
+/* workshop */
+ul.spaced li {
+    margin: 10px;
+}
+
+/* contactbox */
+div#Contactbox {
+    z-index: 1;
+    border: none;
+    background: transparent;
+}
+td.separator hr {
+    display: none;
+}
+
+/* misc */
+div.subgroups ol {
+    margin-left: 0px;
 }

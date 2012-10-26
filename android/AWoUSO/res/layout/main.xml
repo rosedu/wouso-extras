@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg"
     android:orientation="vertical" >
+     
+    <!-- Logo -->
 	<ImageView 
 	    android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
+        android:contentDescription="@drawable/logo"
+	    />
+	
+	<!-- Account-box -->
+	<TextView 
+	    android:id="@+id/usernameLabel"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textSize="23sp"
+	    android:textStyle="bold"
+	    android:text="@string/account"
+	    />
+	<EditText 
+	    android:id="@+id/username"
+	    android:layout_width="200sp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:inputType="text"
+	    />
+	
+	
+	<!-- Login-button -->
+	<Button
+	    android:id="@+id/loginButton"
+	    style="@style/BlueButton"
+	    android:layout_gravity="center"
+	    android:layout_marginTop="30dp"
+	    android:textStyle="bold"
+	    android:textSize="30sp"
+	    android:text="@string/loginText"
 	    />
 
 </LinearLayout>
