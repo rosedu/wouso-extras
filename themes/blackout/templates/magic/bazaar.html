@@ -7,8 +7,8 @@
 {% block sectiontitle %}{% trans 'Magic' %}{% endblock %}
 
 {% block scripts %}
-    <link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/static/js/tabs.js"></script>
+    <link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ basepath }}/static/js/tabs.js"></script>
 {% endblock %}
 
 {% block sectioncontent %}
