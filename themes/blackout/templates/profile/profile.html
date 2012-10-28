@@ -103,6 +103,10 @@
 					<a class="button button-min" href="{% url magic_cast profile.id%}" title="{% trans 'Cast a spell on this player' %}">✤</a>
 				{% endif %}
 
+				{% if profile.user.id == user.id %}
+					<a class="button button-min" href="{% url change_password %}" title="{% trans 'Change password' %}">passwd</a>
+				{% endif %}
+
 				{% autoescape off %}
 					{{ profile_actions }}
 				{% endautoescape %}
