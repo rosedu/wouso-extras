@@ -300,6 +300,15 @@ a#header-control-panel:hover {
 	background-position : 0 -25px;
 }
 
+a#header-chat-button {
+    background : transparent url(library/images/header-top-links.png) no-repeat;
+    width : 130px;
+}
+
+a#header-chat-button:hover {
+    background-position : 0 -25px;
+}
+
 a#header-logout {
 	background : transparent url(library/images/header-top-links.png) -130px 0 no-repeat;
 	width : 120px;

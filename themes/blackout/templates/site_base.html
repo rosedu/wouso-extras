@@ -121,7 +121,10 @@
 							{% if perms.config.change_setting %}
 								<a href="{% url dashboard %}" id="header-control-panel">Panou de control</a>
 							{% endif %}
-						{% else %}
+                            {% if not config_disable_chat  %}
+                                <a href="{% url chat_home %}" id="header-chat-button">Chat</a>
+                            {% endif %}
+                        {% else %}
 							<a href="{% url login_view %}" id="header-login">{% trans 'Login' %}</a>
 						{% endif %}
 
