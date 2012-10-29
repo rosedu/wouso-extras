@@ -1,0 +1,62 @@
+{% extends base_template %}
+{% load user %}
+{% load artifacts %}
+{% load i18n %}
+{% block title %}{{block.super}} -- Global Chat{% endblock %}
+
+{% block scripts %}
+    <link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ basepath }}/static/js/tabs.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/jquery.flot.min.js"></script>
+    {% if config_disable_private_chat %}
+        {% load socketio_tags %}
+        {% socketio %}
+        <script type="text/javascript" src="{{ basepath }}/static/js/chatbox.js"></script>
+    {% endif %}
+{% endblock %}
+
+{% csrf_token %}
+{% block content %}
+<div class="section">
+    <h2>{% trans 'Chat ' %}</h2>
+
+    <div class="section-content">
+    <br>
+    <ul class="tabs">
+        <li><a href="#tab-1">{% trans 'Global' %}</a></li>
+    </ul>
+    <div class="tab_container">
+        <div id="tab-1" class="tab_content">
+
+            <div id="Globalbox">
+                <table >
+
+                    <tr><td colspan="1"><div id="GlobalboxTextArea"></div></td>
+                        <td colspan="1"><div id="GlobalboxUserList"></div></td>
+                    </tr>
+                    <tr>
+                        <td colspan = "1"><input type="text" id="GlobalboxTextBox"/></td>
+                        <td colspan = "1"><input type="button" class="caction" id="GlobalboxProfileButton"   value="P" title="View profile"/>
+                                          <input type="button" class="caction" id="GlobalboxMesajeButton"    value="M" title="Send a message"/>
+                                          {% if not config_disable_private_chat %}
+                                              <input type="button" class="caction" id="GlobalboxChatButton"      value="C" title="Make a private conversation"/>
+                                          {% endif %}
+                                          <input type="button" class="caction" id="GlobalboxSpellButton"     value="S" title="Cast a spell on this player"/>
+                                          <input type="button" class="caction" id="GlobalboxChallengeButton" value="F" title="Challenge this player"/>
+                        <td>
+                    </tr>
+                    <tr>
+                        <td colspan = "1"><input type="button" id="GlobalboxSendButton" value="Send"/>
+                        <td colspan = "1"><a class="button button-min" href="{% url archive %}" title="{% trans 'Send a message' %}">Archive</a>
+
+
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    </div><!-- .section-content -->
+</div><!-- .section -->
+{% endblock %}
+
