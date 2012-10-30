@@ -347,7 +347,7 @@ a#ChallengeGame {
 }
 
 a#ChallengeGame:hover {
-	background-position : 0 0;
+	background-position : -105px 0;
 }
 
 a#SpecialQuestGame {
@@ -355,7 +355,7 @@ a#SpecialQuestGame {
 }
 
 a#SpecialQuestGame:hover {
-	background-position : -105px 0;
+	background-position : 0 0;
 }
 
 a#Message {
