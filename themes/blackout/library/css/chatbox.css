@@ -72,9 +72,9 @@
     height:300px;
     width:480px;
     background-color: white;
-
     border: thin solid black;
     overflow: auto;
+    color:#00415e;
 }
 
 
