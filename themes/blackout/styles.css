@@ -913,8 +913,11 @@ div.group-others, div.group-noparent {
 .artifact-default-ach-bad-start {
 	background : transparent url(library/images/icons/ach-bad-start.png) 0 center no-repeat;
 }
-.artifact-default-ach-chall-30 {
-	background : transparent url(library/images/icons/ach-chall-30.png) 0 center no-repeat;
+.artifact-default-ach-spell-5 {
+	background : transparent url(library/images/icons/ach-spell-5.png) 0 center no-repeat;
+}
+.artifact-default-ach-chall-100, .artifact-default-ach-chall-10-a-day {
+	background : transparent url(library/images/icons/ach-chall-100.png) 0 center no-repeat;
 }
 .artifact-default-ach-chall-def-big {
 	background : transparent url(library/images/icons/ach-chall-def-big.png) 0 center no-repeat;
