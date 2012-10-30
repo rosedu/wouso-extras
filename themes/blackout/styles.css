@@ -1034,7 +1034,9 @@ a.button strong {
 ul.menu, ul.submenu {
     border-top: 1px solid #444;
 }
-
+ul.menu li a {
+    color : #1470cc;
+}
 /* workshop */
 ul.spaced li {
     margin: 10px;
