@@ -1067,3 +1067,8 @@ table.pyramid td {
 .section-content #GlobalboxTextArea, .section-content #GlobalboxUserList {
     border: thin solid #222;
 }
+
+.section-content #GlobalboxTextBox {
+    background-position: top right;
+    width: 620px;
+}
