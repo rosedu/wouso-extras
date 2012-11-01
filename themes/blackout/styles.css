@@ -300,7 +300,7 @@ a#header-control-panel:hover {
 	background-position : 0 -25px;
 }
 
-a#header-logout {
+a#header-logout, a#header-chat {
 	background : transparent url(library/images/header-top-links.png) -130px 0 no-repeat;
 	width : 120px;
 }
@@ -1061,4 +1061,9 @@ div.subgroups ol {
 }
 table.pyramid td {
     padding: 0;
+}
+
+/* Chat */
+.section-content #GlobalboxTextArea, .section-content #GlobalboxUserList {
+    border: thin solid #222;
 }
