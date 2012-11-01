@@ -324,14 +324,14 @@
 					<span>{% trans 'Powered by:' %}</span>
 				</div><!-- .footer-content-right -->
 
+                {% autoescape off %}
+              		{{ config_hidden_footer }}
+                {% endautoescape %}
+
 				<div class="clear">
 					<!-- -->
 				</div><!-- .clear -->
 			</div><!-- #footer-content -->
 		</div><!-- #footer -->
-
-		{% autoescape off %}
-		{{ config_hidden_footer }}
-		{% endautoescape %}
 	</body>
 </html>
