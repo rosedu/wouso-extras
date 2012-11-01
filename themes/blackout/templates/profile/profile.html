@@ -106,6 +106,10 @@
 				{% autoescape off %}
 					{{ profile_actions }}
 				{% endautoescape %}
+
+                {% if profile.user.id == user.id %}
+                    <a class="button button-min" href="{% url set_profile %}" title="{% trans 'Set your profile' %}">S</a>
+                {% endif %}
 			</div>
 
 			{% if perms.config.change_setting %}
