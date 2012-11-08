@@ -45,7 +45,7 @@
 				{% if profile.magic.artifact_amounts.all %}
 					<ul class="artifacts" id="player-artifacts">
 						{% for a in profile.magic.artifact_amounts.all %}
-							<li><a href="{% url artifact_hof a.id %}">{% artifact a %}</a></li>
+							<li><a href="{% url artifact_hof a.artifact.id %}">{% artifact a %}</a></li>
 						{% endfor %}
 					</ul>
 				{% endif %}
