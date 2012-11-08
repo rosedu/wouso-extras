@@ -1062,6 +1062,9 @@ div.subgroups ol {
 table.pyramid td {
     padding: 0;
 }
+table.pyramid td a.player-avatar {
+    margin: 0;
+}
 
 /* Chat */
 .section-content #GlobalboxTextArea, .section-content #GlobalboxUserList {
@@ -1070,7 +1073,7 @@ table.pyramid td {
 
 .section-content .ArchiveTextArea{
     border: thin solid #222;
-    
+
     display:block;
     padding: 3px;
     text-align:left;
