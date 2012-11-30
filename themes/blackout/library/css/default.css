@@ -223,6 +223,10 @@ li label:hover {
 	-webkit-border-radius : 5px 5px 5px 5px;
 }
 
+li label.checkbox {
+    width: 20px;
+}
+
 /* profile page */
 #profile-info {
 	float : left;
