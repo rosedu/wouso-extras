@@ -3,8 +3,8 @@
 {% load i18n %}
 
 {% block scripts %}
-	<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="/static/js/tabs.js"></script>
+	<link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{ basepath }}/static/js/tabs.js"></script>
 {% endblock %}
 
 {% block title %}{% trans 'Messaging' %}{% endblock %}
@@ -113,7 +113,7 @@
 		tabToURL("rec", "{% url quiet_home box='rec' quiet='q' %}");
 		tabToURL("sent", "{% url quiet_home box='sent' quiet='q' %}");
 		tabToURL("all", "{% url quiet_home box='all' quiet='q' %}");
-	
+
 		$('#rec').trigger('custom');
 	</script>
 {% endblock %}

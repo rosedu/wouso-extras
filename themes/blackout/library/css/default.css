@@ -223,6 +223,10 @@ li label:hover {
 	-webkit-border-radius : 5px 5px 5px 5px;
 }
 
+li label.checkbox {
+    width: 20px;
+}
+
 /* profile page */
 #profile-info {
 	float : left;
@@ -612,6 +616,10 @@ ul.simple {
 
 .coin-gold {
 	background : url(../images/icons/gold.png) left center no-repeat;
+}
+
+.coin-penalty {
+    background: url(../images/icons/penalty-points-16.png) left center no-repeat;
 }
 
 p.artifact-description {

@@ -7,9 +7,9 @@
 {% block title %}{{ group }}{% endblock %}
 
 {% block scripts %}
-	<script src="/static/js/tabs.js" type="text/javascript"></script>
-	<script src="/static/js/jquery.flot.min.js" type="text/javascript"></script>
-	<link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="{{ basepath }}/static/js/tabs.js" type="text/javascript"></script>
+	<script src="{{ basepath }}/static/js/jquery.flot.min.js" type="text/javascript"></script>
+	<link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -92,7 +92,7 @@
 								{% endfor %}
 							</ol>
 
-							<a class="goto"  href="{% url groups_index %}">{% trans 'View all' %}</a>
+							<a class="goto"  href="{% url top_classes %}">{% trans 'View all' %}</a>
 						{% endif %}
 					</div>
 

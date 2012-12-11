@@ -4,7 +4,7 @@
 {% load user %}
 {% load i18n %}
 
-{% block title %}{{ group }}{% endblock %}
+{% block title %}{{ race }}{% endblock %}
 
 {% block scripts %}
 <script src="/static/js/tabs.js" type="text/javascript"></script>
@@ -50,6 +50,7 @@
 
         <ul class="tabs">
             <li><a href="#tab-1">{% trans 'Top users' %}</a></li>
+            <li><a href="#tab-4">{% trans 'Info' %}</a></li>
             <li><a href="#tab-2">{% trans 'Activity' %}</a></li>
             <li><a href="#tab-3">{% trans 'Evolution' %}</a></li>
         </ul>
@@ -76,7 +77,7 @@
                     {% endif %}
 
 
-                    <a class="goto"  href="{% url groups_index %}">{% trans 'View all' %}</a>
+                    <a class="goto"  href="{% url top_classes %}">{% trans 'View all' %}</a>
                 </div>
 
                 <ol class="top top-left">
@@ -128,6 +129,17 @@
                 </div>
 
                 <div id="graf1" class="graf placeholder"></div>
+            </div>
+
+            <div id="tab-4" class="tab_content">
+                <div class="spacer"><!-- --></div>
+
+                <h4>{% trans 'Levels' %}</h4>
+                <ol>
+                    {% for l in levels %}
+                    <li>{% artifact l %} {{ l.title }} <span class="points">&lt; {{ l.limit }}</span></li>
+                    {% endfor %}
+                </ol>
             </div>
         </div>
     </div><!-- .section-content -->

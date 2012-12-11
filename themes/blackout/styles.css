@@ -300,7 +300,7 @@ a#header-control-panel:hover {
 	background-position : 0 -25px;
 }
 
-a#header-logout {
+a#header-logout, a#header-chat {
 	background : transparent url(library/images/header-top-links.png) -130px 0 no-repeat;
 	width : 120px;
 }
@@ -913,8 +913,11 @@ div.group-others, div.group-noparent {
 .artifact-default-ach-bad-start {
 	background : transparent url(library/images/icons/ach-bad-start.png) 0 center no-repeat;
 }
-.artifact-default-ach-chall-30 {
-	background : transparent url(library/images/icons/ach-chall-30.png) 0 center no-repeat;
+.artifact-default-ach-spell-5 {
+	background : transparent url(library/images/icons/ach-spell-5.png) 0 center no-repeat;
+}
+.artifact-default-ach-chall-100, .artifact-default-ach-chall-10-a-day {
+	background : transparent url(library/images/icons/ach-chall-100.png) 0 center no-repeat;
 }
 .artifact-default-ach-chall-def-big {
 	background : transparent url(library/images/icons/ach-chall-def-big.png) 0 center no-repeat;
@@ -1034,7 +1037,9 @@ a.button strong {
 ul.menu, ul.submenu {
     border-top: 1px solid #444;
 }
-
+ul.menu li a {
+    color : #1470cc;
+}
 /* workshop */
 ul.spaced li {
     margin: 10px;
@@ -1053,4 +1058,33 @@ td.separator hr {
 /* misc */
 div.subgroups ol {
     margin-left: 0px;
+}
+table.pyramid td {
+    padding: 0;
+}
+table.pyramid td a.player-avatar {
+    margin: 0;
+}
+
+/* Chat */
+.section-content #GlobalboxTextArea, .section-content #GlobalboxUserList {
+    border: thin solid #222;
+}
+
+.section-content .ArchiveTextArea{
+    border: thin solid #222;
+
+    display:block;
+    padding: 3px;
+    text-align:left;
+    height:300px;
+    width:500px;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+
+.section-content #GlobalboxTextBox {
+    background-position: top right;
+    width: 620px;
 }
