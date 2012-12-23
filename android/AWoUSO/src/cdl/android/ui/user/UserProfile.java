@@ -41,7 +41,7 @@ public class UserProfile extends Activity {
 
 		final String username = getIntent().getExtras().getString("username");
 		try {
-			userInfo = GeneralHandler.getUserInfo(username);
+			userInfo = GeneralHandler.getUserInfo(this);
 		} catch (NullPointerException ex) {
 			// User does not exist.
 			Toast.makeText(getApplicationContext(), "Username is not in the database", Toast.LENGTH_SHORT).show();

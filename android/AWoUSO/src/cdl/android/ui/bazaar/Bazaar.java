@@ -25,7 +25,7 @@ public class Bazaar extends Activity {
 		mListView.setEmptyView(findViewById(android.R.id.empty));
 		mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		String username = mPreferences.getString("username", null);
-		mItems = GeneralHandler.getBazaar(username);
+		mItems = GeneralHandler.getBazaar(this);
 		mListView.setAdapter(new BazaarAdapter(this, mItems, new OnClickListener() {
 			public void onClick(View v) {
 			}

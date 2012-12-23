@@ -37,7 +37,6 @@ import cdl.android.general.Qotd;
 import cdl.android.general.ServerResponse;
 import cdl.android.general.UserInfo;
 import cdl.android.server.ApiHandler;
-import cdl.android.server.AuthHandler;
 import cdl.android.server.GeneralHandler;
 import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.challenge.menu.ChallengeMenu;
@@ -70,10 +69,9 @@ public class MainMenu extends Activity {
 
 		/** Gets user info from the server */
 		try {
-			userInfo = GeneralHandler.getUserInfo(username);
+			userInfo = GeneralHandler.getUserInfo(this);
 		} catch (NullPointerException ex) {
-			AuthHandler helper = new AuthHandler(this);
-			helper.logOut();
+			AuthActivity.logOut(this);
 			Toast.makeText(this, "Login error, please relogin!", Toast.LENGTH_SHORT).show();
 			return;
 
@@ -164,7 +162,7 @@ public class MainMenu extends Activity {
 				String username = mPreferences.getString("username", null);
 				final Qotd qotd;
 				try {
-					qotd = GeneralHandler.getQOTD(username);
+					qotd = GeneralHandler.getQOTD(v.getContext());
 				} catch (JSONException e) {
 					Toast.makeText(getApplication(), "No QOTD today!", Toast.LENGTH_SHORT).show();
 					return;
@@ -235,8 +233,7 @@ public class MainMenu extends Activity {
 			toast = "Not yet";
 			break;
 		case R.id.logout:
-			AuthHandler authHelper = new AuthHandler(this);
-			authHelper.logOut();
+			AuthActivity.logOut(this);
 		default:
 			return true;
 		}

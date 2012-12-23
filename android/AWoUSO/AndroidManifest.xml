@@ -12,7 +12,7 @@
         android:icon="@drawable/androidicon"
         android:label="@string/app_name" >
         <activity
-            android:name=".ui.main.LoginScreen"
+            android:name=".ui.main.AuthActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity
+            android:name=".ui.main.AuthorizeActivity">
+         </activity>
         <activity android:name=".ui.bazaar.Bazaar" >
         </activity>
         <activity android:name=".ui.bazaar.Exchange" >

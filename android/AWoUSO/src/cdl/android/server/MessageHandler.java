@@ -12,10 +12,10 @@ import cdl.android.general.ServerResponse;
 import cdl.android.ui.message.MessageItem;
 
 public class MessageHandler {
-	private static final String msgReceivedAPICallURL = GeneralHandler.getBaseURL() + "messages/recv/?user=";
-	private static final String msgSentAPICallURL = GeneralHandler.getBaseURL() + "messages/sent/?user=";
-	private static final String msgAllAPICallURL = GeneralHandler.getBaseURL() + "messages/all/?user=";
-	private static final String msgSendAPICallURL = GeneralHandler.getBaseURL() + "messages/send/?user=";
+	private static final String msgReceivedAPICallURL = GeneralHandler.getBaseURL() + "messages/recv/";
+	private static final String msgSentAPICallURL = GeneralHandler.getBaseURL() + "messages/sent/";
+	private static final String msgAllAPICallURL = GeneralHandler.getBaseURL() + "messages/all/";
+	private static final String msgSendAPICallURL = GeneralHandler.getBaseURL() + "messages/send/";
 
 	public static ServerResponse sendMessage(String user, String to, String subject, String text) {
 		/**
@@ -37,7 +37,8 @@ public class MessageHandler {
 	 */
 	public static ArrayList<MessageItem> getReceived(String username) {
 		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
-		JSONArray jArray = ApiHandler.getArray(msgReceivedAPICallURL + username);
+		//TODO: JSONArray jArray = ApiHandler.getArray(msgReceivedAPICallURL);
+		JSONArray jArray = new JSONArray();
 
 		try {
 			for (int i = 0; i < jArray.length(); i++) {
@@ -59,7 +60,8 @@ public class MessageHandler {
 	 */
 	public static ArrayList<MessageItem> getSent(String username) {
 		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
-		JSONArray jArray = ApiHandler.getArray(msgSentAPICallURL + username);
+		//TODO: JSONArray jArray = ApiHandler.getArray(msgSentAPICallURL);
+		JSONArray jArray = new JSONArray();
 
 		try {
 			for (int i = 0; i < jArray.length(); i++) {
@@ -80,7 +82,8 @@ public class MessageHandler {
 	 */
 	public static ArrayList<MessageItem> getAll(String username) {
 		ArrayList<MessageItem> items = new ArrayList<MessageItem>();
-		JSONArray jArray = ApiHandler.getArray(msgAllAPICallURL + username);
+		//JSONArray jArray = ApiHandler.getArray(msgAllAPICallURL);
+		JSONArray jArray = new JSONArray();
 
 		try {
 			for (int i = 0; i < jArray.length(); i++) {

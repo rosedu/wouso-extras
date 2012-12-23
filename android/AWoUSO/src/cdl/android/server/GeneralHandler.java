@@ -6,13 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import cdl.android.general.BazaarItem;
 import cdl.android.general.Qotd;
 import cdl.android.general.UserInfo;
 
 public class GeneralHandler {
 	private static final String baseURL = "http://wouso-next.rosedu.org/api/";
-	private static final String userInfoURL = baseURL + "info/?user=";
+	private static final String userInfoURL = baseURL + "info/";
 	private static final String bazaarInfoURL = baseURL + "bazaar/?user=";
 	private static final String qotdInfoURL = baseURL + "qotd/today/?user=";
 
@@ -29,8 +30,8 @@ public class GeneralHandler {
 	 * 
 	 * @return an UserInfo instance
 	 */
-	public static UserInfo getUserInfo(String username) {
-		JSONObject result = ApiHandler.get(userInfoURL + username);
+	public static UserInfo getUserInfo(Context context) {
+		JSONObject result = ApiHandler.get(userInfoURL, context);
 		UserInfo user = new UserInfo(result);
 		return user;
 	}
@@ -41,8 +42,8 @@ public class GeneralHandler {
 	 * @return an Qotd instance
 	 * @throws JSONException
 	 */
-	public static Qotd getQOTD(String username) throws JSONException {
-		JSONObject result = ApiHandler.get(qotdInfoURL + username);
+	public static Qotd getQOTD(Context context) throws JSONException {
+		JSONObject result = ApiHandler.get(qotdInfoURL, context);
 		Qotd qotd = new Qotd(result);
 		return qotd;
 	}
@@ -55,9 +56,9 @@ public class GeneralHandler {
 	 * @return A List of the parsed available items.
 	 */
 	// TODO 3: remove this, the bazaar info will be retrieved from a local config file <= perhaps just cache it locally and check for changes?
-	public static ArrayList<BazaarItem> getBazaar(String username) {
+	public static ArrayList<BazaarItem> getBazaar(Context context) {
 		ArrayList<BazaarItem> items = new ArrayList<BazaarItem>();
-		JSONObject result = ApiHandler.get(bazaarInfoURL + username);
+		JSONObject result = ApiHandler.get(bazaarInfoURL, context);
 
 		try {
 			JSONArray arr = result.getJSONArray("spells");

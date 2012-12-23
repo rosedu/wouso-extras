@@ -86,10 +86,10 @@ public class ChallengeHandler {
 	public static void changeChallengeState(int challenge_id, int otherState) {
 		String myCall = baseChallengeURL + challenge_id + "/";
 		if (otherState == 0) {
-			ApiHandler.get(myCall + "accept/?user=" + MainMenu.getLoggedUsername());
+			//ApiHandler.get(myCall + "accept/", this);
 		}
 		if (otherState == 2) {
-			ApiHandler.get(myCall + "refuse/?user=" + MainMenu.getLoggedUsername());
+			//ApiHandler.get(myCall + "refuse/");
 		}
 	}
 
@@ -101,8 +101,10 @@ public class ChallengeHandler {
 	 * @return The parsed Challenge Info.
 	 */
 	public static ChallengeInfo getChallengeInfo(int challenge_id) {
-		JSONObject object = ApiHandler.get(baseChallengeURL + challenge_id + "/?user=" + MainMenu.getLoggedUsername());
-		return new ChallengeInfo(object);
+		//TODO:
+		//JSONObject object = ApiHandler.get(baseChallengeURL + challenge_id + "/");
+		//return new ChallengeInfo(object);
+		return null;
 	}
 
 	/**
@@ -113,18 +115,22 @@ public class ChallengeHandler {
 	 * @return whether the challenge was successfully started.
 	 */
 	public static boolean startChallenge(String otherPlayer) {
-		JSONObject object = ApiHandler.get(challengeLaunchURL + otherPlayer + "/?user=" + MainMenu.getLoggedUsername());
-		return object != null;
+		//TODO:
+		//JSONObject object = ApiHandler.get(challengeLaunchURL + otherPlayer + "/");
+		//return object != null;
+		return false;
 	}
-
+	
 	/**
 	 * Gets the challenge list for the logged user.
 	 * 
 	 * @return A wrapper class describing all the challenges.
 	 */
 	public static RChallengeList getChallengeList() {
-		JSONArray result = ApiHandler.getArray(challengeListURL + MainMenu.getLoggedUsername());
-		return new RChallengeList(result);
+		//TODO:
+		//JSONArray result = ApiHandler.getArray(challengeListURL + MainMenu.getLoggedUsername());
+		//return new RChallengeList(result);
+		return null;
 	}
 
 }
