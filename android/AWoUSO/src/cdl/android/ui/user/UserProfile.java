@@ -2,6 +2,8 @@ package cdl.android.ui.user;
 
 import java.io.File;
 
+import org.json.JSONException;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -18,9 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
+import cdl.android.general.ServerResponse;
 import cdl.android.general.UserInfo;
+import cdl.android.server.ApiHandler;
 import cdl.android.server.ChallengeHandler;
-import cdl.android.server.GeneralHandler;
 
 /**
  * Other users' profiles
@@ -40,13 +43,21 @@ public class UserProfile extends Activity {
 		setContentView(R.layout.user_profile);
 
 		final String username = getIntent().getExtras().getString("username");
-		try {
-			userInfo = GeneralHandler.getUserInfo(this);
-		} catch (NullPointerException ex) {
-			// User does not exist.
-			Toast.makeText(getApplicationContext(), "Username is not in the database", Toast.LENGTH_SHORT).show();
+		
+		/** Gets user info from the server */
+		userInfo = new UserInfo();
+		ServerResponse resp = ApiHandler.get(ApiHandler.userInfoURL, this);
+		if (resp.getStatus() == false) {
+			Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
 			return;
-		}
+		} else
+			try {
+				userInfo.parseContent(resp.getData());
+			} catch (JSONException e) {
+				Toast.makeText(this, "Server response format error.",
+						Toast.LENGTH_SHORT).show();
+				return;
+			}
 
 		// Get interface elements.
 		messageButton = (Button) findViewById(R.id.usermsgbtn);

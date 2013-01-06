@@ -29,27 +29,26 @@ public class UserInfo {
 	double levelPercent;
 
 	/**
-	 * Creates new UserInfo from a JSONObject probably taken from the website's
-	 * API.
+	 * Creates new UserInfo from a JSONObject
 	 * 
 	 * @param jObj
 	 *            The JSONObject to be parsed.
+	 * @throws JSONException 
 	 */
-	public UserInfo(JSONObject jObj) {
-		try {
-			levelNo = jObj.getInt("level_no");
-			firstName = jObj.getString("first_name");
-			lastName = jObj.getString("last_name");
-			points = jObj.getInt("points");
-			gold = jObj.getInt("gold");
-			group = jObj.getString("group");
-			levelNo = jObj.getInt("level_no");
-			avatarUrl = jObj.getString("avatar");
-			levelPercent = jObj.getJSONObject("level_progress").getDouble("percent");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+	public void parseContent(JSONObject jObj) throws JSONException {
+		levelNo = jObj.getInt("level_no");
+		firstName = jObj.getString("first_name");
+		lastName = jObj.getString("last_name");
+		points = jObj.getInt("points");
+		gold = jObj.getInt("gold");
+		group = jObj.getString("group");
+		levelNo = jObj.getInt("level_no");
+		avatarUrl = jObj.getString("avatar");
+		levelPercent = jObj.getJSONObject("level_progress")
+				.getDouble("percent");
 	}
+
+	// TODO: separate parse method with throw
 
 	public double getLevelPercent() {
 		return levelPercent;
@@ -63,10 +62,12 @@ public class UserInfo {
 	// and decide where to keep the method for a more general purpose
 	public static void setAvatar(ImageView avatar, String url) {
 
-		Bitmap b = BitmapFactory.decodeResource(avatar.getContext().getResources(), R.drawable.empty);
+		Bitmap b = BitmapFactory.decodeResource(avatar.getContext()
+				.getResources(), R.drawable.empty);
 		avatar.setImageBitmap(b);
 		try {
-			HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
+			HttpURLConnection con = (HttpURLConnection) (new URL(url))
+					.openConnection();
 			con.connect();
 			b = BitmapFactory.decodeStream(con.getInputStream());
 			avatar.setImageBitmap(b);

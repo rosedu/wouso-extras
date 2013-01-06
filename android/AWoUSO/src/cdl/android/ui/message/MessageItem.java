@@ -11,17 +11,12 @@ public class MessageItem {
 	private String subject;
 	private String content;
 	private String date;
-
-	public MessageItem(JSONObject obj) {
-		try {
-			author = obj.getString("from");
-			subject = obj.getString("subject");
-			content = obj.getString("text");
-			date = obj.getString("date");
-
-		} catch (JSONException ex) {
-			ex.printStackTrace();
-		}
+	
+	public void parseContent(JSONObject obj) throws JSONException {
+		author = obj.getString("from");
+		subject = obj.getString("subject");
+		content = obj.getString("text");
+		date = obj.getString("date");
 	}
 
 	public String getAuthor() {

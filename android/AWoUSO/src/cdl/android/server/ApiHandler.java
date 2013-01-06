@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import oauth.signpost.OAuthConsumer;
@@ -29,17 +28,24 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import cdl.android.general.ServerResponse;
-import cdl.android.ui.main.OAuthHelper;
 
 /**
- * HTTP API requests to the WoUSO Server
+ * HTTP Generic API requests to the WoUSO Server
  */
 public class ApiHandler {
 
-	private ApiHandler() {
-	}
+	public static final String baseURL = "http://wouso-next.rosedu.org/api/";
+	public static final String userInfoURL = baseURL + "info/";
+	public static final String bazaarInfoURL = baseURL + "bazaar/";
+	public static final String qotdInfoURL = baseURL + "qotd/today/";
+	public static final String msgReceivedAPICallURL = baseURL + "messages/recv/";
+	public static final String msgSentAPICallURL = baseURL + "messages/sent/";
+	public static final String msgAllAPICallURL = baseURL + "messages/all/";
+	public static final String msgSendAPICallURL = baseURL + "messages/send/";
+	public static final String baseChallengeURL = baseURL + "challenge/";
+	public static final String challengeListURL = baseURL + "challenge/list/";
+	public static final String challengeLaunchURL = baseURL + "challenge/launch/";
 
 	/**
 	 * Gets a general HTTP string.
@@ -47,8 +53,16 @@ public class ApiHandler {
 	 * @param req
 	 *            The url to get it from.
 	 * @return A String containing the data.
+	 * @throws OAuthCommunicationException
+	 * @throws OAuthExpectationFailedException
+	 * @throws OAuthMessageSignerException
+	 * @throws IOException
+	 * @throws ClientProtocolException
 	 */
-	public static String getHTTP(String url, Context context) {
+	public static String getHTTP(String url, Context context)
+			throws OAuthMessageSignerException,
+			OAuthExpectationFailedException, OAuthCommunicationException,
+			ClientProtocolException, IOException {
 
 		StringBuilder responseBuilder = new StringBuilder();
 
@@ -61,36 +75,19 @@ public class ApiHandler {
 		mConsumer.setTokenWithSecret(mAppInfo.getString("auth_token", null),
 				mAppInfo.getString("auth_secret", null));
 
-		try {
-			DefaultHttpClient httpclient = new DefaultHttpClient();
-			HttpGet request = new HttpGet(url);
-			Log.i("lala", "Requesting URL : " + url);
-			mConsumer.sign(request);
-			HttpResponse response = httpclient.execute(request);
-			Log.i("lala", "Statusline : " + response.getStatusLine());
-			InputStream data = response.getEntity().getContent();
-			BufferedReader bufferedReader = new BufferedReader(
-					new InputStreamReader(data));
-			String responeLine;
-			while ((responeLine = bufferedReader.readLine()) != null) {
-				responseBuilder.append(responeLine);
-			}
-			Log.i("lala", "Response : " + responseBuilder.toString());
-		} catch (ClientProtocolException e) {
-			System.err.println("Exception: " + e.getMessage());
-		} catch (IOException e) {
-			System.err.println("Exception: " + e.getMessage());
-		} catch (OAuthMessageSignerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (OAuthExpectationFailedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (OAuthCommunicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		/** Send request */
+		DefaultHttpClient httpclient = new DefaultHttpClient();
+		HttpGet request = new HttpGet(url);
+		mConsumer.sign(request);
+		HttpResponse response = httpclient.execute(request);
+		InputStream data = response.getEntity().getContent();
+		BufferedReader bufferedReader = new BufferedReader(
+				new InputStreamReader(data));
+		String responeLine;
+		while ((responeLine = bufferedReader.readLine()) != null) {
+			responseBuilder.append(responeLine);
 		}
-			
+
 		return responseBuilder.toString();
 	}
 
@@ -100,20 +97,30 @@ public class ApiHandler {
 	 * @param request
 	 * @return JSONObject with the server response
 	 */
-	public static JSONObject get(String req, Context context) {
+	public static ServerResponse get(String req, Context context) {
 		JSONObject jObject;
-		String info = getHTTP(req, context);
-		System.out.println("Got " + info);
+		String info;
+		ServerResponse result = new ServerResponse();
 
-		/** TODO: Check invalid response from server or error */
 		try {
-			jObject = new JSONObject(info);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
+			info = getHTTP(req, context);
+		} catch (Exception e1) {
+			result.setStatus(false);
+			result.setError("Server communication error.");
+			return result;
 		}
 
-		return jObject;
+		try {
+			jObject = new JSONObject(info);
+			result.setData(jObject);
+			result.setStatus(true);
+		} catch (JSONException e) {
+			result.setStatus(false);
+			result.setError("Server response format error.");
+			return result;
+		}
+
+		return result;
 	}
 
 	/**
@@ -123,20 +130,30 @@ public class ApiHandler {
 	 *            The request
 	 * @return JSONArray with the server response
 	 */
-	public static JSONArray getArray(String req, Context context) {
-		JSONArray jObject = null;
+	public static ServerResponse getArray(String req, Context context) {
+		JSONArray jObject;
+		String info;
+		ServerResponse result = new ServerResponse();
 
-		/** HTTP request */
-		String info = getHTTP(req, context);
-
-		/** TODO: Check invalid response from server or error */
 		try {
-			jObject = new JSONArray(info);
-		} catch (JSONException e) {
-			e.printStackTrace();
+			info = getHTTP(req, context);
+		} catch (Exception e1) {
+			result.setStatus(false);
+			result.setError("Server communication error.");
+			return result;
 		}
 
-		return jObject;
+		try {
+			jObject = new JSONArray(info);
+			result.setArrayData(jObject);
+			result.setStatus(true);
+		} catch (JSONException e) {
+			result.setStatus(false);
+			result.setError("Server response format error.");
+			return result;
+		}
+
+		return result;
 	}
 
 	/**
@@ -147,29 +164,54 @@ public class ApiHandler {
 	 * @param data
 	 *            The data to send.
 	 * @return The server's response to the POST.
+	 * @throws IOException
+	 * @throws OAuthCommunicationException
+	 * @throws OAuthExpectationFailedException
+	 * @throws OAuthMessageSignerException
+	 * @throws ClientProtocolException
 	 */
-	public static ServerResponse sendPost(String host, List<NameValuePair> data) {
-		ServerResponse res;
+	public static HttpResponse postHttp(String host, List<NameValuePair> data,
+			Context context) throws OAuthMessageSignerException,
+			OAuthExpectationFailedException, OAuthCommunicationException,
+			ClientProtocolException, IOException {
 		String url = host;
 		HttpPost httpost = new HttpPost(url);
-		HttpResponse res2 = null;
+		HttpResponse res = null;
 		DefaultHttpClient mHttpClient = new DefaultHttpClient();
+
+		/** Setup OAuth signer */
+		OAuthConsumer mConsumer = new CommonsHttpOAuthConsumer(
+				OAuthHelper.CONSUMER_KEY, OAuthHelper.CONSUMER_SECRET);
+		mConsumer.setMessageSigner(new PlainTextMessageSigner());
+		SharedPreferences mAppInfo = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		mConsumer.setTokenWithSecret(mAppInfo.getString("auth_token", null),
+				mAppInfo.getString("auth_secret", null));
+
+		/** Send post */
+		httpost.setEntity(new UrlEncodedFormEntity(data));
+		mConsumer.sign(httpost);
+		res = mHttpClient.execute(httpost);
+
+		return res;
+	}
+
+	public static ServerResponse sendPost(String host,
+			List<NameValuePair> data, Context context) {
+		HttpResponse httpRes;
+		ServerResponse res = new ServerResponse();
 
 		/** Send post */
 		try {
-			httpost.setEntity(new UrlEncodedFormEntity(data));
-			res2 = mHttpClient.execute(httpost);
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			httpRes = postHttp(host, data, context);
+		} catch (Exception e) {
+			res.setStatus(false);
+			res.setError("Server communication error.");
+			return res;
 		}
 
 		/** Read post result */
-		res = new ServerResponse(true, null);
-		HttpEntity entity = res2.getEntity();
+		HttpEntity entity = httpRes.getEntity();
 		if (entity != null) {
 			InputStream instream;
 			try {
@@ -177,23 +219,15 @@ public class ApiHandler {
 				String result = convertStreamToString(instream);
 				instream.close();
 				JSONObject server = new JSONObject(result);
-				if (server.getBoolean("success") == false)
-					res = new ServerResponse(server.getBoolean("succes"),
-							server.getString("error"));
-				else
-					res = new ServerResponse(server.getBoolean("succes"),
-							server.getString("correct"));
-
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				res.setStatus(server.getBoolean("success"));
+				if (res.getStatus() == false)
+					res.setError(server.getString("error"));
+			} catch (Exception e) {
+				res.setStatus(false);
+				res.setError("Invalid server response.");
 			}
-
 		}
-
+		
 		return res;
 	}
 

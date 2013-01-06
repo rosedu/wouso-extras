@@ -1,4 +1,4 @@
-package cdl.android.ui.main;
+package cdl.android.server;
 
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;

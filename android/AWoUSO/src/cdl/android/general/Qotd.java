@@ -13,7 +13,7 @@ public class Qotd {
 	private boolean hadAnswered;
 	private String question;
 	private ArrayList<String> answers, keys;
-
+	
 	/**
 	 * Returns whether the question has been answered.
 	 * 
@@ -71,14 +71,13 @@ public class Qotd {
 	}
 
 	/**
-	 * Creates a new QOTD object from a JSONObject probably taken from the
-	 * website's API.
+	 * Creates a new QOTD object from a JSONObject
 	 * 
 	 * @param obj
 	 *            The object to be parsed.
 	 * @throws JSONException
 	 */
-	public Qotd(JSONObject obj) throws JSONException {
+	public void parseContent(JSONObject obj) throws JSONException {
 		answers = new ArrayList<String>();
 		keys = new ArrayList<String>();
 

@@ -10,20 +10,16 @@ public class BazaarItem {
 	private String title, description, price, due_days;
 
 	/**
-	 * Creates a new Bazaar Item from a JSONObject probably taken from the
-	 * website's API.
+	 * Creates a new Bazaar Item from a JSONObject
 	 * 
 	 * @param obj
 	 *            The JSONObject to parse for bazaar info.
+	 * @throws JSONException 
 	 */
-	public BazaarItem(JSONObject obj) {
-		try {
-			title = obj.getString("title");
-			due_days = obj.getString("due_days") + " days";
-			price = obj.getString("price");
-		} catch (JSONException ex) {
-			ex.printStackTrace();
-		}
+	public void parseContent(JSONObject obj) throws JSONException {
+		title = obj.getString("title");
+		due_days = obj.getString("due_days") + " days";
+		price = obj.getString("price");
 	}
 
 	/**

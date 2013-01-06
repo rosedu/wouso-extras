@@ -19,12 +19,12 @@ import org.json.JSONObject;
 import cdl.android.ui.challenge.ActiveChallenge;
 import cdl.android.ui.challenge.ChallengeInfo;
 import cdl.android.ui.challenge.menu.RChallengeList;
-import cdl.android.ui.main.MainMenu;
+import cdl.android.ui.main.Profile;
 
 public class ChallengeHandler {
-	private static final String baseChallengeURL = GeneralHandler.getBaseURL() + "challenge/";
-	private static final String challengeListURL = GeneralHandler.getBaseURL() + "challenge/list/?user=";
-	private static final String challengeLaunchURL = GeneralHandler.getBaseURL() + "challenge/launch/";
+//	private static final String baseChallengeURL = GeneralHandler.getBaseURL() + "challenge/";
+//	private static final String challengeListURL = GeneralHandler.getBaseURL() + "challenge/list/?user=";
+//	private static final String challengeLaunchURL = GeneralHandler.getBaseURL() + "challenge/launch/";
 	private static HttpClient mHttpClient = new DefaultHttpClient();
 
 	private ChallengeHandler() {
@@ -40,7 +40,7 @@ public class ChallengeHandler {
 	 *            The data to send.
 	 */
 	public static void sendPost(int challenge_id, List<NameValuePair> data) {
-		String url = "http://wouso-next.rosedu.org/api/challenge/" + challenge_id + "/?user=" + MainMenu.getLoggedUsername();
+		String url = "http://wouso-next.rosedu.org/api/challenge/" + challenge_id;
 		HttpPost httpost = new HttpPost(url);
 
 		/** Send post */
@@ -84,7 +84,7 @@ public class ChallengeHandler {
 	 *            The state, 0 to accept, 2 to refuse!
 	 */
 	public static void changeChallengeState(int challenge_id, int otherState) {
-		String myCall = baseChallengeURL + challenge_id + "/";
+//		String myCall = baseChallengeURL + challenge_id + "/";
 		if (otherState == 0) {
 			//ApiHandler.get(myCall + "accept/", this);
 		}

@@ -1,5 +1,11 @@
 package cdl.android.ui.message;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.server.MessageHandler;
+import cdl.android.general.ServerResponse;
+import cdl.android.server.ApiHandler;
 
 public class CreateMessage extends Activity {
 
@@ -29,16 +36,36 @@ public class CreateMessage extends Activity {
 		final Editable subject = subjectEdit.getText();
 		final Editable text = textEdit.getText();
 
-		SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		// TODO: set global username and id on profile load
+		SharedPreferences mPreferences = PreferenceManager
+				.getDefaultSharedPreferences(this);
 		final String user = mPreferences.getString("username", null);
 
 		sendButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				MessageHandler.sendMessage(user, to.toString(), subject.toString(), text.toString());
-				Toast.makeText(getApplicationContext(), "Message sent!", Toast.LENGTH_SHORT).show();
+				ServerResponse res = sendMessage(user, to.toString(),
+						subject.toString(), text.toString());
+				if (res.getStatus() == false)
+					Toast.makeText(getApplicationContext(), res.getError(),
+							Toast.LENGTH_SHORT).show();
+				else
+					Toast.makeText(getApplicationContext(), "Message sent!",
+							Toast.LENGTH_SHORT).show();
 				((MessageTabs) getParent()).switchTab(1);
 			}
 		});
+	}
+
+	public ServerResponse sendMessage(String user, String to, String subject,
+			String text) {
+		/** Add data */
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		nameValuePairs.add(new BasicNameValuePair("receiver", to));
+		nameValuePairs.add(new BasicNameValuePair("text", text));
+		nameValuePairs.add(new BasicNameValuePair("subject", subject));
+
+		return ApiHandler.sendPost(ApiHandler.msgSendAPICallURL,
+				nameValuePairs, this);
 	}
 
 	protected void onExit() {

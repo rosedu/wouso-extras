@@ -21,6 +21,8 @@ public class AuthorizeActivity extends Activity {
 		setContentView(R.layout.authorize);
 		String url = getIntent().getExtras().getString("url");
 		
+		//mwebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);  
+
 	    CookieSyncManager.createInstance(this); 
 	    CookieManager cookieManager = CookieManager.getInstance();
 	    cookieManager.removeAllCookie();

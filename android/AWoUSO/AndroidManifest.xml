@@ -12,7 +12,7 @@
         android:icon="@drawable/androidicon"
         android:label="@string/app_name" >
         <activity
-            android:name=".ui.main.AuthActivity"
+            android:name="cdl.android.ui.main.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -51,7 +51,7 @@
         <activity android:name=".ui.message.CreateMessage" >
         </activity>
         <activity
-            android:name=".ui.main.MainMenu"
+            android:name="cdl.android.ui.main.Profile"
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".ui.challenge.menu.ChallengeMenu" >

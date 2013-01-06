@@ -10,8 +10,9 @@ import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.view.Window;
 import cdl.android.R;
+import cdl.android.server.OAuthHelper;
 
-public class AuthActivity extends Activity {
+public class MainActivity extends Activity {
 	OAuthHelper helper;
 	String[] accessToken;
 	public final int REQ_OK = 1;
@@ -28,14 +29,16 @@ public class AuthActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main); 
 		
+		System.out.println(" On create ");
+		
 		if (checkLogin()) {
-			goToMainMenu();
+			System.out.println(" Go to profile ");
+			goToProfile();
 		} else if (!getIntent().hasExtra("verifier")) {
+			System.out.println(" no verifier ");
 			accessToken = new String[2];
 			helper = new OAuthHelper();
-			System.out.println("get req");
 			String uri = helper.getRequestToken();
-			System.out.println("got uri " + uri);
 			Intent authAct = new Intent(this, AuthorizeActivity.class);
 			authAct.putExtra("url", uri);
 			startActivityForResult(authAct, REQ_OK);
@@ -51,17 +54,6 @@ public class AuthActivity extends Activity {
 		
 		accessToken = helper.getAccessToken(data.getExtras().getString("verifier"));
 		doLogin();
-		
-		//signed request
-		/*OAuthConsumer mConsumer = new CommonsHttpOAuthConsumer("key", "secret");
-		mConsumer.setMessageSigner(new PlainTextMessageSigner());
-		mConsumer.setTokenWithSecret(accessToken[0], accessToken[1]); 
-		try {
-		//	doGet("http://wouso-next.rosedu.org/api/info/", mConsumer);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
 	}
 	
 	boolean checkLogin() {
@@ -84,8 +76,8 @@ public class AuthActivity extends Activity {
 
 		//TODO: Unregister from c2dm
 
-		/** Go to First Activity */
-		Intent mainM = new Intent(context, AuthActivity.class);
+		/** Go to Main Activity */
+		Intent mainM = new Intent(context, MainActivity.class);
 		context.startActivity(mainM);
 		((Activity) context).finish();
 	}
@@ -96,7 +88,7 @@ public class AuthActivity extends Activity {
 		ed.putString("auth_token", accessToken[0]);
 		ed.putString("auth_secret", accessToken[1]);
 		ed.commit();
-		goToMainMenu();
+		goToProfile();
 
 		//TODO:
 		// Register to cd2m and save the registration_id
@@ -105,8 +97,8 @@ public class AuthActivity extends Activity {
 		// POST /api/notifications/register/
 	}
 
-	public void goToMainMenu() {
-		final Intent mainM = new Intent(this, MainMenu.class);
+	public void goToProfile() {
+		final Intent mainM = new Intent(this, Profile.class);
 		startActivity(mainM);
 		finish();
 	}
