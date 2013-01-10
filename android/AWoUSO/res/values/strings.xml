@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="no_result">No user was found for the given query</string>
     <string name="app_name">AWoUSO</string>
     <string name="loginText">Play</string>
     <string name="account">Nume utilizator:</string>

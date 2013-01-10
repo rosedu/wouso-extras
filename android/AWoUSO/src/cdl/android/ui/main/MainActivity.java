@@ -29,10 +29,7 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main); 
 		
-		System.out.println(" On create ");
-		
 		if (checkLogin()) {
-			System.out.println(" Go to profile ");
 			goToProfile();
 		} else if (!getIntent().hasExtra("verifier")) {
 			System.out.println(" no verifier ");
@@ -49,9 +46,6 @@ public class MainActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		System.out.println("on result "
-				+ data.getExtras().getString("verifier"));
-		
 		accessToken = helper.getAccessToken(data.getExtras().getString("verifier"));
 		doLogin();
 	}

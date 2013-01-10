@@ -13,18 +13,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
+import android.content.Context;
+import cdl.android.general.ServerResponse;
 import cdl.android.ui.challenge.ActiveChallenge;
 import cdl.android.ui.challenge.ChallengeInfo;
 import cdl.android.ui.challenge.menu.RChallengeList;
-import cdl.android.ui.main.Profile;
 
 public class ChallengeHandler {
-//	private static final String baseChallengeURL = GeneralHandler.getBaseURL() + "challenge/";
-//	private static final String challengeListURL = GeneralHandler.getBaseURL() + "challenge/list/?user=";
-//	private static final String challengeLaunchURL = GeneralHandler.getBaseURL() + "challenge/launch/";
 	private static HttpClient mHttpClient = new DefaultHttpClient();
 
 	private ChallengeHandler() {
@@ -39,22 +35,9 @@ public class ChallengeHandler {
 	 * @param data
 	 *            The data to send.
 	 */
-	public static void sendPost(int challenge_id, List<NameValuePair> data) {
-		String url = "http://wouso-next.rosedu.org/api/challenge/" + challenge_id;
-		HttpPost httpost = new HttpPost(url);
-
-		/** Send post */
-		try {
-			httpost.setEntity(new UrlEncodedFormEntity(data));
-			mHttpClient.execute(httpost);
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	public static void sendPost(Context context, int challenge_id, List<NameValuePair> data) {
+		//TODO: check errors
+		ApiHandler.sendPost(ApiHandler.baseChallengeURL + challenge_id, data, context);
 	}
 
 	/**
@@ -64,7 +47,7 @@ public class ChallengeHandler {
 	 * @param data
 	 *            content for post
 	 */
-	public static void post(ActiveChallenge data) {
+	public static void post(Context context, ActiveChallenge data) {
 
 		/** Build Post */
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
@@ -72,7 +55,7 @@ public class ChallengeHandler {
 		for (String keySet : wrapped.keySet()) {
 			nameValuePairs.add(new BasicNameValuePair(keySet, wrapped.get(keySet)));
 		}
-		sendPost(data.getChallengeId(), nameValuePairs);
+		sendPost(context, data.getChallengeId(), nameValuePairs);
 	}
 
 	/**
@@ -83,13 +66,14 @@ public class ChallengeHandler {
 	 * @param otherState
 	 *            The state, 0 to accept, 2 to refuse!
 	 */
-	public static void changeChallengeState(int challenge_id, int otherState) {
-//		String myCall = baseChallengeURL + challenge_id + "/";
+	public static void changeChallengeState(Context context, int challenge_id, int otherState) {
 		if (otherState == 0) {
-			//ApiHandler.get(myCall + "accept/", this);
+			ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
+					+ challenge_id + "/accept/", context);
 		}
 		if (otherState == 2) {
-			//ApiHandler.get(myCall + "refuse/");
+			ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
+					+ challenge_id + "/refuse/", context);
 		}
 	}
 
@@ -100,11 +84,11 @@ public class ChallengeHandler {
 	 *            The challenge's id.
 	 * @return The parsed Challenge Info.
 	 */
-	public static ChallengeInfo getChallengeInfo(int challenge_id) {
-		//TODO:
-		//JSONObject object = ApiHandler.get(baseChallengeURL + challenge_id + "/");
-		//return new ChallengeInfo(object);
-		return null;
+	public static ChallengeInfo getChallengeInfo(Context context, int challenge_id) {
+		//TODO: check errors
+		ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
+				+ challenge_id + "/", context);
+		return new ChallengeInfo(rsp.getData());
 	}
 
 	/**
@@ -114,11 +98,11 @@ public class ChallengeHandler {
 	 *            The other player's username.
 	 * @return whether the challenge was successfully started.
 	 */
-	public static boolean startChallenge(String otherPlayer) {
-		//TODO:
-		//JSONObject object = ApiHandler.get(challengeLaunchURL + otherPlayer + "/");
-		//return object != null;
-		return false;
+	public static boolean startChallenge(Context context, String otherPlayer) {
+		//TODO: check errors
+		ServerResponse rsp = ApiHandler.get(ApiHandler.challengeLaunchURL 
+				+ otherPlayer + "/", context);
+		return rsp.getData() != null;
 	}
 	
 	/**
@@ -126,11 +110,10 @@ public class ChallengeHandler {
 	 * 
 	 * @return A wrapper class describing all the challenges.
 	 */
-	public static RChallengeList getChallengeList() {
-		//TODO:
-		//JSONArray result = ApiHandler.getArray(challengeListURL + MainMenu.getLoggedUsername());
-		//return new RChallengeList(result);
-		return null;
+	public static RChallengeList getChallengeList(Context context) {
+		//TODO: check errors
+		ServerResponse rsp = ApiHandler.getArray(ApiHandler.challengeListURL, context);
+		return new RChallengeList(rsp.getArrayData());
 	}
 
 }

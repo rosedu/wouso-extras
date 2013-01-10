@@ -46,6 +46,7 @@ public class ApiHandler {
 	public static final String baseChallengeURL = baseURL + "challenge/";
 	public static final String challengeListURL = baseURL + "challenge/list/";
 	public static final String challengeLaunchURL = baseURL + "challenge/launch/";
+	public static final String searchURL = baseURL + "search/";
 
 	/**
 	 * Gets a general HTTP string.
@@ -95,7 +96,7 @@ public class ApiHandler {
 	 * Generic HTTP GET data request
 	 * 
 	 * @param request
-	 * @return JSONObject with the server response
+	 * @return the server's reply @see ServerResponse
 	 */
 	public static ServerResponse get(String req, Context context) {
 		JSONObject jObject;
@@ -126,9 +127,8 @@ public class ApiHandler {
 	/**
 	 * Generic HTTP GET data request
 	 * 
-	 * @param req
-	 *            The request
-	 * @return JSONArray with the server response
+	 * @param req The request
+	 * @return The server's reply @see ServerResponse
 	 */
 	public static ServerResponse getArray(String req, Context context) {
 		JSONArray jObject;

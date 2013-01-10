@@ -48,7 +48,7 @@ public class ActiveChallenge extends Activity {
 	 */
 	public void startChallenge(int challenge_id) {
 		this.challenge_id = challenge_id;
-		info = ChallengeHandler.getChallengeInfo(challenge_id);
+		info = ChallengeHandler.getChallengeInfo(this, challenge_id);
 
 		int remainingSeconds = info.getSeconds();
 		if (remainingSeconds < 0) {
@@ -112,8 +112,7 @@ public class ActiveChallenge extends Activity {
 	 * Sends the current answers to the server.
 	 */
 	private void postAnswers() {
-		ChallengeHandler.post(this);
-
+		ChallengeHandler.post(this, this);
 	}
 
 	/**

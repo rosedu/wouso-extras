@@ -126,7 +126,7 @@ public class UserProfile extends Activity {
 
 		challengeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				ChallengeHandler.startChallenge(username);
+				ChallengeHandler.startChallenge(v.getContext(), username);
 				Toast.makeText(getApplicationContext(), "Challenge started!", Toast.LENGTH_SHORT).show();
 			}
 		});

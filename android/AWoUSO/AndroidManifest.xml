@@ -21,6 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity android:name=".ui.search.SearchActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.SEARCH" />
+        </intent-filter>
+        <meta-data android:name="android.app.searchable"
+                   android:resource="@xml/searchable"/>
+     	</activity>
          <activity
             android:name=".ui.main.AuthorizeActivity">
          </activity>
@@ -56,6 +63,11 @@
         </activity>
         <activity android:name=".ui.challenge.menu.ChallengeMenu" >
         </activity>
+         <meta-data 
+     			android:name="android.app.default_searchable"
+     			android:value=".ui.search.SearchActivity" />
+        <provider android:name=".ui.search.UserProvider"
+                  android:authorities="cdl.android.ui.search.UserProvider" />
     </application>
 
 </manifest>
