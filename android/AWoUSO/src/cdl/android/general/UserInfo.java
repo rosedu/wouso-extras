@@ -44,6 +44,7 @@ public class UserInfo {
 		group = jObj.getString("group");
 		levelNo = jObj.getInt("level_no");
 		avatarUrl = jObj.getString("avatar");
+		race = jObj.getString("race");
 		levelPercent = jObj.getJSONObject("level_progress")
 				.getDouble("percent");
 	}

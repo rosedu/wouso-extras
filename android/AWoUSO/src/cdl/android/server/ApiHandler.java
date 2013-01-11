@@ -37,7 +37,7 @@ public class ApiHandler {
 
 	public static final String baseURL = "http://wouso-next.rosedu.org/api/";
 	public static final String userInfoURL = baseURL + "info/";
-	public static final String bazaarInfoURL = baseURL + "bazaar/";
+	public static final String bazaarBuyURL = baseURL + "bazaar/buy/";
 	public static final String qotdInfoURL = baseURL + "qotd/today/";
 	public static final String msgReceivedAPICallURL = baseURL + "messages/recv/";
 	public static final String msgSentAPICallURL = baseURL + "messages/sent/";

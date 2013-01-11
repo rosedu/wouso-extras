@@ -13,6 +13,9 @@ import cdl.android.R;
 import cdl.android.server.OAuthHelper;
 
 public class MainActivity extends Activity {
+	/** Local Storage files */
+	public static final String CONFIG_SPELLS = "/mnt/sdcard/awouso/spells/spell_config";
+	
 	OAuthHelper helper;
 	String[] accessToken;
 	public final int REQ_OK = 1;

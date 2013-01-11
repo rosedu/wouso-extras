@@ -12,13 +12,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -110,7 +107,8 @@ public class Profile extends Activity {
 		goldCount.setText(userInfo.getGold() + "");
 
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
-		levelNo.setText("Level " + userInfo.getLevelNo() + "-");
+		String level = "Level " + userInfo.getLevelNo() + " -";
+		levelNo.setText(level);
 
 		// TODO: just a displays test, update this with real spells from server
 		LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);

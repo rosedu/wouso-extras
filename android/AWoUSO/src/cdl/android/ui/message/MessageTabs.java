@@ -23,16 +23,9 @@ public class MessageTabs extends TabActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_layout);
 
-		Button back = (Button) findViewById(R.id.button_back);
 		tabHost = getTabHost();
 		TabHost.TabSpec spec;
 		Intent intent;
-
-		back.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				finish();
-			}
-		});
 
 		intent = new Intent().setClass(this, Received.class);
 		spec = tabHost.newTabSpec("received").setIndicator("Received");
@@ -60,4 +53,12 @@ public class MessageTabs extends TabActivity {
 	public void switchTab(int tab) {
 		tabHost.setCurrentTab(tab);
 	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
+	}
+	
+	
 }
