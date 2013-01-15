@@ -6,14 +6,73 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Question of the Day container class
  */
-public class Qotd {
+public class Qotd implements Parcelable {
 	private boolean hadAnswered;
 	private String question;
 	private ArrayList<String> answers, keys;
-	
+
+	public Qotd() {
+	}
+
+	public Qotd(Parcel in) {
+		readFromParcel(in);
+	}
+
+	private void readFromParcel(Parcel in) {
+		hadAnswered = in.readByte() == 1;
+		question = in.readString();
+		in.readStringList(answers);
+		in.readStringList(keys);
+	}
+
+	public void writeToParcel(Parcel dst, int arg1) {
+		dst.writeByte((byte) (hadAnswered ? 1 : 0));
+		dst.writeString(question);
+		dst.writeStringList(answers);
+		dst.writeStringList(keys);
+	}
+
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public Qotd createFromParcel(Parcel in) {
+			return new Qotd(in);
+		}
+
+		public Qotd[] newArray(int size) {
+			return new Qotd[size];
+		}
+	};
+
+	/**
+	 * Creates a new QOTD object from a JSONObject
+	 * 
+	 * @param obj
+	 *            The object to be parsed.
+	 * @throws JSONException
+	 */
+	public void parseContent(JSONObject obj) throws JSONException {
+		answers = new ArrayList<String>();
+		keys = new ArrayList<String>();
+
+		question = obj.getString("text");
+		hadAnswered = obj.getBoolean("had_answered");
+		JSONObject vObj = obj.getJSONObject("answers");
+
+		@SuppressWarnings("rawtypes")
+		Iterator iter = vObj.keys();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = vObj.getString(key);
+			answers.add(value);
+			keys.add(key);
+		}
+	}
+
 	/**
 	 * Returns whether the question has been answered.
 	 * 
@@ -70,29 +129,7 @@ public class Qotd {
 		return keys;
 	}
 
-	/**
-	 * Creates a new QOTD object from a JSONObject
-	 * 
-	 * @param obj
-	 *            The object to be parsed.
-	 * @throws JSONException
-	 */
-	public void parseContent(JSONObject obj) throws JSONException {
-		answers = new ArrayList<String>();
-		keys = new ArrayList<String>();
-
-		question = obj.getString("text");
-		hadAnswered = obj.getBoolean("had_answered");
-		JSONObject vObj = obj.getJSONObject("answers");
-
-		@SuppressWarnings("rawtypes")
-		Iterator iter = vObj.keys();
-		while (iter.hasNext()) {
-			String key = (String) iter.next();
-			String value = vObj.getString(key);
-			answers.add(value);
-			keys.add(key);
-		}
+	public int describeContents() {
+		return 0;
 	}
-
 }

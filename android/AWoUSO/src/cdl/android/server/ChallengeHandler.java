@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
-import cdl.android.general.ServerResponse;
 import cdl.android.ui.challenge.ActiveChallenge;
 import cdl.android.ui.challenge.ChallengeInfo;
 import cdl.android.ui.challenge.menu.RChallengeList;

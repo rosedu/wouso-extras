@@ -7,16 +7,17 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cdl.android.R;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ImageView;
+import cdl.android.R;
 
 /**
  * User info container class
  */
-public class UserInfo {
+public class UserInfo implements Parcelable {
 	String firstName;
 	String lastName;
 	int levelNo;
@@ -28,12 +29,55 @@ public class UserInfo {
 	int points;
 	double levelPercent;
 
+	public UserInfo() {
+	}
+
+	public UserInfo(Parcel in) {
+		readFromParcel(in);
+	}
+
+	private void readFromParcel(Parcel in) {
+		firstName = in.readString();
+		lastName = in.readString();
+		levelNo = in.readInt();
+		gold = in.readInt();
+		group = in.readString();
+		race = in.readString();
+		email = in.readString();
+		avatarUrl = in.readString();
+		points = in.readInt();
+		levelPercent = in.readDouble();
+	}
+
+	public void writeToParcel(Parcel dst, int arg1) {
+		dst.writeString(firstName);
+		dst.writeString(lastName);
+		dst.writeInt(levelNo);
+		dst.writeInt(gold);
+		dst.writeString(group);
+		dst.writeString(race);
+		dst.writeString(email);
+		dst.writeString(avatarUrl);
+		dst.writeInt(points);
+		dst.writeDouble(levelPercent);
+	}
+
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public UserInfo createFromParcel(Parcel in) {
+			return new UserInfo(in);
+		}
+
+		public UserInfo[] newArray(int size) {
+			return new UserInfo[size];
+		}
+	};
+
 	/**
 	 * Creates new UserInfo from a JSONObject
 	 * 
 	 * @param jObj
 	 *            The JSONObject to be parsed.
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
 	public void parseContent(JSONObject jObj) throws JSONException {
 		levelNo = jObj.getInt("level_no");
@@ -47,16 +91,6 @@ public class UserInfo {
 		race = jObj.getString("race");
 		levelPercent = jObj.getJSONObject("level_progress")
 				.getDouble("percent");
-	}
-
-	// TODO: separate parse method with throw
-
-	public double getLevelPercent() {
-		return levelPercent;
-	}
-
-	public void setLevelPercent(double levelPercent) {
-		this.levelPercent = levelPercent;
 	}
 
 	// TODO: http request on a new thread
@@ -77,6 +111,14 @@ public class UserInfo {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public double getLevelPercent() {
+		return levelPercent;
+	}
+
+	public void setLevelPercent(double levelPercent) {
+		this.levelPercent = levelPercent;
 	}
 
 	public int getGold() {
@@ -215,5 +257,9 @@ public class UserInfo {
 	 */
 	public void setPoints(int points) {
 		this.points = points;
+	}
+
+	public int describeContents() {
+		return 0;
 	}
 }

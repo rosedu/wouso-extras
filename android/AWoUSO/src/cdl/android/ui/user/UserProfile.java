@@ -20,10 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.general.ServerResponse;
 import cdl.android.general.UserInfo;
 import cdl.android.server.ApiHandler;
 import cdl.android.server.ChallengeHandler;
+import cdl.android.server.ServerResponse;
 
 /**
  * Other users' profiles

@@ -12,8 +12,8 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
+import cdl.android.server.ServerResponse;
 
 /**
  * Provides data for the search manager

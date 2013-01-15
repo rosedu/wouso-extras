@@ -1,4 +1,4 @@
-package cdl.android.general;
+package cdl.android.server;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -17,8 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
+import cdl.android.server.ServerResponse;
 
 public class CreateMessage extends Activity {
 

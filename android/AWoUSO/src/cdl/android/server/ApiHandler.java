@@ -21,6 +21,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,10 +31,9 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import cdl.android.general.ServerResponse;
 
 /**
- * HTTP Generic API requests to the WoUSO Server
+ * HTTP Generic REST API requests to the WoUSO Server
  */
 public class ApiHandler {
 
@@ -39,13 +41,15 @@ public class ApiHandler {
 	public static final String userInfoURL = baseURL + "info/";
 	public static final String bazaarBuyURL = baseURL + "bazaar/buy/";
 	public static final String qotdInfoURL = baseURL + "qotd/today/";
-	public static final String msgReceivedAPICallURL = baseURL + "messages/recv/";
+	public static final String msgReceivedAPICallURL = baseURL
+			+ "messages/recv/";
 	public static final String msgSentAPICallURL = baseURL + "messages/sent/";
 	public static final String msgAllAPICallURL = baseURL + "messages/all/";
 	public static final String msgSendAPICallURL = baseURL + "messages/send/";
 	public static final String baseChallengeURL = baseURL + "challenge/";
 	public static final String challengeListURL = baseURL + "challenge/list/";
-	public static final String challengeLaunchURL = baseURL + "challenge/launch/";
+	public static final String challengeLaunchURL = baseURL
+			+ "challenge/launch/";
 	public static final String searchURL = baseURL + "search/";
 
 	/**
@@ -76,8 +80,17 @@ public class ApiHandler {
 		mConsumer.setTokenWithSecret(mAppInfo.getString("auth_token", null),
 				mAppInfo.getString("auth_secret", null));
 
+		/** Connection timeout */
+		HttpParams httpParameters = new BasicHttpParams();
+		int timeoutConnection = 3000;
+		HttpConnectionParams.setConnectionTimeout(httpParameters,
+				timeoutConnection);
+		int timeoutSocket = 5000;
+		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+
 		/** Send request */
 		DefaultHttpClient httpclient = new DefaultHttpClient();
+		httpclient.setParams(httpParameters);
 		HttpGet request = new HttpGet(url);
 		mConsumer.sign(request);
 		HttpResponse response = httpclient.execute(request);
@@ -127,7 +140,8 @@ public class ApiHandler {
 	/**
 	 * Generic HTTP GET data request
 	 * 
-	 * @param req The request
+	 * @param req
+	 *            The request
 	 * @return The server's reply @see ServerResponse
 	 */
 	public static ServerResponse getArray(String req, Context context) {
@@ -177,7 +191,13 @@ public class ApiHandler {
 		String url = host;
 		HttpPost httpost = new HttpPost(url);
 		HttpResponse res = null;
+		
+		HttpParams httpParameters = new BasicHttpParams();
+		int timeoutConnection = 3000;
+		HttpConnectionParams.setConnectionTimeout(httpParameters,
+				timeoutConnection);
 		DefaultHttpClient mHttpClient = new DefaultHttpClient();
+		mHttpClient.setParams(httpParameters);
 
 		/** Setup OAuth signer */
 		OAuthConsumer mConsumer = new CommonsHttpOAuthConsumer(
@@ -227,7 +247,7 @@ public class ApiHandler {
 				res.setError("Invalid server response.");
 			}
 		}
-		
+
 		return res;
 	}
 

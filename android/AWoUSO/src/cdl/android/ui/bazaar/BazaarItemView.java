@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.general.BazaarItem;
-import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
+import cdl.android.server.ServerResponse;
 import cdl.android.R;
 
 /**

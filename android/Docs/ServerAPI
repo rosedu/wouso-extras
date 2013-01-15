@@ -1,0 +1,54 @@
+		HTTP REST API for WoUSO
+
+Foloseste clasele din cdl.android.server:
+ApiHandler, ServerResponse, HTTPService,
+HTTPResultReceiver, OAuthHelper
+
+ApiHandler:
+- implementeaza cereri/metode generice pentru
+GET si POST semnate OAuth.
+- metodele intorc rezultate sub forma ServerResponse.
+- defineste string-uri pentru toate url-urile
+suportate de API/aplicatie.
+
+ServerResponse:
+- obiect ce stocheaza rezultatul unei cereri HTTP.
+- contine statusul cererii (succes sau nu), mesajul
+de eroare (daca exista) si datele sub forma unui
+obiect sau a unei liste JSON.
+
+HTTPService:
+- serviciu prin care se executa cererile HTTP.
+- foloseste IntentService care executa cererile
+pe un thread separat de cel principal.
+- defineste cate o metoda pentru fiecare tip de cerere
+suportata de API.
+- trimite rezultatul cererii inapoi la apelant
+printr-un ResultReceiver (HTTPResultReceiver).
+
+== Exemplu Folosire: ==
+
+- Service Caller -
+- fie o activitate ce are nevoie de informatii (GET)
+sau trimite date catre server (POST) - e.g. Profile.java.
+- porneste serviciul printr-un Intent
+(vezi getUserInfo(), getQotd(), postQost()).
+- prin Intent va trimite si comanda (e.g. HTTPService.USER_INFO),
+receiverul si eventual alte date (e.g. campuri pentru POST).
+- implementeaza onReceiveResult, prin care trateaza raspunsurile
+primite de la Serviciu.
+
+- Service -
+- executa metoda asociata, in functie de comanda primita
+de la caller (e.g. getUserInfo).
+- fiecare metoda apeleaza functia asociata din ApiHandler
+si trimite catre caller, rezultatul de la server.
+- comunicarea intre serviciu si caller se realizeaza prin
+obiecte Parcelable.
+
+- Stocare/Transmitere Rezultate -
+- datele de la server se stocheaza in obiecte specifice (e.g. UserInfo).
+- in prima faza, obiectul se creeaza prin parsarea raspunsului JSON
+venit de la Server.
+- obiectele trebuie sa implementeze si interfata Parcelable pentru
+a putea fi transmise intre Serviciu si Caller.

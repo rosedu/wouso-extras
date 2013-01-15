@@ -13,8 +13,8 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
+import cdl.android.server.ServerResponse;
 
 public class Sent extends Activity {
 	private ArrayList<MessageItem> mItems;

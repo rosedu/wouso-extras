@@ -12,16 +12,5 @@
         android:src="@drawable/logo"
         android:contentDescription="@drawable/logo"
 	    />
-	
-	<!-- Relogin-button -->
-	<Button
-	    android:id="@+id/retryButton"
-	    style="@style/BlueButton"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="30dp"
-	    android:textStyle="bold"
-	    android:textSize="30sp"
-	    android:text="Retry"
-	    />
 
 </LinearLayout>
