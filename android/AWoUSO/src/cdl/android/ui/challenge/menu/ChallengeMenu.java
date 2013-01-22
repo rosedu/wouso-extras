@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.animation.ArgbEvaluator;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -48,7 +51,7 @@ public class ChallengeMenu extends ListActivity {
 				accept.setVisibility(4);
 				play.setVisibility(0);
 				reject.setVisibility(4);
-				ChallengeHandler.changeChallengeState(currentSelected.getChallengeId(), 0);
+				ChallengeHandler.changeChallengeState(arg0.getContext(), currentSelected.getChallengeId(), 0);
 				currentSelected.setStatus("W");
 				Toast.makeText(getApplicationContext(), "Challenge accepted!", 1).show();
 			}
@@ -81,14 +84,15 @@ public class ChallengeMenu extends ListActivity {
 				reject.setVisibility(4);
 				listItems.remove(currentSelectedName);
 				adapter.remove(currentSelectedName);
-				ChallengeHandler.changeChallengeState(currentSelected.getChallengeId(), 2);
+				ChallengeHandler.changeChallengeState(arg0.getContext(), currentSelected.getChallengeId(), 2);
 				currentSelected.setStatus("W");
 				Toast.makeText(getApplicationContext(), "Challenge denied!", 1).show();
 			}
 		});
 
 		// Set the challenge list
-		RChallengeList list = ChallengeHandler.getChallengeList();
+		String username = PreferenceManager.getDefaultSharedPreferences(this).getString("username", null);
+		RChallengeList list = ChallengeHandler.getChallengeList(this);
 		for (int l = 0; l < list.getTotalChallenges(); l++) {
 			RChallengeInfo rc = list.getChallenge(l);
 			String toAdd = "From " + rc.getFrom() + " to " + rc.getTo();

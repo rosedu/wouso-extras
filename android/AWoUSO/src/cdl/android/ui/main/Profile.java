@@ -12,7 +12,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -46,7 +45,6 @@ import cdl.android.ui.user.UserProfile;
  * User's profile and main application menu
  */
 public class Profile extends Activity {
-	SharedPreferences mPreferences;
 	UserInfo userInfo;
 
 	@Override
@@ -109,7 +107,8 @@ public class Profile extends Activity {
 		goldCount.setText(userInfo.getGold() + "");
 
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
-		levelNo.setText("Level " + userInfo.getLevelNo() + "-");
+		String level = "Level " + userInfo.getLevelNo() + " -";
+		levelNo.setText(level);
 
 		// TODO: just a displays test, update this with real spells from server
 		LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);
@@ -256,8 +255,8 @@ public class Profile extends Activity {
 			startActivity(new Intent(this, GroupsMap.class));
 			break;
 		case R.id.search:
-			toast = "Not yet";
-			break;
+			onSearchRequested();
+			return true;
 		case R.id.logout:
 			MainActivity.logOut(this);
 		default:

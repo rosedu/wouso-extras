@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 /**
  * Represents wrapped info about a specific challenge, without the id! This is
- * the differnce to RChallengeInfo
+ * the difference to RChallengeInfo
  */
 public class ChallengeInfo {
 

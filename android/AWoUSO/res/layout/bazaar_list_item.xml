@@ -15,13 +15,10 @@
             android:id="@+id/title"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -68,8 +65,8 @@
             android:id="@+id/buyButton"
             android:background="@drawable/button_bg"
             android:layout_margin="4dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="BUY" />

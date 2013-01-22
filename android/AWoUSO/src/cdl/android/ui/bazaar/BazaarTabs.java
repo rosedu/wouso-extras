@@ -23,24 +23,13 @@ public class BazaarTabs extends TabActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_layout);
 
-		Button button = (Button) findViewById(R.id.button_back);
 		Resources res = getResources();
 		TabHost tabHost = getTabHost();
 		TabHost.TabSpec spec;
 		Intent intent;
 
-		button.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				finish();
-			}
-		});
-
 		intent = new Intent().setClass(this, Bazaar.class);
 		spec = tabHost.newTabSpec("bazaar").setIndicator("Bazaar", res.getDrawable(R.drawable.spell_purple)).setContent(intent);
-		tabHost.addTab(spec);
-
-		intent = new Intent().setClass(this, Exchange.class);
-		spec = tabHost.newTabSpec("exchange").setIndicator("Exchange", res.getDrawable(R.drawable.spell_yellow)).setContent(intent);
 		tabHost.addTab(spec);
 
 		intent = new Intent().setClass(this, Summary.class);
@@ -48,6 +37,12 @@ public class BazaarTabs extends TabActivity {
 		tabHost.addTab(spec);
 
 		tabHost.setCurrentTab(0);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
 	}
 
 }

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="white">#FFFFFF</color>
     <color name="msg_button_black">#3D3D3D</color>
-    
+    <color name="grey">#cdc9c9</color>
+    <color name="black">#000000</color>
+    <color name="lavender">#e6e6fa</color>
+
 </resources>

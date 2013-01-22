@@ -7,21 +7,33 @@ import org.json.JSONObject;
  * Bazaar item (spell) container class
  */
 public class BazaarItem {
-	private String title, description, price, due_days;
-
-	/**
-	 * Creates a new Bazaar Item from a JSONObject
-	 * 
-	 * @param obj
-	 *            The JSONObject to parse for bazaar info.
-	 * @throws JSONException 
-	 */
-	public void parseContent(JSONObject obj) throws JSONException {
-		title = obj.getString("title");
-		due_days = obj.getString("due_days") + " days";
-		price = obj.getString("price");
+	private String id, title, description, price, due_days, filename;
+	public String getId() {
+		return id;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	private Integer required_level;
+
+	public Integer getRequiredLevel() {
+		return required_level;
+	}
+
+	public void setRequiredLevel(Integer required_level) {
+		this.required_level = required_level;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	
 	/**
 	 * Get the item's title.
 	 * 

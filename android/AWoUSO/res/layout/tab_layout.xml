@@ -35,11 +35,5 @@
 	</LinearLayout>
 	
 	</TabHost>
-
-	<Button
-			android:id="@+id/button_back"
-			android:layout_gravity="left"
-			style="@style/BlueButton"
-			android:text="Back" />
 			
 </LinearLayout>

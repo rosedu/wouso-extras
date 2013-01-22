@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:label="@string/app_name"
+  android:hint="Search user"
+  android:searchSuggestAuthority="cdl.android.ui.search.UserProvider"
+  android:searchSuggestIntentAction="android.intent.action.VIEW"
+  android:searchSuggestSelection=" ?"
+  android:searchSuggestThreshold="1"
+  android:includeInGlobalSearch="true"
+  android:searchSettingsDescription="WoUSO Users"
+  >
+</searchable>
