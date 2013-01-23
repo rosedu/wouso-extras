@@ -58,10 +58,11 @@ class WousoOAuthClient(oauth.OAuthClient):
         response = self.connection.getresponse()
         return oauth.OAuthToken.from_string(response.read())
 
-    def access_resource(self, oauth_request, url):
-        self.connection.request('GET', url, headers=oauth_request.to_header())
+    def access_resource(self, oauth_request):
+        self.connection.request(oauth_request.http_method, oauth_request.http_url, headers=oauth_request.to_header())
         response = self.connection.getresponse()
         return response.read()
+
 
 class WousoClient(object):
     """ API client """
@@ -74,6 +75,10 @@ class WousoClient(object):
         path = '/%s' % edition if edition else ''
         self.client = WousoOAuthClient(self.server, port=port, path=path,
             consumer_key=self.CONSUMER_KEY, consumer_secret=self.CONSUMER_SECRET)
+
+    def set_token_from_string(self, string):
+        token = oauth.OAuthToken.from_string(string)
+        self.access_token = token
 
     def authorize(self):
         """ Does the OAuth conga. Opens browser window so that the user can authenticate.
@@ -102,56 +107,32 @@ class WousoClient(object):
         self.access_token = token
         return self.access_token
 
+    def _make_request(self, url, method='GET'):
+        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
+                                        token=self.access_token, http_method=method, http_url=url,
+                                        parameters={})
+        oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
+        return oauth_request
+
+    ## Real API:
     def notifications(self):
         NOTIF_URL = '/api/notifications/all/'
-        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
-                                token=self.access_token, http_method='GET', http_url=NOTIF_URL,
-                                parameters={})
-        oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
-
-        response = self.client.access_resource(oauth_request, NOTIF_URL)
-
+        oauth_request = self._make_request(NOTIF_URL)
+        response = self.client.access_resource(oauth_request)
         return response
 
     def info(self):
         INFO_URL = '/api/info/'
-        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
-            token=self.access_token, http_method='GET', http_url=INFO_URL,
-            parameters={})
-        oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
-
-        response = self.client.access_resource(oauth_request, INFO_URL)
-
+        oauth_request = self._make_request(INFO_URL)
+        response = self.client.access_resource(oauth_request)
         return response
 
-def run_new(*args):
-    server, port = 'wouso-next.rosedu.org', 80
-    if len(args) > 0:
-        server = args[0]
-        if len(args) > 1:
-            port = int(args[1])
-    wc = WousoClient(server=server, port=port)
+    def quest_admin_user(self, quest_id, username):
+        """
+        Send a POST message, asking wouso to increment current level of username in quest
+        """
+        URL = '/api/quest/admin/quest=%d/username=%s/' % (quest_id, username)
+        oauth_request = self._make_request(URL, method='POST')
+        response = self.client.access_resource(oauth_request)
+        return response
 
-    wc.authorize()
-    print "Access token: '%s'" % wc.access_token
-    print wc.info()
-    print wc.notifications()
-
-def run_existing(args):
-    wc = WousoClient(server='wouso-next.rosedu.org')
-
-    token = oauth.OAuthToken.from_string(args[0])
-    wc.access_token = token
-    print wc.info()
-    print wc.notifications()
-
-if __name__ == '__main__':
-    import sys
-    if len(sys.argv) >= 2:
-        if sys.argv[1] == 'help':
-            print 'Usage %s [token <string>] or <server> <port>' % sys.argv[0]
-            sys.exit(0)
-    if len(sys.argv) >= 3 and sys.argv[1] == 'token':
-        run_existing(sys.argv[2:])
-    else:
-        run_new(*sys.argv[1:])
