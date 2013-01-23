@@ -156,7 +156,7 @@
 
 									<div class="scroll-pane" id="player-stats-focus">
 										<p>
-                                            {% if top.position %}
+                                            {% if player.top.position %}
 											<b>{% trans 'Your rank' %}</b>
 
 											{% for g in topgroups %}
@@ -164,7 +164,7 @@
 												{% player_group g %}: {{ g.position }}
 											{% endfor %}
                                             <br/>
-											    {% trans 'Global' %}: {{ top.position }}
+											    {% trans 'Global' %}: {{ player.top.position }}
                                             {% else %}
                                                 <b>{% trans 'Groups' %}</b>
                                                 <br/>
