@@ -174,7 +174,7 @@
                                             {% endif %}
 										</p>
 
-										{% if player.artifact_amounts.all %}
+										{% if player.magic.artifact_amounts.all %}
 											<div class="spacer">
 												<!-- -->
 											</div><!-- .spacer -->
@@ -182,7 +182,7 @@
 											<p>
 												<b>{% trans 'Artifacts' %}</b>
 												<br />
-												{% for a in player.artifact_amounts.all %}
+												{% for a in player.magic.artifact_amounts.all %}
 													{% artifact a %}
 												{% empty %}
 													{% trans 'None.' %}
@@ -191,21 +191,21 @@
 										{% endif %}
 
 										{% if not config_disable_Magic %}
-											{% if player.spell_amounts.all %}
+											{% if player.magic.spell_amounts.all %}
 												<div class="spacer">
 													<!-- -->
 												</div><!-- .spacer -->
 
 												<b>{% trans 'Spells' %}</b>
 												<br />
-												{% for s in player.spell_amounts.all %}
+												{% for s in player.magic.spell_amounts.all %}
 													{% artifact s %}
 												{% empty %}
 													{% trans 'None.' %}
 												{% endfor %}
 											{% endif %}
 
-											{% if player.spells_cast or player.spells %}
+											{% if player.magic.spells_cast or player.magic.spells %}
 												<div class="clear spacer-small">
 													<!-- -->
 												</div><!-- .clear spacer-small -->
