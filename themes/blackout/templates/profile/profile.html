@@ -15,7 +15,7 @@
 {% block content %}
 	<div class="section">
 		<div class="profile {% if profile.race %}group-{{ profile.race.name.lower }}{% endif %} {% if profile.group %}group-{{ profile.group.name.lower }}{% endif %}">
-			<img class="profile-avatar" height="84" src="{{ avatar }}&s=84&d=http://wouso.eftimie.ro/static/themes/blackout/library/images/avatar.jpg" width="84" />
+			<img class="profile-avatar" height="84" src="{% player_avatar profile %}&s=84" width="84" />
 
 			<div id="profile-info">
 				<h2>{{ profile }}</h2>
