@@ -12,3 +12,12 @@ body {
 	list-style:none;
 	display:inline-block;
 }
+
+	.top-navigation li:after {
+		content:" // ";
+	}
+
+		.top-navigation li a {
+			color:#00FF16;
+			border-bottom: 1px solid #007F0B;
+		}
