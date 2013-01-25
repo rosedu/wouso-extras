@@ -2,8 +2,8 @@
 {% load artifacts %}
 {% load i18n %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 	<head>
 		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 		<title>
@@ -12,6 +12,7 @@
 			{% endblock %}
 		</title>
 		<link href="{{ basepath }}/static/css/contactbox.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/normalize.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="{{ basepath }}/static/themes/{{ config_theme }}/styles.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/default.css" media="screen" rel="stylesheet" type="text/css" />
 		<link href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/jquery.jscrollpane.css" media="all" rel="stylesheet" type="text/css" />
