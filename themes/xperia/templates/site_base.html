@@ -96,7 +96,7 @@
 				<!-- -->
 			</div><!-- .spacer-small -->
 
-			<div id="header">
+			<div id="header" class="center">
 				<div id="header-left">
 					<a href="{% url homepage %}" id="header-logo" title="{{ config_title }}"></a>
 				</div><!-- #header-left -->
@@ -124,15 +124,17 @@
 					</div><!-- #header-top-links -->
 
 					<div id="header-content">
-						<div id="header-menu">
+						<ul id="header-menu" class="top-navigation">
 							{% for h in heads %}
-								<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
+								<li>
+									<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
+								</li>
 							{% endfor %}
 
 							<div class="clear">
 								<!-- -->
 							</div><!-- .clear -->
-						</div><!-- #header-menu -->
+						</ul><!-- #header-menu -->
 
 						<div id="header-player">
 							<div id="player-stats">
@@ -271,7 +273,7 @@
 				<!-- -->
 			</div><!-- #content-top -->
 
-			<div id="content-middle">
+			<div id="content-middle" class="main">
 				<div id="sidebar">
 					{% block sidebar %}
 						{% for w in sidebar %}

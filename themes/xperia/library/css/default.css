@@ -1,0 +1,14 @@
+body {
+	background: black;
+	color:green;
+}
+
+.center {
+	width:80%;
+	margin:0 auto;
+}
+
+.top-navigation li {
+	list-style:none;
+	display:inline-block;
+}
