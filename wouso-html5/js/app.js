@@ -80,10 +80,12 @@ function start_authorization(consumerName) {
 
 // before everything
 var path = '';
-if (document.location.indexOf('?'))
-    path = document.location.substring(0, document.location.indexOf('?'));
+var loc = window.location.toString();
+if (loc.indexOf('?') >= 0)
+    path = loc.substring(0, loc.indexOf('?'));
 else
-    path = document.location;
+    path = loc;
+
 navigator.registerProtocolHandler("web+wouso", path + "?q=%s", "Wouso Open Web Application");
 
 function check_callback_extended() {
