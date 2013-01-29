@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/app.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!--
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">h1.title</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#">nav ul li a</a></li>
+                        <li><a href="#">nav ul li a</a></li>
+                        <li><a href="#">nav ul li a</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        -->
+        <ul class="nav nav-tabs">
+            <li><a href="#loading" data-toggle="tab">Loading</a></li>
+            <li><a href="#main" data-toggle="tab">Main</a></li>
+            <li><a href="#authorize" data-toggle="tab">Authorize</a></li>
+        </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="loading">
+          <p>Loading...</p>
+        </div>
+        
+        <div class="tab-pane" id="main">
+          <div id="main-info"></div>
+          <div id="main-notif"></div>
+          <a href="#main" data-toggle="tab">Refresh</a>
+        </div>
+
+        <div class="tab-pane" id="authorize">
+          <h2>Authorization</h2>
+
+          <button onclick="start_authorization()">Authorize on wouso</button>
+        </div>
+      </div>
+      
+       <!--
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>footer</h3>
+            </footer>
+        </div>
+        -->
+
+        <script type="text/javascript"
+            data-main="js/app.js"
+            src="js/lib/require.js"></script>
+    </body>
+</html>
