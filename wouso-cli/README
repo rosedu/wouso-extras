@@ -1,6 +1,0 @@
-
-After first login/authorization, you can run it like this:
-
-python wousoapi.py 'oauth_token_secret=EmdcfndZuqNdhu8Hct5J7u8ZKn9KS4MY&oauth_token=ZzUKBGELcjVvcNsfhC&oauth_callback_confirmed=true'
-
-(passing the token as a string)
