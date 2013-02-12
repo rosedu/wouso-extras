@@ -1,0 +1,48 @@
+
+@import "bootstrap.css";
+/* @import "bootstrap-responsive.css"; */
+
+body {
+    background-color: #d3dde5;
+}
+
+.day1 {
+    margin-top: 1em;
+}
+
+#forecast p {
+    margin: 1em;
+}
+
+.nav-tabs {
+    margin: 0;
+}
+
+.content {
+    padding-top: 1em;
+
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #d3dde5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#d3dde5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#d3dde5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#d3dde5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#d3dde5 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#d3dde5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d3dde5',GradientType=0 ); /* IE6-9 */
+}
+
+.content h1 {
+    margin: .25em 0;
+}
+
+section p, #settings {
+    font-size: 1.25em;
+}
+
+.tab-content {
+    padding: 1em;
+}
+
+ul.nav {
+    display: none
+}
