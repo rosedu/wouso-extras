@@ -179,6 +179,23 @@ class WousoClient(object):
         data = {'receiver': to_id, 'subject': subject, 'text': text}
         return self._get_json(self._make_request(URL, 'POST', data))
 
+    def messages_action(self, action, msg_id):
+        """ Apply an action on a message received. """
+        URL = '/api/messages/%s/%s/' % (quote(action), quote(msg_id))
+        return self._get_json(self._make_request(URL, 'POST'))
+
+    def messages_setread(self, msg_id):
+        return self.messages_action('setread', msg_id)
+
+    def messages_setunread(self, msg_id):
+        return self.messages_action('setunread', msg_id)
+
+    def messages_archive(self, msg_id):
+        return self.messages_action('archive', msg_id)
+
+    def messages_unarchive(self, msg_id):
+        return self.messages_action('unarchive', msg_id)
+
     def notifications(self):
         """ Fetch notification counts """
         NOTIF_URL = '/api/notifications/all/'
