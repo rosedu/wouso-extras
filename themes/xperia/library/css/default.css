@@ -1,11 +1,24 @@
+html, head {
+	height:100%;
+}
+
 body {
 	background: black;
 	color:green;
+  	font-family:courier;
+  	background:#222;
+}
+
+h2 {
+	margin:0;
 }
 
 .center {
 	width:80%;
 	margin:0 auto;
+    
+	height: 100%;
+	height:100%;
 }
 
 .ac_input {
@@ -34,3 +47,50 @@ body {
 			color:#00FF16;
 			border-bottom: 1px solid #007F0B;
 		}
+
+.top-navigation li a:hover {
+	background:#00FF16;
+  	color:#333;
+}
+
+#sidebar {
+	width:30%;
+  	height:100%;
+	float:left;
+  	border-right:1px dashed green;
+  	min-height:500px;
+}
+
+.avatar {
+	display:none;
+}
+
+
+#footer {
+	width:80%;
+  	margin:0 auto;
+}
+
+#header-search {
+	float:right;
+}
+
+.top-navigation li:hover a {
+  	-webkit-transform:rotateX(90deg);
+  	font-size:2em;
+}
+
+#header-content h1 span {
+	color:red;
+  	-webkit-animation:1s blink infinite;
+  	-webkit-transition-duration:1s;
+}
+
+@-webkit-keyframes blink {
+  from {
+  	opacity:1;
+  }
+  to {
+  	opacity:0;
+  }
+}
