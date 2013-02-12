@@ -1,8 +1,6 @@
-import json
-
-__author__ = 'alex'
 # Code inspired from http://oauth.googlecode.com/svn/code/python/oauth/example/client.py
-
+import json
+from urllib import quote
 from oauth import oauth
 import httplib
 import webbrowser
@@ -147,6 +145,13 @@ class WousoClient(object):
         response['instance'] = self.server
         return response
 
+    def search(self, query):
+        """ Search for players
+        """
+        URL = '/api/search/%s/' % quote(query)
+        response = self._get_json(self._make_request(URL))
+        return response
+
     def notifications(self):
         """ Fetch notification counts """
         NOTIF_URL = '/api/notifications/all/'
@@ -171,4 +176,3 @@ class WousoClient(object):
         oauth_request = self._make_request(URL, method='POST')
         response = self.client.access_resource(oauth_request)
         return response
-
