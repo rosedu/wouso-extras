@@ -74,6 +74,12 @@ h2 {
     border-top:1px dashed green;
 }
 
+#footer:before {
+	content:"";
+  	display:block;
+  	clear:both;
+}
+
 #header-search {
 	float:right;
 }
@@ -104,4 +110,8 @@ h2 {
 #header-player {
 	border-bottom:1px dashed green;
   	margin-bottom:1em;
+}
+
+.spacer {
+	clear:both;
 }

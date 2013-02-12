@@ -5,7 +5,7 @@ ul.tabs {
 	list-style : none;
 	margin : 0;
 	padding : 0;
-	width : 100%;
+	width : 69%;
 }
 
 ul.tabs li {
@@ -36,6 +36,7 @@ ul.tabs li a:hover {
 
 .tab_container {
 	clear : both;
+	width:69%;
 }
 
 ul.tabs li.active a {
