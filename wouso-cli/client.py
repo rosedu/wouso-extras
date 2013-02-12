@@ -21,8 +21,7 @@ def run_new(args):
 def run_existing(args):
     string = args[0]
     server, port = get_instance(args[1:])
-    wc = WousoClient(server=server, port=port)
-    wc.set_token_from_string(string)
+    wc = WousoClient(server=server, port=port, access_token=string)
 
     print wc.info()
     print wc.notifications()

@@ -8,6 +8,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 class WousoOAuthClient(oauth.OAuthClient):
+    """ Kind of generic Python OAauth 1.0 client.
+    """
     REQUEST_TOKEN_URL = '/api/oauth/request_token/'
     ACCESS_TOKEN_URL = '/api/oauth/access_token/'
     AUTHORIZATION_URL = '/api/oauth/authorize/'
@@ -70,15 +72,27 @@ class WousoClient(object):
     CONSUMER_SECRET = 'secret'
 
     def __init__(self, edition='', access_token=None, server=None, port=80):
-        self.access_token = ('', '') if access_token is None else access_token
+        if isinstance(access_token, (tuple, list)):
+            self.access_token = access_token
+        elif isinstance(access_token, str):
+            self._get_token_from_string(access_token)
+        else:
+            self.access_token = ('', '')
         self.server = 'wouso.cs.pub.ro' if server is None else server
         path = '/%s' % edition if edition else ''
         self.client = WousoOAuthClient(self.server, port=port, path=path,
             consumer_key=self.CONSUMER_KEY, consumer_secret=self.CONSUMER_SECRET)
 
-    def set_token_from_string(self, string):
+    def _get_token_from_string(self, string):
         token = oauth.OAuthToken.from_string(string)
-        self.access_token = token
+        return token
+
+    def _make_request(self, url, method='GET'):
+        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
+                                        token=self.access_token, http_method=method, http_url=url,
+                                        parameters={})
+        oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
+        return oauth_request
 
     def authorize(self):
         """ Does the OAuth conga. Opens browser window so that the user can authenticate.
@@ -107,24 +121,28 @@ class WousoClient(object):
         self.access_token = token
         return self.access_token
 
-    def _make_request(self, url, method='GET'):
-        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
-                                        token=self.access_token, http_method=method, http_url=url,
-                                        parameters={})
-        oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
-        return oauth_request
-
     ## Real API:
+    def info(self):
+        """ Fetch information about current user and game """
+        INFO_URL = '/api/info/'
+        oauth_request = self._make_request(INFO_URL)
+        response = self.client.access_resource(oauth_request)
+        return response
+
     def notifications(self):
+        """ Fetch notification counts """
         NOTIF_URL = '/api/notifications/all/'
         oauth_request = self._make_request(NOTIF_URL)
         response = self.client.access_resource(oauth_request)
         return response
 
-    def info(self):
-        INFO_URL = '/api/info/'
-        oauth_request = self._make_request(INFO_URL)
-        response = self.client.access_resource(oauth_request)
+    def quest_admin_quests(self):
+        """
+        Get information about all available quests
+        """
+        URL = '/api/quest/admin/'
+        req = self._make_request(URL)
+        response = self.client.access_resource(req)
         return response
 
     def quest_admin_user(self, quest_id, username):
