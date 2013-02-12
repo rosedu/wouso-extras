@@ -74,10 +74,9 @@ def run_new(args):
     print wc.info()
     print wc.notifications()
 
-def run_existing(args):
-    string = args[0]
-    https, server, port, path = get_instance(args[1:])
-    wc = WousoClient(server=server, port=port, access_token=string, path=path, https=https)
+def run_existing(token, args):
+    https, server, port, path = get_instance(args)
+    wc = WousoClient(server=server, port=port, access_token=token, path=path, https=https)
 
     print wc.info()
     print wc.notifications()
@@ -85,12 +84,14 @@ def run_existing(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Wouso API client')
-    parser.add_argument('--config')
+    parser.add_argument('--config', help='Use configuration from file')
     parser.add_argument('--show_config', action='store_true')
     parser.add_argument('--authorize', nargs='+', help='Attempt OAuth authorization. Must provide server, port and path, such as: localhost:8000/2013')
+    parser.add_argument('--token', help='Provide a token string')
     parser.add_argument('legacy', nargs='*')
     args = parser.parse_args()
     config = get_config()
+
     if args.show_config:
         if not config:
             print "No config file found at %s" % CONFIG_FILE
@@ -99,7 +100,10 @@ if __name__ == '__main__':
             print "Available configurations:"
             for s in config.sections():
                 print " ", s
-            print "\nUse `%s --config [name]` to run with a specific config"
+        sys.exit(0)
+
+    if args.authorize:
+        run_new(args.authorize)
         sys.exit(0)
 
     if args.config:
@@ -111,14 +115,9 @@ if __name__ == '__main__':
             get_info(dict([(o, config.get(args.config, o)) for o in options]))
             sys.exit(0)
 
-    if args.authorize:
-        run_new(args.authorize)
+    if args.token:
+        run_existing(args.token, args.legacy)
         sys.exit(0)
-    if len(sys.argv) >= 2:
-        if sys.argv[1] == 'help':
-            print 'Usage %s [token <string>] or <server> <port>' % sys.argv[0]
-            sys.exit(0)
-    if len(sys.argv) >= 3 and sys.argv[1] == 'token':
-        run_existing(sys.argv[2:])
-    else:
-        run_new(sys.argv[1:])
+
+    parser.print_help()
+    sys.exit(0)
