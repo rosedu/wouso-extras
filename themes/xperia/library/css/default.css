@@ -48,10 +48,10 @@ h2 {
 			border-bottom: 1px solid #007F0B;
 		}
 
-.top-navigation li a:hover {
-	background:#00FF16;
-  	color:#333;
-}
+		a:hover {
+            background:#00FF16;
+            color:#333;
+        }
 
 #sidebar {
 	width:26%;
