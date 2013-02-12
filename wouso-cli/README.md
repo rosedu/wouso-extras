@@ -21,7 +21,7 @@ It will open a browser window, requesting authentication and giving a verifier. 
 
 Run the shell using:
 
-    python client.py --token 'oauth_token=xxxx...' --shell
+    python client.py --token 'oauth_token=xxxx...' localhost:8000 --shell
 
 
 ### With configuration
@@ -38,3 +38,6 @@ Run the shell using:
 
     python client.py --config localhost --shell
 
+## Shell
+
+Type 'help' for help and available methods.
