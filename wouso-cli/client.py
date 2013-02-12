@@ -1,7 +1,11 @@
+import cmd
+import inspect
+import logging
 import os
 import sys
 import ConfigParser
 import argparse
+from pprint import pprint
 from wousoapi import WousoClient
 
 CONFIG_FILE = '/etc/wouso.ini'
@@ -51,18 +55,26 @@ def get_instance(args):
                     https = args[3].lower() == 'https'
     return https, server, port, path
 
+def get_info(wc):
+    info = wc.info()
+    print "Logged in as: ", info['first_name'], info['last_name'], '(%s)' % info.get('username', '')
+    print "Level: ", info['level_no'], "Race:", info['race'], "Group:", info['group'], "Points:", info['points']
 
-def get_info(options):
+
+def get_client_from_config(options):
     server = options.get('server', 'wouso-next.rosedu.org')
     port = options.get('port', None)
     path = options.get('path', '')
     access_token = options.get('access_token', None)
     https = options.get('https', 'False').lower() == 'true'
     wc = WousoClient(server=server, port=port, path=path, access_token=access_token, https=https)
+    return wc
 
-    info = wc.info()
-    print "Logged in as: ", info['first_name'], info['last_name'], '(%s)' % info.get('username', '')
-    print "Level: ", info['level_no'], "Race:", info['race'], "Group:", info['group'], "Points:", info['points']
+
+def get_client_from_args(token, args):
+    https, server, port, path = get_instance(args)
+    wc = WousoClient(server=server, port=port, access_token=token, path=path, https=https)
+    return wc
 
 
 def run_new(args):
@@ -72,25 +84,60 @@ def run_new(args):
     wc.authorize()
     print "Access token: '%s'" % wc.access_token
     print wc.info()
-    print wc.notifications()
 
-def run_existing(args):
-    string = args[0]
-    https, server, port, path = get_instance(args[1:])
-    wc = WousoClient(server=server, port=port, access_token=string, path=path, https=https)
 
-    print wc.info()
-    print wc.notifications()
+class WousoShell(cmd.Cmd):
+    """
+    An interactive shell for wouso API
+    """
+    def __init__(self, client):
+        cmd.Cmd.__init__(self)
+        self.client = client
+        info = self.client.info()
+        self.prompt = '%s@%s: ' % (info.get('username'), info.get('instance'))
+        # Populate shell with api calls
+        methods = [m for m in dir(self.client) if not m.startswith('_') and callable(getattr(self.client, m))]
+        for m in methods:
+            setattr(WousoShell, 'do_%s' % m, self._make_handler(m))
+
+    def _make_handler(self, name):
+        original_func = getattr(self.client, name)
+        def _handler(self, line):
+            info = inspect.getargspec(original_func)
+            def api_call(*args, **kwargs):
+                try:
+                    if len(info[0]) == 1:
+                        result = original_func()
+                    else:
+                        result = original_func(*args, **kwargs)
+                except TypeError as e:
+                    logging.exception(e)
+                else:
+                    pprint(result)
+                return False
+            args = line.split(' ')
+            return api_call(*args)
+        _handler.__doc__ = original_func.__doc__
+        return _handler
+
+    def do_EOF(self, line):
+        print "\n"
+        return True
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Wouso API client')
-    parser.add_argument('--config')
+    parser.add_argument('--config', help='Use configuration from file')
     parser.add_argument('--show_config', action='store_true')
     parser.add_argument('--authorize', nargs='+', help='Attempt OAuth authorization. Must provide server, port and path, such as: localhost:8000/2013')
+    parser.add_argument('--token', help='Provide a token string')
+    parser.add_argument('--show_info', action='store_true')
+    parser.add_argument('--shell', action='store_true', help='Run an interactive shell of the API')
     parser.add_argument('legacy', nargs='*')
     args = parser.parse_args()
     config = get_config()
+    client = None
+
     if args.show_config:
         if not config:
             print "No config file found at %s" % CONFIG_FILE
@@ -99,7 +146,10 @@ if __name__ == '__main__':
             print "Available configurations:"
             for s in config.sections():
                 print " ", s
-            print "\nUse `%s --config [name]` to run with a specific config"
+        sys.exit(0)
+
+    if args.authorize:
+        run_new(args.authorize)
         sys.exit(0)
 
     if args.config:
@@ -108,17 +158,19 @@ if __name__ == '__main__':
             sys.exit(-2)
         else:
             options = config.options(args.config)
-            get_info(dict([(o, config.get(args.config, o)) for o in options]))
-            sys.exit(0)
+            options = dict([(o, config.get(args.config, o)) for o in options])
+            client = get_client_from_config(options)
 
-    if args.authorize:
-        run_new(args.authorize)
-        sys.exit(0)
-    if len(sys.argv) >= 2:
-        if sys.argv[1] == 'help':
-            print 'Usage %s [token <string>] or <server> <port>' % sys.argv[0]
-            sys.exit(0)
-    if len(sys.argv) >= 3 and sys.argv[1] == 'token':
-        run_existing(sys.argv[2:])
+    if args.token:
+        client = get_client_from_args(args.token, args.legacy)
+
+    if client is None:
+        parser.print_help()
     else:
-        run_new(sys.argv[1:])
+        if args.show_info:
+            get_info(client)
+        elif args.shell:
+            shell = WousoShell(client)
+            shell.cmdloop()
+
+    sys.exit(0)
