@@ -92,7 +92,6 @@ class WousoClient(object):
         if string.startswith('\''):
             string = string[1:-1]
         token = oauth.OAuthToken.from_string(string)
-        print token
         return token
 
     def _make_request(self, url, method='GET'):
@@ -145,6 +144,7 @@ class WousoClient(object):
         INFO_URL = '/api/info/'
         oauth_request = self._make_request(INFO_URL)
         response = self._get_json(oauth_request)
+        response['instance'] = self.server
         return response
 
     def notifications(self):
@@ -165,9 +165,9 @@ class WousoClient(object):
 
     def quest_admin_user(self, quest_id, username):
         """
-        Send a POST message, asking wouso to increment current level of username in quest
+        Increment current level of username in quest
         """
-        URL = '/api/quest/admin/quest=%d/username=%s/' % (quest_id, username)
+        URL = '/api/quest/admin/quest=%s/username=%s/' % (quest_id, username)
         oauth_request = self._make_request(URL, method='POST')
         response = self.client.access_resource(oauth_request)
         return response
