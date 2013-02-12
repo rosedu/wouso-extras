@@ -16,7 +16,6 @@ h2 {
 .center {
 	width:80%;
 	margin:0 auto;
-    
 	height: 100%;
 	height:100%;
 }
@@ -54,23 +53,35 @@ h2 {
         }
 
 #sidebar {
-	width:26%;
+	width:27%;
   	height:100%;
 	float:left;
   	border-right:1px dashed green;
   	min-height:500px;
-  margin-right:3%;
+    margin-right:3%;
+}
+
+#sidebar h2:before {
+	content:"\00b7";
+}
+
+#sidebar h2 {
+	margin: .2em 0;
 }
 
 .avatar {
-	display:none;
+  display:none;
+  width:20px;
+  float:left;
+  margin:0 .5em;
+  -webkit-filter: hue-rotate(120deg);
 }
 
 
 #footer {
 	width:80%;
   	margin:2em auto;
-  padding-top:1em;
+    padding-top:1em;
     border-top:1px dashed green;
 }
 
@@ -114,4 +125,36 @@ h2 {
 
 .spacer {
 	clear:both;
+}
+
+#player-stats a:before {
+	content:"\263A";
+  	float:left;
+  	margin:0 .1em;
+  	color:green;
+}
+
+.progress-bar {
+	background:8f8;
+    display:block;
+  	height:20px;
+  	border-radius:5px;
+  	box-shadow:inset 0 0 5px rgba(0,0,0,.3);
+  	border:1px solid black;
+  	position:relative;
+}
+
+.progress {
+	display:inline-block;
+  	height:100%;
+  	background:rgba(0,255,0,.7);
+  	border-radius:5px;
+}
+
+.progress-bar-info {
+	position:absolute;
+  	left:50%;
+  	top:-14px;
+  	width:200px;
+  	margin-left:-100px;
 }
