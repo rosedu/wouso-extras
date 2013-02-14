@@ -95,6 +95,10 @@ h2 {
 	float:right;
 }
 
+.top-navigation {
+	width:100%;
+}
+
 .top-navigation li:hover a {
   	-webkit-transform:rotateX(90deg);
 }
@@ -142,6 +146,8 @@ h2 {
   	box-shadow:inset 0 0 5px rgba(0,0,0,.3);
   	border:1px solid black;
   	position:relative;
+  	float:right;
+  	width:50%;
 }
 
 .progress {

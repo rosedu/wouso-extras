@@ -140,9 +140,12 @@
 							</div><!-- #header-search -->
 						{% endblock %}
 
-						<h1> {{player.nickname}} @woso:~$ <span>_</span></h1>
+						<h1>{{player.nickname}}@woso:~$<span>_</span></h1>
 						
 						<ul id="header-menu" class="top-navigation">
+							{% if user.is_authenticated %}
+							<li>{% player player %}</li>
+							{% endif %}
 							{% for h in heads %}
 								<li>
 									<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
@@ -158,8 +161,6 @@
 							<div id="player-stats">
 								{% if user.is_authenticated %}
 									<div id="player-stats-blur">
-										{% player player %}
-
 										<p>
 											[{{ player.level.title }}]
 											[Points <span class="player-points">{{ player.points|floatformat:0 }}</span>]
