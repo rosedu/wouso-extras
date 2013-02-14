@@ -102,7 +102,7 @@
 				</div><!-- #header-left -->
 
 				<div id="header-right">
-					<div id="header-top-links">
+					<!--<div id="header-top-links">
 
 						
 						{% if user.is_authenticated %}
@@ -122,7 +122,7 @@
 
 						<div class="clear">
 							<!-- -->
-						</div><!-- .clear -->
+						<!-- </div><!-- .clear -->
 					</div><!-- #header-top-links -->
 
 					<div id="header-content">
@@ -144,13 +144,28 @@
 						
 						<ul id="header-menu" class="top-navigation">
 							{% if user.is_authenticated %}
-							<li>{% player player %}</li>
+							<li>Hello {% player player %}</li>
 							{% endif %}
 							{% for h in heads %}
 								<li>
 									<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
 								</li>
 							{% endfor %}
+
+							{% if user.is_authenticated %}
+                            <li><a href="{% url logout_view %}" id="header-logout">{% trans 'Logout' %}</a></li>
+
+							{% if perms.config.change_setting %}
+								<li><a href="{% url dashboard %}" id="header-control-panel">Panou de control</a></li>
+							{% endif %}
+
+                            {% if not config_disable_chat %}
+                               <li><a href="{% url chat_home %}" id="header-chat">{% trans 'Chat' %}</a></li>
+                            {% endif %}
+
+							{% else %}
+								<li><a href="{% url login_view %}" id="header-login">{% trans 'Login' %}</a></li>
+							{% endif %}
 
 							<div class="clear">
 								<!-- -->
@@ -161,18 +176,19 @@
 							<div id="player-stats">
 								{% if user.is_authenticated %}
 									<div id="player-stats-blur">
-										<p>
-											[{{ player.level.title }}]
-											[Points <span class="player-points">{{ player.points|floatformat:0 }}</span>]
-											[Gold <span class="player-gold">{{ player.coins.gold }}</span>]
-										</p>
-
 										<div class="progress-bar">
 											<p class="progress-bar-info">{{ player.level_progress.points_left|floatformat:0 }} {% trans 'until next level' %}</p>
 											<div class="progress" style="width : {{ player.level_progress.percent|floatformat }}%;">
 												<!-- -->
 											</div><!-- .progress-bar-value -->
 										</div><!-- .progress-bar -->
+
+										<p>
+											[{{ player.level.title }}]
+											[Points <span class="player-points">{{ player.points|floatformat:0 }}</span>]
+											[Gold <span class="player-gold">{{ player.coins.gold }}</span>]
+										</p>
+
 
 									</div><!-- #player-stats-blur -->
 

@@ -3,7 +3,7 @@ html, head {
 }
 
 body {
-	background:-webkit-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), -webkit-radial-gradient(circle, #0a0, #1a160d);
+	background:-webkit-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), -webkit-radial-gradient(circle, #080, #1a160d);
 	-webkit-background-size:100% 3px, 100% 100%;
 	color:#0c0;
   	font-family:courier;
@@ -167,4 +167,8 @@ h2 {
 
 input[type=text] {
 	color:green;
+}
+
+#header-top-links {
+	text-align:right;
 }
