@@ -3,10 +3,10 @@ html, head {
 }
 
 body {
-	background: black;
-	color:green;
+	background:-webkit-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), -webkit-radial-gradient(circle, #0a0, #1a160d);
+	-webkit-background-size:100% 3px, 100% 100%;
+	color:#0c0;
   	font-family:courier;
-  	background:#222;
 }
 
 h2 {
@@ -157,4 +157,8 @@ h2 {
   	top:-14px;
   	width:200px;
   	margin-left:-100px;
+}
+
+input[type=text] {
+	color:green;
 }
