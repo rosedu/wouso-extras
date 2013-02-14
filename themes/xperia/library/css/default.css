@@ -103,10 +103,6 @@ h2 {
   	-webkit-transform:rotateX(90deg);
 }
 
-.top-navigation li:nth-child(n+6) {
-  	float:right;
-}
-
 #header-content h1 span {
   	-webkit-animation:.8s blink step-end infinite;
   	-webkit-transition-duration:1s;
@@ -173,6 +169,6 @@ input[type=text] {
 	color:green;
 }
 
-.cplayer {
-	display:inline-block;
+#header-top-links {
+	text-align:right;
 }
