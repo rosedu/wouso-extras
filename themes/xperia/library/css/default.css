@@ -172,3 +172,7 @@ input[type=text] {
 #header-top-links {
 	text-align:right;
 }
+
+.actions a {
+	margin-right:.5em;
+}
