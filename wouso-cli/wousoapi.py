@@ -1,8 +1,6 @@
-import json
-
-__author__ = 'alex'
 # Code inspired from http://oauth.googlecode.com/svn/code/python/oauth/example/client.py
-
+import json
+from urllib import quote, urlencode
 from oauth import oauth
 import httplib
 import webbrowser
@@ -66,7 +64,13 @@ class WousoOAuthClient(oauth.OAuthClient):
 
     def access_resource(self, oauth_request):
         oauth_request.http_url = self.path + oauth_request.http_url
-        self.connection.request(oauth_request.http_method, oauth_request.http_url, headers=oauth_request.to_header())
+        if hasattr(oauth_request, 'post_data'):
+            body = urlencode(oauth_request.post_data) if oauth_request.post_data else None
+        else:
+            body = None
+        self.connection.request(oauth_request.http_method, oauth_request.http_url, headers=oauth_request.to_header(),
+                                body=body
+        )
         response = self.connection.getresponse()
         return response.read()
 
@@ -94,11 +98,12 @@ class WousoClient(object):
         token = oauth.OAuthToken.from_string(string)
         return token
 
-    def _make_request(self, url, method='GET'):
+    def _make_request(self, url, method='GET', post_data=None):
         oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.client.consumer,
                                         token=self.access_token, http_method=method, http_url=url,
                                         parameters={})
         oauth_request.sign_request(self.client.signature_method_plaintext, self.client.consumer, self.access_token)
+        oauth_request.post_data = post_data
         return oauth_request
 
     def _get_json(self, request):
@@ -147,6 +152,50 @@ class WousoClient(object):
         response['instance'] = self.server
         return response
 
+    def player_info(self, player_id):
+        """ Get information about specific player """
+        URL = '/api/player/%s/info/' % quote(player_id)
+        response = self._get_json(self._make_request(URL))
+        return response
+
+    def search(self, query):
+        """ Search for players
+        """
+        URL = '/api/search/%s/' % quote(query)
+        response = self._get_json(self._make_request(URL))
+        return response
+
+    def messages(self, type):
+        """ Get all messages, by type. Type can be: all, recv, sent.
+        Note: This might be limited to the last 100 messages
+        """
+        URL = '/api/messages/%s/' % quote(type)
+        return self._get_json(self._make_request(URL))
+
+    def messages_send(self, to_id, subject, text, reply_to=None):
+        """ Send a new message
+        """
+        URL = '/api/messages/send/'
+        data = {'receiver': to_id, 'subject': subject, 'text': text}
+        return self._get_json(self._make_request(URL, 'POST', data))
+
+    def messages_action(self, action, msg_id):
+        """ Apply an action on a message received. """
+        URL = '/api/messages/%s/%s/' % (quote(action), quote(msg_id))
+        return self._get_json(self._make_request(URL, 'POST'))
+
+    def messages_setread(self, msg_id):
+        return self.messages_action('setread', msg_id)
+
+    def messages_setunread(self, msg_id):
+        return self.messages_action('setunread', msg_id)
+
+    def messages_archive(self, msg_id):
+        return self.messages_action('archive', msg_id)
+
+    def messages_unarchive(self, msg_id):
+        return self.messages_action('unarchive', msg_id)
+
     def notifications(self):
         """ Fetch notification counts """
         NOTIF_URL = '/api/notifications/all/'
@@ -155,20 +204,15 @@ class WousoClient(object):
         return response
 
     def quest_admin_quests(self):
-        """
-        Get information about all available quests
-        """
+        """ Get information about all available quests """
         URL = '/api/quest/admin/'
         req = self._make_request(URL)
         response = self.client.access_resource(req)
         return response
 
     def quest_admin_user(self, quest_id, username):
-        """
-        Increment current level of username in quest
-        """
-        URL = '/api/quest/admin/quest=%s/username=%s/' % (quest_id, username)
+        """ Increment current level of username in quest """
+        URL = '/api/quest/admin/quest=%s/username=%s/' % (quote(quest_id), quote(username))
         oauth_request = self._make_request(URL, method='POST')
         response = self.client.access_resource(oauth_request)
         return response
-
