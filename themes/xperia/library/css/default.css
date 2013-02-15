@@ -107,7 +107,7 @@ h2 {
 	float:right;
 }
 
-#header-content h1 span {
+#header-content h1 .blink {
   	-webkit-animation:.8s blink step-end infinite;
   	-webkit-transition-duration:1s;
 }
