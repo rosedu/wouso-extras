@@ -184,3 +184,8 @@ input[type=text] {
 .cplayer {
 	display:inline-block;
 }	
+
+#output {
+	max-height:200px;
+  	overflow:scroll;
+}
