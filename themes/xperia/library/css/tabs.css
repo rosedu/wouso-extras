@@ -40,4 +40,5 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that th
 .tab_container {
   	width:69%;
   	margin:0;
+  	display:inline-block;
 }
