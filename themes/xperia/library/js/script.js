@@ -9,28 +9,35 @@ commands.home = {
 document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
 	var span = this;
+	var content = span.textContent || span.innerText;
 	
-	if(span.innerText.trim() != '_') {
+	if(content.trim() != '_') {
 		span.classList.remove('blink');
 	} else {
-		span.innerText = '';
+		if(!span.innerText)
+			span.textContent = '';
+		else
+			span.innerText = '';
 	}
 
 	if(e.keyCode == 13) {
 		var h1 = document.createElement('h1');
 
 		for(var i in commands) {
-			if(commands[i].command == span.innerText) {
+			if(commands[i].command == content) {
 				eval(commands[i].instruction);
 				e.preventDefault();
 				return false;
 			}
 		}
 
-		h1.innerHTML = span.innerText + ' : command not found';
+		h1.innerHTML = content + ' : command not found';
 		output.appendChild(h1);
 		output.scrollTop = output.scrollHeight;
-		span.innerText = '';
+		if(!span.innerText)
+			span.textContent = '';
+		else
+			span.innerText = '';
 		e.preventDefault();
 	}
 	
@@ -38,11 +45,14 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
 document.querySelector('h1 span').addEventListener('click', function () {
 	var span = this;
-	console.log(span.innerText);
-	if(span.innerText.trim() == '_') {
-		span.innerText = '';
+	var content = span.textContent || span.innerText;
+	
+	if(content.trim() == '_') {
+		if(!span.innerText)
+			span.textContent = '';
+		else
+			span.innerText = '';
+
 		span.classList.remove('blink');
-    } else {
-    	console.log(span.innerText);
     }
 });
