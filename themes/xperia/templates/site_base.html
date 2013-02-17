@@ -138,7 +138,7 @@
 							</div><!-- #header-search -->
 						{% endblock %}
 
-						<h1>{{player.nickname}}@woso:~$<span class='blink' contenteditable>_</span></h1>
+						<h1 id="nickname" data-nickname="{{player.nickname}}">{{player.nickname}}@woso:~$<span class='blink' contenteditable>_</span></h1>
 						<div id="output"></div>
 						<ul id="header-menu" class="top-navigation">
 							{% if user.is_authenticated %}
