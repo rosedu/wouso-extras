@@ -23,7 +23,7 @@ h2 {
 	height:100%;
 }
 
-.ac_input {
+#query {
 	background: #222;
 	border: 1px dashed green;
 	padding: .5em;
