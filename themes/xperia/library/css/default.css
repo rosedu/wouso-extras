@@ -146,7 +146,7 @@ h2 {
 }
 
 .progress-bar {
-	background:8f8;
+	background:#8f8;
     display:block;
   	height:20px;
   	border-radius:5px;
@@ -191,7 +191,10 @@ input[type=text] {
 #output {
   max-height:200px;
     overflow:scroll;
+    background:transparent;
     background:-webkit-linear-gradient(rgba(0,0,0,.3), transparent) no-repeat, -webkit-linear-gradient(transparent, rgba(0,0,0,.3)) no-repeat;
+    background:-moz-linear-gradient(rgba(0,0,0,.3), transparent) no-repeat, -moz-linear-gradient(transparent, rgba(0,0,0,.3)) no-repeat;
+    background:linear-gradient(rgba(0,0,0,.3), transparent) no-repeat, linear-gradient(transparent, rgba(0,0,0,.3)) no-repeat;
     background-size:100% 10%;
     background-position:top center, bottom center;
 }
