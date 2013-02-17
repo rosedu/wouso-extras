@@ -25,49 +25,6 @@
 			{% endif %}
 			{% block css %}{% endblock %}
 		</style>
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
-		<script src="{{ basepath }}/static/themes/{{ config_theme }}/library/js/jquery.autocomplete.js" type="text/javascript"></script>
-		<script src="{{ basepath }}/static/js/format.item.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            var url_base = '{{ basepath }}';
-        </script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#query').autocomplete('{{ basepath }}/instantsearch/', {
-					minChars : 3,
-					matchSubset : 1,
-					matchContains : 1,
-					cacheLength : 10,
-					formatItem : formatItem,
-					onItemSelect : selectItem,
-					selectOnly : 1
-				});
-
-				$(".footer-content-left a#page-special-statistics, .footer-content-left a#page-contact, .footer-content-left a#page-credits").fancybox({
-					'autoDimensions' : false,
-					'autoScale' : false,
-					'centerOnScroll' : true,
-					'height' : 500,
-					'onComplete' : function() {
-						$('#static-page .scroll-pane').jScrollPane();
-					},
-					'overlayColor' : '#000',
-					'overlayOpacity' : 0.5,
-					'padding' : 0,
-					'scrolling' : 'no',
-					'width' : 500
-				});
-			});
-        // contactbox ...
-        var myID = '{{player.id}}'
-        var myName = '{{player.nickname}}'
-		</script>
-        {% if user.is_authenticated %}
-            {% if not config_disable_contactbox %}
-            <script type="text/javascript" src="{{ basepath }}{{ basepath }}/static/js/contactbox.js"></script>
-            {% endif %}
-        {% endif %}
-        {% block scripts %}{% endblock %}
         <link href="{{ basepath }}/static/themes/xperia/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
 	</head>
 
@@ -343,6 +300,49 @@
 				</div><!-- .clear -->
 			</div><!-- #footer-content -->
 		</div><!-- #footer -->
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
 		<script src="{{ basepath }}/static/themes/xperia/library/js/script.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#query').autocomplete('{{ basepath }}/instantsearch/', {
+					minChars : 3,
+					matchSubset : 1,
+					matchContains : 1,
+					cacheLength : 10,
+					formatItem : formatItem,
+					onItemSelect : selectItem,
+					selectOnly : 1
+				});
+
+				$(".footer-content-left a#page-special-statistics, .footer-content-left a#page-contact, .footer-content-left a#page-credits").fancybox({
+					'autoDimensions' : false,
+					'autoScale' : false,
+					'centerOnScroll' : true,
+					'height' : 500,
+					'onComplete' : function() {
+						$('#static-page .scroll-pane').jScrollPane();
+					},
+					'overlayColor' : '#000',
+					'overlayOpacity' : 0.5,
+					'padding' : 0,
+					'scrolling' : 'no',
+					'width' : 500
+				});
+			});
+        // contactbox ...
+        var myID = '{{player.id}}'
+        var myName = '{{player.nickname}}'
+		</script>
+		<script src="{{ basepath }}/static/themes/{{ config_theme }}/library/js/jquery.autocomplete.js" type="text/javascript"></script>
+		<script src="{{ basepath }}/static/js/format.item.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var url_base = '{{ basepath }}';
+        </script>
+        {% if user.is_authenticated %}
+            {% if not config_disable_contactbox %}
+            <script type="text/javascript" src="{{ basepath }}{{ basepath }}/static/js/contactbox.js"></script>
+            {% endif %}
+        {% endif %}
+        {% block scripts %}{% endblock %}
 	</body>
 </html>
