@@ -6,8 +6,8 @@ html, body {
 body {
     font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
     font-size: 0.8em;
-    background: -webkit-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
-    background: -moz-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
+    background: -webkit-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), -webkit-radial-gradient(circle, #080, #1a160d);
+    background: -moz-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), -moz-radial-gradient(circle, #080, #1a160d);
   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
   background-size: 100% 3px, 100% 100%;
   color: #0c0;
