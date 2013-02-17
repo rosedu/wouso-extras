@@ -32,6 +32,7 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 		}
 
 		h1.innerHTML = content + ' : command not found';
+		output.style.overflow = 'scroll';
 		output.appendChild(h1);
 		output.scrollTop = output.scrollHeight;
 		if(!span.innerText)
