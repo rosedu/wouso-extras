@@ -124,6 +124,24 @@ h2 {
   }
 }
 
+@-moz-keyframes blink {
+  50% {
+    opacity:1;
+  }
+  from, to {
+    opacity:0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity:1;
+  }
+  from, to {
+    opacity:0;
+  }
+}
+
 .activity-stream li {
 	list-style: none;
   	margin: .1em;

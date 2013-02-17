@@ -5,6 +5,10 @@ commands.home = {
 	command : 'cd ~/home/' + nickname,
 	instruction : 'location.href = location.href.substring(0,27)'
 };
+commands.online = {
+	command : 'online',
+	instruction : 'displayOnlinePlayers()'
+};
 
 document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
@@ -57,3 +61,19 @@ document.querySelector('h1 span').addEventListener('click', function () {
 		span.classList.remove('blink');
     }
 });
+
+var displayOnlinePlayers = function () {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://woso.cs.pub.ro/2013/api/info/online/', true);
+	xhr.onload = function(e) {
+		if (this.status == 200) {
+			this.responseText.forEach(function (player) {
+				var h1 = document.createElement('h1');
+				h1.innerHTML = player.nickname;
+				output.appendChild(h1);
+			});
+		}
+	};
+
+	xhr.send();
+};
