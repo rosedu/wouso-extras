@@ -6,6 +6,8 @@ html, body {
 body {
     font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
     font-size: 0.8em;
+    background: -webkit-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
+    background: -moz-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
   background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
   background-size: 100% 3px, 100% 100%;
   color: #0c0;
@@ -104,4 +106,8 @@ button {
 h1 span {
     -webkit-animation:.8s blink step-end infinite;
     -webkit-transition-duration:1s;
+    -moz-animation:.8s blink step-end infinite;
+    -moz-transition-duration:1s;
+    animation:.8s blink step-end infinite;
+    transition-duration:1s;
 }
