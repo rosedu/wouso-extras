@@ -1,5 +1,5 @@
 var output = document.querySelector('#output');
-var nickname = document.querySelector('#nickname').dataset.name;
+var nickname = document.querySelector('#nickname').dataset.nickname;
 var commands = {};
 commands.home = {
 	command : 'cd ~/home/' + nickname,
@@ -12,6 +12,8 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 	
 	if(span.innerText.trim() != '_') {
 		span.classList.remove('blink');
+	} else {
+		span.innerText = '';
 	}
 
 	if(e.keyCode == 13) {
@@ -36,9 +38,11 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
 document.querySelector('h1 span').addEventListener('click', function () {
 	var span = this;
-
+	console.log(span.innerText);
 	if(span.innerText.trim() == '_') {
 		span.innerText = '';
 		span.classList.remove('blink');
-	}
+    } else {
+    	console.log(span.innerText);
+    }
 });
