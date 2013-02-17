@@ -152,6 +152,10 @@ class WousoClient(object):
         response['instance'] = self.server
         return response
 
+    def online(self):
+        URL = '/api/info/online/'
+        return self._get_json(self._make_request(URL))
+
     def player_info(self, player_id):
         """ Get information about specific player """
         URL = '/api/player/%s/info/' % quote(player_id)
