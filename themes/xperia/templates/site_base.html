@@ -25,7 +25,6 @@
 			{% endif %}
 			{% block css %}{% endblock %}
 		</style>
-        <link href="{{ basepath }}/static/themes/xperia/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
         <script src="{{ basepath }}/static/themes/xperia/library/js/jquery.js"></script>
         {% if user.is_authenticated %}
             {% if not config_disable_contactbox %}
@@ -33,6 +32,7 @@
             {% endif %}
         {% endif %}
         {% block scripts %}{% endblock %}
+        <link href="{{ basepath }}/static/themes/xperia/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
