@@ -30,6 +30,10 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 		for(var i in commands) {
 			if(commands[i].command == content) {
 				eval(commands[i].instruction);
+				if(!span.innerText)
+					span.textContent = '';
+				else
+					span.innerText = '';
 				e.preventDefault();
 				return false;
 			}
@@ -67,9 +71,13 @@ var displayOnlinePlayers = function () {
 	xhr.open('GET', 'https://woso.cs.pub.ro/2013/api/info/online/', true);
 	xhr.onload = function(e) {
 		if (this.status == 200) {
+
 			var response = JSON.parse(this.responseText);
+			var h1 = document.createElement('h1');
+			h1.innerHTML = 'Players online ('+response.length+') :';
+			output.appendChild(h1);
 			response.forEach(function (player) {
-				var h1 = document.createElement('h1');
+				h1 = document.createElement('h1');
 				h1.innerHTML = player.nickname;
 				output.appendChild(h1);
 			});

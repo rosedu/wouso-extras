@@ -27,6 +27,12 @@
 		</style>
         <link href="{{ basepath }}/static/themes/xperia/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
         <script src="{{ basepath }}/static/themes/xperia/library/js/jquery.js"></script>
+        {% if user.is_authenticated %}
+            {% if not config_disable_contactbox %}
+            <script src="{{ basepath }}{{ basepath }}/static/js/contactbox.js"></script>
+            {% endif %}
+        {% endif %}
+        {% block scripts %}{% endblock %}
 	</head>
 
 	<body>
@@ -313,21 +319,6 @@
 					onItemSelect : selectItem,
 					selectOnly : 1
 				});
-
-				$(".footer-content-left a#page-special-statistics, .footer-content-left a#page-contact, .footer-content-left a#page-credits").fancybox({
-					'autoDimensions' : false,
-					'autoScale' : false,
-					'centerOnScroll' : true,
-					'height' : 500,
-					'onComplete' : function() {
-						$('#static-page .scroll-pane').jScrollPane();
-					},
-					'overlayColor' : '#000',
-					'overlayOpacity' : 0.5,
-					'padding' : 0,
-					'scrolling' : 'no',
-					'width' : 500
-				});
 			});
         // contactbox ...
         var myID = '{{player.id}}'
@@ -338,11 +329,5 @@
         <script type="text/javascript">
             var url_base = '{{ basepath }}';
         </script>
-        {% if user.is_authenticated %}
-            {% if not config_disable_contactbox %}
-            <script src="{{ basepath }}{{ basepath }}/static/js/contactbox.js"></script>
-            {% endif %}
-        {% endif %}
-        {% block scripts %}{% endblock %}
 	</body>
 </html>
