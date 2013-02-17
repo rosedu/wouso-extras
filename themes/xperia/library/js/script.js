@@ -67,7 +67,8 @@ var displayOnlinePlayers = function () {
 	xhr.open('GET', 'https://woso.cs.pub.ro/2013/api/info/online/', true);
 	xhr.onload = function(e) {
 		if (this.status == 200) {
-			this.responseText.forEach(function (player) {
+			var response = JSON.parse(this.responseText);
+			response.forEach(function (player) {
 				var h1 = document.createElement('h1');
 				h1.innerHTML = player.nickname;
 				output.appendChild(h1);
