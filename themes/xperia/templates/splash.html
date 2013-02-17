@@ -1,0 +1,44 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{config_title}}</title>
+    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/splash.css" />
+    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/{{ config_theme }}/styles.css" />
+</head>
+<body>
+	<div id="floater"></div>
+	<div id="centered">
+        <div id="logo"><h1>WoUSO<span>|</span></h1></div>
+
+        <div id="side">
+            <form action="{% url wouso.interface.views.login_view %}" method="post">
+                <input size="10" name="username" id="username" class="big" type="text" placeholder="username" />
+                <input size="10" name="password" id="password" class="big" type="password" placeholder="password" />
+                <button type="submit">Enter &crarr;</button>
+                {% csrf_token %}
+            </form>
+		</div>
+
+        <div id="content">
+            <h2>{{ config_title }}</h2>
+            <p>
+                {% autoescape off %}
+                {{config_intro}}
+                {% endautoescape %}
+			</p>
+		</div>
+
+	</div>
+
+	<div id="bottom">
+		<p>
+			Copyright &copy; <a href="http://www.rosedu.org">ROSEdu</a>.
+		</p>
+	</div>
+	{% autoescape off %}
+    {{ config_hidden_footer }}
+	{% endautoescape %}
+</body>
+</html>

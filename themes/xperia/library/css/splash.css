@@ -1,0 +1,107 @@
+html, body {
+    margin:0; padding:0;
+    height:100%;
+}
+
+body {
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.1)), radial-gradient(circle, #080, #1a160d);
+  background-size: 100% 3px, 100% 100%;
+  color: #0c0;
+  font-family: courier;
+}
+
+#floater {
+    position:relative; float:left;
+    height:50%; margin-bottom:-200px;
+    width:1px;
+}
+
+#centered {
+    position:relative; clear:left;
+    height:300px; width:80%; max-width:600px; min-width:300px;
+    margin:0 auto;
+}
+
+#bottom {
+    position:absolute;
+    bottom:0; right:10px;
+}
+
+#logo {
+    text-align:center;
+    font-size:30px;
+    height: 100px;
+}
+#side {
+    position:absolute; left:0; top:250px; bottom:0; right:0;
+    padding:10px; margin:5px;
+    text-align: center;
+}
+
+#content {
+    position:absolute; left:0; right:0; top:18%; bottom:0;
+    overflow:auto; 
+    padding:20px; margin:10px;
+    text-align: center;
+}
+button {
+    display: block;
+    float: right;;
+    text-align: center;
+    min-width: 70px;
+    max-width: 150px;
+    border: 1px solid #aaa;
+    padding: 3px;
+    margin: 1px;
+    background-color: #ddd;
+    color: black;
+}
+
+input, button {
+  padding:.5em;
+  font-size:20px;
+  display:inline-block;
+  width:30%;
+  border-radius:5px;
+  min-height:50px;
+}
+
+button {
+    background:none;
+    color:green;
+    border:none;
+}
+
+@-webkit-keyframes blink {
+  50% {
+    opacity:1;
+  }
+  from, to {
+    opacity:0;
+  }
+}
+
+@-moz-keyframes blink {
+  50% {
+    opacity:1;
+  }
+  from, to {
+    opacity:0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity:1;
+  }
+  from, to {
+    opacity:0;
+  }
+}
+
+h1 span {
+    -webkit-animation:.8s blink step-end infinite;
+    -webkit-transition-duration:1s;
+}
