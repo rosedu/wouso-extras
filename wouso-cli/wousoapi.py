@@ -162,6 +162,13 @@ class WousoClient(object):
         response = self._get_json(self._make_request(URL))
         return response
 
+    def nickname(self, nickname):
+        """ Change player nickname
+        """
+        URL = '/api/info/nickname/'
+        response = self._get_json(self._make_request(URL, 'POST', {'nickname': nickname}))
+        return response
+
     def search(self, query):
         """ Search for players
         """
