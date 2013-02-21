@@ -10,7 +10,7 @@ commands.online = {
 	instruction : 'displayOnlinePlayers()'
 };
 commands.nick = {
-	command : '/nick ',
+	command : 'nick',
 	instruction : 'updateNickname()'
 };
 
@@ -18,6 +18,8 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
 	var span = this;
 	var content = span.textContent || span.innerText;
+
+	console.log(content);
 	
 	if(content.trim() != '_') {
 		span.classList.remove('blink');
@@ -32,8 +34,9 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 		var h1 = document.createElement('h1');
 
 		for(var i in commands) {
-			var re = new RegExp("^" + commands[i].command, "i");
+			var re = new RegExp(commands[i].command, "ig");
 			var match = re.test(content);
+		
 			if(match) {
 				eval(commands[i].instruction);
 				if(!span.innerText)
@@ -78,6 +81,8 @@ var updateNickname = function () {
 	content = content.split(' ');
 	content.shift();
 	content.join('');
+	var formdata = new FormData();
+	formdata.append('nickname', content);
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'https://woso.cs.pub.ro/2013/api/info/nickname/', true);
@@ -86,14 +91,17 @@ var updateNickname = function () {
 
 			var response = JSON.parse(this.responseText);
 			var h3 = document.createElement('h3');
-			h3.innerHTML = 'Response : ' + this.responseText;
+          	if(response.success)
+				h3.innerHTML = 'Nickname updated';
+          	else
+              h3.innerHTML = 'Nickname update failed, reason: ' + response.error;
 			output.appendChild(h3);
 			output.style.overflow = 'scroll';
 			
 		}
 	};
 
-	xhr.send(content);
+	xhr.send(formdata);
 
 };
 
