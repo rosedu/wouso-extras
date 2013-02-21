@@ -9,6 +9,10 @@ commands.online = {
 	command : 'online',
 	instruction : 'displayOnlinePlayers()'
 };
+commands.nick = {
+	command : '/nick ',
+	instruction : 'updateNickname()'
+};
 
 document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
@@ -28,7 +32,9 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 		var h1 = document.createElement('h1');
 
 		for(var i in commands) {
-			if(commands[i].command == content) {
+			var re = new RegExp("^" + commands[i].command, "i");
+			var match = re.test(content);
+			if(match) {
 				eval(commands[i].instruction);
 				if(!span.innerText)
 					span.textContent = '';
@@ -65,6 +71,30 @@ document.querySelector('h1 span').addEventListener('click', function () {
 		span.classList.remove('blink');
     }
 });
+
+var updateNickname = function () {
+	var span = document.querySelector('h1 span');
+	var content = span.textContent || span.innerText;
+	content = content.split(' ');
+	content = content.shift().join('');
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'https://woso.cs.pub.ro/2013/api/info/nickname/', true);
+	xhr.onload = function(e) {
+		if (this.status == 200) {
+
+			var response = JSON.parse(this.responseText);
+			var h3 = document.createElement('h3');
+			h3.innerHTML = 'Players online ('+response.length+') :';
+			output.appendChild(h3);
+			output.style.overflow = 'scroll';
+			
+		}
+	};
+
+	xhr.send(content);
+
+};
 
 var displayOnlinePlayers = function () {
 	var xhr = new XMLHttpRequest();
