@@ -76,7 +76,8 @@ var updateNickname = function () {
 	var span = document.querySelector('h1 span');
 	var content = span.textContent || span.innerText;
 	content = content.split(' ');
-	content = content.shift().join('');
+	content.shift();
+	content.join('');
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'https://woso.cs.pub.ro/2013/api/info/nickname/', true);
@@ -85,7 +86,7 @@ var updateNickname = function () {
 
 			var response = JSON.parse(this.responseText);
 			var h3 = document.createElement('h3');
-			h3.innerHTML = 'Players online ('+response.length+') :';
+			h3.innerHTML = 'Response : ' + this.responseText;
 			output.appendChild(h3);
 			output.style.overflow = 'scroll';
 			
