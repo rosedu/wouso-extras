@@ -216,3 +216,25 @@ input[type=text] {
     background-size:100% 10%;
     background-position:top center, bottom center;
 }
+
+.menu-notification {
+  background:green;
+    margin:.5em;
+    display:inline-block;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    text-align:center;
+    line-height:18px;
+}
+
+td, th {
+  margin:.2em;
+    padding:.2em .5em;
+    min-width:60px;
+    text-align:center;
+}
+
+th {
+  border-bottom:1px solid green;
+}
