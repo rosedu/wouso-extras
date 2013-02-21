@@ -2,7 +2,7 @@ var output = document.querySelector('#output');
 var nickname = document.querySelector('#nickname').dataset.nickname;
 var commands = {};
 commands.home = {
-	command : 'cd ~/home/' + nickname,
+	command : 'cd /home/' + nickname,
 	instruction : 'location.href = location.href.substring(0,27)'
 };
 commands.online = {
@@ -73,13 +73,15 @@ var displayOnlinePlayers = function () {
 		if (this.status == 200) {
 
 			var response = JSON.parse(this.responseText);
-			var h1 = document.createElement('h1');
-			h1.innerHTML = 'Players online ('+response.length+') :';
-			output.appendChild(h1);
+			var h3 = document.createElement('h3');
+			h3.innerHTML = 'Players online ('+response.length+') :';
+			output.appendChild(h3);
+			output.style.overflow = 'scroll';
 			response.forEach(function (player) {
-				h1 = document.createElement('h1');
-				h1.innerHTML = player.nickname;
-				output.appendChild(h1);
+				h3 = document.createElement('h3');
+				h3.innerHTML = player.nickname;
+				output.appendChild(h3);
+				output.scrollTop = output.scrollHeight;
 			});
 		}
 	};
