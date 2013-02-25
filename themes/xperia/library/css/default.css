@@ -102,12 +102,12 @@ h2 {
 .top-navigation {
 	width:100%;
 }
-
+/*
 .top-navigation li:hover a {
   	-webkit-transform:rotateX(90deg);
 }
-
-.top-navigation li:nth-child(n+6) {
+*/
+.top-navigation li:nth-child(n+7) {
 	float:right;
 }
 
@@ -205,7 +205,7 @@ input[type=text] {
 
 .cplayer {
 	display:inline-block;
-}	
+}
 
 #output {
     max-height:200px;
