@@ -23,6 +23,12 @@ h2 {
 	height:100%;
 }
 
+.pull-right {
+    float: right;
+}
+.second {
+    font-size: 0.9em
+}
 #query {
 	background: #222;
 	border: 1px dashed green;
@@ -237,4 +243,17 @@ td, th {
 
 th {
   border-bottom:1px solid green;
+}
+
+.points-big {
+    font-size: 2.4em;
+}
+.points-table, .points-table td {
+    border: 1px dashed green;
+}
+.artifact {
+    display: none;
+}
+.actions {
+    margin-bottom: 10px;
 }

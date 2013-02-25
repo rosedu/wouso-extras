@@ -1,0 +1,202 @@
+{% extends base_template %}
+{% load artifacts %}
+{% load user %}
+{% load i18n %}
+
+{% block title %}{{ profile }}{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ basepath }}/static/js/tabs.js"></script>
+<script type="text/javascript" src="{{ basepath }}/static/js/jquery.flot.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ basepath }}/static/css/tabs.css" />
+{% endblock %}
+
+{% block content %}
+<div class="profile group-{{ profile.race.name.lower }} {% if profile.group %}group-{{ profile.group.name.lower }}{% endif %}">
+    <div class="points pull-right">
+        {% if not top.disabled %}
+        <table class="points-table">
+            <tr class="points-big">
+                <td>{{ profile.points }}</td>
+                <td>{{ profile.coins.karma }}</td>
+            </tr>
+            <tr>
+                <td>points</td>
+                <td>karma</td>
+            </tr>
+            <tr>
+                <td>{{ top.position }}</td>
+                <td>-</td>
+            </tr>
+        </table>
+        {% endif %}
+    </div>
+
+    <img src="{% player_avatar profile %}" class="avatar" />
+    <h2>{{ profile }} <small>[{% artifact_full profile.level %}]</small></h2>
+    <h4>{% if profile.group %}{% trans 'Group' %}: {% player_group profile.group %}{% endif %}
+        {% if profile.race %}{% trans 'Race' %}: {% player_race profile.race %}{% endif %}
+    </h4>
+    {% if profile.magic.artifact_amounts.all %}
+    <ul class="artifacts" id="player-artifacts">
+        {% for a in profile.magic.artifact_amounts.all %}
+        <li>{% artifact a %}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <ul class="artifacts" id="player-spells">
+        {% for s in profile.magic.spells.all %}
+        <li>{% if s.source.id == player.id %}{% spell_due s %}
+            {% else %}{% if profile.id == player.id %}
+            {% spell_due s %}
+            {% else %}
+            {% spell_unknown s %}
+            {% endif %}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="actions">
+        {% if profile.user.id != user.id %}
+        <a class="button button-min" href="{% url create_to profile.id %}" title="{% trans 'Send a message' %}">✉ Message</a>
+        {% endif %}
+        {% if not config_disable_magic %}
+        <a class="button button-min" href="{% url magic_cast profile.id%}" title="{% trans 'Cast a spell on this player' %}">✤</a>
+        {% endif %}
+        {% if profile.user.id == user.id %}
+        <a class="button button-min" href="{% url set_profile %}" title="{% trans 'Set your profile' %}">S</a>
+        {% endif %}
+
+        {% autoescape off %}{{ profile_actions }}{% endautoescape %}
+        <a class="button" href="{% url report_player profile.id%}">Report</a>
+    </div>
+
+    <div class="second pull-right">{% trans 'Last seen' %}:
+        {% if profile.last_seen %}
+        {{profile.last_seen}}
+        {% else %}
+        {% trans 'Never' %}
+        {% endif %}
+    </div>
+
+    {% if perms.config.change_setting %}
+    <div class="actions">
+        <span class="button-list">Staff: [{{ profile.user.username }}] </span>
+        <a class="button" href="{% url group_set profile.id %}">Groups</a>
+        <a class="button" href="{% url bonus profile.id %}">Bonus</a>
+        <a class="button {% if profile.in_staff_group %}cplayer-staff{% endif %}" href="{% url staff_toggle profile.id %}">Staff: {% if profile.in_staff_group %}<span class="ok">ON</span>{% else %}<span class="wrong">OFF</span>{% endif %}</a>
+        <a class="button" href="{% url artifact_set profile.id %}">Artifacts</a>
+        <p class="clearer"></p>
+    </div>
+    {% endif %}
+    {% if user.is_superuser %}
+    <div class="actions">
+        <span class="button-list">Admin:</span>
+        {% autoescape off %}{{ profile_superuser_actions }}{% endautoescape %}
+        <a class="button button-min" href="{% url admin:auth_user_change profile.user.id %}">✍</a>
+        <a class="button" href="{% url impersonate profile.id %}">Impersonate</a>
+    </div>
+    {% endif %}
+
+    <ul class="tabs">
+        <!--<li><a href="#tab-0">{% trans 'Description' %}</a></li>-->
+        <li><a href="#tab-1">{% trans 'Activity' %}</a></li>
+        <li><a href="#tab-2">{% trans 'Position' %}</a></li>
+        <li><a href="#tab-3">{% trans 'Points' %}</a></li>
+    </ul>
+
+    <div class="tab_container">
+        <!--
+        <div id="tab-0" class="tab_content">
+            <textarea id="Description" style="width: 690px; height: 200px; display:block; resize:none" readonly="readonly">{{profile.description}}</textarea>
+        </div>
+        -->
+        <div id="tab-1" class="tab_content">
+            {% include 'activity/stream.html' %}
+
+            {% if activity.has_previous %}
+            <a href="{% url player_profile id=profile.id page=activity.previous_page_number %}#tab-1"> Newer </a>
+            {% endif %}
+
+            {% if activity.has_next %}
+            <a href="{% url player_profile id=profile.id page=activity.next_page_number %}#tab-1"> Older </a>
+            {% endif %}
+        </div>
+
+        <div id="tab-2" class="tab_content">
+            <div class="subgroups">
+                <h3>{% trans 'Rank' %}</h3>
+                <p>Global: <span class="points">{{ top.position }}</span></p>
+                {% for g in top.topgroups %}
+                <p>{{ g }}: <span class="points">{{ g.position }}</span></p>
+                {% endfor %}
+                <div id="legend"></div>
+            </div>
+            <div id="graf1" class="graf placeholder"></div>
+            <script id="source" language="javascript" type="text/javascript">
+                <!-- using flot to draw evolution -->
+                $(function () {
+                    var d1 = [[null, 12],{% for p in top.week_evolution %}[{{p.0}},{{p.1}}],{% endfor %}[7, null]];
+                {% for g in top.topgroups %}
+                    var dg{{g.id}} = [{% for p in g.week_evolution %}[{{p.0}},{{p.1}}],{% endfor %}];
+                {% endfor %}
+                var options = { lines: { show: true }, points: { show: true },
+                    xaxis: {
+                        ticks: [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]
+                    },
+                    yaxis: {
+                        transform: function (v) { return -v; },
+                        inverseTransform: function (v) { return -v; },
+                    },
+                    legend: {
+                        container: $('#legend'),
+                    },
+                };
+                var setup = [
+                    {label: "Position evolution", color: "green", data: d1},
+                    {% for g in top.topgroups %}
+                {label: "{{ g }}", data: dg{{g.id}}},
+                {% endfor %}
+                ];
+                $("#tab-2").bind('custom', function() {
+                    $.plot($("#graf1"), setup, options);
+                    $('#tab-2').unbind('custom');
+                });
+                });
+            </script>
+        </div>
+
+        <div id="tab-3" class="tab_content">
+            <div class="subgroups">
+                {% for source,coins in scoring.iteritems %}
+                <h3>{% trans source %}</h3>
+                {% for coin, value in coins.iteritems %}
+                <p>{% coin_amount value coin %}</p>
+                {% endfor %}
+                {% empty %}
+                {% trans 'No points registered for this player.' %}
+                {% endfor %}
+                <p><a class="goto" href="{% url player_points_history profile.id %}">{% trans 'History' %}</a></p>
+            </div>
+            <div id="graf2" class="graf placeholder"></div>
+            <script id="source2" language="javascript" type="text/javascript">
+                <!-- using flot to draw evolution -->
+                $(function () {
+                    var d1 = [[null, 760],{% for p in top.week_points_evolution %}[{{p.0}},{{p.1}}],{% endfor %}[7, null]];
+                var options = { lines: { show: true }, points: { show: true },
+                    xaxis: {
+                        ticks: [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]
+                    },
+                };
+                $("#tab-3").bind('custom', function() {
+                    $.plot($("#graf2"), [{ label: "Weekly points evolution", color: "blue", data: d1}], options);
+                    $('#tab-3').unbind('custom');
+                });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+</script>
+{% endblock %}
