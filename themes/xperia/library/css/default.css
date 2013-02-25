@@ -27,6 +27,7 @@ h2 {
     float: right;
 }
 .second {
+    clear:both;
     font-size: 0.9em
 }
 #query {
