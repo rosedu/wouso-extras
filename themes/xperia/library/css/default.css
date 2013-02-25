@@ -258,3 +258,24 @@ th {
 .actions {
     margin-bottom: 10px;
 }
+
+#content ul.tabs {
+    border: none;
+}
+#content ul.tabs li {
+    background-color: transparent;
+    border: none;
+}
+#content ul.tabs li a, #content ul.tabs li a:hover {
+    border: 1px dashed green;
+    color: green;
+}
+#content ul.tabs li a:hover {
+    background-color: transparent;
+    text-decoration: underline;
+}
+#content ul.tabs li.active a {
+    font-weight: bold;
+    border-color: #0c0;
+    color: #0c0;
+}
