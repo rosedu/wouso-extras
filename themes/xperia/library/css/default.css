@@ -238,3 +238,7 @@ td, th {
 th {
   border-bottom:1px solid green;
 }
+
+.unread {
+  background:rgba(0,0,0,.2);
+}
