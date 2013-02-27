@@ -23,6 +23,13 @@ h2 {
 	height:100%;
 }
 
+.pull-right {
+    float: right;
+}
+.second {
+    clear:both;
+    font-size: 0.9em
+}
 #query {
 	background: #222;
 	border: 1px dashed green;
@@ -102,12 +109,12 @@ h2 {
 .top-navigation {
 	width:100%;
 }
-
+/*
 .top-navigation li:hover a {
   	-webkit-transform:rotateX(90deg);
 }
-
-.top-navigation li:nth-child(n+6) {
+*/
+.top-navigation li:nth-child(n+7) {
 	float:right;
 }
 
@@ -205,7 +212,7 @@ input[type=text] {
 
 .cplayer {
 	display:inline-block;
-}	
+}
 
 #output {
     max-height:200px;
@@ -241,4 +248,37 @@ th {
 
 .unread {
   background:rgba(0,0,0,.2);
+}
+.points-big {
+    font-size: 2.4em;
+}
+.points-table, .points-table td {
+    border: 1px dashed green;
+}
+.artifact {
+    display: none;
+}
+.actions {
+    margin-bottom: 10px;
+}
+
+#content ul.tabs {
+    border: none;
+}
+#content ul.tabs li {
+    background-color: transparent;
+    border: none;
+}
+#content ul.tabs li a, #content ul.tabs li a:hover {
+    border: 1px dashed green;
+    color: green;
+}
+#content ul.tabs li a:hover {
+    background-color: transparent;
+    text-decoration: underline;
+}
+#content ul.tabs li.active a {
+    font-weight: bold;
+    border-color: #0c0;
+    color: #0c0;
 }

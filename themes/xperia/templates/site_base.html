@@ -102,6 +102,7 @@
 							{% if user.is_authenticated %}
 							<li>Hello {% player player %}</li>
 							{% endif %}
+                            <li><a href="{% url homepage %}">{% trans 'Home' %}</a></li>
 							{% for h in heads %}
 								<li>
 									<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
