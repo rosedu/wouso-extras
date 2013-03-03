@@ -4,14 +4,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{{config_title}}</title>
-    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/{{ config_theme }}/library/css/splash.css" />
-    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/{{ config_theme }}/styles.css" />
+    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/xperia/library/css/splash.css" />
+    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/xperia/styles.css" />
 </head>
 <body>
 	<div id="floater"></div>
 	<div id="centered">
         <div id="logo"><h1>WoSO<span>|</span></h1></div>
 
+        {% block content %}
         <div id="side">
             <form action="{% url wouso.interface.views.login_view %}" method="post">
                 <input size="10" name="username" id="username" class="big" type="text" placeholder="username" />
@@ -29,7 +30,7 @@
                 {% endautoescape %}
 			</p>
 		</div>
-
+        {% endblock %}
 	</div>
 
 	<div id="bottom">

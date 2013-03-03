@@ -44,7 +44,7 @@ body {
 
 #content {
     position:absolute; left:0; right:0; top:18%; bottom:0;
-    overflow:auto; 
+    overflow:auto;
     padding:20px; margin:10px;
     text-align: center;
 }
@@ -110,4 +110,8 @@ h1 span {
     -moz-transition-duration:1s;
     animation:.8s blink step-end infinite;
     transition-duration:1s;
+}
+
+a {
+    color: yellow;
 }
