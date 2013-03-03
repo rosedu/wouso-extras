@@ -16,19 +16,19 @@
         {% if not top.disabled %}
         <table class="points-table">
             <tr class="points-big">
+                <td></td>
                 <td>{{ profile.coins.points }}</td>
                 <td>{{ profile.coins.karma }}</td>
-                <td><em>amount</em></td>
             </tr>
             <tr>
+                <td><em>coin</em></td>
                 <td>points</td>
                 <td>karma</td>
-                <td><em>coin</em></td>
             </tr>
             <tr>
+                <td><em>rank</em></td>
                 <td>{{ top.position }}</td>
                 <td>{{ top.coin_position.karma }}</td>
-                <td><em>rank</em></td>
             </tr>
         </table>
         {% endif %}
