@@ -282,3 +282,7 @@ th {
     border-color: #0c0;
     color: #0c0;
 }
+
+.activity-source {
+    float: right;
+}
