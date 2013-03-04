@@ -286,3 +286,13 @@ th {
 .activity-source {
     float: right;
 }
+
+div.timer {
+    text-align: center;
+    font-size: 42px;
+    position: fixed; top: 140px; left: 50%;
+    background-color: white;
+    border: 2px solid #ddd;
+    padding: 6px;
+    border-radius: 20px;
+}
