@@ -15,3 +15,7 @@ div#content {
     float: left;
     width: 60%;
 }
+
+pre {
+    text-align: left !important;
+}
