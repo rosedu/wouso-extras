@@ -13,6 +13,10 @@ commands.nick = {
 	command : 'nick',
 	instruction : 'updateNickname()'
 };
+commands.theme = {
+	command : 'theme',
+	instruction : 'updateTheme()'
+};
 
 document.querySelector('h1 span').addEventListener('keydown', function (e) {
 
@@ -20,7 +24,7 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 	var content = span.textContent || span.innerText;
 
 	console.log(content);
-	
+
 	if(content.trim() != '_') {
 		span.classList.remove('blink');
 	} else {
@@ -36,7 +40,7 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 		for(var i in commands) {
 			var re = new RegExp(commands[i].command, "ig");
 			var match = re.test(content);
-		
+
 			if(match) {
 				eval(commands[i].instruction);
 				if(!span.innerText)
@@ -58,13 +62,13 @@ document.querySelector('h1 span').addEventListener('keydown', function (e) {
 			span.innerText = '';
 		e.preventDefault();
 	}
-	
+
 });
 
 document.querySelector('h1 span').addEventListener('click', function () {
 	var span = this;
 	var content = span.textContent || span.innerText;
-	
+
 	if(content.trim() == '_') {
 		if(!span.innerText)
 			span.textContent = '';
@@ -97,7 +101,37 @@ var updateNickname = function () {
               h3.innerHTML = 'Nickname update failed, reason: ' + response.error;
 			output.appendChild(h3);
 			output.style.overflow = 'scroll';
-			
+
+		}
+	};
+
+	xhr.send(formdata);
+
+};
+
+var updateTheme = function () {
+	var span = document.querySelector('h1 span');
+	var content = span.textContent || span.innerText;
+	content = content.split(' ');
+	content.shift();
+	content.join('');
+	var formdata = new FormData();
+	formdata.append('theme', content);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'https://woso.cs.pub.ro/2013/api/info/theme/', true);
+	xhr.onload = function(e) {
+		if (this.status == 200) {
+
+			var response = JSON.parse(this.responseText);
+			var h3 = document.createElement('h3');
+          	if(response.success)
+				h3.innerHTML = 'Theme updated';
+          	else
+              h3.innerHTML = 'Theme update failed, reason: ' + response.error;
+			output.appendChild(h3);
+			output.style.overflow = 'scroll';
+
 		}
 	};
 
