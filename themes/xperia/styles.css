@@ -19,3 +19,19 @@ div#content {
 pre {
     text-align: left !important;
 }
+
+/* top */
+.avatar-col {
+    width: 0;
+    min-width: 0;
+}
+
+.cplayer-ca {
+    color: #add8e6;
+}
+.cplayer-cb {
+    color: #90ee90;
+}
+.cplayer-cc {
+    color: #ffb6c1;
+}
