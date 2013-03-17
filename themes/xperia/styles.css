@@ -39,5 +39,5 @@ pre {
     text-align: left;
 }
 .red {
-    color: lightred;
+    color: lightred !important;
 }
