@@ -301,7 +301,7 @@
 			<div id="footer-content">
 				<div class="footer-content-left">
 					{% autoescape off %}
-						{{ footer }}
+						{{ footer|join:" | " }}
 					{% endautoescape %}
 				</div><!-- .footer-content-left -->
 
