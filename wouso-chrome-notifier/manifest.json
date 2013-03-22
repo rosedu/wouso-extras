@@ -1,10 +1,18 @@
 {
   "name": "World of USO Notifier",
-  "version": "1.6",
-  "background_page": "background.html",
+  "version": "1.7",
+  "manifest_version": 2,
+  "background":{
+          "scripts": [
+              "background.js"
+          ],
+          "persistent": true
+  },
   "options_page": "options.html",
   "permissions": [
-    "tabs", "https://wouso.cs.pub.ro/*", "https://wouso.cs.pub.ro/*/*", "https://wouso.cs.pub.ro/*/*/*"
+    "tabs", "https://wouso.cs.pub.ro/*", "https://wouso.cs.pub.ro/*/*", "https://wouso.cs.pub.ro/*/*/*",
+    "https://woso.cs.pub.ro/*", "https://woso.cs.pub.ro/*/*", "https://woso.cs.pub.ro/*/*/*",
+    "background"
   ],
   "icons": {
     "128": "icon_128.png"
@@ -12,6 +20,7 @@
   "browser_action": {
       "default_icon" : "icon-offline.png",
       "name": "World of USO",
-      "icons": ["icon.png", "icon-offline.png"]
+      "icons": ["icon.png", "icon-offline.png"],
+      "default_title": "WoUSO Notifier"
   }
 }

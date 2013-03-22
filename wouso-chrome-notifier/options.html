@@ -4,37 +4,19 @@
     <style>
         * {font-family: Verdana}
     </style>
-    <script>
-        function saveOptions() {
-            var bkg = chrome.extension.getBackgroundPage();
-            var select = document.getElementById("edition");
-            var edition = select.children[select.selectedIndex].value;
-            bkg.settings.edition = edition;
-            bkg.loadOptions();
-        }
-
-        function loadOptions() {
-            var bkg = chrome.extension.getBackgroundPage();
-            var select = document.getElementById("edition");
-            edition = bkg.settings.edition;
-
-            for (c=0; c<select.children.length; c++) {
-                if (select.children[c].value == edition)
-                    select.children[c].selected = true;
-            }
-        }
-    </script>
+    <script src="options.js" type="text/javascript"></script>
 </head>
 
-<body onload="loadOptions()">
+<body>
     <h1>WoUSO Notifier</h1>
 
     Edition:
     <select id="edition">
-        <option value="2012">USO 2012</option>
-        <option value="2011">USO 2011</option>
+        <option value="https://woso.cs.pub.ro/2013">SO 2013</option>
+        <option value="https://wouso.cs.pub.ro/2012">USO 2012</option>
+        <option value="https://wouso.cs.pub.ro/2011">USO 2011</option>
     </select>
 
-    <button onclick="saveOptions()">Save</button>
+    <button id="save_options">Save</button>
 </body>
 </html>
