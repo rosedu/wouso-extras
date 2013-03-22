@@ -19,6 +19,8 @@ import android.widget.ImageView;
 public class UserInfo {
 	String firstName;
 	String lastName;
+	String raceSlug;
+	String raceId;
 	int levelNo;
 	int gold;
 	String group;
@@ -47,6 +49,8 @@ public class UserInfo {
 		race = jObj.getString("race");
 		levelPercent = jObj.getJSONObject("level_progress")
 				.getDouble("percent");
+		raceId = jObj.getString("race_id");
+		raceSlug = jObj.getString("race_slug");
 	}
 
 	// TODO: separate parse method with throw
@@ -197,7 +201,45 @@ public class UserInfo {
 	public void setRace(String race) {
 		this.race = race;
 	}
-
+	
+	/**
+	 * Gets the user's race_slug.
+	 * 
+	 * @return The race_slug.
+	 */
+	public String getRaceSlug() {
+		return raceSlug;
+	}
+	
+	/**
+	 * Sets the user's race_slug.
+	 * 
+	 * @param race
+	 *            The new race_slug.
+	 */
+	public void setRaceSlug(String raceSlug) {
+		this.raceSlug = raceSlug;
+	}
+	
+	/**
+	 * Gets the user's race_id.
+	 * 
+	 * @return The race_id.
+	 */
+	public String getRaceId() {
+		return raceId;
+	}
+	
+	/**
+	 * Sets the user's race_id.
+	 * 
+	 * @param race
+	 *            The new race_id.
+	 */
+	public void setRaceId(String raceId) {
+		this.raceId = raceId;
+	}
+	
 	/**
 	 * Gets the user's points.
 	 * 
