@@ -1,11 +1,14 @@
 package cdl.android.ui.search;
 
+import java.util.Vector;
+
 import cdl.android.R;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,6 +51,16 @@ public class SearchActivity extends Activity {
 			String[] from = new String[] {SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2};
 			int[] to = new int[] {R.id.resultFirstName, R.id.resultName};
 
+			final Vector<String> ids = new Vector();
+			cursor.moveToFirst();
+			
+			do{
+				
+				ids.add(cursor.getString(cursor.getColumnIndex(BaseColumns._ID)));
+				//pune id-urile userilor intr-un vector
+				
+			}while(cursor.moveToNext());
+			
 			SimpleCursorAdapter words = new SimpleCursorAdapter(this,
 					R.layout.search_result_item, cursor, from, to);
 			mListView.setAdapter(words);
