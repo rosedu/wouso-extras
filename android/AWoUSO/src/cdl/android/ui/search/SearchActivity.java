@@ -3,6 +3,7 @@ package cdl.android.ui.search;
 import java.util.Vector;
 
 import cdl.android.R;
+import cdl.android.ui.user.OtherProfile;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -64,10 +65,16 @@ public class SearchActivity extends Activity {
 			SimpleCursorAdapter words = new SimpleCursorAdapter(this,
 					R.layout.search_result_item, cursor, from, to);
 			mListView.setAdapter(words);
-
+			
+			final Activity activity = this;
+			
 			mListView.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					//TODO: start user view using id from String.valueOf(id)
+					Intent intent = new Intent(activity, OtherProfile.class);
+					
+					intent.putExtra("id", ids.get(position));
+					startActivity(intent);
 				}
 			});
 		} 
