@@ -68,22 +68,25 @@ public class OtherProfile extends Activity{
 			
 			TextView nameField = (TextView) this.findViewById(R.id.name_field);
 			nameField.setText(userInfo.getFirstName());
+			//Display name
 			
 			ImageView avatar = (ImageView) this.findViewById(R.id.user_pic);
 			userInfo.setAvatar(avatar, userInfo.getAvatarUrl());
-			
+			//Display avatar
 			
 			TextView scoreField = (TextView) this.findViewById(R.id.scorefield);
 			scoreField.setText("" + userInfo.getPoints());
-			
+			//Display score
 			
 			TextView levelField = (TextView) this.findViewById(R.id.levelfield);
 			levelField.setText("level "+userInfo.getLevelNo()+ " |");
-
+			//Display level
 			
 			String levelPicName = "levels_" + serie + "_" + userInfo.getLevelNo();
+			//Path to level icon
 			ImageView levelPic = (ImageView) this.findViewById(R.id.levelpic);
 			levelPic.setBackgroundResource(getResources().getIdentifier(levelPicName, "drawable", "cdl.android"));
+			//Display level icon
 			
 			TextView raceSlugField = (TextView) this.findViewById(R.id.raceslugfield);
 			raceSlugField.setText(serie.toUpperCase());
@@ -91,6 +94,7 @@ public class OtherProfile extends Activity{
 			TextView groupField = (TextView) this.findViewById(R.id.groupfield);
 			groupField.setText(userInfo.getGroup());
 			
+			//TODO: add actions to buttons
 		}
 	}
 	
