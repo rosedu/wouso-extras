@@ -40,7 +40,21 @@ public class CreateMessage extends Activity {
 		SharedPreferences mPreferences = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		final String user = mPreferences.getString("username", null);
-
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null){
+			String receiver = extras.getString("receiver");
+			String topic = extras.getString("subject");
+			if (receiver != null){
+				toEdit.setText(receiver);
+			}
+			if (topic != null){
+				subjectEdit.setText(topic);
+			}
+			textEdit.setFocusableInTouchMode(true);
+			textEdit.requestFocus();
+		}
+		
 		sendButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				ServerResponse res = sendMessage(user, to.toString(),
@@ -51,7 +65,7 @@ public class CreateMessage extends Activity {
 				else
 					Toast.makeText(getApplicationContext(), "Message sent!",
 							Toast.LENGTH_SHORT).show();
-				((MessageTabs) getParent()).switchTab(1);
+				//((MessageTabs) getParent()).switchTab(1);
 			}
 		});
 	}

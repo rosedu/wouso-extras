@@ -60,8 +60,10 @@ public class Profile extends Activity {
 
 		/** Gets user info from the server */
 		userInfo = new UserInfo();
+		//ApiHandler ia informatii de la server.
 		ServerResponse resp = ApiHandler.get(ApiHandler.userInfoURL, this);
 		if (resp.getStatus() == false) {
+			//Toast chestie de apare pe ecran. E clasa de pop-up message.
 			Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
 			userInfo = null;
 		} else
