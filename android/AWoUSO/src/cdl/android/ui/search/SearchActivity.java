@@ -56,6 +56,10 @@ public class SearchActivity extends Activity {
 			cursor.moveToFirst();
 			
 			do{
+				System.out.println(cursor.getCount());
+				if(cursor.getCount() == 0){
+					break;
+				}
 				
 				ids.add(cursor.getString(cursor.getColumnIndex(BaseColumns._ID)));
 				//pune id-urile userilor intr-un vector
