@@ -7,17 +7,18 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cdl.android.R;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.ImageView;
+import cdl.android.R;
 
 /**
  * User info container class
  */
 public class UserInfo {
 	String username;
+	String id;
 	String firstName;
 	String lastName;
 	String raceSlug;
@@ -40,6 +41,7 @@ public class UserInfo {
 	 */
 	public void parseContent(JSONObject jObj) throws JSONException {
 		levelNo = jObj.getInt("level_no");
+		username = jObj.getString("username");
 		firstName = jObj.getString("first_name");
 		lastName = jObj.getString("last_name");
 		points = jObj.getInt("points");
@@ -279,4 +281,5 @@ public class UserInfo {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+	
 }

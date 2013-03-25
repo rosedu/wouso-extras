@@ -38,7 +38,7 @@ public class All extends Activity {
 				for (int i = 0; i < arr.length(); i++) {
 					MessageItem mes = new MessageItem();
 					mes.parseContent(arr.getJSONObject(i));
-					mItems.add(mes);
+					mItems.add(0, mes);//newer on top
 				}
 			} catch (JSONException e) {
 				Toast.makeText(this, "Server response format error.",

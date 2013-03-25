@@ -35,49 +35,67 @@ public class CreateMessage extends Activity {
 		final Editable to = toEdit.getText();
 		final Editable subject = subjectEdit.getText();
 		final Editable text = textEdit.getText();
-
+		
 		// TODO: set global username and id on profile load
 		SharedPreferences mPreferences = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		final String user = mPreferences.getString("username", null);
+		final String senderId = mPreferences.getString("id", null);
+		String reply_to = null;
+		String topic = null;
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null){
 			String receiver = extras.getString("receiver");
-			String topic = extras.getString("subject");
+			topic = extras.getString("subject");
+			reply_to = extras.getString("reply_to");
 			if (receiver != null){
 				toEdit.setText(receiver);
 			}
-			if (topic != null){
+			if (topic != null){	
 				subjectEdit.setText(topic);
 			}
 			textEdit.setFocusableInTouchMode(true);
 			textEdit.requestFocus();
 		}
 		
+		final String recipient = reply_to;
+		final String message = topic;
+		
 		sendButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				ServerResponse res = sendMessage(user, to.toString(),
-						subject.toString(), text.toString());
+				ServerResponse res;
+				if (recipient != null){
+					res = sendMessage(user, recipient, message,
+							text.toString(), senderId);
+				}
+				else{
+					res = sendMessage(user, to.toString(), subject.toString(),
+							text.toString(), senderId);
+				}
 				if (res.getStatus() == false)
 					Toast.makeText(getApplicationContext(), res.getError(),
 							Toast.LENGTH_SHORT).show();
 				else
 					Toast.makeText(getApplicationContext(), "Message sent!",
 							Toast.LENGTH_SHORT).show();
+				finish();
 				//((MessageTabs) getParent()).switchTab(1);
 			}
 		});
 	}
 
 	public ServerResponse sendMessage(String user, String to, String subject,
-			String text) {
-		/** Add data */
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			String text, String reply_to) {
+		/** Add data */	
+	
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
+		
 		nameValuePairs.add(new BasicNameValuePair("receiver", to));
 		nameValuePairs.add(new BasicNameValuePair("text", text));
 		nameValuePairs.add(new BasicNameValuePair("subject", subject));
-
+		nameValuePairs.add(new BasicNameValuePair("reply_to", reply_to));
+		
 		return ApiHandler.sendPost(ApiHandler.msgSendAPICallURL,
 				nameValuePairs, this);
 	}

@@ -47,7 +47,7 @@ public class MessageAdapter extends BaseAdapter {
 		final String from = mItems.get(index).getAuthor();
 		final String subject = mItems.get(index).getSubject();
 		final String text = mItems.get(index).getContent();
-		//final String nickname = mItems.get(index).getNickname();
+		final String reply_to = mItems.get(index).getReply_to();
 
 		item = new MessageItemView(mContext, mItems.get(index));
 		item.setOnClickListener(new OnClickListener() {
@@ -57,7 +57,7 @@ public class MessageAdapter extends BaseAdapter {
 				data.putString("from", from);
 				data.putString("subject", subject);
 				data.putString("text", text);
-				//data.putString("nickname", nickname);
+				data.putString("reply_to", reply_to);
 				readMessage.putExtras(data);
 				mContext.startActivity(readMessage);
 			}

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,7 +14,6 @@ import cdl.android.R;
 public class ReadMessage extends Activity {
 	
 	Context context;
-	//private String receiver;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,8 @@ public class ReadMessage extends Activity {
 		TextView text = (TextView) findViewById(R.id.text);
 		text.setText(data.getString("text"));
 		
-		//receiver = data.getString("nickname");
+		final String receiver = data.getString("from");
+		final String reply_to = data.getString("reply_to");
 
 		Button back = (Button) findViewById(R.id.readmsg);
 		back.setOnClickListener(new OnClickListener() {
@@ -47,8 +48,9 @@ public class ReadMessage extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(context, CreateMessage.class);
 				TextView subject = (TextView) findViewById(R.id.subject);
-				//i.putExtra("receiver", receiver);
-				i.putExtra("subject", "Re: " + subject.getText());
+				i.putExtra("reply_to", reply_to);
+				i.putExtra("receiver", receiver);
+				i.putExtra("subject", "Re: " + subject.getText().toString());
 				startActivity(i);
 				finish();
 			}
