@@ -120,5 +120,16 @@
             android:textStyle="bold"
 		    android:layout_centerInParent="true"
 		    android:text="@string/reply"/>
+		
+		<Button 
+		    android:id="@+id/delete"
+		    android:layout_width="60dp"
+		    android:layout_height="40dp"
+		    android:layout_alignParentBottom="true"
+		    android:background="@color/msg_button_black"
+		    android:textColor="@color/white"
+		    android:textStyle="bold"
+		    android:layout_alignParentRight="true"
+		    android:text="@string/delete" />
 	</RelativeLayout>
 </LinearLayout>

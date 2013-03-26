@@ -44,6 +44,10 @@ public class ApiHandler {
 	public static final String msgSentAPICallURL = baseURL + "messages/sent/";
 	public static final String msgAllAPICallURL = baseURL + "messages/all/";
 	public static final String msgSendAPICallURL = baseURL + "messages/send/";
+	public static final String msgSetReadAPICallURL = baseURL + "messages/setread/";
+	public static final String msgSetUnreadAPICallURL = baseURL + "messages/setunread/";
+	public static final String msgArchiveAPICallURL = baseURL + "messages/archive/";
+	public static final String msgUnarchiveAPICallURL = baseURL + "messages/unarchive/";
 	public static final String baseChallengeURL = baseURL + "challenge/";
 	public static final String challengeListURL = baseURL + "challenge/list/";
 	public static final String challengeLaunchURL = baseURL + "challenge/launch/";

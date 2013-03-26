@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,6 +38,7 @@ public class CreateMessage extends Activity {
 		final Editable text = textEdit.getText();
 		
 		// TODO: set global username and id on profile load
+		// Done the above TODO
 		SharedPreferences mPreferences = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		final String user = mPreferences.getString("username", null);
@@ -65,6 +67,8 @@ public class CreateMessage extends Activity {
 		sendButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				ServerResponse res;
+				/*The message was a response or not? true - it was, false - it wasn't */
+				boolean replyOrNot = true; 
 				if (recipient != null){
 					res = sendMessage(user, recipient, message,
 							text.toString(), senderId);
@@ -72,6 +76,7 @@ public class CreateMessage extends Activity {
 				else{
 					res = sendMessage(user, to.toString(), subject.toString(),
 							text.toString(), senderId);
+					replyOrNot = false;
 				}
 				if (res.getStatus() == false)
 					Toast.makeText(getApplicationContext(), res.getError(),
@@ -79,8 +84,12 @@ public class CreateMessage extends Activity {
 				else
 					Toast.makeText(getApplicationContext(), "Message sent!",
 							Toast.LENGTH_SHORT).show();
-				finish();
-				//((MessageTabs) getParent()).switchTab(1);
+				if (replyOrNot){
+					finish();
+				}
+				else {
+					((MessageTabs) getParent()).switchTab(1);
+				}
 			}
 		});
 	}

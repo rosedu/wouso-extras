@@ -2,9 +2,11 @@ package cdl.android.ui.message;
 
 import java.util.ArrayList;
 
+import android.R;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -42,14 +44,16 @@ public class MessageAdapterReceived extends BaseAdapter {
 	}
 
 	public View getView(int index, View convertView, ViewGroup parent) {
-		MessageItemView item;
+		MessageItemViewReceived item;
 
 		final String from = mItems.get(index).getAuthor();
 		final String subject = mItems.get(index).getSubject();
 		final String text = mItems.get(index).getContent();
 		final String reply_to = mItems.get(index).getReply_to();
+		final String id = mItems.get(index).getId();
+		final String read = mItems.get(index).getRead();
 
-		item = new MessageItemView(mContext, mItems.get(index));
+		item = new MessageItemViewReceived(mContext, mItems.get(index));
 		item.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -58,6 +62,8 @@ public class MessageAdapterReceived extends BaseAdapter {
 				data.putString("subject", subject);
 				data.putString("text", text);
 				data.putString("reply_to", reply_to);
+				data.putString("id", id);
+				data.putString("read", read);
 				readMessage.putExtras(data);
 				mContext.startActivity(readMessage);
 			}

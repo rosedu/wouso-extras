@@ -15,16 +15,16 @@ public class MessageItem {
 	private String date;
 	private String id;
 	private String reply_to;
+	private String read;
 
 	public void parseContent(JSONObject obj) throws JSONException {
-		Log.d("ceva", obj.toString());
 		author = obj.getString("from");
 		subject = obj.getString("subject");
 		content = obj.getString("text");
 		date = obj.getString("date");
 		id = obj.getString("id");
 		reply_to = obj.getString("reply_to");
-		Log.d("reply", reply_to);
+		read = obj.getString("read");
 	}
 
 	public String getAuthor() {
@@ -49,6 +49,10 @@ public class MessageItem {
 	
 	public String getReply_to() {
 		return reply_to;
+	}
+	
+	public String getRead() {
+		return read;
 	}
 
 }

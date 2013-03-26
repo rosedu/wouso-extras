@@ -54,8 +54,8 @@ public class Received extends Activity {
 			}
 		}
 		
-		ApiHandler http = new ApiHandler();
-		try {
+		//ApiHandler http = new ApiHandler();
+		/*try {
 			Log.d("http", ApiHandler.getHTTP(http.msgReceivedAPICallURL, this));
 		} catch (OAuthMessageSignerException e) {
 			// TODO Auto-generated catch block
@@ -72,7 +72,7 @@ public class Received extends Activity {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		mListView.setAdapter(new MessageAdapterReceived(this, mItems,
 				new OnClickListener() {
