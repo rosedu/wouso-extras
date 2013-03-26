@@ -46,7 +46,7 @@ public class All extends Activity {
 			}
 		}
 
-		mListView.setAdapter(new MessageAdapter(this, mItems,
+		mListView.setAdapter(new MessageAdapterSentAll(this, mItems,
 				new OnClickListener() {
 					public void onClick(View v) {
 					}

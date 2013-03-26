@@ -74,7 +74,7 @@ public class Received extends Activity {
 			e.printStackTrace();
 		}
 
-		mListView.setAdapter(new MessageAdapter(this, mItems,
+		mListView.setAdapter(new MessageAdapterReceived(this, mItems,
 				new OnClickListener() {
 					public void onClick(View v) {
 					}
