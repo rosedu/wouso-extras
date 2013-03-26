@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+   
+    <RelativeLayout
+        android:background="@color/grey"
+        
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        
+        android:paddingLeft="3dp"
+        android:paddingRight="4dp">
+        
+        <TextView
+            android:id="@+id/label1"
+            android:textColor="@color/blue"
+           	
+           	
+           	android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            
+            android:layout_alignParentLeft="true" 
+            
+        	android:text="To:"
+        	android:textStyle="bold"
+        	android:textSize="10sp"/>
+        	
+        <TextView
+            android:id="@+id/field1"
+            android:layout_centerVertical="true"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            
+            android:gravity="center|left"
+            android:text="someone"   
+                     
+			android:textColor="@color/light_blue"
+            android:layout_alignParentRight="true" 
+            android:background="@drawable/edit_text"
+            android:layout_toRightOf="@+id/label1"  
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:textSize="10sp"
+             />
+
+    </RelativeLayout>
+    <RelativeLayout
+	        android:background="@color/grey"
+        
+	        android:layout_width="fill_parent"
+	        android:layout_height="30dp"
+			
+	        
+	        android:layout_marginBottom="10dp"
+	        
+	        android:paddingRight="4dp"
+	        android:paddingLeft="3dp">
+        
+	        <TextView
+	           	android:id="@+id/label2"
+	            android:textColor="@color/blue"
+	           	
+	            android:layout_width="40dp"
+	            android:layout_height="20dp"
+	            
+	            android:layout_centerVertical="true"
+	            android:layout_alignParentLeft="true" 
+	            
+	        	android:text="Subject:"
+	        	android:textStyle="bold"
+	        	android:textSize="10sp" />
+	        	
+	        <EditText
+	            android:id="@+id/field2"
+	            android:hint="Insert text"
+	            android:paddingLeft="4dp"
+	            android:layout_width="fill_parent"
+	            android:layout_weight="80"
+	            android:maxLength="40"
+	            android:maxLines="1"
+	            
+	            android:layout_centerVertical="true"
+	            android:layout_alignParentRight="true" 
+	            android:layout_toRightOf="@+id/label2" 
+	            android:layout_height="25dp"
+	            android:textSize="10sp"
+	            
+	            android:background="@drawable/edit_text"
+	           />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/grey"
+        
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/label3"
+	           	android:paddingLeft="6dp"
+	           	
+	            android:layout_height="wrap_content"
+	            android:layout_width="wrap_content"
+	        	android:text="Message:"
+	        	
+	        	android:layout_alignParentTop="true"
+	        	android:layout_alignParentLeft="true"
+	        	
+	        	android:textColor="@color/blue"
+	        	android:textStyle="bold"
+	        	android:textSize="10sp"
+	        	android:layout_marginRight="4dp" />
+	        	
+	        <EditText
+	            android:id="@+id/field3"
+	            android:hint="Insert text"
+	            android:padding="4dp"
+	            android:layout_marginRight="3dp"
+	            android:layout_marginLeft="3dp"
+	            android:gravity="top|left"
+	            
+	            android:layout_height="fill_parent"
+	          	android:layout_width="fill_parent"
+				
+				android:layout_below="@id/label3"			
+				android:layout_centerHorizontal="true"
+				android:layout_above="@+id/buttons"
+				
+	            android:maxLength="600"
+	            android:maxLines="10"
+	            android:textSize="10sp"
+	            android:background="@drawable/edit_text"
+	             />
+	        
+	        
+	       <RelativeLayout        	   
+	        	    android:id="@+id/buttons"
+	        	    
+	        	    android:layout_alignParentBottom="true"
+			        android:layout_marginTop="5dp"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="center_horizontal">
+			        <Button
+			            android:background="@color/blue"
+			        	android:layout_alignParentRight="true"
+			        	android:layout_width="60dp"
+			        	android:layout_height="20dp"
+			        	android:textColor="@color/white"
+			        	android:text="Send"
+			        	android:onClick="sendMsg"/>
+					<Button
+					    android:background="@color/blue"
+			        	android:layout_alignParentLeft="true"
+			        	android:layout_width="60dp"
+			        	android:layout_height="20dp"
+			        	android:textColor="@color/white"
+			        	android:text="Cancel"
+			        	android:onClick="goBack"/>
+		</RelativeLayout>
+    </RelativeLayout>
+
+
+    
+</LinearLayout>
