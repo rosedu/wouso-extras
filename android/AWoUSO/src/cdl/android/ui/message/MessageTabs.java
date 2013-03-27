@@ -22,7 +22,7 @@ public class MessageTabs extends TabActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tab_layout);
-
+		
 		tabHost = getTabHost();
 		TabHost.TabSpec spec;
 		Intent intent;

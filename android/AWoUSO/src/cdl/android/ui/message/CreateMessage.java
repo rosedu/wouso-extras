@@ -68,7 +68,8 @@ public class CreateMessage extends Activity {
 			public void onClick(View v) {
 				ServerResponse res;
 				/*The message was a response or not? true - it was, false - it wasn't */
-				boolean replyOrNot = true; 
+				boolean replyOrNot = true;
+				
 				if (recipient != null){
 					res = sendMessage(user, recipient, message,
 							text.toString(), senderId);
