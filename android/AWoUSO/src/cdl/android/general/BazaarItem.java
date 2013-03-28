@@ -3,110 +3,62 @@ package cdl.android.general;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Bazaar item (spell) container class
- */
 public class BazaarItem {
-	private String id, title, description, price, due_days, filename;
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	private Integer required_level;
-
-	public Integer getRequiredLevel() {
-		return required_level;
-	}
-
-	public void setRequiredLevel(Integer required_level) {
-		this.required_level = required_level;
-	}
-
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
+	private String name;
+	private String title;
+	private String type;
+	private int dueDays;
+	private String image;
+	private int price;
+	private int groupId;
+	private int id;
+	private String description;
+	
+	public void parseContent(JSONObject jobj) throws JSONException{
+		name = jobj.getString("name");
+		title = jobj.getString("title");
+		type = jobj.getString("type");
+		dueDays = jobj.getInt("due_days");
+		image = jobj.getString("image");
+		price = jobj.getInt("price");
+		//groupId = jobj.getInt("group_id");
+		id = jobj.getInt("id");
+		description = jobj.getString("description");
 	}
 	
-	/**
-	 * Get the item's title.
-	 * 
-	 * @return The title of the item.
-	 */
-	public String getTitle() {
-		return title;
+	public String getName(){
+		return this.name;
 	}
-
-	/**
-	 * Set a new title.
-	 * 
-	 * @param title
-	 *            The new title to be set.
-	 */
-	public void setTitle(String title) {
-		this.title = title;
+	
+	public String getTitle(){
+		return this.title;
 	}
-
-	/**
-	 * Get the item's description.
-	 * 
-	 * @return A String with the item's description.
-	 */
-	public String getDescription() {
-		return description;
+	
+	public String getType(){
+		return this.type;
 	}
-
-	/**
-	 * Set the item's description.
-	 * 
-	 * @param description
-	 *            The new description.
-	 */
-	public void setDescription(String description) {
-		this.description = description;
+	
+	public String getDueDays(){
+		return "" + this.dueDays;
 	}
-
-	/**
-	 * Get the item's price.
-	 * 
-	 * @return A string containing the price.
-	 */
-	public String getPrice() {
-		return price;
+	
+	public String getImage(){
+		return this.image;
 	}
-
-	/**
-	 * Set a new price for the item.
-	 * 
-	 * @param price
-	 *            The new price.
-	 */
-	public void setPrice(String price) {
-		this.price = price;
+	
+	public String getPrice(){
+		return "" + this.price;
 	}
-
-	/**
-	 * Get the due days before the item expires.
-	 * 
-	 * @return The number of remaining days.
-	 */
-	public String getDueDays() {
-		return due_days;
+	
+	public String getId(){
+		return "" + this.id;
 	}
-
-	/**
-	 * Set the remaining days until the item expires.
-	 * 
-	 * @param dueDays
-	 *            The new number of days.
-	 */
-	public void setDueDays(String dueDays) {
-		this.due_days = dueDays;
+	
+	public String getGroupId(){
+		return "" + this.groupId;
+	}
+	
+	public String getDescription(){
+		return this.description;
 	}
 }

@@ -12,15 +12,19 @@ import org.json.JSONException;
 
 import cdl.android.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.general.*;
@@ -33,11 +37,11 @@ public class OtherProfile extends Activity{
 		setContentView(R.layout.otherprofile);
 		
 		Intent intent = getIntent();
-		String id = (String) intent.getExtras().get("id");
+		final String id = (String) intent.getExtras().get("id");
 		
 		ServerResponse resp =  ApiHandler.get(ApiHandler.baseURL + "player/" + id + "/info/", this);
 		
-		UserInfo userInfo = new UserInfo();
+		final UserInfo userInfo = new UserInfo();
 		
 		if (resp.getStatus() == false) {
 			Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
@@ -52,7 +56,7 @@ public class OtherProfile extends Activity{
 			}
 			
 			int raceId = Integer.parseInt(userInfo.getRaceId());
-			LinearLayout panel = (LinearLayout) this.findViewById(R.id.panel);
+			RelativeLayout panel = (RelativeLayout ) this.findViewById(R.id.panel);
 			
 			Log.d("raceId", ""+raceId );
 			String serie;
@@ -94,7 +98,21 @@ public class OtherProfile extends Activity{
 			TextView groupField = (TextView) this.findViewById(R.id.groupfield);
 			groupField.setText(userInfo.getGroup());
 			
-			//TODO: add actions to buttons
+			Button usermsgbtn = (Button) this.findViewById(R.id.usermsgbtn);
+			
+			final Context context = this;
+			usermsgbtn.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(context, OtherMessage.class);
+
+					intent.putExtra("username", userInfo.getUserame());
+					startActivity(intent);
+				}});
+			
+			
 		}
 	}
 	

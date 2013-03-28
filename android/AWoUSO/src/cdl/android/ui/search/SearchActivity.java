@@ -6,10 +6,12 @@ import cdl.android.R;
 import cdl.android.ui.user.OtherProfile;
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,14 +35,23 @@ public class SearchActivity extends Activity {
 		mListView.setEmptyView(findViewById(android.R.id.empty));
 
 		Intent intent = getIntent();
+
+		
 		if (Intent.ACTION_VIEW.equals(intent.getAction())) { /** click on a suggestion */
 			//TODO: start user view using id from - intent.getDataString()
+			
+			String id = intent.getDataString();
+			Intent newIntent = new Intent(this, OtherProfile.class);
+			newIntent.putExtra("id", id);
+			startActivity(newIntent);
+			
 		} else if (Intent.ACTION_SEARCH.equals(intent.getAction())) { /** click on search */
 			String query = intent.getStringExtra(SearchManager.QUERY);
 			showResults(query);
 		}
 	}
 
+	
 	/**
 	 * Displays search results 
 	 */
@@ -56,6 +67,10 @@ public class SearchActivity extends Activity {
 			cursor.moveToFirst();
 			
 			do{
+			//	System.out.println(cursor.getCount());
+				if(cursor.getCount() == 0){
+					break;
+				}
 				
 				ids.add(cursor.getString(cursor.getColumnIndex(BaseColumns._ID)));
 				//pune id-urile userilor intr-un vector

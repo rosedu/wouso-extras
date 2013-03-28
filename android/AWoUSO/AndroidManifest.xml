@@ -59,9 +59,12 @@
         </activity>
         <activity android:name="cdl.android.ui.user.OtherProfile" >
         </activity>
+        <activity android:name="cdl.android.ui.user.OtherMessage" >
+        </activity>
         <activity
             android:name="cdl.android.ui.main.Profile"
-            android:screenOrientation="portrait" >
+          >
+          <!--    android:screenOrientation="portrait" > -->
         </activity>
         <activity android:name=".ui.challenge.menu.ChallengeMenu" >
         </activity>

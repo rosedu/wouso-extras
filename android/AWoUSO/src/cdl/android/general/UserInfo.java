@@ -17,6 +17,7 @@ import android.widget.ImageView;
  * User info container class
  */
 public class UserInfo {
+	String username;
 	String firstName;
 	String lastName;
 	String raceSlug;
@@ -51,6 +52,7 @@ public class UserInfo {
 				.getDouble("percent");
 		raceId = jObj.getString("race_id");
 		raceSlug = jObj.getString("race_slug");
+		username = jObj.getString("username");
 	}
 
 	// TODO: separate parse method with throw
@@ -143,6 +145,25 @@ public class UserInfo {
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	
+	/**
+	 * Gets the userame of the user.
+	 * 
+	 * @return The userame.
+	 */
+	public String getUserame() {
+		return username;
+	}
+
+	/**
+	 * Sets the userame of the user.
+	 * 
+	 * @param username
+	 *            The username.
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
