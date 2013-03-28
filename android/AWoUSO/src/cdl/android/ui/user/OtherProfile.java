@@ -24,6 +24,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.general.*;
@@ -55,7 +56,7 @@ public class OtherProfile extends Activity{
 			}
 			
 			int raceId = Integer.parseInt(userInfo.getRaceId());
-			LinearLayout panel = (LinearLayout) this.findViewById(R.id.panel);
+			RelativeLayout panel = (RelativeLayout ) this.findViewById(R.id.panel);
 			
 			Log.d("raceId", ""+raceId );
 			String serie;
