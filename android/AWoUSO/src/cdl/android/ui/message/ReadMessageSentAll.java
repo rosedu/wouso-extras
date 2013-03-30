@@ -50,11 +50,13 @@ public class ReadMessageSentAll extends Activity {
 		});
 		
 		Button reply = (Button) findViewById(R.id.reply);
+		//reply button invisible
 		reply.setVisibility(4);
 		
 		//delete Button & method. Not used yet
 		Button delete = (Button) findViewById(R.id.delete);
-		delete.setVisibility(4);//this makes the delete Button not to work
+		//this makes the delete Button not to work
+		delete.setVisibility(4);
 		delete.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v){
