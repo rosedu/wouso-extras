@@ -91,7 +91,7 @@ public class Profile extends Activity {
 			//username
 			SharedPreferences mPreference= PreferenceManager.getDefaultSharedPreferences(this);
 			SharedPreferences.Editor editor = mPreference.edit();
-			editor.putString("username", userInfo.getUsername());
+			editor.putString("username", userInfo.getUserame());
 			editor.commit();
 			
 			//id
