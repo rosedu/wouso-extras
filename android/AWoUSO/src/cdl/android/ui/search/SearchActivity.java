@@ -44,10 +44,12 @@ public class SearchActivity extends Activity {
 			Intent newIntent = new Intent(this, OtherProfile.class);
 			newIntent.putExtra("id", id);
 			startActivity(newIntent);
+			this.finish();
 			
 		} else if (Intent.ACTION_SEARCH.equals(intent.getAction())) { /** click on search */
 			String query = intent.getStringExtra(SearchManager.QUERY);
 			showResults(query);
+			this.finish();
 		}
 	}
 
