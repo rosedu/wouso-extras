@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,7 +27,9 @@ public class CreateMessage extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.compose_msg_layout);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.setContentView(R.layout.compose_message);
+		//setContentView(R.layout.compose_msg_layout);
 
 		EditText toEdit = (EditText) findViewById(R.id.to);
 		EditText subjectEdit = (EditText) findViewById(R.id.subject);
@@ -85,6 +88,15 @@ public class CreateMessage extends Activity {
 				else
 					Toast.makeText(getApplicationContext(), "Message sent!",
 							Toast.LENGTH_SHORT).show();
+				
+				EditText toEdit = (EditText) findViewById(R.id.to);
+				EditText subjectEdit = (EditText) findViewById(R.id.subject);
+				EditText textEdit = (EditText) findViewById(R.id.text);
+				
+				toEdit.setText("");
+				subjectEdit.setText("");
+				textEdit.setText("");
+				
 				if (replyOrNot){
 					finish();
 				}
@@ -108,6 +120,10 @@ public class CreateMessage extends Activity {
 		
 		return ApiHandler.sendPost(ApiHandler.msgSendAPICallURL,
 				nameValuePairs, this);
+	}
+	
+	public void goBack(View view){
+		this.finish();
 	}
 
 	protected void onExit() {
