@@ -11,6 +11,7 @@ import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
 import cdl.android.ui.message.MessageTabs;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -53,6 +54,8 @@ public class OtherMessage extends Activity{
 		else
 			Toast.makeText(getApplicationContext(), "Message sent!",
 					Toast.LENGTH_SHORT).show();
+		
+		finish();
 	}
 	
 	public ServerResponse sendMessage(String user, String to, String subject,
@@ -66,6 +69,12 @@ public class OtherMessage extends Activity{
 		
 		return ApiHandler.sendPost(ApiHandler.msgSendAPICallURL,
 				nameValuePairs, this);
+	}
+	
+	protected void onExit() {
+		Intent in = new Intent();
+		setResult(RESULT_OK, in);
+		finish();
 	}
 	
 }

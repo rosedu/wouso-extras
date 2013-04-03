@@ -56,8 +56,7 @@
         
 	        android:layout_width="fill_parent"
 	        android:layout_height="30dp"
-			
-	        
+				        
 	        android:layout_marginBottom="10dp"
 	        
 	        android:paddingRight="4dp"
@@ -131,6 +130,9 @@
 	            android:layout_marginRight="3dp"
 	            android:layout_marginLeft="3dp"
 	            android:gravity="top|left"
+	        
+	        	android:inputType="textImeMultiLine"    
+	            android:imeOptions="actionDone"
 	            
 	            android:layout_height="fill_parent"
 	          	android:layout_width="fill_parent"
