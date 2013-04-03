@@ -41,7 +41,7 @@ public class Sent extends Activity {
 				for (int i = 0; i < arr.length(); i++) {
 					MessageItem mes = new MessageItem();
 					mes.parseContent(arr.getJSONObject(i));
-					mItems.add(mes);
+					mItems.add(0, mes);//newer on top
 				}
 			} catch (JSONException e) {
 				Toast.makeText(this, "Server response format error.",
@@ -49,7 +49,40 @@ public class Sent extends Activity {
 			}
 		}
 
-		mListView.setAdapter(new MessageAdapter(this, mItems,
+		mListView.setAdapter(new MessageAdapterSentAll(this, mItems,
+				new OnClickListener() {
+					public void onClick(View v) {
+					}
+				}));
+	}
+	
+	protected void onResume(){
+		super.onResume();
+		ListView mListView = (ListView) findViewById(android.R.id.list);
+		mListView.setEmptyView(findViewById(android.R.id.empty));
+		
+		// Get Sent messages from the server
+		mItems = new ArrayList<MessageItem>();
+		ServerResponse resp = ApiHandler.getArray(
+				ApiHandler.msgSentAPICallURL, this);
+
+		if (resp.getStatus() == false) {
+			Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
+		} else {
+			try {
+				JSONArray arr = resp.getArrayData();
+				for (int i = 0; i < arr.length(); i++) {
+					MessageItem mes = new MessageItem();
+					mes.parseContent(arr.getJSONObject(i));
+					mItems.add(0, mes);//newer on top
+				}
+			} catch (JSONException e) {
+				Toast.makeText(this, "Server response format error.",
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+
+		mListView.setAdapter(new MessageAdapterSentAll(this, mItems,
 				new OnClickListener() {
 					public void onClick(View v) {
 					}

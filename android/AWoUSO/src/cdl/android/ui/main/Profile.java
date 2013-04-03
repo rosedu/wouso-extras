@@ -6,16 +6,21 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -82,6 +87,29 @@ public class Profile extends Activity {
 				}
 			});
 		} else {
+			/* Setting global values for username and id. */
+			//username
+			SharedPreferences mPreference= PreferenceManager.getDefaultSharedPreferences(this);
+			SharedPreferences.Editor editor = mPreference.edit();
+			editor.putString("username", userInfo.getUserame());
+			editor.commit();
+			
+			//id
+			final String username = mPreference.getString("username", null);
+			ServerResponse result = ApiHandler.getArray(ApiHandler.searchURL
+					+ username, this);
+			JSONArray mData = result.getArrayData();
+			if (mData != null){
+					JSONObject user;
+					try{
+						user = mData.getJSONObject(0);
+						editor.putString("id", user.getString("id"));
+						editor.commit();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			setContentView(R.layout.mainmenu);
 			initProfile();
 		}

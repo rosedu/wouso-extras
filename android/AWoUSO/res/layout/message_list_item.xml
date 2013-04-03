@@ -17,13 +17,22 @@
             android:textSize="15dp" >
         </TextView>
 
-        <EditText
+        <!-- <EditText
             android:id="@+id/from"
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:inputType="text"
-            android:textSize="10dp" />
+            android:textSize="10dp" /> -->
+        
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:textSize="15dp"
+        />
+     	
     </RelativeLayout>
     
 	<RelativeLayout
@@ -39,13 +48,20 @@
             android:textSize="15dp" >
         </TextView>
 
-        <EditText
+        <!-- <EditText
             android:id="@+id/subject"
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:inputType="text"
-            android:textSize="10dp" />
+            android:textSize="10dp" /> -->
+            
+        <TextView 
+            android:id="@+id/subject"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:textSize="15dp" />
     </RelativeLayout>
     
 	<RelativeLayout
@@ -61,18 +77,59 @@
             android:textSize="15dp" >
         </TextView>
 
-        <EditText
+        <!-- <EditText
             android:id="@+id/text"
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:inputType="text"
-            android:textSize="10dp" />
+            android:textSize="10dp" /> -->
+            
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textSize="15dp" />    
     </RelativeLayout>
     
-	<Button 
-	    android:id="@+id/readmsg"
-	    android:layout_width="60dp"
-	    android:layout_height="40dp"
-	    android:text="@string/back"/>
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="46dp"
+	    android:layout_marginTop="0dp"
+	    android:orientation="horizontal" >
+        
+		<Button 
+	    	android:id="@+id/readmsg"
+	    	android:layout_width="60dp"
+	    	android:layout_height="40dp"
+	    	android:layout_alignParentLeft="true"
+	    	android:layout_alignParentBottom="true"
+	    	android:background="@color/msg_button_black"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+	    	android:text="@string/back"/>
+	
+		<Button
+		    android:id="@+id/reply"
+		    android:layout_width="60dp"
+		    android:layout_height="40dp"
+		    android:layout_alignParentBottom="true"
+		    android:background="@color/msg_button_black"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+		    android:layout_centerInParent="true"
+		    android:text="@string/reply"/>
+		
+		<Button 
+		    android:id="@+id/delete"
+		    android:layout_width="60dp"
+		    android:layout_height="40dp"
+		    android:layout_alignParentBottom="true"
+		    android:background="@color/msg_button_black"
+		    android:textColor="@color/white"
+		    android:textStyle="bold"
+		    android:layout_alignParentRight="true"
+		    android:text="@string/delete" />
+	</RelativeLayout>
 </LinearLayout>

@@ -57,6 +57,7 @@ public class MainActivity extends Activity {
 		SharedPreferences mAppInfo = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		//TODO: also check c2dm registration id
+		// auth_token, auth_secret - key de login
 		if (mAppInfo.getString("auth_token", null) == null ||
 				mAppInfo.getString("auth_secret", null) == null)
 			return false;

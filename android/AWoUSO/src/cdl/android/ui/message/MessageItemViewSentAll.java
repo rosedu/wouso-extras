@@ -10,11 +10,11 @@ import cdl.android.R;
  * 
  * Message List Item View
  */
-public class MessageItemView extends LinearLayout {
+public class MessageItemViewSentAll extends LinearLayout {
 	MessageItem mItem;
 	Context mContext;
 
-	public MessageItemView(Context context, MessageItem item) {
+	public MessageItemViewSentAll(Context context, MessageItem item) {
 		super(context);
 		mContext = context;
 		mItem = item;
@@ -30,5 +30,8 @@ public class MessageItemView extends LinearLayout {
 
 		TextView text = (TextView) findViewById(R.id.text);
 		text.setText(item.getContent());
+		
+		TextView new_message = (TextView) findViewById(R.id.newmessage);
+		new_message.setVisibility(4);
 	}
 }
