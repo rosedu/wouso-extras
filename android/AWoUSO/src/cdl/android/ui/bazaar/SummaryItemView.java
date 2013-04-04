@@ -29,7 +29,8 @@ import android.widget.Toast;
 
 public class SummaryItemView extends LinearLayout{
 	private SummaryItem mItem;
-
+	static final String wouso = "http://wouso-next.rosedu.org";
+	
 	public SummaryItemView(Context context, SummaryItem item) {
 		super(context);
 		mItem = item;
@@ -46,7 +47,8 @@ public class SummaryItemView extends LinearLayout{
 
 		
 		ImageView image = (ImageView) findViewById(R.id.image);
-		this.setSpellImg(image, item.getImageURL());
+		
+		this.setSpellImg(image, wouso + item.getImageURL());
 	}
 	
 	private void setSpellImg(ImageView img, String url) {
