@@ -15,15 +15,14 @@ public class SummaryItem {
 	private int playerId;
 	private int spellId;
 	private int amount;
-	private int id;
+	private String spellName;
 	private String spellTitle;
-	private String image;
+	private String imageURL;
 	
-	public void parseContent(JSONObject jobj) throws JSONException{
-		playerId = jobj.getInt("player_id");
+	public void parseSpellsAvailable(JSONObject jobj) throws JSONException{
+		spellName = jobj.getString("spell_name");
+		spellTitle = jobj.getString("spell_title");
 		spellId = jobj.getInt("spell_id");
-		amount = jobj.getInt("amount");
-		id = jobj.getInt("id");
 	}
 	
 	public void setAll(Context context){
@@ -57,9 +56,8 @@ public class SummaryItem {
 		}
 		
 		for(BazaarItem item : mItems){
-			if(item.getId().equals("" + spellId)){
-				spellTitle = item.getTitle();
-				image = item.getImage();
+			if(item.getTitle().equals("" + spellTitle)){
+				imageURL = item.getImageURL();
 			}
 		}
 	}
@@ -72,8 +70,8 @@ public class SummaryItem {
 		return spellTitle;
 	}
 	
-	public String getImage(){
-		return image;
+	public String getImageURL(){
+		return imageURL;
 	}
 	
 	

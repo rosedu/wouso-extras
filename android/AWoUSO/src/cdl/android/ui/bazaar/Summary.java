@@ -1,5 +1,8 @@
 package cdl.android.ui.bazaar;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -12,10 +15,13 @@ import cdl.android.general.ServerResponse;
 import cdl.android.general.SummaryItem;
 import cdl.android.server.ApiHandler;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +38,6 @@ public class Summary extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.summary);
 		
-		Log.d("stopped>>>>>>>>>>>", "stopped");
-		/*TextView textview = new TextView(this);
-		textview.setText("This is the Summary tab");
-		setContentView(textview);*/
 		
 		ListView mListView = (ListView) findViewById(android.R.id.list);
 		mListView.setEmptyView(findViewById(android.R.id.empty));
@@ -59,10 +61,10 @@ public class Summary extends Activity {
 					
 					try{
 						
-						summaryItem.parseContent(spellData.getJSONObject(i));
+						summaryItem.parseSpellsAvailable(spellData.getJSONObject(i));
 						mItems.add(summaryItem);
 						summaryItem.setAll(this);
-						Log.d("spell", mItems.get(i).getSpellTitle());
+						
 					}catch(JSONException e){
 						Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 					}
@@ -80,4 +82,6 @@ public class Summary extends Activity {
 				}));
 		
 	}
+	
+	
 }

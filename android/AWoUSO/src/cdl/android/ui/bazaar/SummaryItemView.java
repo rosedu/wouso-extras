@@ -1,5 +1,8 @@
 package cdl.android.ui.bazaar;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +15,14 @@ import cdl.android.general.ServerResponse;
 import cdl.android.general.SummaryItem;
 import cdl.android.server.ApiHandler;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,5 +44,26 @@ public class SummaryItemView extends LinearLayout{
 		TextView amount = (TextView) findViewById(R.id.amount);
 		amount.setText(item.getAmount());
 
+		
+		ImageView image = (ImageView) findViewById(R.id.image);
+		this.setSpellImg(image, item.getImageURL());
+	}
+	
+	private void setSpellImg(ImageView img, String url) {
+
+		Bitmap b = BitmapFactory.decodeResource(img.getContext()
+				.getResources(), R.drawable.empty);
+		img.setImageBitmap(b);
+		try {
+			HttpURLConnection con = (HttpURLConnection) (new URL(url))
+					.openConnection();
+			con.connect();
+			b = BitmapFactory.decodeStream(con.getInputStream());
+			img.setImageBitmap(b);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 }

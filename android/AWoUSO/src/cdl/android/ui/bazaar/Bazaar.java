@@ -46,8 +46,8 @@ public class Bazaar extends Activity {
 		}else{
 			try {
 				JSONArray spellData = (JSONArray) ((JSONObject)resp.getData()).get("spells");
-			
-				System.out.println(spellData.length());
+				
+				System.out.println(spellData);
 				for(int i = 0; i < spellData.length(); i++){
 					BazaarItem bazaarItem = new BazaarItem();
 					

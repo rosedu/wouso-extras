@@ -8,7 +8,7 @@ public class BazaarItem {
 	private String title;
 	private String type;
 	private int dueDays;
-	private String image;
+	private String imagURL;
 	private int price;
 	private int groupId;
 	private int id;
@@ -19,10 +19,8 @@ public class BazaarItem {
 		title = jobj.getString("title");
 		type = jobj.getString("type");
 		dueDays = jobj.getInt("due_days");
-		image = jobj.getString("image");
+		imagURL = jobj.getString("image_url");
 		price = jobj.getInt("price");
-		//groupId = jobj.getInt("group_id");
-		id = jobj.getInt("id");
 		description = jobj.getString("description");
 	}
 	
@@ -42,8 +40,8 @@ public class BazaarItem {
 		return "" + this.dueDays;
 	}
 	
-	public String getImage(){
-		return this.image;
+	public String getImageURL(){
+		return this.imagURL;
 	}
 	
 	public String getPrice(){
