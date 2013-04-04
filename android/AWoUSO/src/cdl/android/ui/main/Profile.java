@@ -44,6 +44,7 @@ import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.challenge.menu.ChallengeMenu;
 import cdl.android.ui.map.GroupsMap;
 import cdl.android.ui.message.MessageTabs;
+import cdl.android.ui.tops.Tops;
 import cdl.android.ui.user.UserProfile;
 
 /**
@@ -277,7 +278,7 @@ public class Profile extends Activity {
 		String toast = "";
 		switch (item.getItemId()) {
 		case R.id.top:
-			toast = "Not yet";
+			startActivity(new Intent(this, Tops.class));
 			break;
 		case R.id.map:
 			startActivity(new Intent(this, GroupsMap.class));
@@ -290,10 +291,12 @@ public class Profile extends Activity {
 		default:
 			return true;
 		}
-		Toast myToast = Toast.makeText(this, toast, Toast.LENGTH_SHORT);
-		myToast.setGravity(Gravity.CENTER, myToast.getXOffset() / 2,
+			
+			Toast myToast = Toast.makeText(this, toast, Toast.LENGTH_SHORT);
+			myToast.setGravity(Gravity.CENTER, myToast.getXOffset() / 2,
 				myToast.getYOffset() / 2);
-		myToast.show();
+			if(!toast.isEmpty())
+				myToast.show();
 		return false;
 	}
 
