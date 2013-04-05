@@ -2,41 +2,59 @@ package cdl.android.ui.map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.WebView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 import cdl.android.R;
 
 public class GroupsMap extends Activity {
+	
+	Context context = this;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.groups_map);
+		setContentView(R.layout.map);
 
-		WebView myWebView = (WebView) findViewById(R.id.webview);
-		myWebView.getSettings().setBuiltInZoomControls(true);
-		myWebView.getSettings().setSupportZoom(true);
-		myWebView.loadUrl("http://swarm.cs.pub.ro/~irinap/map.html");
-		myWebView.getSettings().setJavaScriptEnabled(true);
+		Button oxynia = (Button) findViewById(R.id.oxynia);
+		Button nifes = (Button) findViewById(R.id.nifes);
+		Button zota = (Button) findViewById(R.id.zota);
+		
+		oxynia.setOnClickListener(new OnClickListener()
+		{   
+		    @Override
+		    public void onClick(View v)
+		    {
+		    	Intent i = new Intent(context, GroupView.class);
+		    	i.putExtra("groupId", "1");
+		    	startActivity(i);
+		    }
+		});
+		
+		nifes.setOnClickListener(new OnClickListener()
+		{   
+		    @Override
+		    public void onClick(View v)
+		    {
+		    	Toast.makeText(getApplicationContext(), "Nifes",
+						Toast.LENGTH_SHORT).show();
+		    }
+		});
+		
+		zota.setOnClickListener(new OnClickListener()
+		{   
+		    @Override
+		    public void onClick(View v)
+		    {
+		    	Toast.makeText(getApplicationContext(), "Zota",
+						Toast.LENGTH_SHORT).show();
+		    }
+		});
 
-		final DisplayGroup action = new DisplayGroup(this);
-		myWebView.addJavascriptInterface(action, "act");
-
-	}
-
-	class DisplayGroup {
-		Context context;
-
-		public DisplayGroup(Context context) {
-			this.context = context;
-		}
-
-		public void show(String text) {
-			Toast.makeText(context, text, 1).show();
-			// TODO: go to group view activity
-		}
 	}
 
 }
