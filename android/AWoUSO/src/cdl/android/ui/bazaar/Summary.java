@@ -63,8 +63,7 @@ public class Summary extends Activity {
 						
 						summaryItem.parseSpellsAvailable(spellData.getJSONObject(i));
 						mItems.add(summaryItem);
-						summaryItem.setAll(this);
-						
+
 					}catch(JSONException e){
 						Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 					}
