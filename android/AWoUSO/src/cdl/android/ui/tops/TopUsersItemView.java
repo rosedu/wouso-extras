@@ -36,6 +36,8 @@ public class TopUsersItemView extends LinearLayout{
 		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutInflater.inflate(R.layout.top_users_list_item, this, true);
 		
+		TextView place= (TextView) this.findViewById(R.id.top_users_place);
+		place.setText(item.getPlace() + ".");
 		
 		ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
 		userInfo.setAvatar(avatar, userInfo.getAvatarUrl());
