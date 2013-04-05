@@ -17,6 +17,7 @@ public class TopUsersItem {
 	private int points;
 	private String avatarURL;
 	private UserInfo userInfo;
+	private int place;
 	
 	public void parseContent(JSONObject jobj) throws JSONException{
 		firstName = jobj.getString("first_name");
@@ -48,6 +49,13 @@ public class TopUsersItem {
 		return userInfo;
 	}
 	
+	public void setPlace(int place){
+		this.place = place;
+	}
+	
+	public String getPlace(){
+		return "" + place;
+	}
 	
 	public String getFirstName(){
 		return firstName;
