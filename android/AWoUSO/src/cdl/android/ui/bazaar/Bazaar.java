@@ -63,29 +63,7 @@ public class Bazaar extends Activity {
 				e.printStackTrace();
 			}
 		}
-		
-	/*	 try {
-			  FileInputStream fstream = new FileInputStream(MainActivity.CONFIG_SPELLS);
-			  DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			  String strLine;
-			  
-		/*	  while ((strLine = br.readLine()) != null)   {
-				    BazaarItem item = new BazaarItem2();
-				    String res[] = strLine.split(",");
-					item.setId(res[0].trim());
-					item.setTitle(res[1].trim());
-					item.setDueDays(res[2].trim());
-					item.setPrice(res[3].trim());
-					item.setFilename(res[4].trim());
-					item.setRequiredLevel(Integer.parseInt(res[5].trim()));
-					mItems.add(item);
-			  }
-			  in.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		
+
 		mListView.setAdapter(new BazaarAdapter(this, mItems,
 				new OnClickListener() {
 					public void onClick(View v) {
