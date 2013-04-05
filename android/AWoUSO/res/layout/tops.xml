@@ -3,17 +3,19 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"  >
-    <fragment android:name="cdl.android.ui.tops.OptionsList"
-         
-            android:id="@+id/topsoptions"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    android:background="@drawable/bg">
     
-    <!-- <fragment android:name="com.example.news.ArticleReaderFragment"
-            android:id="@+id/viewer"
+    <fragment android:name="cdl.android.ui.tops.TopTabs"
+         
+            android:id="@+id/tops_options"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="5dp" />
+    
+    <FrameLayout
+            android:id="@+id/tops_content"
             android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />--> 
+            android:background="@android:color/transparent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" /> 
 </LinearLayout>
