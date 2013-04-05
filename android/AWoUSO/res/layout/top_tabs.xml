@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/bg">
+  	  android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
    	
     <RelativeLayout 
         android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
 		android:paddingBottom="4dp">
-     <!-- 	android:background="@drawable/top_tabs" -->
+
     
 	    <Button
 	        android:id="@+id/top_series"
 	        android:layout_alignParentLeft="true"
+	        android:padding="4dp"
 	        android:text="Top Series"
-	        android:padding="5dp"
 	        android:layout_marginLeft="6dp"
-	        android:layout_marginRight="6dp"
-	        android:background="@drawable/rounded_tab"
+	        android:background="@drawable/round_tab_selected"
 	        android:textColor="#F7F7F7"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -26,9 +25,8 @@
 	    <Button
 	        android:id="@+id/top_groups"
 	        android:layout_toRightOf="@id/top_series"
-	        android:padding="5dp"
-	        android:layout_marginRight="6dp"
-	        android:background="@drawable/rounded_tab"
+	        android:padding="4dp"
+	        android:background="@drawable/round_tab_selected"
 	        android:textColor="#F7F7F7"
 	        android:text="Top Groups"
 	        android:layout_width="wrap_content"
@@ -38,8 +36,8 @@
 	    <Button
 	        android:id="@+id/top_users"
 	        android:layout_toRightOf="@id/top_groups"
-	        android:background="@drawable/rounded_tab"
-	        android:padding="5dp"
+	        android:padding="4dp"
+	        android:background="@drawable/round_tab_selected"
 	        android:textColor="#F7F7F7"
 	        android:text="Top Users"
 	        android:layout_width="wrap_content"
