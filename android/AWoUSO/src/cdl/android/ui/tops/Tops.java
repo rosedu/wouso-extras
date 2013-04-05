@@ -24,18 +24,18 @@ public class Tops extends Activity{
 		ft.replace(R.id.tops_content, new TopUsers());
 		crtTop = TopsEnum.TopUsers;
 		Resources r = this.getResources();
-		((Button)this.findViewById(R.id.top_users)).setBackground(r.getDrawable(R.drawable.round_tab_selected));
-		((Button)this.findViewById(R.id.top_groups)).setBackground(r.getDrawable(R.drawable.round_tab_notselected));
-		((Button)this.findViewById(R.id.top_series)).setBackground(r.getDrawable(R.drawable.round_tab_notselected));
+		((Button)this.findViewById(R.id.top_users)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
+		((Button)this.findViewById(R.id.top_groups)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
+		((Button)this.findViewById(R.id.top_series)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
 		ft.commit();
 	}
 	
 	
 	public void  setAllUnselected(){
 		Resources r = this.getResources();
-		((Button)this.findViewById(R.id.top_users)).setBackground(r.getDrawable(R.drawable.round_tab_notselected));
-		((Button)this.findViewById(R.id.top_groups)).setBackground(r.getDrawable(R.drawable.round_tab_notselected));
-		((Button)this.findViewById(R.id.top_series)).setBackground(r.getDrawable(R.drawable.round_tab_notselected));
+		((Button)this.findViewById(R.id.top_users)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
+		((Button)this.findViewById(R.id.top_groups)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
+		((Button)this.findViewById(R.id.top_series)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
 	}
 	
 	public void changeFragmentTo(TopsEnum top){
@@ -46,7 +46,7 @@ public class Tops extends Activity{
 		
 			case TopUsers:
 					setAllUnselected();
-					((Button)this.findViewById(R.id.top_users)).setBackground(r.getDrawable(R.drawable.round_tab_selected));
+					((Button)this.findViewById(R.id.top_users)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
 					ft.replace(R.id.tops_content, new TopUsers());
 					ft.commit();
 					
@@ -54,7 +54,7 @@ public class Tops extends Activity{
 			
 			case TopGroups:
 				setAllUnselected();
-				((Button)this.findViewById(R.id.top_groups)).setBackground(r.getDrawable(R.drawable.round_tab_selected));
+				((Button)this.findViewById(R.id.top_groups)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
 				ft.replace(R.id.tops_content, new TopGroups());
 				ft.commit();
 				
@@ -62,7 +62,7 @@ public class Tops extends Activity{
 				
 			case TopSeries:
 				setAllUnselected();
-				((Button)this.findViewById(R.id.top_series)).setBackground(r.getDrawable(R.drawable.round_tab_selected));
+				((Button)this.findViewById(R.id.top_series)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
 				ft.replace(R.id.tops_content, new TopSeries());
 				ft.commit();
 				break;
