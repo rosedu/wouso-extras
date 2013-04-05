@@ -20,7 +20,7 @@ import cdl.android.R;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
 
-public class ReadMessageSentAll extends Activity {
+public class ReadMessageSent extends Activity {
 	
 	Context context;
 

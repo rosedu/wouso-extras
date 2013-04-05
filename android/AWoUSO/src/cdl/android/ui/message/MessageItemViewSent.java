@@ -10,11 +10,11 @@ import cdl.android.R;
  * 
  * Message List Item View
  */
-public class MessageItemViewSentAll extends LinearLayout {
+public class MessageItemViewSent extends LinearLayout {
 	MessageItem mItem;
 	Context mContext;
 
-	public MessageItemViewSentAll(Context context, MessageItem item) {
+	public MessageItemViewSent(Context context, MessageItem item) {
 		super(context);
 		mContext = context;
 		mItem = item;

@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 /**
  * Adapter class for the message list's content Manange the items in the list
  */
-public class MessageAdapterSentAll extends BaseAdapter {
+public class MessageAdapterSent extends BaseAdapter {
 
 	ArrayList<MessageItem> mItems;
 	/** Called when a message in list is clicked **/
@@ -21,12 +21,12 @@ public class MessageAdapterSentAll extends BaseAdapter {
 	Context mContext;
 	final Intent readMessage;
 
-	public MessageAdapterSentAll(Context context, ArrayList<MessageItem> items, OnClickListener onItemClick) {
+	public MessageAdapterSent(Context context, ArrayList<MessageItem> items, OnClickListener onItemClick) {
 		mItems = new ArrayList<MessageItem>();
 		mOnItemClick = onItemClick;
 		mContext = context;
 		mItems = items;
-		readMessage = new Intent(mContext, ReadMessageSentAll.class);
+		readMessage = new Intent(mContext, ReadMessageSent.class);
 	}
 
 	public int getCount() {
@@ -42,7 +42,7 @@ public class MessageAdapterSentAll extends BaseAdapter {
 	}
 
 	public View getView(int index, View convertView, ViewGroup parent) {
-		MessageItemViewSentAll item;
+		MessageItemViewSent item;
 
 		final String from = mItems.get(index).getAuthor();
 		final String subject = mItems.get(index).getSubject();
@@ -50,7 +50,7 @@ public class MessageAdapterSentAll extends BaseAdapter {
 		final String reply_to = mItems.get(index).getReply_to();
 		final String id = mItems.get(index).getId();
 
-		item = new MessageItemViewSentAll(mContext, mItems.get(index));
+		item = new MessageItemViewSent(mContext, mItems.get(index));
 		item.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
