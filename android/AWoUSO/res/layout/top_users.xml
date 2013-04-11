@@ -14,10 +14,12 @@
         android:layout_marginBottom="1dp"
         android:layout_width="fill_parent" 
         android:layout_height="fill_parent"
-        android:divider="@drawable/list_divider"
-        android:dividerHeight="13dp"
+        android:divider="@color/light_blue"        
+        android:dividerHeight="4dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
 		android:background="@android:color/transparent"
 		android:orientation="vertical">
 	</ListView>
-	
+		
 </LinearLayout>
