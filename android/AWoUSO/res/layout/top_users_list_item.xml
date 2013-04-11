@@ -2,9 +2,9 @@
 <RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="30dp"
     android:orientation="horizontal"
-    android:background="@android:color/transparent"
+    android:background="@drawable/list_bg"
     android:padding="5dp">
     
     <TextView    
