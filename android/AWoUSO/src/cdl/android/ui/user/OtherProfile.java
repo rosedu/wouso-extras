@@ -12,6 +12,9 @@ import org.json.JSONException;
 
 import cdl.android.R;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,13 +32,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.general.*;
 import cdl.android.server.ApiHandler;
+import cdl.android.ui.bazaar.SummaryFragment;
+
+
 public class OtherProfile extends Activity{
+	private Fragment fragment;
+	private FragmentManager fm;
+	private enum SpellInventoryState{
+		SHOWN, HIDDEN;
+	};
+	private SpellInventoryState state = SpellInventoryState.HIDDEN;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.otherprofile);
 		
+		fragment = new SummaryFragment();
+		((SummaryFragment)fragment).setBundle(Integer.parseInt(getIntent().getExtras().getString("id")));
+		fm = this.getFragmentManager();
+		FragmentTransaction ft = fm.beginTransaction();
+		ft.replace(R.id.other_summary, fragment);
+		ft.hide(fragment);
+		ft.commit();
+		
+
 		Intent intent = getIntent();
 		final String id = (String) intent.getExtras().get("id");
 		
@@ -112,7 +133,25 @@ public class OtherProfile extends Activity{
 					startActivity(intent);
 				}});
 			
-			
+			Button castSpellBtn = (Button) this.findViewById(R.id.userspellbtn);
+			castSpellBtn.setOnClickListener(new View.OnClickListener(){
+				
+				@Override
+				public void onClick(View v) {
+					if(state == SpellInventoryState.HIDDEN){
+						state = SpellInventoryState.SHOWN;
+						FragmentTransaction ft = fm.beginTransaction();
+						ft.show(fragment);
+						ft.commit();
+					} else {
+						state = SpellInventoryState.HIDDEN;
+						FragmentTransaction ft = fm.beginTransaction();
+						ft.hide(fragment);
+						ft.commit();
+					}
+					 
+				}
+			});
 		}
 	}
 	
