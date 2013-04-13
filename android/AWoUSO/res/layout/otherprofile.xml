@@ -114,6 +114,7 @@
 	
 	<!-- butoane mai jos -->
   	<LinearLayout
+  	    android:id="@+id/butoane"
   	    android:layout_below="@id/panel"
   	    android:orientation="horizontal"
   	    android:layout_width="fill_parent"
@@ -140,5 +141,17 @@
             android:layout_marginTop="5dp"
             android:text="@string/userChalMarker" />
   	</LinearLayout>
+  	
+  	
+  	<FrameLayout
+         	android:layout_below="@id/butoane"
+            android:id="@+id/other_summary"
+           
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp" />
   	
 </RelativeLayout >
