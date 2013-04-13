@@ -30,7 +30,6 @@ public class TopUsersItemView extends LinearLayout{
 	public TopUsersItemView(final Context context, final TopUsersItem item) {
 		super(context);
 		this.item = item;
-		UserInfo userInfo = item.getUserInfo();
 		
 		
 		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,7 +39,7 @@ public class TopUsersItemView extends LinearLayout{
 		place.setText(item.getPlace() + ".");
 		
 		ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
-		userInfo.setAvatar(avatar, userInfo.getAvatarUrl());
+		UserInfo.setAvatar(avatar, this.item.getAvatarURL());
 		
 		TextView name = (TextView) this.findViewById(R.id.top_users_full_name);
 		name.setText(item.getFirstName() + " " + item.getLastName());
@@ -55,7 +54,6 @@ public class TopUsersItemView extends LinearLayout{
 	
 	public void setUserItemView(Context context, TopUsersItem item){
 		this.item = item;
-		UserInfo userInfo = item.getUserInfo();
 		
 		
 		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -65,7 +63,7 @@ public class TopUsersItemView extends LinearLayout{
 		place.setText(item.getPlace() + ".");
 		
 		ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
-		userInfo.setAvatar(avatar, userInfo.getAvatarUrl());
+		UserInfo.setAvatar(avatar, this.item.getAvatarURL());
 		
 		TextView name = (TextView) this.findViewById(R.id.top_users_full_name);
 		name.setText(item.getFirstName() + " " + item.getLastName());
