@@ -35,10 +35,32 @@
     
     <TextView
         
+        android:id="@+id/top_users_level"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/level"
+        android:textColor="@color/white"
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@id/top_users_full_name"/>
+    
+    <TextView
+        
+        android:id="@+id/top_users_level_no"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/light_blue"
+        android:layout_alignBaseline="@id/top_users_level"
+        android:layout_toRightOf="@id/top_users_level"/>
+    
+    <TextView
+        
         android:id="@+id/top_users_points"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textSize="12sp"
+        android:layout_marginRight="2dp"
         android:textColor="@color/white"
         android:layout_alignParentRight="true"/>
     
