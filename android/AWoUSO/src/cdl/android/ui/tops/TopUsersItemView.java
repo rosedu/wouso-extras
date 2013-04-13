@@ -42,7 +42,10 @@ public class TopUsersItemView extends LinearLayout{
 		UserInfo.setAvatar(avatar, this.item.getAvatarURL());
 		
 		TextView name = (TextView) this.findViewById(R.id.top_users_full_name);
-		name.setText(item.getFirstName() + " " + item.getLastName());
+		name.setText(item.getDisplayName());
+		
+		TextView levelNo = (TextView) this.findViewById(R.id.top_users_level_no);
+		levelNo.setText(" " + item.getLevel());
 		
 		TextView points = (TextView) this.findViewById(R.id.top_users_points);
 		points.setText(item.getPoints());
@@ -66,7 +69,7 @@ public class TopUsersItemView extends LinearLayout{
 		UserInfo.setAvatar(avatar, this.item.getAvatarURL());
 		
 		TextView name = (TextView) this.findViewById(R.id.top_users_full_name);
-		name.setText(item.getFirstName() + " " + item.getLastName());
+		name.setText(item.getDisplayName());
 		
 		TextView points = (TextView) this.findViewById(R.id.top_users_points);
 		points.setText(item.getPoints());
