@@ -27,6 +27,10 @@ public class SummaryItem {
 		amount = jobj.getInt("amount");
 	}
 	
+	public int getId(){
+		return spellId;
+	}
+	
 	public String getAmount(){
 		return "" + amount;
 	}

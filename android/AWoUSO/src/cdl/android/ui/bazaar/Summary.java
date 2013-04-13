@@ -74,11 +74,7 @@ public class Summary extends Activity {
 		}
 		
 		mListView.setAdapter(new SummaryAdapter(this, mItems,
-				new OnClickListener() {
-					public void onClick(View v) {
-						
-					}
-				}));
+				new Bundle()));
 		
 	}
 	
