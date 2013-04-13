@@ -51,5 +51,6 @@
     
     <string name="series">Series</string>
     <string name="membersNumber">Number of members</string>
-    <string name="rank">Rank: </string>
+    <string name="level"> - level: </string><string name="rank">Rank: </string>
+    
 </resources>
