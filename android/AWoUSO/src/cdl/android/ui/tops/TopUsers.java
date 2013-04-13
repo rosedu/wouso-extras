@@ -50,7 +50,6 @@ public class TopUsers extends Fragment{
 						
 						try{
 							playerItem.parseContent(topPlayersData.getJSONObject(i));
-							playerItem.setUserInfo(view.getContext());
 							playerItem.setPlace(i + 1);
 							playerItems.add(playerItem);
 							
