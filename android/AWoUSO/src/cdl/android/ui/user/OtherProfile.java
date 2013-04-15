@@ -11,10 +11,7 @@ import java.net.URL;
 import org.json.JSONException;
 
 import cdl.android.R;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.*;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,8 +31,7 @@ import cdl.android.general.*;
 import cdl.android.server.ApiHandler;
 import cdl.android.ui.bazaar.SummaryFragment;
 
-
-public class OtherProfile extends Activity{
+public class OtherProfile extends FragmentActivity{
 	private Fragment fragment;
 	private FragmentManager fm;
 	private enum SpellInventoryState{
@@ -50,7 +46,8 @@ public class OtherProfile extends Activity{
 		
 		fragment = new SummaryFragment();
 		((SummaryFragment)fragment).setBundle(Integer.parseInt(getIntent().getExtras().getString("id")));
-		fm = this.getFragmentManager();
+		fm = this.getSupportFragmentManager();
+		
 		FragmentTransaction ft = fm.beginTransaction();
 		ft.replace(R.id.other_summary, fragment);
 		ft.hide(fragment);
