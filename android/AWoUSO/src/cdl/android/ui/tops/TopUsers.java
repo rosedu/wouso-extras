@@ -10,7 +10,7 @@ import cdl.android.R;
 import cdl.android.general.BazaarItem;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
-import android.app.Fragment;
+import android.support.v4.app.*;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

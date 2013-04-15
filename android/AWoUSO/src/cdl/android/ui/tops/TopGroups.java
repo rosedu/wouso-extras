@@ -1,7 +1,7 @@
 package cdl.android.ui.tops;
 
 import cdl.android.R;
-import android.app.Fragment;
+import android.support.v4.app.*;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;

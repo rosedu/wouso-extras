@@ -4,15 +4,14 @@ import cdl.android.R;
 import cdl.android.R.drawable;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
+import android.support.v4.app.*;
 
-public class Tops extends Activity{
+public class Tops extends FragmentActivity{
 	public TopsEnum crtTop;
 	
 	public void onCreate(Bundle savedInstanceState){
@@ -21,7 +20,8 @@ public class Tops extends Activity{
 		setContentView(R.layout.tops);
 		
 		
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		
 		ft.replace(R.id.tops_content, new TopUsers());
 		crtTop = TopsEnum.TopUsers;
 		Resources r = this.getResources();
@@ -40,7 +40,7 @@ public class Tops extends Activity{
 	}
 	
 	public void changeFragmentTo(TopsEnum top){
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		Resources r = this.getResources();
 		
 		switch(top){
