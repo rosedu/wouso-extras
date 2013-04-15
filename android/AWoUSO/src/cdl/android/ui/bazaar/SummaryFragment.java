@@ -9,8 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.app.Fragment;
+
+import android.support.v4.app.*;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,18 +84,20 @@ public class SummaryFragment extends Fragment {
 	}
 	
 	
-	public static void castSpell(int playerID, int spellID, Context context){
+	public static void castSpell(int playerID, int spellID,Context context){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
 		
 		nameValuePairs.add(new BasicNameValuePair("spell", "" + spellID));
+
+		Object answer = null;
 		try{
-			Log.d("====================", "spell casted");
-			ApiHandler.sendPost(ApiHandler.baseURL + "player/" + playerID + "/cast/", nameValuePairs, context);
-			Log.d("====================", "spell casted 2 ");
+			answer = ApiHandler.sendPost(ApiHandler.baseURL + "player/" + playerID + "/cast/", nameValuePairs, context);
+
 		} catch(Exception e){
-			Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
+			Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+		} finally {
+			Toast.makeText(context, ((ServerResponse)answer).getError(), Toast.LENGTH_SHORT).show();
 		}
-		Toast.makeText(context, "Spell cast", Toast.LENGTH_SHORT);
 	}	
 	
 	
