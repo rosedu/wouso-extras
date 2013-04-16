@@ -44,8 +44,9 @@ public class OtherProfile extends FragmentActivity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.otherprofile);
 		
-		fragment = new SummaryFragment();
-		((SummaryFragment)fragment).setBundle(Integer.parseInt(getIntent().getExtras().getString("id")));
+		Bundle bundle = new Bundle();
+		bundle.putInt("playerID", Integer.parseInt(getIntent().getExtras().getString("id")));
+		fragment = new SummaryFragment(bundle);
 		fm = this.getSupportFragmentManager();
 		
 		FragmentTransaction ft = fm.beginTransaction();
