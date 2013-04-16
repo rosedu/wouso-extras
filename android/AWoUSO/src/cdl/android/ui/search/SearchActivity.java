@@ -49,7 +49,7 @@ public class SearchActivity extends Activity {
 		} else if (Intent.ACTION_SEARCH.equals(intent.getAction())) { /** click on search */
 			String query = intent.getStringExtra(SearchManager.QUERY);
 			showResults(query);
-			this.finish();
+			
 		}
 	}
 
