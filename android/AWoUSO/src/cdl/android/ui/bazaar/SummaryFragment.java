@@ -27,12 +27,13 @@ import cdl.android.server.ApiHandler;
 
 public class SummaryFragment extends Fragment {
 	private ArrayList<SummaryItem> mItems;
-	private Bundle bundle = new Bundle();;
+	private Bundle bundle;
 	
-	public void setBundle(int userID){
-		bundle.putInt("userID", userID);
+	
+	public SummaryFragment(Bundle bundle){
+		this.bundle = new Bundle();
+		this.bundle.putInt("playerID", bundle.getInt("playerID"));
 	}
-	
 	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +78,7 @@ public class SummaryFragment extends Fragment {
 		
 		final Context con = view.getContext();
 		bundle.putString("action", "castspell");
+		
 		mListView.setAdapter(new SummaryAdapter(con, mItems, bundle));
 		
 		return view;
@@ -88,15 +90,21 @@ public class SummaryFragment extends Fragment {
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
 		
 		nameValuePairs.add(new BasicNameValuePair("spell", "" + spellID));
-
+		nameValuePairs.add(new BasicNameValuePair("days", "" + 3));
+		
 		Object answer = null;
 		try{
 			answer = ApiHandler.sendPost(ApiHandler.baseURL + "player/" + playerID + "/cast/", nameValuePairs, context);
-
+			Log.d("aici", ApiHandler.baseURL + "player/" + playerID + "/cast/");
 		} catch(Exception e){
-			Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
 		} finally {
-			Toast.makeText(context, ((ServerResponse)answer).getError(), Toast.LENGTH_SHORT).show();
+			if(((ServerResponse) answer).getStatus() == true){
+				Toast.makeText(context, "Witchcraft has been done", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(context, "Spell casting failed", Toast.LENGTH_SHORT).show();
+			}
+			
 		}
 	}	
 	
