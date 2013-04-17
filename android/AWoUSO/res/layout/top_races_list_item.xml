@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal"
+    android:background="@drawable/list_bg"
+    android:padding="5dp">
+    
+    <TextView    
+        android:id="@+id/top_races_place"
+        android:layout_alignParentLeft="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"     
+        android:textSize="12sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="6dp"
+        android:textColor="@color/white"/>
+    
+    
+    <TextView
+        
+        android:id="@+id/top_races_title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/light_blue"
+        android:layout_toRightOf="@id/top_races_place"/>
+    
+
+    <TextView
+        
+        android:id="@+id/top_races_points"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginRight="2dp"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"/>
+    
+</RelativeLayout>
