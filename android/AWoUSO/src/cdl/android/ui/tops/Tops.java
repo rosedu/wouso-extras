@@ -64,7 +64,7 @@ public class Tops extends FragmentActivity{
 			case TopSeries:
 				setAllUnselected();
 				((Button)this.findViewById(R.id.top_series)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
-				ft.replace(R.id.tops_content, new TopSeries());
+				ft.replace(R.id.tops_content, new TopRaces());
 				ft.commit();
 				break;
 			
