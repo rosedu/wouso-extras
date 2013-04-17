@@ -5,9 +5,17 @@
     android:layout_height="fill_parent"
     android:background="@android:color/transparent">
 	
-	<TextView
-		android:id="@+id/basic_aux"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-	/>
+	 <ListView 
+        android:id="@+id/top_groups_list" 
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent"
+        android:divider="@color/light_blue"        
+        android:dividerHeight="4dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+		android:background="@android:color/transparent"
+		android:orientation="vertical">
+	</ListView>
 </LinearLayout>
