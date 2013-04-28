@@ -1,11 +1,9 @@
-
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-        
-        <item android:id="@+id/top"
-        	android:title="Tops" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"> 
+        <item android:id="@+id/special_quest"
+        	android:title="Special quest" />
     	<item android:id="@+id/map"
         	android:title="Map" />
-   		<item android:id="@+id/search"
+   	<item android:id="@+id/search"
         	android:title="Search"/>	
         <item android:id="@+id/logout"
         	android:title="Logout"/>	
