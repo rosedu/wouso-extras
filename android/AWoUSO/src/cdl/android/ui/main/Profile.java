@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -52,17 +54,19 @@ import cdl.android.ui.user.UserProfile;
  */
 public class Profile extends Activity {
 	UserInfo userInfo;
-
+	Toast weekQ;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		if (android.os.Build.VERSION.SDK_INT > 9) {
+		if (android.os.Build.VERSION.SDK_INT > 11) {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-
+		
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR); 
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		/** Gets user info from the server */
 		userInfo = new UserInfo();
@@ -118,17 +122,28 @@ public class Profile extends Activity {
 
 	public void initProfile() {
 		/** Fill Activity Views */
+		ActionBar actionBar = this.getActionBar();
+		actionBar.show();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(false);
+	    actionBar.setDisplayUseLogoEnabled(false);
+		View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+		actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(cView);
+		
+		Typeface myTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Thin.ttf");
+		
 		ImageView userLevelImage = (ImageView) findViewById(R.id.level);
 		File iconFile = new File("/mnt/sdcard" + File.separator + "awouso"
 				+ File.separator + "levels", userInfo.getRace() + "-level-"
 				+ userInfo.getLevelNo() + ".png");
 		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
 		userLevelImage.setImageBitmap(iconBitmap);
-
+		
 		TextView userProfile = (TextView) findViewById(R.id.profileName);
 		userProfile.setText(userInfo.getFirstName() + " "
 				+ userInfo.getLastName());
-
+/*
 		TextView pointsCount = (TextView) findViewById(R.id.points);
 		pointsCount.setText(userInfo.getPoints() + "");
 
@@ -137,17 +152,17 @@ public class Profile extends Activity {
 
 		TextView levelNo = (TextView) findViewById(R.id.levelNo);
 		String level = "Level " + userInfo.getLevelNo() + " -";
-		levelNo.setText(level);
+		levelNo.setText(level);*/
 
 		// TODO: just a displays test, update this with real spells from server
-		LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);
+	/*	LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);
 		for (int i = 0; i < 4; i++) {
 			ImageView spell = new ImageView(this);
 			spell.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 					LayoutParams.WRAP_CONTENT));
 			spell.setBackgroundResource(R.drawable.spell_blue);
 			hs.addView(spell);
-		}
+		}*/
 
 		ImageView avatar = (ImageView) findViewById(R.id.profileImage);
 		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl());
@@ -158,20 +173,36 @@ public class Profile extends Activity {
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
 		final Intent messageMenu = new Intent(this, MessageTabs.class);
-		Button bazaarButton = (Button) findViewById(R.id.shopbtn);
-		Button challButton = (Button) findViewById(R.id.chalbtn);
-		Button qotdButton = (Button) findViewById(R.id.qotdbtn);
-		Button specialQuest = (Button) findViewById(R.id.spcQbtn);
-		Button msgButton = (Button) findViewById(R.id.msgbtn);
+		final Intent topsMenu = new Intent(this, Tops.class);
+		
+		TextView chalText = (TextView) findViewById(R.id.challenges_text);
+		chalText.setTypeface(myTypeface);
+		
+		TextView messText = (TextView) findViewById(R.id.messages_text);
+		messText.setTypeface(myTypeface);
+		
+		TextView topsText = (TextView) findViewById(R.id.tops_text);
+		topsText.setTypeface(myTypeface);
+		
+		TextView bazaarText = (TextView) findViewById(R.id.bazaar_text);
+		bazaarText.setTypeface(myTypeface);
+		
+		ImageView bazaarButton = (ImageView) findViewById(R.id.bazaar_btn);
+		//Button challButton = (Button) findViewById(R.id.chalbtn);
+		ImageView chalButton = (ImageView) findViewById(R.id.challenges_btn);
+		//Button qotdButton = (Button) findViewById(R.id.qotdbtn);
+		//Button specialQuest = (Button) findViewById(R.id.spcQbtn);
+		ImageView msgButton = (ImageView) findViewById(R.id.messages_btn);
+		
+		ImageView topsButton = (ImageView) findViewById(R.id.tops_btn);
+		//Button msgButton = (Button) findViewById(R.id.msgbtn);
 
-		final Toast weekQ = Toast.makeText(getApplicationContext(),
+		TextView qotd = (TextView) findViewById(R.id.qotd);
+		
+		weekQ = Toast.makeText(getApplicationContext(),
 				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
 		weekQ.setGravity(Gravity.CENTER, 0, 0);
-		specialQuest.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				weekQ.show();
-			}
-		});
+		
 
 		bazaarButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -179,7 +210,7 @@ public class Profile extends Activity {
 			}
 		});
 
-		challButton.setOnClickListener(new View.OnClickListener() {
+		chalButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				startActivity(challMenu);
 			}
@@ -190,17 +221,24 @@ public class Profile extends Activity {
 				startActivity(messageMenu);
 			}
 		});
-
-		qotdButton.setOnClickListener(new OnClickListener() {
+		
+		topsButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				startActivity(topsMenu);
+			}
+		});
+		
+		qotd.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				launchQOTD();
 			}
 		});
 
+		
 	}
 
 	public void launchQOTD() {
-
+		
 		/** Get QOTD from server */
 		final Qotd qotd = new Qotd();
 		ServerResponse resp = ApiHandler.get(ApiHandler.qotdInfoURL, this);
@@ -277,8 +315,8 @@ public class Profile extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String toast = "";
 		switch (item.getItemId()) {
-		case R.id.top:
-			startActivity(new Intent(this, Tops.class));
+		case R.id.special_quest:
+			weekQ.show();
 			break;
 		case R.id.map:
 			startActivity(new Intent(this, GroupsMap.class));

@@ -1,104 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/bg"
     android:baselineAligned="false"
     android:orientation="vertical" >
 
-    <!-- First segment -->
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
+        
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="fill_parent">
+	        <ImageView
+	            android:layout_centerHorizontal="true"
+	            android:id="@+id/challenges_btn"
+	            android:layout_width="60dp"
+	            android:layout_height="60dp"
+	            android:src="@drawable/challenges" />
+	        <TextView
+	    		android:id="@+id/challenges_text"
+	            android:layout_centerHorizontal="true" 
+	            android:layout_below="@id/challenges_btn"
+	            android:layout_height="wrap_content"	        
+	    		android:layout_width="wrap_content"
+	    		android:text="@string/challenges" />
+	    </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="fill_parent">
+	        <ImageView
+	            android:id="@+id/messages_btn"
+	            android:layout_width="60dp"
+	            android:layout_height="60dp"
+	            android:src="@drawable/messages" />
+	        <TextView 
+	            android:id="@+id/messages_text"
+	            android:layout_centerHorizontal="true"
+	            android:layout_below="@id/messages_btn"
+	            android:layout_height="wrap_content"	        
+	    		android:layout_width="wrap_content"
+	    		android:text="@string/messages" />
+	    </RelativeLayout>
+        
+    </RelativeLayout>
+   
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
+        
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="fill_parent">
+	        <ImageView
+	            android:id="@+id/tops_btn"
+	            android:layout_width="60dp"
+	            android:layout_height="60dp"
+	            android:src="@drawable/tops" />
+	            
+	        <TextView 
+	            android:id="@+id/tops_text"
+	            android:layout_centerHorizontal="true"
+	            android:layout_below="@id/tops_btn"
+	            android:layout_height="wrap_content"	        
+	    		android:layout_width="wrap_content"
+	    		android:text="@string/tops" />
+	    </RelativeLayout> 
+        
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="fill_parent">
+	        <ImageView
+	            android:layout_centerHorizontal="true"
+	            android:id="@+id/bazaar_btn"
+	            android:layout_width="60dp"
+	            android:layout_height="60dp"
+	            android:src="@drawable/bazar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" >
+	        <TextView
+	            android:id="@+id/bazaar_text"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/bazaar_btn"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/bazaar" />
 
-        <!-- Top-left logo -->
+	    </RelativeLayout>
+        
+        
+  
+        
+          
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+  		
+        <RelativeLayout
+            android:id="@+id/status_cont"
+	        android:layout_width="fill_parent"
+	        android:layout_alignParentTop="true"
+	        android:layout_height="20dp"
+	        android:paddingLeft="20dp"
+	         android:background="@color/grey" >
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:text="Status cont"
+	            android:textColor="@color/white"/> 
+        </RelativeLayout>
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:adjustViewBounds="true"
-            android:contentDescription="@drawable/menu_logo"
-            android:src="@drawable/menu_logo" />
-
-        <!-- QotD button -->
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_marginRight="45dp" >
-
-            <Button
-                android:id="@+id/qotdbtn"
-                style="@style/specialButtons"
-                android:layout_gravity="right|center_vertical"
-                android:text="@string/qotdMarker"
-                android:textSize="30dp" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <!-- Second segment -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <!-- Challenges button -->
-
-        <Button
-            android:id="@+id/chalbtn"
-            style="@style/mainMenuButtons"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/chalMarker" />
-
-        <!-- Message button -->
-
-        <Button
-            android:id="@+id/msgbtn"
-            style="@style/mainMenuButtons"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/msgMarker" />
-    </LinearLayout>
-
-    <!-- Third segment -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <!-- Shop button -->
-
-        <Button
-            android:id="@+id/shopbtn"
-            style="@style/mainMenuButtons"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/shopMarker" />
-
-        <!-- Weekly Quest button -->
-
-        <Button
-            android:id="@+id/spcQbtn"
-            style="@style/mainMenuButtons"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/spQuestMarker" />
-    </LinearLayout>
-
-    <!-- Fourth segment -->
+        <RelativeLayout
+            android:layout_below="@+id/status_cont"
+	        android:layout_width="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp">
+	        <ImageView
+	            android:id="@+id/profileImage"
+	            android:layout_width="100dp"
+	            android:layout_height="100dp"
+	            android:layout_alignParentTop="true"
+	            android:src="@drawable/avatar" />
+        	<TextView
+        	    android:id="@+id/profileName"
+        	    android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/profileImage"/>
+        </RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -107,7 +150,7 @@
         android:gravity="right"
         android:orientation="horizontal" >
 
-        <!-- User Info -->
+        
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -129,13 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/profileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:gravity="right" />
+
             </LinearLayout>
 
             <!-- Level, points and gold -->
@@ -223,13 +260,7 @@
 
         <!-- User avatar -->
 
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/avatar" />
+        
 
         <!-- Level progress -->
 
