@@ -12,7 +12,11 @@
     <string name="shopMarker">Bazaar</string>
     <string name="topMarker">Tops</string>
     <string name="spQuestMarker">Weekly Quest!</string>
-
+	<string name="challenges">Challenges</string>
+    <string name="messages">Messages</string>
+    <string name="tops">Top</string>
+    <string name="bazaar">Bazaar</string>
+    
     <string-array name="list_array">
         <item>WoUSO</item>
     </string-array>
