@@ -7,7 +7,6 @@ import org.json.JSONException;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +17,16 @@ import cdl.android.R;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
 
-public class Members extends Fragment {
-	private ArrayList<MemberItem> mItems;
+public class Groups extends Fragment {
+	private ArrayList<GroupItem> mItems;
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
     	
-    	View view = inflater.inflate(R.layout.members, container, false);
+    	View view = inflater.inflate(R.layout.groups, container, false);
     	
     	ListView mListView = null;
-        mListView = (ListView) view.findViewById(R.id.members_list);
+        mListView = (ListView) view.findViewById(R.id.groups_list);
         mListView.setEmptyView(view.findViewById(android.R.id.empty));
     
         TextView serie = (TextView) getActivity().findViewById(R.id.serie);
@@ -42,8 +41,8 @@ public class Members extends Fragment {
 		} else serieId = "4";
 		
 		ServerResponse resp = ApiHandler.getArray(
-    			ApiHandler.raceURL + serieId + "/members/", view.getContext());
-       	mItems = new ArrayList<MemberItem>();
+    			ApiHandler.raceURL + serieId + "/groups/", view.getContext());
+       	mItems = new ArrayList<GroupItem>();
           	
     	if (resp.getStatus() == false) {
     		Toast.makeText(view.getContext(), resp.getError(), Toast.LENGTH_SHORT).show();
@@ -51,9 +50,9 @@ public class Members extends Fragment {
     		try {
     			JSONArray arr = resp.getArrayData();
     			for (int i = 0; i < arr.length(); i++) {
-    				MemberItem mes = new MemberItem();
+    				GroupItem mes = new GroupItem();
     				mes.parseContent(arr.getJSONObject(i));
-    				mItems.add(0, mes); // ordered alphabetically
+    				mItems.add(mes); // ordered by number
    				}
    			} catch (JSONException e) {
     				Toast.makeText(view.getContext(), "Server response format error.",
@@ -61,10 +60,9 @@ public class Members extends Fragment {
     			}
     	}
     	
-    	mListView.setAdapter(new MemberAdapter(this.getActivity().getApplicationContext(), mItems));
+    	mListView.setAdapter(new GroupAdapter(this.getActivity().getApplicationContext(), mItems));
     
     	return view;
     }
 	
-
 }

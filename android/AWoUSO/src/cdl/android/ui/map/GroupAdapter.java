@@ -6,21 +6,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import cdl.android.ui.user.OtherProfile;
 
-public class MemberAdapter extends BaseAdapter{
-	ArrayList<MemberItem> mItems;
+public class GroupAdapter extends BaseAdapter{
+	ArrayList<GroupItem> mItems;
 	Context mContext;
-	final Intent otherProfile;
+	final Intent displayGroup;
 	
-	public MemberAdapter(Context context, ArrayList<MemberItem> items) {
-		mItems = new ArrayList<MemberItem>();
+	public GroupAdapter(Context context, ArrayList<GroupItem> items) {
+		mItems = new ArrayList<GroupItem>();
 		mContext = context;
 		mItems = items;
-		otherProfile = new Intent(mContext, OtherProfile.class);
+		displayGroup = new Intent(mContext, DisplayGroup.class);
 	}
 	
 	public int getCount() {
@@ -36,19 +36,20 @@ public class MemberAdapter extends BaseAdapter{
 	}
 	
 	public View getView(int index, View convertView, ViewGroup parent) {
-		MemberItemView item;
+		GroupItemView item;
 
 		final String id = mItems.get(index).getId();
-
-		item = new MemberItemView(mContext, mItems.get(index));
+		final String race_id = mItems.get(index).getRace_id();
+		item = new GroupItemView(mContext, mItems.get(index));
 		item.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				Bundle data = new Bundle();
 				data.putString("id", id);
-				otherProfile.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				otherProfile.putExtras(data);
-				mContext.startActivity(otherProfile);
+				data.putString("raceId", race_id);
+				displayGroup.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				displayGroup.putExtras(data);
+				mContext.startActivity(displayGroup);
 			}
 		});
 		item.setClickable(true);

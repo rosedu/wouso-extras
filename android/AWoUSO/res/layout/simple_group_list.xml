@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true">
 
     	<TextView
-        	android:id="@+id/user_name"
+        	android:id="@+id/group_name"
 	        android:layout_width="fill_parent"
     	    android:layout_height="wrap_content"
        		android:textSize="13sp" />

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -23,9 +24,12 @@ public class Race extends FragmentActivity{
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.races);
 		
+		RelativeLayout rl = (RelativeLayout) findViewById(R.id.race_profile);
+		
 		String raceId = null; 
 	    String serie = null;
 	    String members = null;
+	    String groups = null;
 	    Bundle extras = getIntent().getExtras();
 	    if (extras != null){
 	       raceId = extras.getString("raceId");
@@ -33,14 +37,21 @@ public class Race extends FragmentActivity{
 	       //get Members
 	       ServerResponse resp = ApiHandler.getArray(
 	   			ApiHandler.raceURL + raceId + "/members/", this);
+	       
+	       ServerResponse resp2 = ApiHandler.getArray(
+		   			ApiHandler.raceURL + raceId + "/groups/", this);
         	
 	       //determinarea seriei
 	       if (raceId.equals("2")){
 	       	serie = "CA";
+	       	rl.setBackgroundResource(R.drawable.profiles_ca);
 	       }
 	       else if (raceId.equals("3")){
 	      		serie = "CB";
-	       	} else serie = "CC";
+	      		rl.setBackgroundResource(R.drawable.profiles_cb);
+	       	} else { serie = "CC";
+	       			 rl.setBackgroundResource(R.drawable.profiles_cc);
+	       	}
 	       	
 	    	if (resp.getStatus() == false) {
 	    		Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
@@ -48,28 +59,33 @@ public class Race extends FragmentActivity{
 	   			JSONArray arr = resp.getArrayData();
 				members = Integer.toString(arr.length());
 	   		}
+	    	
+	    	if (resp2.getStatus() == false) {
+	    		Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
+	   		} else {
+	   			JSONArray arr = resp2.getArrayData();
+				groups = Integer.toString(arr.length());
+	   		}
 	   	}
 	    				
 	    TextView group = (TextView) findViewById(R.id.serie);
 	    TextView numbers = (TextView) findViewById(R.id.numberOfMembers);
+	    TextView memberNumbers = (TextView) findViewById(R.id.numberOfGroups);
 	    		
 	   	group.setText(serie);
 	   	numbers.setText(members);
+	   	memberNumbers.setText(groups);
 	   	
 	    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		
-		ft.add(R.id.races_content, new Members());
+		ft.replace(R.id.races_content, new Members());
 		
 		crtRace = RaceEnum.Members;
 		Resources r = this.getResources();
 		((Button)this.findViewById(R.id.race_members)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
 		((Button)this.findViewById(R.id.race_groups)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
-		Log.d("ceva", ft.toString());
-		try{
-			ft.commit();
-		} catch (NullPointerException e){
-		}
 		
+		ft.commit();
 	}
 	
 	
@@ -96,8 +112,7 @@ public class Race extends FragmentActivity{
 			case Groups:
 					setAllUnselected();
 					((Button)this.findViewById(R.id.race_groups)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
-					//TODO Groups and replace the Members 
-					ft.replace(R.id.races_content, new Members());
+					ft.replace(R.id.races_content, new Groups());
 					ft.commit();
 				
 					break;

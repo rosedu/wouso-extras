@@ -40,8 +40,9 @@ public class GroupsMap extends Activity {
 		    @Override
 		    public void onClick(View v)
 		    {
-		    	Toast.makeText(getApplicationContext(), "Nifes",
-						Toast.LENGTH_SHORT).show();
+		    	Intent i = new Intent(context, Race.class);
+		    	i.putExtra("raceId", "4");
+		    	startActivity(i);
 		    }
 		});
 		
@@ -50,8 +51,9 @@ public class GroupsMap extends Activity {
 		    @Override
 		    public void onClick(View v)
 		    {
-		    	Toast.makeText(getApplicationContext(), "Zota",
-						Toast.LENGTH_SHORT).show();
+		    	Intent i = new Intent(context, Race.class);
+		    	i.putExtra("raceId", "3");
+		    	startActivity(i);
 		    }
 		});
 

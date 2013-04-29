@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent" >
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+		android:paddingBottom="4dp">
+
+    
+	    <Button
+	        android:id="@+id/group_members"
+	        android:layout_alignParentLeft="true"
+	        android:padding="4dp"
+	        android:text="Members"
+	        android:layout_marginLeft="6dp"
+	        android:background="@drawable/round_tab_selected"
+	        android:textColor="#F7F7F7"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	    
+	    <Button
+	        android:id="@+id/group_activity"
+	        android:layout_toRightOf="@id/group_members"
+	        android:padding="4dp"
+	        android:background="@drawable/round_tab_selected"
+	        android:textColor="#F7F7F7"
+	        android:text="Activity"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	    
+	    <Button
+	        android:id="@+id/group_evolution"
+	        android:layout_toRightOf="@id/group_activity"
+	        android:padding="4dp"
+	        android:background="@drawable/round_tab_selected"
+	        android:textColor="#F7F7F7"
+	        android:text="Evolution"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	    
+        <LinearLayout 
+            android:background="@color/light_blue"
+            android:layout_width="fill_parent"
+            android:layout_height="4dp"
+            android:layout_below="@id/group_members">
+            
+        </LinearLayout>
+    </RelativeLayout>
+    
+
+</RelativeLayout>

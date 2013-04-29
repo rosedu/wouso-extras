@@ -15,9 +15,7 @@ public class RaceTabs extends Fragment {
             Bundle savedInstanceState) {
 			View view = inflater.inflate(R.layout.race_tabs, container, false);
 			
-			final Race race = (Race) getActivity();
-			
-			Log.d("racetabs","hello");			
+			final Race race = (Race) getActivity();			
 			
 			Button btn1 = (Button) view.findViewById(R.id.race_members);
 			btn1.setOnClickListener(new OnClickListener(){

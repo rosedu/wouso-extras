@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg" >
+    android:orientation="vertical" 
+    android:background="@drawable/bg">
     
     <RelativeLayout 
-        android:id="@+id/race_profile"
+        android:id="@+id/group_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/profiles_cc" >
+        android:background="@drawable/profiles_ca" >
         
         <TextView 
-            android:id="@+id/serie"
+            android:id="@+id/grup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/series"
@@ -22,60 +22,82 @@
             android:gravity="left" />
         
         <TextView
-            android:id="@+id/tagMembers"
+            android:id="@+id/tagMembersGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Members: "
             android:textColor="#FBFBEF"
             android:textSize="15dp"
-            android:layout_below="@id/serie"
+            android:layout_below="@id/grup"
             android:gravity="left" />
         
         <TextView 
-            android:id="@+id/numberOfMembers"
+            android:id="@+id/membersNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/membersNumber"
             android:textColor="#FBFBEF"
             android:textSize="15dp"
-            android:layout_toRightOf="@id/tagMembers"
-            android:layout_below="@id/serie"
+            android:layout_toRightOf="@id/tagMembersGroup"
+            android:layout_below="@id/grup"
             android:gravity="left"/>
         
         <TextView
-            android:id="@+id/tagGroups"
+            android:id="@+id/tagPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Groups: "
+            android:text="Points: "
             android:textColor="#FBFBEF"
             android:textSize="15dp"
-            android:layout_below="@id/tagMembers"
+            android:layout_below="@id/tagMembersGroup"
             android:gravity="left" />
         
          <TextView 
-            android:id="@+id/numberOfGroups"
+            android:id="@+id/points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/membersNumber"
             android:textColor="#FBFBEF"
             android:textSize="15dp"
-            android:layout_toRightOf="@id/tagGroups"
-            android:layout_below="@id/numberOfMembers"
+            android:layout_toRightOf="@id/tagPoints"
+            android:layout_below="@id/membersNumber"
+            android:gravity="left"/>
+         
+         <TextView
+            android:id="@+id/tagRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rank: "
+            android:textColor="#FBFBEF"
+            android:textSize="15dp"
+            android:layout_below="@id/tagPoints"
+            android:gravity="left" />
+        
+         <TextView 
+            android:id="@+id/rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/membersNumber"
+            android:textColor="#FBFBEF"
+            android:textSize="15dp"
+            android:layout_toRightOf="@id/tagRank"
+            android:layout_below="@id/points"
             android:gravity="left"/>
         
     </RelativeLayout> 
     
-    <fragment android:name="cdl.android.ui.map.RaceTabs"
+    <fragment android:name="cdl.android.ui.map.DisplayGroupTabs"
          
-            android:id="@+id/race_options"
+            android:id="@+id/group_options"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="5dp" />
     
     <FrameLayout
-            android:id="@+id/races_content"
+            android:id="@+id/group_content"
             android:background="@android:color/transparent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" /> 
+    
 
 </LinearLayout>
