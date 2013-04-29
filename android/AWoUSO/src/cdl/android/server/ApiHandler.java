@@ -53,6 +53,7 @@ public class ApiHandler {
 	public static final String challengeLaunchURL = baseURL + "challenge/launch/";
 	public static final String searchURL = baseURL + "search/";
 	public static final String groupInformationURL = baseURL + "group/";
+	public static final String raceURL = baseURL + "race/";
 
 	/**
 	 * Gets a general HTTP string.

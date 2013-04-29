@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg" >
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#1C1C1C">
+        
+        <TextView 
+            android:id="@+id/serie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/series"
+            android:textColor="#FBFBEF"
+            android:textSize="30dp"
+            android:gravity="left" />
+        
+        <TextView
+            android:id="@+id/tagMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Members: "
+            android:textColor="#FBFBEF"
+            android:textSize="15dp"
+            android:layout_below="@id/serie"
+            android:gravity="left" />
+        
+        <TextView 
+            android:id="@+id/numberOfMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/membersNumber"
+            android:textColor="#FBFBEF"
+            android:textSize="15dp"
+            android:layout_toRightOf="@id/tagMembers"
+            android:layout_below="@id/serie"
+            android:gravity="left"/>
+        
+    </RelativeLayout> 
+    
+    <fragment android:name="cdl.android.ui.map.RaceTabs"
+         
+            android:id="@+id/race_options"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp" />
+    
+    <FrameLayout
+            android:id="@+id/races_content"
+            android:background="@android:color/transparent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" /> 
+
+</LinearLayout>

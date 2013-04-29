@@ -29,8 +29,8 @@ public class GroupsMap extends Activity {
 		    @Override
 		    public void onClick(View v)
 		    {
-		    	Intent i = new Intent(context, GroupView.class);
-		    	i.putExtra("groupId", "1");
+		    	Intent i = new Intent(context, Race.class);
+		    	i.putExtra("raceId", "2");
 		    	startActivity(i);
 		    }
 		});
