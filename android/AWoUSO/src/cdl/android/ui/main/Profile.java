@@ -131,16 +131,16 @@ public class Profile extends Activity {
 		actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(cView);
 		
-		Typeface myTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Thin.ttf");
+		Typeface myTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Medium.ttf");
 		
-		ImageView userLevelImage = (ImageView) findViewById(R.id.level);
+/*		ImageView userLevelImage = (ImageView) findViewById(R.id.level);
 		File iconFile = new File("/mnt/sdcard" + File.separator + "awouso"
 				+ File.separator + "levels", userInfo.getRace() + "-level-"
 				+ userInfo.getLevelNo() + ".png");
 		Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.toString());
-		userLevelImage.setImageBitmap(iconBitmap);
+		userLevelImage.setImageBitmap(iconBitmap);*/
 		
-		TextView userProfile = (TextView) findViewById(R.id.profileName);
+		TextView userProfile = (TextView) findViewById(R.id.profile_name);
 		userProfile.setText(userInfo.getFirstName() + " "
 				+ userInfo.getLastName());
 /*
@@ -164,11 +164,11 @@ public class Profile extends Activity {
 			hs.addView(spell);
 		}*/
 
-		ImageView avatar = (ImageView) findViewById(R.id.profileImage);
+		ImageView avatar = (ImageView) findViewById(R.id.profile_image);
 		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl());
 
-		ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
-		mProgress.setProgress((int) userInfo.getLevelPercent());
+	//	ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
+	//	mProgress.setProgress((int) userInfo.getLevelPercent());
 
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
@@ -198,6 +198,35 @@ public class Profile extends Activity {
 		//Button msgButton = (Button) findViewById(R.id.msgbtn);
 
 		TextView qotd = (TextView) findViewById(R.id.qotd);
+		
+		TextView pointsCount = (TextView) findViewById(R.id.points1_val);
+		pointsCount.setTypeface(myTypeface);
+		pointsCount.setText(userInfo.getPoints() + "");
+		
+		TextView pointsText = (TextView) findViewById(R.id.points1);
+		pointsText.setTypeface(myTypeface);
+
+		
+		TextView goldCount = (TextView) findViewById(R.id.gold1_val);
+		goldCount.setTypeface(myTypeface);
+		goldCount.setText(userInfo.getGold() + "");
+		
+		TextView goldText = (TextView) findViewById(R.id.gold1);
+		goldText.setTypeface(myTypeface);
+		
+		TextView levelNo = (TextView) findViewById(R.id.level1_val);
+		levelNo.setTypeface(myTypeface);
+		levelNo.setText(userInfo.getLevelNo() + "");
+		
+		TextView levelText = (TextView) findViewById(R.id.level1);
+		levelText.setTypeface(myTypeface);
+		
+		TextView groupDescription = (TextView) findViewById(R.id.groups1_val);
+		groupDescription.setTypeface(myTypeface);
+		groupDescription.setText(userInfo.getGroup() + ", " + userInfo.getRaceSlug());
+		
+		TextView groupText = (TextView) findViewById(R.id.groups1);
+		groupText.setTypeface(myTypeface);
 		
 		weekQ = Toast.makeText(getApplicationContext(),
 				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
