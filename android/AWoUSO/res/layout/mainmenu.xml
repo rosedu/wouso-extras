@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg"
+   	android:background="@drawable/bg"
     android:baselineAligned="false"
     android:orientation="vertical" >
 
@@ -25,6 +25,7 @@
 	            android:src="@drawable/challenges" />
 	        <TextView
 	    		android:id="@+id/challenges_text"
+	    		android:gravity="center"
 	            android:layout_centerHorizontal="true" 
 	            android:layout_below="@id/challenges_btn"
 	            android:layout_height="wrap_content"	        
@@ -40,19 +41,22 @@
 	            android:id="@+id/messages_btn"
 	            android:layout_width="60dp"
 	            android:layout_height="60dp"
+	            android:layout_centerHorizontal="true"
 	            android:src="@drawable/messages" />
 	        <TextView 
 	            android:id="@+id/messages_text"
+	            android:gravity="center"
 	            android:layout_centerHorizontal="true"
 	            android:layout_below="@id/messages_btn"
 	            android:layout_height="wrap_content"	        
-	    		android:layout_width="wrap_content"
+	    		android:layout_width="60dp"
 	    		android:text="@string/messages" />
 	    </RelativeLayout>
         
     </RelativeLayout>
    
     <RelativeLayout
+        android:layout_marginTop="15dp"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:paddingLeft="40dp"
@@ -66,14 +70,16 @@
 	            android:id="@+id/tops_btn"
 	            android:layout_width="60dp"
 	            android:layout_height="60dp"
+	            android:layout_centerHorizontal="true"
 	            android:src="@drawable/tops" />
 	            
 	        <TextView 
 	            android:id="@+id/tops_text"
+	            android:gravity="center"
 	            android:layout_centerHorizontal="true"
 	            android:layout_below="@id/tops_btn"
 	            android:layout_height="wrap_content"	        
-	    		android:layout_width="wrap_content"
+	    		android:layout_width="60dp"
 	    		android:text="@string/tops" />
 	    </RelativeLayout> 
         
@@ -90,18 +96,14 @@
 
 	        <TextView
 	            android:id="@+id/bazaar_text"
+	            android:gravity="center"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_below="@id/bazaar_btn"
 	            android:layout_centerHorizontal="true"
 	            android:text="@string/bazaar" />
 
-	    </RelativeLayout>
-        
-        
-  
-        
-          
+	    </RelativeLayout>  
     </RelativeLayout>
     
     <RelativeLayout
@@ -119,158 +121,172 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentLeft="true"
-	            android:text="Status cont"
+	            android:text="Status"
 	            android:textColor="@color/white"/> 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_below="@+id/status_cont"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_alignParentRight="true"
-	        android:layout_height="wrap_content"
-	        android:paddingLeft="20dp">
-	        <ImageView
-	            android:id="@+id/profileImage"
-	            android:layout_width="100dp"
-	            android:layout_height="100dp"
+	        android:layout_height="wrap_content">
+	        <RelativeLayout
+	            android:id="@+id/right1"
 	            android:layout_alignParentTop="true"
-	            android:src="@drawable/avatar" />
-        	<TextView
-        	    android:id="@+id/profileName"
-        	    android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_below="@id/profileImage"/>
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="right"
-        android:orientation="horizontal" >
-
-        
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="vertical" >
-
-            <!-- Icon and name -->
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    android:id="@+id/level"
-                    android:contentDescription="@string/neversee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-            </LinearLayout>
-
-            <!-- Level, points and gold -->
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/levelNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="5dp" />
-
-                <!-- Points icon -->
-
-                <ImageView
-                    android:id="@+id/pointsicon"
+	            android:layout_alignParentRight="true"
+	            android:layout_width="120dp"
+	        	android:layout_height="120dp">
+		       
+	            <LinearLayout
+		            android:layout_below="@+id/upper1"
+			        android:layout_width="120dp"
+			        android:layout_alignParentTop="true"
+			        android:layout_alignParentLeft="true"
+			        android:layout_height="100dp" >
+			        
+			        <ProgressBar
+			            android:id="@+id/vertical_progressbar"
+			            style="@style/Widget.ProgressBar.Vertical"
+			            android:layout_width="12dp"
+			            android:layout_height="100dp"
+			            />
+			        <ImageView
+			            android:id="@+id/profile_image"
+			            android:layout_width="100dp"
+			            android:layout_height="100dp"
+			            android:src="@drawable/avatar" />
+			        
+		        </LinearLayout>
+		        
+	        	<TextView
+	        	    android:id="@+id/profile_name"
+	        	    android:layout_width="120dp"
+		            android:layout_height="20dp"
+		            android:layout_alignParentBottom="true"
+		            android:layout_centerHorizontal="true"
+		            android:layout_centerInParent="true"
+		            android:layout_below="@id/upper1"/>
+        	</RelativeLayout>
+        	
+	        <RelativeLayout
+	            android:id="@+id/left1"
+	            android:layout_alignParentTop="true"
+	            android:layout_alignParentLeft="true"
+	            android:layout_toLeftOf="@+id/right1"
+	            android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:paddingLeft="5dp">
+	        	<TextView
+	        	    android:id="@+id/level1"
+	        	    android:layout_alignParentTop="true"
+	        	    android:layout_alignParentLeft="true"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Level:"
+		            android:textColor="@color/gray42"/>
+	        	<TextView
+	        	    android:id="@+id/level1_val"
+	        	    android:layout_toRightOf="@id/level1"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10dp"
+		            android:text="2"/>
+	        	
+	        	<TextView
+	        	    android:id="@+id/points1"
+	        	    android:layout_below="@id/level1"
+	        	    android:layout_alignParentLeft="true"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Points:"
+		            android:textColor="@color/gray42"/>
+	        	<TextView
+	        	    android:id="@+id/points1_val"
+	        	    android:layout_below="@id/level1"
+	        	    android:layout_toRightOf="@id/points1"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10dp"
+		            android:text="245"/>
+	        		
+	        	<ImageView
+                    android:id="@+id/points1_icon"
+                    android:layout_below="@id/level1"
+                    android:layout_toRightOf="@id/points1_val"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@drawable/points"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/points" />
-
-                <!-- Points amount -->
-
-                <TextView
-                    android:id="@+id/points"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLength="6"
-                    android:paddingRight="5dp" />
-
-                <!-- Gold icon -->
-
-                <ImageView
-                    android:id="@+id/goldicon"
+	        	
+	        	<TextView
+	        	    android:id="@+id/gold1"
+	        	    android:layout_below="@id/points1"
+	        	    android:layout_alignParentLeft="true"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Gold:"
+		            android:textColor="@color/gray42"/>
+	        	<TextView
+	        	    android:id="@+id/gold1_val"
+	        	    android:layout_below="@id/points1"
+	        	    android:layout_toRightOf="@id/gold1"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10dp"
+		            android:text="245"/>
+	        		
+	        	<ImageView
+                    android:id="@+id/gold1_icon"
+                    android:layout_below="@id/points1"
+                    android:layout_toRightOf="@id/gold1_val"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@drawable/gold"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/gold" />
-
-                <!-- Gold amount -->
-
-                <TextView
-                    android:id="@+id/gold"
+	        	
+	        	<TextView
+	        	    android:id="@+id/groups1"
+	        	    android:layout_marginTop="10dp"
+	        	    android:layout_below="@id/gold1"
+	        	    android:layout_alignParentLeft="true"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Group:"
+		            android:textColor="@color/gray42"/>
+	        		
+	        	<TextView
+                    android:id="@+id/groups1_val"
+                    android:layout_below="@id/groups1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLength="6" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+	        	
+	        	<TextView
+	        	    android:id="@+id/spells1"
+	        	    android:layout_marginTop="10dp"
+	        	    android:layout_below="@id/groups1_val"
+	        	    android:layout_alignParentLeft="true"
+	        	    android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Spells:"
+		            android:textColor="@color/gray42"/>
+	        	
+	        	
+	        	<ImageView
+                    android:id="@+id/spells1_icon"
+                    android:layout_below="@id/spells1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/spell_blue" />
+        	</RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 
-            <!-- Groups -->
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:orientation="horizontal" >
-
-                <LinearLayout
-                    android:id="@+id/group_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- Spells -->
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:orientation="horizontal" >
-
-                <LinearLayout
-                    android:id="@+id/spells_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-                </LinearLayout>
-            </HorizontalScrollView>
-        </LinearLayout>
-
-        <!-- User avatar -->
-
-        
-
-        <!-- Level progress -->
-
-        <ProgressBar
-            android:id="@+id/vertical_progressbar"
-            style="@style/Widget.ProgressBar.Vertical"
-            android:layout_width="12dip"
-            android:layout_height="100dip"
-            android:layout_gravity="right"
-            android:layout_marginRight="5dp" />
-    </LinearLayout>
+   
 
 </LinearLayout>
