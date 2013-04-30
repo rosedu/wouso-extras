@@ -38,8 +38,8 @@ public class TopUsersItemView extends LinearLayout{
 		TextView place= (TextView) this.findViewById(R.id.top_users_place);
 		place.setText(item.getPlace() + ".");
 		
-		ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
-		UserInfo.setAvatar(avatar, this.item.getAvatarURL());
+	//	ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
+	//	UserInfo.setAvatar(avatar, this.item.getAvatarURL(), 0);
 		
 		TextView name = (TextView) this.findViewById(R.id.top_users_full_name);
 		name.setText(item.getDisplayName());
@@ -65,8 +65,8 @@ public class TopUsersItemView extends LinearLayout{
 		TextView place= (TextView) this.findViewById(R.id.top_users_place);
 		place.setText(item.getPlace() + ".");
 		
-		ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
-		UserInfo.setAvatar(avatar, this.item.getAvatarURL());
+	//	ImageView avatar = (ImageView) this.findViewById(R.id.top_users_avatar);
+	//	UserInfo.setAvatar(avatar, this.item.getAvatarURL());
 		
 		TextView name = (TextView) this.findViewById(R.id.top_users_full_name);
 		name.setText(item.getDisplayName());
