@@ -165,7 +165,7 @@ public class Profile extends Activity {
 		}*/
 
 		ImageView avatar = (ImageView) findViewById(R.id.profile_image);
-		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl());
+		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl(), 100);
 
 	//	ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
 	//	mProgress.setProgress((int) userInfo.getLevelPercent());

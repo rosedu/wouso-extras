@@ -94,7 +94,7 @@ public class OtherProfile extends FragmentActivity{
 			//Display name
 			
 			ImageView avatar = (ImageView) this.findViewById(R.id.user_pic);
-			userInfo.setAvatar(avatar, userInfo.getAvatarUrl());
+			userInfo.setAvatar(avatar, userInfo.getAvatarUrl(), 0);
 			//Display avatar
 			
 			TextView scoreField = (TextView) this.findViewById(R.id.scorefield);
