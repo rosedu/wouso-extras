@@ -124,7 +124,16 @@
 	            android:text="Status"
 	            android:textColor="@color/white"/> 
         </RelativeLayout>
-
+		
+        <ImageView
+			            android:id="@+id/profile_image"
+			            android:layout_width="100dp"
+			            android:layout_height="100dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_below="@id/status_cont"
+			            android:layout_marginTop="-20dp"
+			            android:src="@drawable/avatar"/>
+        
         <RelativeLayout
             android:layout_below="@+id/status_cont"
 	        android:layout_width="fill_parent"
@@ -135,26 +144,22 @@
 	            android:layout_alignParentTop="true"
 	            android:layout_alignParentRight="true"
 	            android:layout_width="120dp"
-	        	android:layout_height="120dp">
+	        	android:layout_height="120dp"
+	        	>
 		       
+	            <!--  -->
 	            <LinearLayout
 		            android:layout_below="@+id/upper1"
 			        android:layout_width="120dp"
 			        android:layout_alignParentTop="true"
 			        android:layout_alignParentLeft="true"
-			        android:layout_height="100dp" >
-			        
+			        android:layout_height="100dp">
 			        <ProgressBar
 			            android:id="@+id/vertical_progressbar"
 			            style="@style/Widget.ProgressBar.Vertical"
 			            android:layout_width="12dp"
-			            android:layout_height="100dp"
-			            />
-			        <ImageView
-			            android:id="@+id/profile_image"
-			            android:layout_width="100dp"
-			            android:layout_height="100dp"
-			            android:src="@drawable/avatar" />
+			            android:layout_gravity="center"
+			            android:layout_height="90dp" />
 			        
 		        </LinearLayout>
 		        
