@@ -127,7 +127,11 @@ public class UserInfo {
 	 * @return the last name of the user.
 	 */
 	public String getLastName() {
-		return lastName;
+		if(!lastName.isEmpty()){
+			return "" + lastName.charAt(0) + lastName.substring(1, lastName.length()).toLowerCase();
+		} else {
+			return "";
+		}
 	}
 
 	/**
