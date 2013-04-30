@@ -9,6 +9,13 @@ import org.json.JSONObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Bitmap.Config;
 import android.util.Log;
 import android.widget.ImageView;
 import cdl.android.R;
@@ -69,16 +76,19 @@ public class UserInfo {
 
 	// TODO: http request on a new thread
 	// and decide where to keep the method for a more general purpose
-	public static void setAvatar(ImageView avatar, String url) {
+	//&arg pixels must bet set 0 for rectangular
+	public static void setAvatar(ImageView avatar, String url, int pixels) {
 
 		Bitmap b = BitmapFactory.decodeResource(avatar.getContext()
 				.getResources(), R.drawable.empty);
+		b = UserInfo.getRoundedCornerBitmap(b, pixels);
 		avatar.setImageBitmap(b);
 		try {
 			HttpURLConnection con = (HttpURLConnection) (new URL(url))
 					.openConnection();
 			con.connect();
 			b = BitmapFactory.decodeStream(con.getInputStream());
+			b = UserInfo.getRoundedCornerBitmap(b, pixels);
 			avatar.setImageBitmap(b);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -281,5 +291,28 @@ public class UserInfo {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+	
+	public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
+                .getHeight(), Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = pixels;
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        
+        
+        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
 	
 }
