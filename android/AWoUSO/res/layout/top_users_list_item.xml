@@ -16,14 +16,14 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="6dp"
         android:textColor="@color/white"/>
-    
+ <!--    
     <ImageView 
         android:id="@+id/top_users_avatar"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_toRightOf="@id/top_users_place"
         android:layout_marginRight="5dp"/>
-    
+    --> 
     <TextView
         
         android:id="@+id/top_users_full_name"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:textSize="12sp"
         android:textColor="@color/light_blue"
-        android:layout_toRightOf="@id/top_users_avatar"/>
+        android:layout_toRightOf="@id/top_users_place"/>
     
     <TextView
         
