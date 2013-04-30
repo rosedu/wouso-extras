@@ -143,32 +143,13 @@ public class Profile extends Activity {
 		TextView userProfile = (TextView) findViewById(R.id.profile_name);
 		userProfile.setText(userInfo.getFirstName() + " "
 				+ userInfo.getLastName());
-/*
-		TextView pointsCount = (TextView) findViewById(R.id.points);
-		pointsCount.setText(userInfo.getPoints() + "");
-
-		TextView goldCount = (TextView) findViewById(R.id.gold);
-		goldCount.setText(userInfo.getGold() + "");
-
-		TextView levelNo = (TextView) findViewById(R.id.levelNo);
-		String level = "Level " + userInfo.getLevelNo() + " -";
-		levelNo.setText(level);*/
-
-		// TODO: just a displays test, update this with real spells from server
-	/*	LinearLayout hs = (LinearLayout) findViewById(R.id.group_list);
-		for (int i = 0; i < 4; i++) {
-			ImageView spell = new ImageView(this);
-			spell.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-					LayoutParams.WRAP_CONTENT));
-			spell.setBackgroundResource(R.drawable.spell_blue);
-			hs.addView(spell);
-		}*/
+		userProfile.setTypeface(myTypeface);
 
 		ImageView avatar = (ImageView) findViewById(R.id.profile_image);
 		UserInfo.setAvatar(avatar, userInfo.getAvatarUrl(), 100);
 
-	//	ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
-	//	mProgress.setProgress((int) userInfo.getLevelPercent());
+		ProgressBar mProgress = (ProgressBar) findViewById(R.id.vertical_progressbar);
+		mProgress.setProgress((int) userInfo.getLevelPercent());
 
 		final Intent bazaarMenu = new Intent(this, BazaarTabs.class);
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
