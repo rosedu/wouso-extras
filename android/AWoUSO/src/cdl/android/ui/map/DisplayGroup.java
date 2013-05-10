@@ -78,9 +78,9 @@ public class DisplayGroup extends FragmentActivity{
 	    rank.setText(rankNumber);
 	    
 	   	
-	    //FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+	    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		
-		//ft.replace(R.id.group_content, new Members());
+		ft.replace(R.id.group_content, new MembersGroups());
 		
 		crtGroup = DisplayGroupEnum.Members;
 		Resources r = this.getResources();
@@ -112,7 +112,7 @@ public class DisplayGroup extends FragmentActivity{
 			case Members:
 					setAllUnselected();
 					((Button)this.findViewById(R.id.group_members)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
-					ft.replace(R.id.group_content, new Members());
+					ft.replace(R.id.group_content, new MembersGroups());
 					ft.commit();
 					
 					break;
