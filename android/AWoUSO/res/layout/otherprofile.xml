@@ -118,28 +118,36 @@
   	    android:layout_below="@id/panel"
   	    android:orientation="horizontal"
   	    android:layout_width="fill_parent"
-  	    android:layout_height="30dp"
+  	    android:layout_height="50dp"
   	    android:gravity="center">
-  		<Button
+  		<ImageView
             android:id="@+id/usermsgbtn"
-            style="@style/userProfileButtons"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/userMsgMarker" />
+            android:src="@drawable/messages"
+            android:layout_height="50dp"
+            android:layout_width="50dp"    
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp" />
+        <!-- style="@style/userProfileButtons" 
+        android:text="@string/userMsgMarker" /> -->
 
-        <Button
+        <ImageView
             android:id="@+id/userspellbtn"
-            style="@style/userProfileButtons"
-            android:layout_marginRight="5dp"
+            android:src="@drawable/wand"
+            android:layout_height="50dp"
+            android:layout_width="50dp"   
+            android:layout_marginRight="30dp"
             android:layout_marginTop="5dp"
             android:text="@string/userSpellMarker" />
 
-        <Button
+        <ImageView
             android:id="@+id/userchalbtn"
-            style="@style/userProfileButtons"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/userChalMarker" />
+            android:src="@drawable/challenges"
+            android:layout_height="50dp"
+            android:layout_width="50dp"    
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp" />
+        <!--      style="@style/userProfileButtons"
+        android:text="@string/userChalMarker" /> -->
   	</LinearLayout>
   	
   	
@@ -149,7 +157,7 @@
            
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp" />
