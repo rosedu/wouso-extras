@@ -22,7 +22,7 @@
 	            android:id="@+id/challenges_btn"
 	            android:layout_width="60dp"
 	            android:layout_height="60dp"
-	            android:src="@drawable/challenges" />
+	            android:src="@drawable/provocari" />
 	        <TextView
 	    		android:id="@+id/challenges_text"
 	    		android:gravity="center"
@@ -42,7 +42,7 @@
 	            android:layout_width="60dp"
 	            android:layout_height="60dp"
 	            android:layout_centerHorizontal="true"
-	            android:src="@drawable/messages" />
+	            android:src="@drawable/mesaje" />
 	        <TextView 
 	            android:id="@+id/messages_text"
 	            android:gravity="center"
@@ -71,7 +71,7 @@
 	            android:layout_width="60dp"
 	            android:layout_height="60dp"
 	            android:layout_centerHorizontal="true"
-	            android:src="@drawable/tops" />
+	            android:src="@drawable/clasament" />
 	            
 	        <TextView 
 	            android:id="@+id/tops_text"
@@ -218,11 +218,11 @@
                     android:id="@+id/points1_icon"
                     android:layout_below="@id/level1"
                     android:layout_toRightOf="@id/points1_val"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@drawable/points"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@drawable/smallcoins"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/points" />
+                    android:src="@drawable/smallcoins" />
 	        	
 	        	<TextView
 	        	    android:id="@+id/gold1"
@@ -245,11 +245,11 @@
                     android:id="@+id/gold1_icon"
                     android:layout_below="@id/points1"
                     android:layout_toRightOf="@id/gold1_val"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@drawable/gold"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@drawable/coins"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/gold" />
+                    android:src="@drawable/coins" />
 	        	
 	        	<TextView
 	        	    android:id="@+id/groups1"
@@ -287,7 +287,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/spell_blue" />
+                    android:src="@drawable/vraja" />
         	</RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
