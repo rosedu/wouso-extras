@@ -28,6 +28,7 @@ public class BazaarItem {
 		name = jobj.getString("name");
 		title = jobj.getString("title");
 		type = jobj.getString("type");
+		id = jobj.getInt("id");
 		dueDays = jobj.getInt("due_days");
 		imageURL = "http://wouso-next.rosedu.org" + jobj.getString("image_url");
 		System.out.println(imageURL);
