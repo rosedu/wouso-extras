@@ -117,7 +117,7 @@ public class OtherProfile extends FragmentActivity{
 			TextView groupField = (TextView) this.findViewById(R.id.groupfield);
 			groupField.setText(userInfo.getGroup());
 			
-			Button usermsgbtn = (Button) this.findViewById(R.id.usermsgbtn);
+			ImageView usermsgbtn = (ImageView) this.findViewById(R.id.usermsgbtn);
 			
 			final Context context = this;
 			usermsgbtn.setOnClickListener(new View.OnClickListener(){
@@ -131,13 +131,14 @@ public class OtherProfile extends FragmentActivity{
 					startActivity(intent);
 				}});
 			
-			Button castSpellBtn = (Button) this.findViewById(R.id.userspellbtn);
+			ImageView castSpellBtn = (ImageView ) this.findViewById(R.id.userspellbtn);
 			castSpellBtn.setOnClickListener(new View.OnClickListener(){
 				
 				@Override
 				public void onClick(View v) {
 					if(state == SpellInventoryState.HIDDEN){
 						state = SpellInventoryState.SHOWN;
+						System.out.println("smthing");
 						FragmentTransaction ft = fm.beginTransaction();
 						ft.show(fragment);
 						ft.commit();
