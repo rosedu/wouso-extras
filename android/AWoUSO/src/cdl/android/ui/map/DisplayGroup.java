@@ -19,6 +19,8 @@ import cdl.android.server.ApiHandler;
 public class DisplayGroup extends FragmentActivity{
 	public DisplayGroupEnum crtGroup;
 	
+	public static String groupId;
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -27,7 +29,6 @@ public class DisplayGroup extends FragmentActivity{
 		RelativeLayout rl = (RelativeLayout) findViewById(R.id.group_profile);
 		
 		String raceId = null;
-		String groupId = null;
 	    String members = null;
 	    String groupName = null;
 	    String numberOfPoints = null;
@@ -92,7 +93,7 @@ public class DisplayGroup extends FragmentActivity{
 		((Button)this.findViewById(R.id.group_activity)).setVisibility(4);
 		((Button)this.findViewById(R.id.group_evolution)).setVisibility(4);
 		
-		//ft.commit();
+		ft.commit();
 	}
 	
 	
@@ -112,7 +113,11 @@ public class DisplayGroup extends FragmentActivity{
 			case Members:
 					setAllUnselected();
 					((Button)this.findViewById(R.id.group_members)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_selected));
-					ft.replace(R.id.group_content, new MembersGroups());
+					//Bundle bundle=new Bundle();
+					//bundle.putString("groupId", groupId);
+					MembersGroups fragobj=new MembersGroups();
+					//fragobj.setArguments(bundle);
+					ft.replace(R.id.group_content, fragobj);
 					ft.commit();
 					
 					break;

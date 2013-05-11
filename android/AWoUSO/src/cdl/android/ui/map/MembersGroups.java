@@ -12,13 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
 
-public class MembersGroups extends Fragment {
+public class MembersGroups extends Fragment{
 	private ArrayList<MemberItem> mItems;
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,7 +29,10 @@ public class MembersGroups extends Fragment {
         mListView = (ListView) view.findViewById(R.id.members_list);
         mListView.setEmptyView(view.findViewById(android.R.id.empty));
     
-        TextView serie = (TextView) getActivity().findViewById(R.id.serie);
+        //String groupId = getArguments().getString("groupId");
+        //Log.d("TAG", groupId);
+        Log.d("TAG", "hello");
+        /*TextView serie = (TextView) getActivity().findViewById(R.id.serie);
 		String numeSerie = serie.getText().toString();
 		
 		String serieId = null;
@@ -39,10 +41,10 @@ public class MembersGroups extends Fragment {
 		}
 		else if (numeSerie.equals("CB")){
 			serieId = "3";
-		} else serieId = "4";
+		} else serieId = "4";*/
 		
 		ServerResponse resp = ApiHandler.getArray(
-				ApiHandler.groupInformationURL + serieId + "/members/", view.getContext());
+				ApiHandler.groupInformationURL + DisplayGroup.groupId + "/members/", view.getContext());
        	mItems = new ArrayList<MemberItem>();
           	
     	if (resp.getStatus() == false) {
