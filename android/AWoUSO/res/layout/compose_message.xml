@@ -49,6 +49,7 @@
             android:layout_width="fill_parent"
             android:layout_height="25dp"
             android:textSize="10sp"
+            android:textColor="@color/black"
              />
 
     </RelativeLayout>
@@ -94,6 +95,7 @@
 	            android:layout_toRightOf="@+id/label2" 
 	            android:layout_height="25dp"
 	            android:textSize="10sp"
+	            android:textColor="@color/black"
 	            
 	            android:background="@drawable/edit_text"
 	           />
@@ -148,6 +150,7 @@
 	            android:maxLength="600"
 	            android:maxLines="10"
 	            android:textSize="10sp"
+	            android:textColor="@color/black"
 	            android:background="@drawable/edit_text"
 	             />
 	        
