@@ -44,6 +44,8 @@ public class ReadMessageReceived extends Activity {
 		final String receiver = data.getString("from");
 		final String reply_to = data.getString("reply_to");
 		final String messageId = data.getString("id");
+		final String to_id = data.getString("to_id");
+		final String from_id = data.getString("from_id");
 
 		ServerResponse res = setReadMessage(messageId);
 		if (res.getStatus() == false)
@@ -63,8 +65,10 @@ public class ReadMessageReceived extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(context, CreateMessage.class);
 				TextView subject = (TextView) findViewById(R.id.subject);
-				i.putExtra("reply_to", reply_to);
+				i.putExtra("messageId", messageId);
+				i.putExtra("isItAReply", true);
 				i.putExtra("receiver", receiver);
+				i.putExtra("from_id", from_id);
 				if (subject.getText().toString().startsWith("Re: ")){
 					i.putExtra("subject", subject.getText().toString());
 				}

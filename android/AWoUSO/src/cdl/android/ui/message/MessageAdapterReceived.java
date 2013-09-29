@@ -52,6 +52,8 @@ public class MessageAdapterReceived extends BaseAdapter {
 		final String reply_to = mItems.get(index).getReply_to();
 		final String id = mItems.get(index).getId();
 		final String read = mItems.get(index).getRead();
+		final String to_id = mItems.get(index).getTo_id();
+		final String from_id = mItems.get(index).getFrom_id();
 
 		item = new MessageItemViewReceived(mContext, mItems.get(index));
 		item.setOnClickListener(new OnClickListener() {
@@ -64,6 +66,8 @@ public class MessageAdapterReceived extends BaseAdapter {
 				data.putString("reply_to", reply_to);
 				data.putString("id", id);
 				data.putString("read", read);
+				data.putString("to_id", to_id);
+				data.putString("from_id", from_id);
 				readMessage.putExtras(data);
 				mContext.startActivity(readMessage);
 			}

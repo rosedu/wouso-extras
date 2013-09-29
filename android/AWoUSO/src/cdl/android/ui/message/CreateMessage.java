@@ -6,13 +6,13 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -29,7 +29,6 @@ public class CreateMessage extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setContentView(R.layout.compose_message);
-		//setContentView(R.layout.compose_msg_layout);
 
 		EditText toEdit = (EditText) findViewById(R.id.to);
 		EditText subjectEdit = (EditText) findViewById(R.id.subject);
@@ -40,32 +39,39 @@ public class CreateMessage extends Activity {
 		final Editable subject = subjectEdit.getText();
 		final Editable text = textEdit.getText();
 		
-		// TODO: set global username and id on profile load
-		// Done the above TODO
-		SharedPreferences mPreferences = PreferenceManager
+		/*SharedPreferences mPreferences = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		final String user = mPreferences.getString("username", null);
-		final String senderId = mPreferences.getString("id", null);
-		String reply_to = null;
+		final String senderId = mPreferences.getString("id", null);*/
+		String messageId = null;
 		String topic = null;
+		String from_id = null;
+		boolean isItAReply = false;
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null){
 			String receiver = extras.getString("receiver");
+			messageId = extras.getString("messageId");
 			topic = extras.getString("subject");
-			reply_to = extras.getString("reply_to");
+			isItAReply = extras.getBoolean("isItAReply");
+			from_id = extras.getString("from_id");
 			if (receiver != null){
 				toEdit.setText(receiver);
+				toEdit.setEnabled(false);
 			}
 			if (topic != null){	
 				subjectEdit.setText(topic);
+				subjectEdit.setEnabled(false);
 			}
 			textEdit.setFocusableInTouchMode(true);
 			textEdit.requestFocus();
 		}
 		
-		final String recipient = reply_to;
+		Log.d("Wouso", from_id + " " + isItAReply);
+		final String recipient = from_id;
 		final String message = topic;
+		final boolean sendAsReply = isItAReply;
+		final String idOfTheMessageToReplyTo = messageId;
 		
 		sendButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -73,13 +79,13 @@ public class CreateMessage extends Activity {
 				/*The message was a response or not? true - it was, false - it wasn't */
 				boolean replyOrNot = true;
 				
-				if (recipient != null){
-					res = sendMessage(user, recipient, message,
-							text.toString(), senderId);
+				if (sendAsReply){
+					res = sendMessage(recipient, message,
+							text.toString(), idOfTheMessageToReplyTo);
 				}
 				else{
-					res = sendMessage(user, to.toString(), subject.toString(),
-							text.toString(), senderId);
+					res = sendMessage(to.toString(), subject.toString(),
+							text.toString(), null);
 					replyOrNot = false;
 				}
 				if (res.getStatus() == false)
@@ -107,7 +113,7 @@ public class CreateMessage extends Activity {
 		});
 	}
 
-	public ServerResponse sendMessage(String user, String to, String subject,
+	public ServerResponse sendMessage(String to, String subject,
 			String text, String reply_to) {
 		/** Add data */	
 	
@@ -116,7 +122,9 @@ public class CreateMessage extends Activity {
 		nameValuePairs.add(new BasicNameValuePair("receiver", to));
 		nameValuePairs.add(new BasicNameValuePair("text", text));
 		nameValuePairs.add(new BasicNameValuePair("subject", subject));
-		nameValuePairs.add(new BasicNameValuePair("reply_to", reply_to));
+		if (reply_to != null){
+			nameValuePairs.add(new BasicNameValuePair("reply_to", reply_to));
+		}
 		
 		return ApiHandler.sendPost(ApiHandler.msgSendAPICallURL,
 				nameValuePairs, this);
