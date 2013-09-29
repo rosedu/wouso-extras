@@ -41,13 +41,13 @@ public class OtherMessage extends Activity{
 		EditText subjectField = (EditText)this.findViewById(R.id.field2);
 		EditText contentField = (EditText)this.findViewById(R.id.field3);
 		
-		SharedPreferences mPreferences = PreferenceManager
+		/*SharedPreferences mPreferences = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		final String username = mPreferences.getString("username", null);
-		final String senderId = mPreferences.getString("id", null);
+		final String senderId = mPreferences.getString("id", null);*/
 		
-		ServerResponse res = sendMessage(username, usernameField.getText().toString(),
-				subjectField.getText().toString(), contentField.getText().toString(), senderId);
+		ServerResponse res = sendMessage(usernameField.getText().toString(),
+				subjectField.getText().toString(), contentField.getText().toString());
 		if (res.getStatus() == false)
 			Toast.makeText(getApplicationContext(), res.getError(),
 					Toast.LENGTH_SHORT).show();
@@ -58,14 +58,12 @@ public class OtherMessage extends Activity{
 		finish();
 	}
 	
-	public ServerResponse sendMessage(String user, String to, String subject,
-			String text, String reply_to) {
+	public ServerResponse sendMessage(String to, String subject, String text) {
 		/** Add data */
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
 		nameValuePairs.add(new BasicNameValuePair("receiver", to));
 		nameValuePairs.add(new BasicNameValuePair("text", text));
 		nameValuePairs.add(new BasicNameValuePair("subject", subject));
-		nameValuePairs.add(new BasicNameValuePair("reply_to", reply_to));
 		
 		return ApiHandler.sendPost(ApiHandler.msgSendAPICallURL,
 				nameValuePairs, this);
