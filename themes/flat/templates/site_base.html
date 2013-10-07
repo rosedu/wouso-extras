@@ -1,0 +1,138 @@
+{% load user %}
+{% load ui %}
+{% load artifacts %}
+{% load i18n %}
+{% load chat %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <TITLE>{% block title %}{{config_title}}{% endblock %}</TITLE>
+    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/css/style.css" />
+    <style type="text/css">
+        @import url("{{ basepath }}/static/css/autocomplete.css");
+        {% if config_logo %}
+        div#logo {
+            background: url({{ config_logo}}) no-repeat;
+        }
+        {% endif %}
+        {% block css %}{% endblock %}
+    </style>
+    <link  rel="stylesheet" type="text/css" href="{{ basepath }}/static/css/chatbox.css">
+    <link  rel="stylesheet" type="text/css" href="{{ basepath }}/static/css/contactbox.css">
+    <script type="text/javascript" src="{{ basepath }}/static/js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/format.item.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/jquery.timers.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/ajaxify.js"></script>
+    {% if not config_disable_contactbox %}
+    <script type="text/javascript" src="{{ basepath }}/static/js/contactbox.js"></script>
+    {% endif %}
+    {% chat_scripts %}
+    <script type="text/javascript">
+        var url_base = '{{ basepath }}';
+    </script>
+
+    {% if config_enable_header_autoreload %}
+    <script type="text/javascript">
+        $(document).ready(function (){$(document).everyTime(10000, reload_header);});
+    </script>
+    {% endif %}
+
+    {% block scripts %}{% endblock %}
+    {% if config_theme %}
+    <LINK rel="stylesheet" type="text/css" href="{{ basepath }}/static/themes/{{ config_theme }}/styles.css" />
+    {% endif %}
+</HEAD>
+
+<BODY>
+	{% block contactbox %}
+		{% include 'interface/contactbox.html' %}
+	{% endblock %}
+
+    <div id="container">
+	{% block header %}
+    <div id="header">
+        {% include 'interface/header.html' %}
+
+        <div id="logo">
+            <a href="{% url homepage %}" id="logoa" title="{{config_title}}"></a>
+        </div>
+    </div>
+    {% endblock %}
+
+
+
+    {% block search %}
+    <div id="search">
+        <form method="post" action="{{ basepath }}/search/" style="float:right;">
+            <input id="query" type="text" name="query" size="10" value="{{ search_query }}"/>
+            <button type=submit>{% trans 'Search' %}</button>
+        </form>
+        <script type="text/javascript">
+            var myID = '{{player.id}}'
+            var myName = '{{player.nickname}}'
+            $(document).ready(function() {
+            $("#query").autocomplete( "{{ basepath }}/instantsearch/", { minChars:3, matchSubset:1, matchContains:1, cacheLength:10, formatItem:formatItem, onItemSelect:selectItem, selectOnly:1 });
+            });
+        </script>
+    </div>
+
+    {% endblock %}
+    <div class="spacer-search"></div>
+
+    <div id="sidebar">
+        {% render_sidebar %}
+
+        {% if last10 %}
+            <div class="widget">
+                <h2>{% trans 'Online players' %}</h2>
+                    {% for u in last10 %}
+                        {% player u %}
+                    {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="content">
+    <div id="ajax-message">
+        {% if messages %}
+            {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% block content %}
+    {% endblock %}
+    </div>
+
+
+    <div id="footer">
+        {% block footer %}
+        <div id="footer_links">{% render_footer %}
+        <br/>
+        <span id="poweredby">
+        <br />{% trans 'Powered by:' %}<br />
+        <a href="http://www.rosedu.org/"></a>
+        </span>
+        </div>
+        {% endblock %}
+    </div>
+
+    <div id="PrivatebarUsers"></div>
+    <div id="PrivateChatBoxes"></div>
+
+    {% autoescape off %}
+    {{ config_hidden_footer }}
+	{% endautoescape %}
+
+    {% if has_mobile %}
+    <div id="mobile-footer">
+        <a href="{% url homepage %}?mobile=0">Desktop</a> |
+        <a href="{% url homepage %}?mobile=1">Mobile</a>
+    </div>
+    {% endif %}
+</BODY>
+</HTML>

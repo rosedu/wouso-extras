@@ -1,0 +1,12 @@
+Each folder represents an individual theme.
+
+Theme structure:
+<theme-name>/
+    style.css   - additional styling
+    templates/  - custom template htmls
+    ...         - custom template files such as images or fonts
+
+Please use the latest HTML files[1] as a starting point, and avoid excessive overriding.
+
+
+[1] https://github.com/rosedu/wouso/tree/master/wouso/resources/templates
