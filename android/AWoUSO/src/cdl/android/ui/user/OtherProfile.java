@@ -1,33 +1,25 @@
 package cdl.android.ui.user;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import cdl.android.R;
-import android.support.v4.app.*;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import cdl.android.general.*;
+import cdl.android.R;
+import cdl.android.general.ServerResponse;
+import cdl.android.general.UserInfo;
 import cdl.android.server.ApiHandler;
 import cdl.android.ui.bazaar.SummaryFragment;
 
@@ -149,6 +141,31 @@ public class OtherProfile extends FragmentActivity{
 						ft.commit();
 					}
 					 
+				}
+			});
+			
+			ImageView challengeBtn = (ImageView) this.findViewById(R.id.userchalbtn);
+			challengeBtn.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					ServerResponse resp = ApiHandler.get(ApiHandler.baseChallengeURL + "launch/" + id + "/",
+							context);
+					if (resp.getStatus() == false) {
+						Toast.makeText(context, resp.getError(), Toast.LENGTH_SHORT).show();
+					} else {
+						JSONObject obj = resp.getData();
+						try {
+							if ( obj.getBoolean("success") == true ) {
+								Toast.makeText(context, "Challenge launch succeded", Toast.LENGTH_SHORT).show();
+							}
+							else {
+								Toast.makeText(context, obj.getString("error"), Toast.LENGTH_SHORT).show();
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
 				}
 			});
 		}
