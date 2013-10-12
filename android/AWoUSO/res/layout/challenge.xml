@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -7,9 +7,10 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="243dp"
-        android:layout_above="@+id/buttmid"
-        android:layout_alignParentTop="true"
+        android:layout_height="fill_parent"
+        android:layout_weight=".9"
+        android:drawSelectorOnTop="false"
+		android:listSelector="@android:color/darker_gray"
         android:background="@android:color/transparent"
         android:divider="@android:color/white"
         android:dividerHeight="1dip"
@@ -18,42 +19,53 @@
         <!-- Preview: listitem=@android:layout/simple_list_item_1 -->
     </ListView>
 
-    <Button
-        android:id="@+id/buttback"
-        style="@style/mainMenuButtons"
+    <RelativeLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="33dp"
-        android:text="@string/back" />
+        android:layout_weight=".1"
+        android:layout_gravity="bottom">
+    
+    	<Button
+       		android:id="@+id/challenge_button_accept"
+        	style="@style/mainChallButtons"
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+        	android:layout_alignParentLeft="true"
+        	android:text="@string/accept" 
+       	/>
 
-    <Button
-        android:id="@+id/buttleft"
-        style="@style/mainChallButtons"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttback"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="16dp"
-        android:text="@string/accept" />
+  		<Button
+        	android:id="@+id/challenge_button_play"
+        	style="@style/mainChallButtons"
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+        	android:layout_alignBaseline="@id/challenge_button_accept"
+	        android:layout_alignBottom="@+id/challenge_button_accept"
+        	android:layout_centerHorizontal="true"
+	        android:text="@string/play" 
+	    />
 
-    <Button
-        android:id="@+id/buttmid"
-        style="@style/mainChallButtons"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttleft"
-        android:layout_alignBottom="@+id/buttleft"
-        android:layout_centerHorizontal="true"
-        android:text="@string/play" />
-
-    <Button
-        android:id="@+id/buttright"
-        style="@style/mainChallButtons"
-       	android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttmid"
-        android:layout_alignBottom="@+id/buttmid"
-        android:layout_alignParentRight="true"
-        android:text="@string/reject" />
-
-</RelativeLayout>
+    	<Button
+        	android:id="@+id/challenge_button_reject"
+        	style="@style/mainChallButtons"
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+       		android:layout_alignBaseline="@id/challenge_button_accept"
+        	android:layout_alignBottom="@id/challenge_button_accept"
+        	android:layout_alignParentRight="true"
+        	android:text="@string/reject"
+       	/>
+    	
+    	<Button
+        	android:id="@+id/challenge_button_cancel"
+        	style="@style/mainChallButtons"
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+       		android:layout_alignBaseline="@id/challenge_button_accept"
+        	android:layout_alignBottom="@id/challenge_button_accept"
+        	android:layout_alignParentRight="true"
+        	android:text="@string/cancel"
+       	/>
+    	
+	</RelativeLayout>
+</LinearLayout>
