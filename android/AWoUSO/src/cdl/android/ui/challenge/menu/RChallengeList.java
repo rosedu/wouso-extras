@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+
 /**
  * Wrapper class, represents a list of all the active challenges for a player.
  */
@@ -19,11 +21,11 @@ public class RChallengeList {
 	 * @param result
 	 *            The JSONArray describing each challenge.
 	 */
-	public RChallengeList(JSONArray result) {
+	public RChallengeList(JSONArray result, Context context) {
 		try {
 			for (int i = 0; i < result.length(); i++) {
 				JSONObject oneChallenge = result.getJSONObject(i);
-				allChallenges.add(new RChallengeInfo(oneChallenge));
+				allChallenges.add(new RChallengeInfo(oneChallenge, context));
 			}
 		} catch (JSONException ex) {
 		}

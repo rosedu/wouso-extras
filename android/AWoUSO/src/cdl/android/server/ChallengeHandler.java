@@ -1,20 +1,16 @@
 package cdl.android.server;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
+import android.util.Log;
 import cdl.android.general.ServerResponse;
 import cdl.android.ui.challenge.ActiveChallenge;
 import cdl.android.ui.challenge.ChallengeInfo;
@@ -71,6 +67,10 @@ public class ChallengeHandler {
 			ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
 					+ challenge_id + "/accept/", context);
 		}
+		if (otherState == 1) {
+			ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
+					+ challenge_id + "/cancel/", context);
+		}
 		if (otherState == 2) {
 			ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
 					+ challenge_id + "/refuse/", context);
@@ -113,7 +113,7 @@ public class ChallengeHandler {
 	public static RChallengeList getChallengeList(Context context) {
 		//TODO: check errors
 		ServerResponse rsp = ApiHandler.getArray(ApiHandler.challengeListURL, context);
-		return new RChallengeList(rsp.getArrayData());
+		return new RChallengeList(rsp.getArrayData(), context);
 	}
 
 }

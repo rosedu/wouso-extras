@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,44 +26,49 @@ public class ChallengeMenu extends ListActivity {
 	private Map<String, RChallengeInfo> mapped = new HashMap<String, RChallengeInfo>();
 	private ArrayAdapter<String> adapter;
 	private String currentSelectedName;
-
-	private Button accept, play, reject;
+	private Context context;
+	private Button accept, play, reject, cancel;
 
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge);
 
-		accept = (Button) findViewById(R.id.buttleft);
-		play = (Button) findViewById(R.id.buttmid);
-		reject = (Button) findViewById(R.id.buttright);
+		accept = (Button) findViewById(R.id.challenge_button_accept);
+		play = (Button) findViewById(R.id.challenge_button_play);
+		reject = (Button) findViewById(R.id.challenge_button_reject);
+		cancel = (Button) findViewById(R.id.challenge_button_cancel);
+		
+		context = this;
 
 		accept.setVisibility(4);
 		play.setVisibility(4);
 		reject.setVisibility(4);
+		cancel.setVisibility(4);
 
 		accept.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				if (arg0.getVisibility() == 4 || currentSelected == null)
+			public void onClick(View view) {
+				if (view.getVisibility() == 4 || currentSelected == null){
 					return;
+				}
+				
 				accept.setVisibility(4);
 				play.setVisibility(0);
 				reject.setVisibility(4);
-				ChallengeHandler.changeChallengeState(arg0.getContext(), currentSelected.getChallengeId(), 0);
-				currentSelected.setStatus("W");
+				cancel.setVisibility(4);
+				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 0);
+				currentSelected.setStatus("L");//was W. why?
 				Toast.makeText(getApplicationContext(), "Challenge accepted!", 1).show();
 			}
 		});
 
-		final ChallengeMenu javaSucks = this;
-
 		play.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				if (arg0.getVisibility() == 4 || currentSelected == null)
+			public void onClick(View view) {
+				if (view.getVisibility() == 4 || currentSelected == null){
 					return;
-				Intent x = new Intent(javaSucks, ActiveChallenge.class);
+				}
+				
+				Intent x = new Intent(context, ActiveChallenge.class);
 				Bundle b = new Bundle();
 				b.putInt("data", currentSelected.getChallengeId());
 				x.putExtras(b);
@@ -71,29 +77,48 @@ public class ChallengeMenu extends ListActivity {
 
 			}
 		});
+		
 		reject.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				if (arg0.getVisibility() == 4 || currentSelected == null)
+			public void onClick(View view) {
+				if (view.getVisibility() == 4 || currentSelected == null){
 					return;
-
+				}
+				
 				accept.setVisibility(4);
 				play.setVisibility(4);
 				reject.setVisibility(4);
+				cancel.setVisibility(4);
 				listItems.remove(currentSelectedName);
 				adapter.remove(currentSelectedName);
-				ChallengeHandler.changeChallengeState(arg0.getContext(), currentSelected.getChallengeId(), 2);
-				currentSelected.setStatus("W");
+				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 2);
+				currentSelected.setStatus("L");//was W. why?
 				Toast.makeText(getApplicationContext(), "Challenge denied!", 1).show();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				if (view.getVisibility() == 4 || currentSelected == null){
+					return;
+				}
+				
+				accept.setVisibility(4);
+				play.setVisibility(4);
+				reject.setVisibility(4);
+				cancel.setVisibility(4);
+				listItems.remove(currentSelectedName);
+				adapter.remove(currentSelectedName);
+				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 1);
+				currentSelected.setStatus("L");//was W. why?
+				Toast.makeText(getApplicationContext(), "Challenge canceled!", 1).show();
 			}
 		});
 
 		// Set the challenge list
-		String username = PreferenceManager.getDefaultSharedPreferences(this).getString("username", null);
 		RChallengeList list = ChallengeHandler.getChallengeList(this);
 		for (int l = 0; l < list.getTotalChallenges(); l++) {
 			RChallengeInfo rc = list.getChallenge(l);
-			String toAdd = "From " + rc.getFrom() + " to " + rc.getTo();
+			String toAdd = "From " + rc.getFromUser() + " to " + rc.getToUser();
 			listItems.add(toAdd);
 			mapped.put(toAdd, rc);
 		}
@@ -101,17 +126,6 @@ public class ChallengeMenu extends ListActivity {
 		// Android stuff
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 		setListAdapter(adapter);
-
-		// Set the back button
-		Button back = (Button) findViewById(R.id.buttback);
-		back.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				onExit();
-
-			}
-
-		});
 	}
 
 	@Override
@@ -123,15 +137,24 @@ public class ChallengeMenu extends ListActivity {
 		currentSelected = rinfo;
 
 		if (rinfo.getStatus().equals("L")) {
-			accept.setVisibility(0);
-			play.setVisibility(4);
-			reject.setVisibility(0);
-
-		} else {
+			if (!rinfo.isMyChallenge()){
+				accept.setVisibility(0);
+				play.setVisibility(4);
+				reject.setVisibility(0);
+				cancel.setVisibility(4);
+			}
+			else {
+				accept.setVisibility(4);
+				play.setVisibility(4);
+				reject.setVisibility(4);
+				cancel.setVisibility(0);
+			}
+		} 
+		else {
 			accept.setVisibility(4);
 			play.setVisibility(0);
 			reject.setVisibility(4);
-
+			cancel.setVisibility(4);
 		}
 
 	}
