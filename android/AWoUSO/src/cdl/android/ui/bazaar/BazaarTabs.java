@@ -4,6 +4,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -16,7 +17,8 @@ import cdl.android.R;
  */
 @SuppressWarnings("deprecation")
 public class BazaarTabs extends TabActivity {
-
+	private Intent notyfiableIntent;
+	
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
@@ -35,8 +37,14 @@ public class BazaarTabs extends TabActivity {
 		intent = new Intent().setClass(this, Summary.class);
 		spec = tabHost.newTabSpec("summary").setIndicator("Summary", res.getDrawable(R.drawable.spell_green)).setContent(intent);
 		tabHost.addTab(spec);
-
+		
+		notyfiableIntent = intent;
+		
 		tabHost.setCurrentTab(0);
+	}
+	
+	public void notifyOnChangeSummaryTab(){
+		this.notyfiableIntent.putExtra("notify", true);
 	}
 	
 	@Override

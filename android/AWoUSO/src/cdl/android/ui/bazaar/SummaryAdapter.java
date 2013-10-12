@@ -34,6 +34,10 @@ public class SummaryAdapter extends BaseAdapter{
 		return mItems.get(index);
 	}
 
+	public void resetItems(ArrayList<SummaryItem> items){
+		mItems = items;
+	}
+	
 	@Override
 	public long getItemId(int position) {
 			return position;

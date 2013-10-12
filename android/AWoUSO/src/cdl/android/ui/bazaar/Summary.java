@@ -31,6 +31,8 @@ import android.widget.Toast;
  */
 public class Summary extends Activity {
 	private ArrayList<SummaryItem> mItems;
+	private ListView mListView;
+	private boolean firstTime = true;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -39,10 +41,35 @@ public class Summary extends Activity {
 		setContentView(R.layout.summary);
 		
 		
-		ListView mListView = (ListView) findViewById(android.R.id.list);
+		mListView = (ListView) findViewById(android.R.id.list);
 		mListView.setEmptyView(findViewById(android.R.id.empty));
 		
 		mItems = new ArrayList();
+	}
+	
+	public void onResume(){
+		super.onResume();
+		boolean changesMade = false;
+		if(!firstTime){
+			try{
+				changesMade = (Boolean) this.getIntent().getExtras().get("notify");
+			} catch (Exception e){
+				
+			}
+		}
+		
+		if(!firstTime && changesMade){	
+			mItems.clear();
+			setListAdapter();
+		} else if(firstTime){
+			setListAdapter();
+			firstTime = false;
+		}
+		
+	}
+
+	
+	private void setListAdapter(){
 		
 		ServerResponse resp = ApiHandler.get(ApiHandler.baseURL + "bazaar/inventory/", this);
 		
@@ -69,7 +96,7 @@ public class Summary extends Activity {
 					}
 				}
 			}catch(JSONException e){
-				e.printStackTrace();
+				e.printStackTrace();Log.d("before adapter", "lalala");
 			}
 		}
 		
@@ -77,6 +104,5 @@ public class Summary extends Activity {
 				new Bundle()));
 		
 	}
-	
 	
 }

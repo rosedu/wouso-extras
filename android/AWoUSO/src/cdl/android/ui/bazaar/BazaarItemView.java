@@ -31,7 +31,7 @@ import cdl.android.R;
 public class BazaarItemView extends LinearLayout {
 	private BazaarItem mItem;
 
-	public BazaarItemView(Context context, BazaarItem item) {
+	public BazaarItemView(final Context context, BazaarItem item) {
 		super(context);
 		mItem = item;
 
@@ -66,6 +66,8 @@ public class BazaarItemView extends LinearLayout {
 				} else {
 					Toast.makeText(v.getContext(),
 							"Bought " + mItem.getTitle(), Toast.LENGTH_SHORT).show();
+					
+					((BazaarTabs)((Bazaar)context).getParent()).notifyOnChangeSummaryTab();
 				}
 			}
 		});

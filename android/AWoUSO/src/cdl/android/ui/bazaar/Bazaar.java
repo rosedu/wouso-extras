@@ -38,7 +38,7 @@ public class Bazaar extends Activity {
 		mItems = new ArrayList<BazaarItem>();
 		
 		ServerResponse resp = ApiHandler.get(ApiHandler.baseURL + "bazaar/", this);
-		
+
 		if(resp.getStatus() == false){
 		
 			Toast.makeText(this, resp.getError() , Toast.LENGTH_SHORT).show();
