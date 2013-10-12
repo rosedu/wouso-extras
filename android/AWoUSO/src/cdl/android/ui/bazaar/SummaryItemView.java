@@ -51,6 +51,10 @@ public class SummaryItemView extends LinearLayout{
 		this.setSpellImg(image, wouso + item.getImageURL());
 	}
 	
+	public SummaryItem getItem(){
+		return mItem;
+	}
+	
 	private void setSpellImg(ImageView img, String url) {
 
 		Bitmap b = BitmapFactory.decodeResource(img.getContext()

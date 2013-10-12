@@ -2,6 +2,7 @@ package cdl.android.ui.bazaar;
 
 import java.util.ArrayList;
 
+import cdl.android.R;
 import cdl.android.general.BazaarItem;
 import cdl.android.general.SummaryItem;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class SummaryAdapter extends BaseAdapter{
 	private ArrayList<SummaryItem> mItems;
@@ -42,24 +44,46 @@ public class SummaryAdapter extends BaseAdapter{
 	public long getItemId(int position) {
 			return position;
 	}
-
+	
+	
 	@Override
 	public View getView(final int index, View convertView, ViewGroup parent) {
-		SummaryItemView item;
+		
+		
+		final SummaryItemView item;
 
 		item = new SummaryItemView(mContext, mItems.get(index));
-		item.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View v) {
-				String action = mArgs.getString("action");
-				if(action.equals("castspell")){
-					int playerId = mArgs.getInt("playerID");
-					SummaryFragment.castSpell(playerId, mItems.get(index).getId(), mContext);
-				}
-				
-			}});
-		item.setClickable(true);
-
+		String action = mArgs.getString("action");
+		if(action != null){
+			item.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View v) {
+					String action = mArgs.getString("action");
+					if(action.equals("castspell")){
+						int playerId = mArgs.getInt("playerID");
+						final int count = item.getItem().getAmountInt();
+						
+						
+						SummaryFragment.castSpell(playerId, mItems.get(index).getId(), mContext, new Method(){
+							public void handleStuff(){
+								if(count > 0){
+									TextView amount = (TextView) item.findViewById(R.id.amount);
+									amount.setText("" + (count - 1));
+									item.refreshDrawableState();
+								}
+							}
+						});
+						
+						
+						
+						
+					}
+					
+				}});
+				item.setClickable(true);
+	
+			
+		}
 		return item;
 	}
-
+		
 }

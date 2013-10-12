@@ -38,7 +38,8 @@ public class OtherProfile extends FragmentActivity{
 		
 		Bundle bundle = new Bundle();
 		bundle.putInt("playerID", Integer.parseInt(getIntent().getExtras().getString("id")));
-		fragment = new SummaryFragment(bundle);
+		fragment = new SummaryFragment();
+		((SummaryFragment)fragment).setBundle(bundle);
 		fm = this.getSupportFragmentManager();
 		
 		FragmentTransaction ft = fm.beginTransaction();

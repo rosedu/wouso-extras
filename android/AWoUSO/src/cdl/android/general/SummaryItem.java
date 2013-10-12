@@ -35,6 +35,10 @@ public class SummaryItem {
 		return "" + amount;
 	}
 	
+	public int getAmountInt(){
+		return amount;
+	}
+	
 	public String getSpellTitle(){
 		return spellTitle;
 	}

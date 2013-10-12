@@ -25,15 +25,20 @@ import cdl.android.general.ServerResponse;
 import cdl.android.general.SummaryItem;
 import cdl.android.server.ApiHandler;
 
+
 public class SummaryFragment extends Fragment {
 	private ArrayList<SummaryItem> mItems;
 	private Bundle bundle;
 	
-	
-	public SummaryFragment(Bundle bundle){
+	public SummaryFragment(){
 		this.bundle = new Bundle();
+		
+	}
+	
+	public void setBundle(Bundle bundle){
 		this.bundle.putInt("playerID", bundle.getInt("playerID"));
 	}
+	
 	/** Called when the activity is first created. */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,7 +91,8 @@ public class SummaryFragment extends Fragment {
 	}
 	
 	
-	public static void castSpell(int playerID, int spellID,Context context){
+	
+	public static void castSpell(int playerID, int spellID,Context context, Method method){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
 		
 		nameValuePairs.add(new BasicNameValuePair("spell", "" + spellID));
@@ -101,13 +107,18 @@ public class SummaryFragment extends Fragment {
 		} finally {
 			if(((ServerResponse) answer).getStatus() == true){
 				Toast.makeText(context, "Witchcraft has been done", Toast.LENGTH_SHORT).show();
+				method.handleStuff();
 			} else {
 				Toast.makeText(context, "Spell casting failed", Toast.LENGTH_SHORT).show();
+				Log.d("Eroare spell", "" + ((ServerResponse) answer).getError());
 			}
 			
 		}
 	}	
 	
-	
-	
+
+}
+
+interface Method{
+	public void handleStuff();
 }
