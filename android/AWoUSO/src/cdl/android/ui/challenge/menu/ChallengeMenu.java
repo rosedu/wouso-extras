@@ -68,13 +68,14 @@ public class ChallengeMenu extends ListActivity {
 					return;
 				}
 				
+				//make challenge active
+				currentSelected.setStatus("A");
 				Intent x = new Intent(context, ActiveChallenge.class);
 				Bundle b = new Bundle();
 				b.putInt("data", currentSelected.getChallengeId());
 				x.putExtras(b);
 				startActivity(x);
 				finish();
-
 			}
 		});
 		

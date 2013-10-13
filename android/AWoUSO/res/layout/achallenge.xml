@@ -36,41 +36,111 @@
         android:layout_marginTop="37dp"
         android:text="@string/neversee"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <CheckBox
-        android:id="@+id/foposa"
-        android:layout_width="wrap_content"
+    
+     <RelativeLayout 
+        android:id="@+id/cronometru"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/chalback"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="42dp"
-        android:text="@string/neversee" />
+        android:layout_width="fill_parent"
+        android:layout_below="@id/chaltext" 
+        android:layout_centerHorizontal="true" >
+        
+        <TextView
+            android:id="@+id/challenge_timer_dots"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text=":"
+            android:textSize="15sp" />
+        
+        <TextView
+            android:id="@+id/challenge_timer_minutes"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignRight="@id/challenge_timer_dots"
+            android:paddingRight="5dp"
+            android:text="0"
+            android:textSize="15sp" />
+        
+        <TextView
+            android:id="@+id/challenge_timer_seconds"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignLeft="@id/challenge_timer_dots"
+            android:paddingLeft="5dp"
+            android:text="00"
+            android:textSize="15sp" />
+         
+    </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/sposa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/foposa"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="92dp"
-        android:text="@string/neversee" />
+    <ScrollView 
+        android:id="@+id/challenge_scroll_view"
+        android:layout_height = "wrap_content"
+        android:layout_width = "fill_parent"
+        android:layout_below="@id/cronometru"
+        android:layout_above="@id/chalnext" >
+        
+        <RelativeLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" >
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_1"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_alignParentTop="true"
+    	    	android:layout_alignParentLeft="true"
+        		android:text="@string/neversee" />
 
-    <CheckBox
-        android:id="@+id/fposa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/sposa"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="17dp"
-        android:text="@string/neversee" />
-
-    <CheckBox
-        android:id="@+id/tposa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/foposa"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="20dp"
-        android:text="@string/neversee" />
-
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_2"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_1"
+        		android:text="@string/neversee" />
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_3"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_2"
+        		android:text="@string/neversee" />
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_4"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_3"
+        		android:text="@string/neversee" />
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_5"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_4"
+        		android:text="@string/neversee" />
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_6"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_5"
+        		android:text="@string/neversee" />
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_7"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_6"
+        		android:text="@string/neversee" />
+    		
+    		<CheckBox
+        		android:id="@+id/challenge_checkbox_8"
+	        	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_below="@id/challenge_checkbox_7"
+        		android:text="@string/neversee" />
+    		
+    	</RelativeLayout>
+    </ScrollView>
+    
 </RelativeLayout>

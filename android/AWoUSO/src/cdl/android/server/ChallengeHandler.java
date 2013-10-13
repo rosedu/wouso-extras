@@ -33,7 +33,18 @@ public class ChallengeHandler {
 	 */
 	public static void sendPost(Context context, int challenge_id, List<NameValuePair> data) {
 		//TODO: check errors
-		ApiHandler.sendPost(ApiHandler.baseChallengeURL + challenge_id, data, context);
+		ServerResponse rsp = ApiHandler.sendPost(ApiHandler.baseChallengeURL + challenge_id + "/", data, context);
+		if (rsp != null){
+			if (rsp.getStatus() == true) {
+				Log.d("Wouso", "Yey!! " + rsp.getData());
+			}
+			else {
+				Log.d("Wouso", "error " + rsp.getError());
+			}
+		}
+		else {
+			Log.d("Wouso", "ASKN*64");
+		}
 	}
 
 	/**
@@ -51,6 +62,9 @@ public class ChallengeHandler {
 		for (String keySet : wrapped.keySet()) {
 			nameValuePairs.add(new BasicNameValuePair(keySet, wrapped.get(keySet)));
 		}
+		for (int i=0; i<nameValuePairs.size(); i++){
+			Log.d("Wouso", " nVP: " + nameValuePairs.get(i));
+		}
 		sendPost(context, data.getChallengeId(), nameValuePairs);
 	}
 
@@ -60,7 +74,7 @@ public class ChallengeHandler {
 	 * @param challenge_id
 	 *            The challenge's id.
 	 * @param otherState
-	 *            The state, 0 to accept, 2 to refuse!
+	 *            The state, 0 to accept, 1 to cancel, 2 to refuse!
 	 */
 	public static void changeChallengeState(Context context, int challenge_id, int otherState) {
 		if (otherState == 0) {

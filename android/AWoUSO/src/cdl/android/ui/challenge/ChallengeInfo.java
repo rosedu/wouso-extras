@@ -14,7 +14,10 @@ import org.json.JSONObject;
 public class ChallengeInfo {
 
 	private boolean success;
-	private String status, date, from, to;
+	private String status;
+	private String date;
+	private String from;
+	private String to;
 	private int seconds;
 	private Map<Integer, ChallengeQuestion> questions = new HashMap<Integer, ChallengeQuestion>();
 
