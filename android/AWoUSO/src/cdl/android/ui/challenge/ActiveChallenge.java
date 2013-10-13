@@ -39,6 +39,7 @@ public class ActiveChallenge extends Activity {
 	private CountDownTimer timer;
 	
 	private int remainingSeconds;
+	private boolean isActivityDestroyed = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -123,10 +124,12 @@ public class ActiveChallenge extends Activity {
 			
 			@Override
 			public void onFinish() {
-				Toast.makeText(getApplicationContext(), "Done", 1).show();
-				saveCurrent();
-				postAnswers();
-				finish();
+				//Toast.makeText(getApplicationContext(), "Done", 1).show();
+				if ( isActivityDestroyed == false){
+					saveCurrent();
+					postAnswers();
+					finish();
+				}
 			}
 		};
 		timer.start();
@@ -275,6 +278,7 @@ public class ActiveChallenge extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		isActivityDestroyed = true;
 		timer.cancel();
 	}
 }
