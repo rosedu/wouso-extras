@@ -8,9 +8,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 import cdl.android.general.ServerResponse;
 import cdl.android.ui.challenge.ActiveChallenge;
 import cdl.android.ui.challenge.ChallengeInfo;
@@ -35,7 +38,13 @@ public class ChallengeHandler {
 		ServerResponse rsp = ApiHandler.sendPost(ApiHandler.baseChallengeURL + challenge_id + "/", data, context);
 		if (rsp != null){
 			if (rsp.getStatus() == true) {
-				Log.d("Wouso", "Yey!! " + rsp.getArrayData());
+				try {
+					Log.d("Wouso", "Yey!! " + rsp.getData().getString("result"));
+					JSONObject jObject = new JSONObject(rsp.getData().getString("result"));
+					Toast.makeText(context, "Challenge finished! You got " + jObject.getInt("points") + " points!", Toast.LENGTH_LONG).show();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 			else {
 				Log.d("Wouso", "error " + rsp.getError());

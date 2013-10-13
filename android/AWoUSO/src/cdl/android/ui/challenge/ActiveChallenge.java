@@ -36,6 +36,7 @@ public class ActiveChallenge extends Activity {
 	private TextView dots;
 	private TextView minutes;
 	private TextView seconds;
+	private CountDownTimer timer;
 	
 	private int remainingSeconds;
 
@@ -87,7 +88,7 @@ public class ActiveChallenge extends Activity {
 			seconds.setText("0" + remainingSeconds % 60);
 		}
 		
-		CountDownTimer timer = new CountDownTimer(info.getSeconds() * 1000, 500) {
+		timer = new CountDownTimer(info.getSeconds() * 1000, 500) {
 			boolean oneSecond = false;
 			
 			@Override
@@ -271,4 +272,9 @@ public class ActiveChallenge extends Activity {
 		return toRet;
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		timer.cancel();
+	}
 }

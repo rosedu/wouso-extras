@@ -225,7 +225,10 @@ public class ApiHandler {
 				instream = entity.getContent();
 				String result = convertStreamToString(instream);
 				instream.close();
+				//Log.d("Wouso", result);
 				JSONObject server = new JSONObject(result);
+				//Log.d("Wouso", server.toString());
+				res.setData(server);
 				res.setStatus(server.getBoolean("success"));
 				if (res.getStatus() == false)
 					res.setError(server.getString("error"));
