@@ -29,6 +29,8 @@ import cdl.android.server.ApiHandler;
 public class SummaryFragment extends Fragment {
 	private ArrayList<SummaryItem> mItems;
 	private Bundle bundle;
+	private View view;
+	private ListView mListView;
 	
 	public SummaryFragment(){
 		this.bundle = new Bundle();
@@ -44,9 +46,9 @@ public class SummaryFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		//super.onCreate(savedInstanceState);
-		View view =  inflater.inflate(R.layout.summary, container, false);
+		view =  inflater.inflate(R.layout.summary, container, false);
 		
-		final ListView mListView = (ListView) view.findViewById(android.R.id.list);
+	    mListView = (ListView) view.findViewById(android.R.id.list);
 		mListView.setEmptyView(view.findViewById(android.R.id.empty));
 		
 		mItems = new ArrayList();
@@ -89,8 +91,51 @@ public class SummaryFragment extends Fragment {
 		return view;
 		
 	}
+
 	
-	
+	public void reset(){
+		mItems.clear();
+		
+		ServerResponse resp = ApiHandler.get(ApiHandler.baseURL + "bazaar/inventory/", view.getContext());
+		Log.d("lololo", "mesaj1");
+		if(resp.getStatus() == false){
+			Log.d("lololo", "mesaj2");
+			Toast.makeText(view.getContext(), resp.getError() , Toast.LENGTH_SHORT).show();
+		
+		}else{
+			try {
+				JSONArray spellData = (JSONArray) ((JSONObject)resp.getData()).get("spells_available");
+			
+				Log.d("lololo", "mesaj3");
+				
+				for(int i = 0; i < spellData.length(); i++){
+					SummaryItem summaryItem = new SummaryItem();
+					
+					try{
+						
+						summaryItem.parseSpellsAvailable(spellData.getJSONObject(i));
+						mItems.add(summaryItem);
+
+					}catch(JSONException e){
+						Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+					}
+				}
+			}catch(JSONException e){
+				e.printStackTrace();
+			}
+			
+			Log.d("lololo", "mesaj4");
+		}
+		
+		final Context con = view.getContext();
+		
+		Log.d("lololo", "mesaj5");
+		bundle.putString("action", "castspell");
+		
+		Log.d("lololo", "mesaj6");
+		mListView.setAdapter(new SummaryAdapter(con, mItems, bundle));
+		Log.d("lololo", "mesaj7");
+	}
 	
 	public static void castSpell(int playerID, int spellID,Context context, Method method){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);

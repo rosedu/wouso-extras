@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
-    
+    android:id="@+id/parent"
     android:orientation="horizontal">
 	
 	    <RelativeLayout
@@ -156,10 +156,23 @@
             android:id="@+id/other_summary"
            
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp" />
+  	 <!--  android:layout_below="@id/butoane" 
+  	 -->
+  	<Button
+  	   
+  	    android:id="@+id/buy_button"
+  	    style="@style/BlueButton"
+  	    android:visibility="invisible"
+  	    android:layout_marginTop="5dp"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="Go to Bazaar"
+    />
+  	
   	
 </RelativeLayout >

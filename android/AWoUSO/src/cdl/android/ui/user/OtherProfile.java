@@ -3,6 +3,7 @@ package cdl.android.ui.user;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +14,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.general.ServerResponse;
 import cdl.android.general.UserInfo;
 import cdl.android.server.ApiHandler;
+import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.bazaar.SummaryFragment;
 
 public class OtherProfile extends FragmentActivity{
@@ -30,11 +35,17 @@ public class OtherProfile extends FragmentActivity{
 		SHOWN, HIDDEN;
 	};
 	private SpellInventoryState state = SpellInventoryState.HIDDEN;
+	private boolean firstTime = true;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.otherprofile);
+		
+		firstTime = false;
+		
+		final RelativeLayout parentLayout = (RelativeLayout) this.findViewById(R.id.parent); 
+		final FrameLayout frameLayout = (FrameLayout) this.findViewById(R.id.other_summary); 
 		
 		Bundle bundle = new Bundle();
 		bundle.putInt("playerID", Integer.parseInt(getIntent().getExtras().getString("id")));
@@ -124,6 +135,17 @@ public class OtherProfile extends FragmentActivity{
 					startActivity(intent);
 				}});
 			
+			final Button buttonBazaar = (Button)  this.findViewById(R.id.buy_button);
+			final Activity thisActivity = this;
+			buttonBazaar.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					startActivity(new Intent(thisActivity, BazaarTabs.class));
+					
+				}
+			});
+			
 			ImageView castSpellBtn = (ImageView ) this.findViewById(R.id.userspellbtn);
 			castSpellBtn.setOnClickListener(new View.OnClickListener(){
 				
@@ -135,7 +157,18 @@ public class OtherProfile extends FragmentActivity{
 						FragmentTransaction ft = fm.beginTransaction();
 						ft.show(fragment);
 						ft.commit();
+						
+						RelativeLayout.LayoutParams lay = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+								RelativeLayout.LayoutParams.WRAP_CONTENT);
+						lay.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, frameLayout.getId());
+						lay.setMargins(0, 10, 0, 5);
+						lay.addRule(RelativeLayout.CENTER_HORIZONTAL);
+						
+						buttonBazaar.setLayoutParams(lay);
+						buttonBazaar.setVisibility(View.VISIBLE);
+						
 					} else {
+						buttonBazaar.setVisibility(View.INVISIBLE);
 						state = SpellInventoryState.HIDDEN;
 						FragmentTransaction ft = fm.beginTransaction();
 						ft.hide(fragment);
@@ -170,6 +203,13 @@ public class OtherProfile extends FragmentActivity{
 				}
 			});
 		}
+	}
+	
+	public void onResume(){
+		super.onResume();
+		if(fragment != null)
+			((SummaryFragment)fragment).reset();
+		
 	}
 	
 	
