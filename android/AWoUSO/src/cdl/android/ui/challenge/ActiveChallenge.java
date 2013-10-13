@@ -123,6 +123,7 @@ public class ActiveChallenge extends Activity {
 			@Override
 			public void onFinish() {
 				Toast.makeText(getApplicationContext(), "Done", 1).show();
+				saveCurrent();
 				postAnswers();
 				finish();
 			}
@@ -151,16 +152,9 @@ public class ActiveChallenge extends Activity {
 				activeChallengeQuestion++;
 				if (activeChallengeQuestion == totalChallenges) {
 					Toast.makeText(getApplication(), "Sending answers...", Toast.LENGTH_SHORT).show();
-					try {
-						postAnswers();
-					} catch (Exception ex) {
-						Toast.makeText(getApplication(), "Error sending answers", Toast.LENGTH_SHORT).show();
-					} finally {
-						Toast.makeText(getApplication(), "Challenge finished!", Toast.LENGTH_SHORT).show();
-					}
+					postAnswers();
 					finish();
 					return;
-
 				}
 				refreshForActiveQuestion();
 
@@ -183,7 +177,6 @@ public class ActiveChallenge extends Activity {
 	 * Sends the current answers to the server.
 	 */
 	private void postAnswers() {
-		saveCurrent();
 		ChallengeHandler.post(this, this);
 	}
 

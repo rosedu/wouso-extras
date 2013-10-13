@@ -32,11 +32,10 @@ public class ChallengeHandler {
 	 *            The data to send.
 	 */
 	public static void sendPost(Context context, int challenge_id, List<NameValuePair> data) {
-		//TODO: check errors
 		ServerResponse rsp = ApiHandler.sendPost(ApiHandler.baseChallengeURL + challenge_id + "/", data, context);
 		if (rsp != null){
 			if (rsp.getStatus() == true) {
-				Log.d("Wouso", "Yey!! " + rsp.getData());
+				Log.d("Wouso", "Yey!! " + rsp.getArrayData());
 			}
 			else {
 				Log.d("Wouso", "error " + rsp.getError());

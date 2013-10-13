@@ -8,12 +8,12 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
 import cdl.android.server.ChallengeHandler;
@@ -127,6 +127,14 @@ public class ChallengeMenu extends ListActivity {
 		// Android stuff
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 		setListAdapter(adapter);
+		
+		TextView noChallenges = (TextView) findViewById(R.id.challenge_no_chal);
+		if (listItems.size() == 0){
+			noChallenges.setVisibility(0);
+		}
+		else {
+			noChallenges.setVisibility(8);
+		}
 	}
 
 	@Override
