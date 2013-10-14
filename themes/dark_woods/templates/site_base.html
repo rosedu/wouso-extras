@@ -1,6 +1,7 @@
 {% load user %}
 {% load artifacts %}
 {% load i18n %}
+{% load ui %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -90,13 +91,13 @@
 				<div id="header-right">
 					<div id="header-top-links">
 						{% if user.is_authenticated %}
-							<a href="{% url django.contrib.auth.views.logout %}" id="header-logout">{% trans 'Logout' %}</a>
+							<a href="{% url logout_view %}" id="header-logout">{% trans 'Logout' %}</a>
 
 							{% if user.is_staff %}
 								<a href="{% url wouso.interface.cpanel.views.dashboard %}" id="header-control-panel">Panou de control</a>
 							{% endif %}
 						{% else %}
-							<a href="{% url django.contrib.auth.views.login %}" id="header-logout">{% trans 'Login' %}</a>
+							<a href="{% url login_view %}" id="header-logout">{% trans 'Login' %}</a>
 						{% endif %}
 
 						<div class="clear">
@@ -106,9 +107,7 @@
 
 					<div id="header-content">
 						<div id="header-menu">
-							{% for h in heads %}
-								<a href="{{ h.0.link }}" id="{{ h.1 }}">{{ h.0.text }}{% if h.0.count %}<span class="menu-notification">{{ h.0.count }}</span>{% endif %}</a>
-							{% endfor %}
+							{% render_header %}
 
 							<div class="clear">
 								<!-- -->
@@ -255,9 +254,7 @@
 			<div id="content-middle">
 				<div id="sidebar">
 					{% block sidebar %}
-						{% for w in sidebar %}
-							{{ w }}
-						{% endfor %}
+						{% render_sidebar %}
 					{% endblock %}
 				</div><!-- #sidebar -->
 
@@ -293,9 +290,7 @@
 		<div id="footer">
 			<div id="footer-content">
 				<div class="footer-content-left">
-					{% autoescape off %}
-						{{ footer }}
-					{% endautoescape %}
+					{% render_footer %}
 				</div><!-- .footer-content-left -->
 
 				<div class="footer-content-right">
