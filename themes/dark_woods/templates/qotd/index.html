@@ -1,0 +1,50 @@
+{% extends base_template %}
+
+{% load i18n %}
+
+{% block title %}Question of the Day{% endblock %}
+
+{% block content %}
+	<div class="section">
+		<h2>{% trans 'Question of the day' %}</h2>
+
+		<div class="section-content">
+			{% if form.errors %}
+				<p class="wrong">{% trans 'You must provide an answer' %}</p>
+			{% endif %}
+
+			{% if question %}
+				<p>{% autoescape off %}{{ question.text }}{% endautoescape %}</p>
+
+				<div class="spacer">
+					<!-- -->
+				</div><!-- .spacer -->
+
+				<form method="post" action="{% url games.qotd.views.index %}">
+					<div class="answers">
+						<ul>
+							{% for a in question.shuffled_answers %}
+								<li>
+									<input type=radio name="answers" value="{{ a.id }}" id="qotd_a_{{a.id}}"/>
+									<label for="qotd_a_{{a.id}}">{% autoescape off %}{{ a.text }}{% endautoescape %}</label>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+
+					<div class="clear spacer">
+						<!-- -->
+					</div><!-- .clear .spacer -->
+
+					<div class="actions">
+						<button class="default" type="submit">Answer</button>
+					</div>
+
+					{% csrf_token %} 
+				</form>
+			{% else %}
+				No question for today.
+			{% endif %}
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+{% endblock %}

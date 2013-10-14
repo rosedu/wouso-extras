@@ -1,0 +1,91 @@
+﻿{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<title>{{ config_title }}</title>
+		<link href="/static/themes/{{ config_theme }}/styles.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/static/themes/{{ config_theme }}/library/css/jquery.jscrollpane.css" media="all" rel="stylesheet" type="text/css" />
+		<script src="/static/js/jquery-1.6.2.min.js" type="text/javascript"></script>
+		<script src="/static/themes/{{ config_theme }}/library/js/jquery.mousewheel.js" type="text/javascript"></script>
+		<script src="/static/themes/{{ config_theme }}/library/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper login">
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<a href="/" id="logo-large"></a>
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<div id="container-login">
+				<div class="spacer">
+					<!-- -->
+				</div><!-- .spacer -->
+
+				<h1>{{ config_title }}</h1>
+
+				<div class="scroll-pane" id="container-login-intro">
+					<p>
+						{% autoescape off %}
+						    {{ config_intro }}
+						{% endautoescape %}
+					</p>
+				</div><!-- .scroll-pane #container-login-intro -->
+
+				<form {% if not config_disable_login %}action="{% url django.contrib.auth.views.login %}"{% else %}action="/"{% endif %} method="post">
+					{% csrf_token %}
+
+					<div id="container-login-left">
+						<label for="username">Nume utilizator:</label>
+
+						<input id="username" name="username" tabindex="1" type="text" />
+
+						<a href="{% url django.contrib.auth.views.login %}">Nu vă puteți autentifica?</a>
+					</div><!-- #container-login-left -->
+
+					<div id="container-login-right">
+						<label for="password">Parola:</label>
+
+						<input id="password" name="password" tabindex="2" type="password" />
+
+                        {% if not config_disable_login %}
+						<input id="button-login" type="submit" value="Autentificare" />
+                        {% endif %}
+
+						<input type="hidden" name="next" value="{{ next }}" />
+					</div><!-- #container-login-right -->
+
+					<div class="clear">
+						<!-- -->
+					</div><!-- .clear -->
+				</form>
+			</div><!-- #container-login -->
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<a href="http://rosedu.org/" id="logo-rosedu" target="_blank"></a>
+
+			<div class="clear spacer">
+				<!-- -->
+			</div><!-- .clear .spacer -->
+		</div><!-- .wrapper .login -->
+
+		{% autoescape off %}
+		{{ config_hidden_footer }}
+		{% endautoescape %}
+	</body>
+</html>

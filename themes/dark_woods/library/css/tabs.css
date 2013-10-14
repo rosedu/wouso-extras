@@ -1,0 +1,43 @@
+ul.tabs {
+	border-bottom : 1px solid #000000;
+	float : left;
+	height : 32px; /*--Set height of tabs--*/
+	list-style : none;
+	margin : 0;
+	padding : 0;
+	width : 100%;
+}
+
+ul.tabs li {
+	bottom : -1px;
+	float : left;
+	margin : 0 2px 0 0;
+	overflow : hidden;
+	padding : 0;
+	position : relative;
+}
+
+ul.tabs li a {
+	background : transparent url(../images/tabs.png) left top no-repeat;
+	color : #ffffff;
+	display : block;
+	height : 32px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height : 32px; /*--Vertically aligns the text within the tab--*/
+	outline : none;
+	text-align : center;
+	text-decoration : none;
+	text-shadow : 0 -1px 0 #000000;
+	width : 122px;
+}
+
+ul.tabs li a:hover {
+	background-position : left bottom;
+}
+
+.tab_container {
+	clear : both;
+}
+
+ul.tabs li.active a {
+	background-position : left bottom;
+}

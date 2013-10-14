@@ -1,0 +1,697 @@
+table {
+	border : 0;
+}
+
+td, th {
+	padding : 5px 5px 5px 5px;
+}
+
+th {
+	color : #ffffff;
+}
+
+table.custom {
+	border-collapse : collapse;
+}
+
+table.custom th, table.custom td {
+	background : transparent url(../images/tables.jpg) left top repeat-x;
+	border : 1px #000000 solid;
+	height : 35px;
+}
+
+table.custom th {
+	font-weight : normal;
+	text-shadow : 0 -1px 0 #000000;
+}
+
+table.custom td {
+	background-position : left bottom;
+	color : #b6b6b6;
+}
+
+table.no-side-padding th, table.no-side-padding td {
+	padding : 5px 0 5px 0;
+}
+
+td.td-artifact .artifact, td.td-artifact .artifact-container {
+	margin : 0;
+}
+
+ul {
+	list-style-type : none;
+}
+
+.hidden {
+	display : none;
+}
+
+.centered {
+	text-align : center;
+}
+
+.right {
+	text-align : right;
+}
+
+img.no-float, .no-float {
+	float : none !important;
+}
+
+.no-border {
+	border : none !important;
+}
+
+.bold, .bold a {
+	font-weight : bold !important;
+}
+
+fieldset textarea {
+	height: 50px;
+	width: 70%;
+}
+
+ol.top-left {
+	width: 480px;
+}
+
+#sidebar .progress-bar {
+	margin : 5px 0 5px 0;
+}
+
+#container {
+	margin: 0 auto 0 auto;
+	width: 920px;
+}
+
+input.big, input#id_answer {
+	background : transparent url(../images/inputs.png) left top no-repeat;
+	border : 0;
+	height : 35px;
+	line-height : 35px;
+	padding : 0 5px 0 5px;
+}
+
+input#exchange-points, input#exchange-gold {
+	width : 90px;
+}
+
+textarea.big {
+	border : 0;
+	padding : 5px 5px 5px 5px;
+}
+
+#ajax-message {
+	left : 50%;
+	position : fixed;
+	text-align : center;
+	top : 165px;
+	z-index : 1000;
+}
+
+#ajax-message p {
+	background-color : #eeeeee;
+	border : 1px solid #aaaaaa;
+	border-radius : 5px 5px 5px 5px;
+	height : 33px;
+	line-height : 33px;
+	padding : 0 5px 0 5px;
+
+	-khtml-border-radius : 5px 5px 5px 5px;
+	-moz-border-radius : 5px 5px 5px 5px;
+	-webkit-border-radius : 5px 5px 5px 5px;
+}
+
+ol.top {
+	padding : 0 0 0 20px;
+}
+
+ol.top li {
+	padding : 0 0 10px 0;
+}
+
+#sidebar ol.top li, .subgroups ol.top li {
+	padding : 0;
+}
+
+.block {
+	border : 1px dashed #aaa;
+	margin-bottom : 5px;
+	padding : 4px;
+}
+
+.block h4 {
+	border-bottom: 1px solid #aaa;
+	margin: 0px;
+}
+
+.answers ul {
+	list-style-type : none;
+	padding : 0px;
+}
+
+.artifact, .artifact-container {
+	display : inline-block;
+	height : 24px;
+	margin-right : 4px;
+	vertical-align : middle;
+	width : 24px;
+}
+
+.artifact-container {
+	margin : 0px;
+	padding : 0px;
+}
+
+div#player-stats-focus .artifact-container {
+	margin : 5px 5px 0 5px;
+}
+
+.artifact-container span.sup {
+	background-color: #1470cc;
+	border-radius : 3px 3px 3px 3px;
+	color : #ffffff;
+	float : right;
+	font-size : 8px;
+	font-weight : bold;
+	line-height : 9px;
+	padding : 2px 2px 2px 2px;
+	position : relative;
+	right : -5px;
+	text-shadow : 0 -1px 0 #000000;
+	top : -100%;
+	z-index: 100;
+
+	-khtml-border-radius : 3px 3px 3px 3px;
+	-moz-border-radius : 3px 3px 3px 3px;
+	-webkit-border-radius : 3px 3px 3px 3px;
+}
+
+span.points {
+	float : right
+}
+span.w50 {
+	width: 50px;
+	text-align: right;
+}
+li input {
+	clear : right;
+	float : left;
+}
+
+li div.question {
+	clear : right;
+}
+
+.answers ul li input {
+	margin : 6px 0 6px 0;
+}
+
+li label {
+	display : block;
+	float : right;
+	padding : 6px;
+	width : 95%;
+}
+
+li label:hover {
+	background-color : #242424;
+	border-radius : 5px 5px 5px 5px;
+
+	-khtml-border-radius : 5px 5px 5px 5px;
+	-moz-border-radius : 5px 5px 5px 5px;
+	-webkit-border-radius : 5px 5px 5px 5px;
+}
+
+/* profile page */
+#profile-info {
+	float : left;
+}
+
+#profile-info h2 {
+	background : none;
+	height : auto;
+	line-height : normal;
+	padding : 0;
+	width : auto;
+}
+
+#profile-info .spacer-small {
+	height : 5px;
+}
+
+.profile .points {
+	float : right;
+	height : 90px;
+	text-align : center;
+	width : 140px;
+}
+
+.profile .points-big {
+	font-size : 42px;
+	margin : 10px 0 0 0;
+}
+
+img.avatar {
+	border : 3px solid #323232;
+	float : left;
+	margin : 0 5px 0 0;
+}
+
+img.profile-avatar {
+	border : 3px solid #323232;
+	float : left;
+	margin : 0 10px 0 0;
+}
+
+.profile h2, .profile h3, .profile h4 {
+	margin : 1px;
+}
+
+.profile .tabs, .profile .tab_content {
+	clear : both;
+}
+
+.graf {
+	height : 300px;
+	width : 500px;
+}
+
+.actions {
+	clear: right;
+	float: right;
+	margin: 0 0 0 6px;
+}
+
+.actions a, a.button, button {
+	background : transparent url(../images/buttons.png) left top no-repeat;
+	border : 0;
+	color : #ffffff;
+	display : block;
+	float : left;
+	height : 35px;
+	line-height : 35px;
+	margin : 0 0 0 10px;
+	text-align : center;
+	text-decoration : none;
+	text-shadow : 0 -1px 0 #000000;
+	text-transform : uppercase;
+	text-wrap : suppress;
+	width : 120px;
+}
+
+.actions a:hover, a.button:hover, button:hover {
+	background-position : left bottom;
+}
+
+span.button {
+	display : block;
+	float : left;
+	height : 35px;
+	line-height : 35px;
+	margin : 0 0 0 10px;
+	text-align : center;
+	width : 120px;
+}
+
+a.button-min {
+	background-position : right top;
+	width : 55px;
+}
+
+a.button-min:hover {
+	background-position : right bottom;
+}
+
+a.button-invert-margin {
+	margin : 0 5px 0 0;
+}
+
+span.button-list {
+	display : block;
+	float : left;
+	height : 35px;
+	line-height : 35px;
+}
+
+.actions a.default, button.default {
+	font-weight : bold;
+}
+
+.profile ul.artifacts {
+	display : inline;
+	list-style-type : none;
+	margin : 0;
+	padding : 0;
+}
+
+.profile ul.artifacts li {
+	display : inline;
+}
+
+.subgroups {
+	float : right;
+	margin-left : 20px;
+	width : 150px;
+}
+
+/* topbar sidebar */
+#sidebar h2 {
+	clear : both;
+}
+
+.unread-count {
+	background-color : red;
+	border-radius : 5pt;
+	color : #ddd;
+	font-size : 0.7em;
+	font-weight : bold;
+	padding : 2px 4px;
+	line-height : 0.8em;
+	vertical-align : top;
+}
+
+/* cpanel */
+fieldset label {
+	float : left;
+	min-width : 100px;
+}
+
+ul.menu, ul.submenu {
+	border-top : 1px solid #ddd;
+	list-style-type : none;
+	padding : 0px;
+}
+
+ul.submenu {
+	border : none;
+	font-weight : normal;
+}
+
+ul.menu li {
+	margin : 10px;
+	text-indent : 0px;
+}
+
+ul.menu li a {
+	text-decoration : none;
+}
+
+div.second {
+	clear : both;
+	color : #646464;
+	font-size : 0.8em;
+	text-align : right;
+}
+
+.sort-list li {
+	margin : 28px;
+}
+
+.handle {
+	cursor : move;
+	display : block;
+	float : right;
+	font-size : 2em;
+	height : 30px;
+	text-align : center;
+	vertical-align : middle;
+	width : 30px;
+}
+
+.ok {
+	color : green;
+}
+
+.wrong {
+	color : red;
+}
+
+/* messaging */
+tr.unread td {
+	color : #ffffff;
+}
+
+pre.pre-message {
+	font-family : Verdana, Geneva, sans-serif;
+	font-size : 12px;
+	white-space: pre-wrap;
+	width : 685px;
+	word-wrap: break-word;
+
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+}
+
+span.to_user {
+	background-color : #1470cc;
+	border-radius : 5px 5px 5px 5px;
+	color : #ffffff;
+	display : inline-block;
+	height : 35px;
+	line-height : 35px;
+	padding : 0 5px 0 5px;
+	text-shadow : 0 -1px 0 #000000;
+
+	-khtml-border-radius : 5px 5px 5px 5px;
+	-moz-border-radius : 5px 5px 5px 5px;
+	-webkit-border-radius : 5px 5px 5px 5px;
+}
+
+span.to_user a{
+	color : #ffffff;
+}
+
+span.to_user a.to_reset {
+	border-left : 1px solid #3399ff;
+	color : #ffffff;
+	display : inline-block;
+	margin-left : 5px;
+	padding: 0 0 0 5px;
+}
+
+label.label-small {
+	display : inline-block;
+	width : 60px;
+}
+
+input#to_input, input#subject, input#id_answer {
+	background-position : right top;
+	width : 615px;
+}
+
+input#id_answer {
+	float : right;
+}
+
+p#id_answer_p {
+	float : left;
+	line-height : 35px;
+}
+
+textarea#text {
+	background : transparent url(../images/textarea-text.png) no-repeat;
+	height : 140px;
+	resize : none;
+	width : 615px;
+}
+
+/* activity */
+ul.activity-stream {
+	padding-left : 0px;
+}
+
+li.activity-line {
+	clear : both;
+	list-style-type : none;
+	margin : 0 auto;
+	padding-top : 10px;
+}
+
+img.medium {
+	height : 38px;
+	width : 38px;
+}
+
+img.small {
+	height : 22px;
+	width : 22px;
+}
+
+div#wall {
+	height : 270px;
+	padding : 0 10px 0 0;
+	width : 675px;
+}
+
+div.activity-timestamp {
+	clear : both;
+	color : #646464;
+	float : right;
+	font-size : 0.9em;
+	margin-top : -1.8em;
+	text-align : right;
+}
+
+div.activity-source {
+	float : right;
+	font-size : 0.9em;
+}
+
+div.activity-source a {
+	color : #808080;
+	text-decoration : none;
+}
+
+div.activity-second div {
+	padding-top : 8px;
+}
+
+div.activity-second a {
+	text-decoration : none;
+}
+
+/* challenge */
+ul.answers {
+	list-style-type : none;
+	margin-top : 6px;
+	padding-left : 0px;
+}
+
+div.timer {
+	background-color : white;
+	border : 2px solid #ddd;
+	border-radius : 20px;
+	font-size : 42px;
+	left : 50%;
+	padding : 6px;
+	position : fixed;
+	text-align : center;
+	top : 100px;
+}
+
+ul.simple {
+	list-style-type : none;
+	padding-left : 0px;
+}
+
+.vs {
+	margin : 0 30px;
+	text-align : center;
+}
+
+.vs div {
+	text-align : center;
+	width : 100px;
+}
+
+.vs .second {
+	margin-top : -50px;
+	width : auto;
+}
+
+.vs .to {
+	float : right;
+}
+
+.vs .left {
+	float : left;
+}
+
+/* artifacts and coins */
+.coin-amount {
+	display : inline-block;
+	line-height : 16px;
+	padding-left : 20px;
+}
+
+.coin-points {
+	background : url(../images/icons/points.png) left center no-repeat;
+}
+
+.coin-gold {
+	background : url(../images/icons/gold.png) left center no-repeat;
+}
+
+p.artifact-description {
+	margin : 0 0 0 28px;
+}
+
+/* top */
+td div.artifacts {
+	float : right;
+}
+
+/* legend */
+#legend table td {
+	padding : 5px 5px 0 0;
+}
+
+.legendLabel {
+	color : #646464;
+}
+
+blockquote {
+	line-height : 18px;
+	margin : 0 0 0 20px;
+}
+
+
+div#content {
+	min-height : 520px;
+}
+
+div#story ul {
+	list-style-type : circle;
+	margin : 0 0 0 20px;
+}
+
+.player-avatar {
+	display : block;
+	float : left;
+	height : 44px;
+	margin : 0 5px 0 0;
+	position : relative;
+	width : 44px;
+}
+
+.player-avatar-small {
+	display : block;
+	float : left;
+	height : 28px;
+	margin : 0 5px 0 0;
+	position : relative;
+	width : 28px;
+}
+
+.player-avatar-image {
+	left : 0;
+	position : absolute;
+	top : 0;
+}
+
+.player-avatar-race {
+	background : transparent url(../images/avatar-corners.png) no-repeat;
+	height : 15px;
+	left : 0;
+	padding-top : 0 !important;
+	position : absolute;
+	top : 0;
+	width : 15px;
+}
+
+.player-avatar-race-ca {
+	background-position : left top;
+}
+
+.player-avatar-race-cb {
+	background-position : left center;
+}
+
+.player-avatar-race-cc {
+	background-position : left bottom;
+}
+.player-avatar-race-others {
+	background: none;
+}

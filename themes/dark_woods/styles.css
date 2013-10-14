@@ -1,0 +1,942 @@
+/*
+THEME NAME: Blackout
+VERSION: 1.0
+AUTHOR: Catalin Dogaru, Dorian Dogaru
+AUTHOR URI: http://swarm.cs.pub.ro/~cdogaru/
+*/
+
+@font-face {
+	font-family: 'EnigmaticRegular';
+	src: url('library/fonts/Enigma__2-webfont.eot');
+	src: url('library/fonts/Enigma__2-webfont.eot?#iefix') format('embedded-opentype'), url('library/fonts/Enigma__2-webfont.woff') format('woff'), url('library/fonts/Enigma__2-webfont.ttf') format('truetype'), url('library/fonts/Enigma__2-webfont.svg#EnigmaticRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'EnigmaticItalic';
+	src: url('library/fonts/Enigma_2i-webfont.eot');
+	src: url('library/fonts/Enigma_2i-webfont.eot?#iefix') format('embedded-opentype'), url('library/fonts/Enigma_2i-webfont.woff') format('woff'), url('library/fonts/Enigma_2i-webfont.ttf') format('truetype'), url('library/fonts/Enigma_2i-webfont.svg#EnigmaticItalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EnigmaticBold';
+	src: url('library/fonts/EnigmaB_2-webfont.eot');
+	src: url('library/fonts/EnigmaB_2-webfont.eot?#iefix') format('embedded-opentype'), url('library/fonts/EnigmaB_2-webfont.woff') format('woff'), url('library/fonts/EnigmaB_2-webfont.ttf') format('truetype'), url('library/fonts/EnigmaB_2-webfont.svg#EnigmaticBold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin : 0;
+	outline : 0;
+	padding : 0;
+}
+
+body {
+	background-color : #ffffff;
+	background : #191d26 url(library/images/background.jpg) center top no-repeat;
+	color : #969696;
+	font-family : Verdana, Geneva, sans-serif;
+	font-size : 12px;
+}
+
+a {
+	color : #1470cc;
+	text-decoration : none;
+}
+
+a:hover {
+	color : #3399ff;
+}
+
+b, strong {
+	color : #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color : #ffffff;
+	font-family : 'EnigmaticRegular', Arial, sans-serif;
+	font-size : 24px;
+	font-weight : normal;
+	text-shadow : 0 -1px 0 #000000;
+}
+
+h2 {
+	font-size : 20px;
+}
+
+h3 {
+	font-size : 18px;
+}
+
+h4 {
+	font-size : 16px;
+}
+
+h5 {
+	font-size : 14px;
+}
+
+h6 {
+	font-size : 12px;
+}
+
+h1 b, h2 b, h3 b, h4 b, h5 b, h6 b {
+	font-family : 'EnigmaticBold', Arial, sans-serif;
+	font-weight : normal;
+}
+
+input, textarea {
+	color : #323232;
+	font-family : Verdana, Geneva, sans-serif;
+	font-size : 12px;
+}
+
+p {
+	line-height : 18px;
+}
+
+p.error {
+	background-color : #ffabab;
+	border : 1px solid #dd3300;
+	border-radius : 5px 5px 5px 5px;
+	color : #dd3300;
+	margin : 20px 0 0 0;
+	padding : 10px 10px 10px 10px;
+	text-align : center;
+
+	-khtml-border-radius : 5px 5px 5px 5px;
+	-moz-border-radius : 5px 5px 5px 5px;
+	-webkit-border-radius : 5px 5px 5px 5px;
+}
+
+p.error b {
+	color : #dd3300;
+}
+
+p.info {
+	background-color : #ababff;
+	border : 1px solid #0033dd;
+	border-radius : 5px 5px 5px 5px;
+	color : #0033dd;
+	margin : 20px 0 0 0;
+	padding : 10px 10px 10px 10px;
+	text-align : center;
+
+	-khtml-border-radius : 5px 5px 5px 5px;
+	-moz-border-radius : 5px 5px 5px 5px;
+	-webkit-border-radius : 5px 5px 5px 5px;
+}
+
+p.info b {
+	color : #0033dd;
+}
+
+div.wrapper {
+	margin : 0 auto 0 auto;
+}
+
+div.login {
+	width : 520px;
+}
+
+a#logo-large {
+	background : transparent url(library/images/logo-large.png) no-repeat;
+	display : inline-block;
+	height : 230px;
+	margin : 0 20px 0 20px;
+	width : 480px;
+}
+
+a#logo-rosedu {
+	background : transparent url(library/images/logo-rosedu.png) no-repeat;
+	display : inline-block;
+	height : 70px;
+	width : 190px;
+}
+
+div#container-login {
+	background : transparent url(library/images/container-login.png) no-repeat;
+	height : 345px;
+	padding : 0 20px 0 20px;
+	width : 480px;
+}
+
+div#container-login h1 {
+	line-height : 35px;
+	margin : 15px 30px 0 30px;
+}
+
+div#container-login div#container-login-intro {
+	height: 72px;
+	margin : 20px 20px 32px 20px;
+}
+
+div#container-login form {
+	margin : 20px 0 0 0;
+}
+
+div#container-login label {
+	display : block;
+	margin-bottom : 5px;
+}
+
+div#container-login input {
+	border : 0;
+	background-color : transparent;
+	display : block;
+	height : 35px;
+	line-height : 35px;
+	margin-bottom : 10px;
+	width : 160px;
+}
+
+div#container-login-left {
+	float : left;
+	width : 210px;
+}
+
+div#container-login-left label {
+	margin-left : 20px;
+}
+
+input#username {
+	margin-left : 65px;
+}
+
+div#container-login-left a {
+	display : inline-block;
+	line-height : 35px;
+	margin : 10px 0 0 20px;
+}
+
+div#container-login-right {
+	float : right;
+	width : 230px;
+}
+
+input#password {
+	margin-left : 45px;
+}
+
+input[type=submit]#button-login {
+	background : transparent url(library/images/button-login.png) left top no-repeat;
+	display : block;
+	height : 55px;
+	margin : 0 0 0 81px;
+	overflow : hidden;
+	text-indent : -999px;
+	width : 140px;
+}
+
+input[type=submit]#button-login:hover {
+	background-position : left bottom;
+}
+
+div.login a#logo-rosedu {
+	float : right;
+	margin : 0 40px 0 0;
+}
+
+div.page {
+	width : 960px;
+}
+
+div#header {
+	height : 200px;
+	width : 960px;
+}
+
+div#header a {
+	color : #ffffff;
+	font-weight : bold;
+}
+
+div#header-left {
+	float : left;
+	height : 200px;
+	width : 215px;
+}
+
+a#header-logo {
+	background : transparent url(library/images/header-logo.png) no-repeat;
+	display : inline-block;
+	height : 145px;
+	width : 215px;
+}
+
+div#header-right {
+	float : right;
+	height : 200px;
+	width : 745px;
+}
+
+div#header-top-links {
+	height : 25px;
+	padding : 0 20px 0 0;
+	width : 725px;
+}
+
+div#header-top-links a {
+	display : block;
+	float : right;
+	font-size : 10px;
+	height : 25px;
+	line-height : 25px;
+	margin : 0 0 0 2px;
+	text-align : center;
+	text-transform : uppercase;
+}
+
+a#header-control-panel {
+	background : transparent url(library/images/header-top-links.png) no-repeat;
+	width : 130px;
+}
+
+a#header-control-panel:hover {
+	background-position : 0 -25px;
+}
+
+a#header-logout {
+	background : transparent url(library/images/header-top-links.png) -130px 0 no-repeat;
+	width : 120px;
+}
+
+a#header-logout:hover {
+	background-position : -130px -25px;
+}
+
+div#header-content {
+	background : transparent url(library/images/header-content.png) no-repeat;
+	height : 120px;
+	width : 745px;
+}
+
+div#header-menu {
+	height : 70px;
+	float : left;
+	margin : 25px 0 0 0;
+	width : 420px;
+}
+
+div#header-menu a {
+	display : block;
+	float : left;
+	font-size : 10px;
+	height : 28px;
+	line-height : 20px;
+	padding : 42px 0 0 20px;
+	text-transform : uppercase;
+	width : 85px;
+}
+
+a#ChallengeGame {
+	background : transparent url(library/images/header-menu.jpg) 0 70px no-repeat;
+}
+
+a#ChallengeGame:hover {
+	background-position : 0 0;
+}
+
+a#SpecialQuestGame {
+	background : transparent url(library/images/header-menu.jpg) -105px 70px no-repeat;
+}
+
+a#SpecialQuestGame:hover {
+	background-position : -105px 0;
+}
+
+a#Message {
+	background : transparent url(library/images/header-menu.jpg) -210px 70px no-repeat;
+}
+
+a#Message:hover {
+	background-position : -210px 0;
+}
+
+a#Magic {
+	background : transparent url(library/images/header-menu.jpg) -315px 70px no-repeat;
+}
+
+a#Magic:hover {
+	background-position : -315px 0;
+}
+
+span.menu-notification {
+	background-color : #f80000;
+	border-radius : 3px 3px 3px 3px;
+	color : #ffffff;
+	display : inline-block;
+	font-size : 8px;
+	font-weight : bold;
+	line-height : 8px;
+	padding : 2px 2px 2px 2px;
+	text-shadow : 0 -1px 0 #000000;
+	text-transform : uppercase;
+	vertical-align : top;
+
+	-khtml-border-radius : 3px 3px 3px 3px;
+	-moz-border-radius : 3px 3px 3px 3px;
+	-webkit-border-radius : 3px 3px 3px 3px;
+}
+
+div#header-player {
+	float : left;
+	margin : 0 0 0 10px;
+}
+
+div#player-stats {
+	height : 100px;
+	float : left;
+	margin : 10px 0 0 0;
+	overflow : hidden;
+	text-align : right;
+	width : 195px;
+}
+
+div#player-stats-blur,
+div#player-stats-anonimous {
+	height : 100px;
+	width : 195px;
+}
+
+div#player-stats-blur .artifact {
+
+}
+
+span.player-points {
+	background : transparent url(library/images/icons/points.png) left center no-repeat;
+	display : inline-block;
+	padding : 0 0 0 16px;
+}
+
+span.player-gold {
+	background : transparent url(library/images/icons/gold.png) left center no-repeat;
+	display : inline-block;
+	padding : 0 0 0 16px;
+}
+
+div.progress-bar {
+	background : transparent url(library/images/progress-bar.png) no-repeat;
+	height : 15px;
+	margin : 10px 0 0 0;
+	width : 195px;
+}
+
+div.progress {
+	background : transparent url(library/images/progress-bar.png) 0 -15px no-repeat;
+	height : 15px;
+}
+
+p.progress-bar-info {
+	font-size : 10px;
+	line-height : 10px;
+	margin : 10px 0 0 0;
+}
+
+div#player-stats-focus {
+	height : 100px;
+	padding : 0 5px 0 0;
+	width : 190px;
+}
+
+div#player-stats-focus a {
+	color : #1470cc;
+	font-weight : normal;
+}
+
+div#player-stats-focus a:hover {
+	color : #3399ff;
+}
+
+div#player-avatar {
+	height : 96px;
+	float : right;
+	margin : 12px 0 0 12px;
+	width : 96px;
+}
+
+div#gravatar {
+	background : transparent url(library/images/avatar.jpg) no-repeat;
+	height : 96px;
+	width : 96px;
+}
+
+a#avatar-overlay {
+	background : transparent url(library/images/avatar-overlay.png) no-repeat;
+	display : block;
+	height : 96px;
+	width : 96px;
+}
+
+div#header-search {
+	background : transparent url(library/images/header-search.png) no-repeat;
+	height : 55px;
+	float : right;
+	margin : 0 20px 0 0;
+	width : 300px;
+}
+
+div#header-search input {
+	border : 0;
+	background-color : transparent;
+	display : block;
+	height : 35px;
+	line-height : 35px;
+	width : 160px;
+}
+
+input#query {
+	float : left;
+	margin : 10px 0 0 55px;
+}
+
+input[type=submit]#button-search {
+	background : transparent url(library/images/button-search.png) center top no-repeat;
+	display : block;
+	float : right;
+	height : 55px;
+	margin : 0 0 0 0;
+	overflow : hidden;
+	text-indent : -999px;
+	width : 80px;
+}
+
+input[type=submit]#button-search:hover {
+	background-position : center bottom;
+}
+
+div#search-dropdown {
+	width : 222px;
+}
+
+div#search-dropdown-top {
+	background : transparent url(library/images/search-dropdown-top.png) no-repeat;
+	height : 15px;
+	width : 222px;
+}
+
+div#search-dropdown-middle {
+	background : transparent url(library/images/search-dropdown-middle.png) repeat-y;
+	padding : 0 6px 0 6px;
+	width : 210px;
+}
+
+div.search-dropdown-item {
+	background : transparent url(library/images/search-dropdown-item.jpg) left top no-repeat;
+	height : 46px;
+	padding : 4px 0 0 10px;
+	width : 200px;
+}
+
+div.search-dropdown-item p {
+	margin : 0 0 0 28px;
+}
+
+div.search-dropdown-item:hover {
+	background-position : left bottom;
+}
+
+div#search-dropdown-bottom {
+	background : transparent url(library/images/search-dropdown-bottom.png) no-repeat;
+	height : 17px;
+	width : 222px;
+}
+
+div#content-top {
+	background : transparent url(library/images/content-top.png) right top no-repeat;
+	height : 20px;
+	width : 960px;
+}
+
+div#content-middle {
+	background : transparent url(library/images/content-middle.jpg) right top repeat-y;
+	width : 960px;
+}
+
+div#content-bottom {
+	background : transparent url(library/images/content-bottom.png) right top no-repeat;
+	height : 20px;
+	width : 960px;
+}
+
+div#sidebar {
+	float : left;
+	width : 235px;
+}
+
+div.widget-top {
+	background : transparent url(library/images/widget-top.png) no-repeat;
+	height : 20px;
+	width : 235px;
+}
+
+div.widget-middle {
+	background : transparent url(library/images/widget-middle.jpg) repeat-y;
+	width : 235px;
+}
+
+div.widget-bottom {
+	background : transparent url(library/images/widget-bottom.png) no-repeat;
+	height : 20px;
+	width : 235px;
+}
+
+div.widget-middle h2 {
+	background : transparent url(library/images/widget-heading.png) no-repeat;
+	height : 37px;
+	line-height : 35px;
+	margin : 0 0 5px 0;
+	padding : 5px 30px 10px 30px;
+	width : 175px;
+}
+
+div.widget-content {
+	margin : 0 20px 0 20px;
+	width : 195px;
+}
+
+div#content {
+	float : right;
+	width : 725px;
+}
+
+div.section {
+	width : 725px;
+}
+
+div.section h2 {
+	background : transparent url(library/images/section-heading.png) no-repeat;
+	height : 37px;
+	line-height : 35px;
+	margin : 0 0 5px 0;
+	padding : 5px 30px 10px 30px;
+	width : 665px;
+}
+
+div.section-content {
+	margin : 0 20px 0 20px;
+	width : 685px;
+}
+
+div.section-half-left {
+	float : left;
+	width : 360px;
+}
+
+div.section-half-right {
+	float : right;
+	width : 360px;
+}
+
+div.section-half-left h2, div.section-half-right h2 {
+	background : transparent url(library/images/section-half-heading.png) no-repeat;
+	height : 37px;
+	line-height : 35px;
+	margin : 0 0 5px 0;
+	padding : 5px 30px 10px 30px;
+	width : 300px;
+}
+
+div.section-half-left div.section-content, div.section-half-right div.section-content {
+	margin : 0 20px 0 20px;
+	width : 320px;
+}
+
+div#static-page {
+	background : #000000 url(library/images/static-page.jpg) no-repeat;
+	height : 470px;
+	padding : 10px 20px 20px 20px;
+	width : 460px;
+}
+
+a#static-page-logo {
+	background : transparent url(library/images/logo-static-page.png) no-repeat;
+	display : inline-block;
+	height : 130px;
+	margin : 0 50px 0 50px;
+	width : 360px;
+}
+
+div#static-page .scroll-pane {
+	height : 330px;
+	width : 460px;
+}
+
+div#footer {
+	background-color : #ffffff;
+	background : #000000 url(library/images/footer.jpg) repeat-x;
+	height : 200px;
+}
+
+div#footer-content {
+	line-height : 45px;
+	margin : 0 auto 0 auto;
+	padding : 20px 0 0 0;
+	width : 960px;
+}
+
+div.footer-content-left {
+	float : left;
+	margin : 0 10px 0 0;
+}
+
+div.footer-content-right {
+	float : right;
+	margin : 0 0 0 10px;
+}
+
+div.not-found {
+	text-align : center;
+	width : 480px;
+}
+
+div.not-found p {
+	color : #ffffff;
+	margin : 10px 0 0 0;
+	text-shadow : 0 -1px 0 #000000;
+}
+
+div.not-found a#logo-rosedu {
+	bottom : 20px;
+	position : fixed;
+	right : 20px;
+}
+
+div.not-found div.spacer {
+	height : 60px;
+}
+
+div#shattered-glass-1 {
+	background : transparent url(library/images/shattered-glass-1.png) no-repeat;
+	height : 649px;
+	left: 0;
+	position : fixed;
+	top : 0;
+	width : 704px;
+	z-index : -1;
+}
+
+div#shattered-glass-2 {
+	background : transparent url(library/images/shattered-glass-2.png) no-repeat;
+	bottom : 0;
+	height : 453px;
+	position : fixed;
+	right : 0 ;
+	width : 354px;
+	z-index : -2;
+}
+
+div.clear {
+	clear : both;
+}
+
+div.spacer {
+	height : 20px;
+}
+
+div.spacer-small {
+	height : 10px;
+}
+
+div.profile {
+	height : 127px;
+}
+
+div.group-ca, div.group-cb, div.group-cc, div.group-others {
+	background : transparent url(library/images/profile.png) left top no-repeat;
+	height : 90px;
+	padding : 15px 30px 22px 30px;
+	width : 665px;
+}
+
+div.group-cb {
+	background-position : left -127px;
+}
+
+div.group-cc {
+	background-position : left -254px;
+}
+
+div.group-others {
+	background-position : left -381px;
+}
+
+.artifact-ca-level-1 {
+	background : transparent url(library/images/icons/oxynia-level-1.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-2 {
+	background : transparent url(library/images/icons/oxynia-level-2.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-3 {
+	background : transparent url(library/images/icons/oxynia-level-3.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-4 {
+	background : transparent url(library/images/icons/oxynia-level-4.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-5 {
+	background : transparent url(library/images/icons/oxynia-level-5.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-6 {
+	background : transparent url(library/images/icons/oxynia-level-6.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-7 {
+	background : transparent url(library/images/icons/oxynia-level-7.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-1 {
+	background : transparent url(library/images/icons/zota-level-1.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-2 {
+	background : transparent url(library/images/icons/zota-level-2.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-3 {
+	background : transparent url(library/images/icons/zota-level-3.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-4 {
+	background : transparent url(library/images/icons/zota-level-4.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-5 {
+	background : transparent url(library/images/icons/zota-level-5.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-6 {
+	background : transparent url(library/images/icons/zota-level-6.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-7 {
+	background : transparent url(library/images/icons/zota-level-7.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-1 {
+	background : transparent url(library/images/icons/nifes-level-1.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-2 {
+	background : transparent url(library/images/icons/nifes-level-2.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-3 {
+	background : transparent url(library/images/icons/nifes-level-3.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-4 {
+	background : transparent url(library/images/icons/nifes-level-4.png) 0 center no-repeat;
+}
+
+
+.artifact-cc-level-5 {
+	background : transparent url(library/images/icons/nifes-level-5.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-6 {
+	background : transparent url(library/images/icons/nifes-level-6.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-7 {
+	background : transparent url(library/images/icons/nifes-level-7.png) 0 center no-repeat;
+}
+
+.artifact-negative {
+	background : transparent url(library/images/icons/spells-negative.png) 0 center no-repeat;
+}
+
+.artifact-positive {
+	background : transparent url(library/images/icons/spells-positive.png) 0 center no-repeat;
+}
+
+.artifact-spells-challenge-always-lose {
+	background : transparent url(library/images/icons/spells-challenge-always-lose.png) 0 center no-repeat;
+}
+
+.artifact-spells-challenge-cannot-be-challenged {
+	background : transparent url(library/images/icons/spells-challenge-cannot-be-challenged.png) 0 center no-repeat;
+}
+
+.artifact-spells-challenge-cannot-challenge {
+	background : transparent url(library/images/icons/spells-challenge-cannot-challenge.png) 0 center no-repeat;
+}
+
+.artifact-spells-cure {
+	background : transparent url(library/images/icons/spells-cure.png) 0 center no-repeat;
+}
+
+.artifact-spells-curse {
+	background : transparent url(library/images/icons/spells-curse.png) 0 center no-repeat;
+}
+
+.artifact-spells-dispell {
+	background : transparent url(library/images/icons/spells-dispell.png) 0 center no-repeat;
+}
+
+.artifact-spells-immunity {
+	background : transparent url(library/images/icons/spells-immunity.png) 0 center no-repeat;
+}
+
+.artifact-default-level-1, .artifact-default-level-2, .artifact-default-level-3, .artifact-default-level-4, .artifact-default-level-5, .artifact-default-level-6, .artifact-default-level-7, .artifact-unknown {
+	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
+}
+
+a.chapter-active {
+	color : #ffffff;
+}
+
+div.chapter {
+	display : none;
+}
+
+div#chapter-1 {
+	display : block;
+}
+
+div#map {
+	background : transparent url(library/images/map.png) no-repeat;
+	height : 240px;
+	float : left;
+	margin : 10px 20px 20px 0;
+	width : 360px;
+}
+
+div#race-oxynia, div#race-zota, div#race-nifes {
+	background : transparent url(library/images/races.png) left top no-repeat;
+	height : 110px;
+	float : right;
+	margin : 20px 0 20px 20px;
+	width : 230px;
+}
+
+div#race-zota {
+	background-position : left center;
+}
+
+div#race-nifes {
+	background-position : left bottom;
+}
+
+#sidebar ol.top li {
+	clear: right;
+}
+
+span.w50 {
+	width: 100px !important;
+	display: inline-block;
+	white-space: nowrap;
+}
+a.goto {
+	display: block;
+	text-align: right;
+}
