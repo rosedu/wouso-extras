@@ -335,7 +335,7 @@ div#header-menu a {
 }
 
 a#ChallengeGame {
-	background : transparent url(library/images/header-menu.jpg) 0 70px no-repeat;
+	background : transparent url(library/images/header-menu.png) 0 70px no-repeat;
 }
 
 a#ChallengeGame:hover {
@@ -343,7 +343,7 @@ a#ChallengeGame:hover {
 }
 
 a#SpecialQuestGame {
-	background : transparent url(library/images/header-menu.jpg) -105px 70px no-repeat;
+	background : transparent url(library/images/header-menu.png) -105px 70px no-repeat;
 }
 
 a#SpecialQuestGame:hover {
@@ -351,7 +351,7 @@ a#SpecialQuestGame:hover {
 }
 
 a#Message {
-	background : transparent url(library/images/header-menu.jpg) -210px 70px no-repeat;
+	background : transparent url(library/images/header-menu.png) -210px 70px no-repeat;
 }
 
 a#Message:hover {
@@ -359,7 +359,7 @@ a#Message:hover {
 }
 
 a#Magic {
-	background : transparent url(library/images/header-menu.jpg) -315px 70px no-repeat;
+	background : transparent url(library/images/header-menu.png) -315px 70px no-repeat;
 }
 
 a#Magic:hover {
@@ -676,7 +676,7 @@ div#footer {
 div#footer-content {
 	line-height : 45px;
 	margin : 0 auto 0 auto;
-	padding : 20px 0 0 0;
+	padding : 30px 0 0 0;
 	width : 960px;
 }
 
