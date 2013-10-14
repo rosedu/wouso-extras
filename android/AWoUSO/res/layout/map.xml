@@ -1,55 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/map" />
+    android:layout_height="match_parent" 
+    android:background="@android:drawable/alert_dark_frame">
     
     <Button
         android:id="@+id/zota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/image"
-        android:layout_alignLeft="@id/image"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
-        android:paddingBottom="100dp"
-        android:paddingRight="144dp"
-        android:background="@android:color/transparent"
-        android:text=""/>
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/zburatorii"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+    />
     
     <Button 
         android:id="@+id/oxynia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/image"
-        android:layout_alignLeft="@id/image"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="40dp"
-        android:paddingRight="150dp"
-        android:background="@android:color/transparent"  
-        android:text=""/>
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/cataratori"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
+    />
     
     <Button 
         android:id="@+id/nifes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/image"
-        android:layout_alignRight="@id/image"
-        android:layout_alignTop="@id/image"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="100dp"
-        android:background="@android:color/transparent"
-        android:text=""/>
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/tintasii"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="30dp"
+    />
    
 </RelativeLayout>
