@@ -334,35 +334,35 @@ div#header-menu a {
 	width : 85px;
 }
 
-a#ChallengeGame {
+#head-challenges a {
 	background : transparent url(library/images/header-menu.png) 0 70px no-repeat;
 }
 
-a#ChallengeGame:hover {
+#head-challenges a:hover {
 	background-position : 0 0;
 }
 
-a#SpecialQuestGame {
+#head-specialquest a {
 	background : transparent url(library/images/header-menu.png) -105px 70px no-repeat;
 }
 
-a#SpecialQuestGame:hover {
+#head-specialquest a:hover {
 	background-position : -105px 0;
 }
 
-a#Message {
+#head-messaging a {
 	background : transparent url(library/images/header-menu.png) -210px 70px no-repeat;
 }
 
-a#Message:hover {
+#head-messaging a:hover {
 	background-position : -210px 0;
 }
 
-a#Magic {
+#head-bazaar a {
 	background : transparent url(library/images/header-menu.png) -315px 70px no-repeat;
 }
 
-a#Magic:hover {
+#head-bazaar a:hover {
 	background-position : -315px 0;
 }
 
