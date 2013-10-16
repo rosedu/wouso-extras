@@ -93,26 +93,27 @@
 			</div>
 
 			<div class="actions">
-				{% if profile.user.id != user.id %}
-					<a class="button button-min" href="{% url create_to profile.id %}" title="{% trans 'Send a message' %}">✉</a>
-				{% endif %}
-
-				{% if not config_disable_Magic %}
-					<a class="button button-min" href="{% url magic_cast profile.id%}" title="{% trans 'Cast a spell on this player' %}">✤</a>
-				{% endif %}
-
-				{% ifnotequal user.get_profile.id profile.id %}
-				    {% if challenge_launched_recently %}
-					<span class="button">{% trans 'Challenged' %}</span>
+			    {% if profile.user.id != user.id %}
+				<a class="button button-min" href="{% url create_to profile.id %}" title="{% trans 'Send a message' %}">✉</a>
+			    {% endif %}
+			    {% if not config_disable_magic %}
+				<a class="button button-min" href="{% url magic_cast profile.id%}" title="{% trans 'Cast a spell on this player' %}">✤</a>
+			    {% endif %}
+			    {% if profile.user.id == user.id %}
+				<a class="button button-min" href="{% url set_profile %}" title="{% trans 'Set your profile' %}">S</a>
+			    {% endif %}
+ 
+			    {% ifnotequal user.get_profile.id profile.id %}
+				{% if challenge_launched_recently %}
+				    <span class="button">{% trans 'Challenged' %}</span>
 				{% else %}
 				    <a class="button" href="{% url challenge_launch profile.id %}">{% trans 'Challenge!' %}</a>
 				{% endif %}
-				{% endifnotequal %}
-
-				{% autoescape off %}
-					{{ profile_actions }}
-				{% endautoescape %}
+			    {% endifnotequal %}
+ 
+			    <a class="button" href="{% url report_player profile.id%}">Report</a>
 			</div>
+
 
 			{% if perms.config.change_setting %}
 				<div class="clear spacer-small">
