@@ -45,12 +45,13 @@ body {
 }
 
 a {
-	color : #006699;
+	color : #339999;
+	font-weight:200;
 	text-decoration : none;
 }
 
 a:hover {
-	color : #3399ff;
+	color : #009999;
 }
 
 a:visited {
