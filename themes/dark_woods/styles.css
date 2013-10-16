@@ -945,3 +945,9 @@ a.goto {
 	display: block;
 	text-align: right;
 }
+
+/* Cpanel styles */
+div#content-cp {
+    background: transparent url(library/images/content-middle.jpg) left top;
+    min-height: 580px;;
+}
