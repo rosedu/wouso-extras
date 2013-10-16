@@ -107,7 +107,7 @@
 				{% else %}
 				    <a class="button" href="{% url challenge_launch profile.id %}">{% trans 'Challenge!' %}</a>
 				{% endif %}
-        {			{% endifnotequal %}
+				{% endifnotequal %}
 
 				{% autoescape off %}
 					{{ profile_actions }}
