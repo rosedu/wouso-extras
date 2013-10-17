@@ -260,11 +260,11 @@
 
 				<div id="content">
 					<div id="ajax-message">
-                        {% if messages %}
-                            {% for message in messages %}
-                            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-                            {% endfor %}
-                        {% endif %}
+						{% if messages %}
+							{% for message in messages %}
+								<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+							{% endfor %}
+						{% endif %}
 					</div><!-- #ajax-message -->
 
 					{% block content %}
