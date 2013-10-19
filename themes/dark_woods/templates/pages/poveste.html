@@ -1,0 +1,50 @@
+{% extends 'site_base.html' %}
+
+{% load user %}
+{% load artifacts %}
+{% load i18n %}
+
+{% block scripts %}
+	<script type="text/javascript" language="JavaScript">
+		var heights = [];
+
+		$(document).ready(function () {
+			$('div.chapter').each(function() {
+				heights[$(this).attr('id')] = $(this).height();
+			});
+		});
+
+		function displayChapter(chapter) {
+			$('div.chapter').animate({ opacity : 0, height : 0 }, 'fast', function() {
+				window.location.hash = chapter;
+
+				$('div#story h2 a').removeClass('chapter-active');
+				$('a.link-' + chapter).addClass('chapter-active');
+				$('div.chapter').css({ 'display' : 'none' });
+				$('div#' + chapter).css({ 'display' : 'block' });
+				$('div#' + chapter).stop().animate({ opacity : 1, height : heights[chapter] }, 'fast', function() {
+					$('div#' + chapter).css({ 'height' : 'auto' });
+				});
+			});
+		};
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="section" id="story">
+		<h2>
+			{{ staticpage.title }}:
+			<a class="link-chapter-1 chapter-active" href="javascript:displayChapter('chapter-1');">Intro</a> &gt;
+			<a class="link-chapter-2" href="javascript:displayChapter('chapter-2');">Isoropia</a> &gt;
+			<a class="link-chapter-3" href="javascript:displayChapter('chapter-3');">OZN</a> &gt;
+			<a class="link-chapter-4" href="javascript:displayChapter('chapter-4');">Jocurile Fonice</a> &gt;
+			<a class="link-chapter-5" href="javascript:displayChapter('chapter-5');">Outro</a>
+		</h2>
+
+		<div class="section-content">
+			{% autoescape off %}
+				{{ staticpage.html_contents }}
+			{% endautoescape %}
+		</div><!-- .section-content -->
+	</div><!-- .section #story -->
+{% endblock %}

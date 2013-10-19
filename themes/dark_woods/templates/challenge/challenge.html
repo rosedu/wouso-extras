@@ -1,0 +1,85 @@
+{% extends base_template %}
+
+{% load i18n %}
+{% load user %}
+
+{% block title %}Challenge #{{ challenge.id }}{% endblock %}
+
+{% block scripts %}
+	{{ block.super }}
+	<script src="/static/js/timer.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+	<div class="section">
+<h2>{% trans 'Challenge' %}</h2>
+
+		<div class="section-content">
+<div class="vs">
+    <div class="to">
+        <img class="avatar" src="{% player_avatar challenge.user_to.user %}" />
+        <h3>{{ challenge.user_to.user  }}</h3>
+    </div>
+    <div class="from">
+        <img class="avatar" src="{% player_avatar challenge.user_from.user %}" />
+        <h3>{{ challenge.user_from.user  }}</h3>
+    </div>
+
+    <div class="second">
+        {% ifequal challenge.user_to.user challenge_user %}
+        {% blocktrans with challenge.user_from as c_from and challenge.date as date %}
+        {{ c_from}} has challenged you on {{ date }}.
+        {% endblocktrans %}
+        {% endifequal %}
+
+        {% ifequal challenge.user_from.user challenge_user %}
+        {% blocktrans with challenge.user_to as c_to and challenge.date as date %}
+        You challenged {{ c_to }} on {{ date }}.
+        {% endblocktrans %}
+        {% endifequal %}
+    </div>
+</div>
+<div id="timer" class="timer timer-big">
+    {{ seconds_left }} seconds
+</div>
+<script id="timer_script" language="javascript">
+    var seconds = {{ seconds_left }};
+    $(document).ready(function () { update('timer');});
+</script>
+
+<div class="clear spacer">
+	<!-- -->
+</div><!-- .clear .spacer -->
+
+<form action="{% url games.challenge.views.challenge challenge.id %}" method="post" id="challenge_form">
+    <ol id="questions-list">
+    {% for field in form.visible_fields %}
+        <li>
+        <div class="question">
+        {% autoescape off %}
+        {{ field.label }}
+        {% endautoescape %}
+        <ul class="answers">
+        {% for choice in field.field.choices %}
+            {% autoescape off %}
+            <li><input type="checkbox" name="{{ field.html_name }}" value="{{ choice.0 }}" id="{{ field.html_name }}_{{ choice.0 }}" />
+                <label for="{{ field.html_name }}_{{ choice.0 }}" />{{ choice.1 }}</label>
+            </li>
+            {% endautoescape %}
+        {% endfor %}
+        </ul>
+        </div>
+<div class="spacer">
+	<!-- -->
+</div><!-- .spacer -->
+        </li>
+    {% endfor %}
+    </ol>
+{% csrf_token %}
+<div class="actions">
+    <button type="submit">{% trans 'Submit' %}</button>
+</div>
+</form>
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+{% endblock %}

@@ -93,7 +93,7 @@
 						{% if user.is_authenticated %}
 							<a href="{% url logout_view %}" id="header-logout">{% trans 'Logout' %}</a>
 
-							{% if user.get_profile.is_staff %}
+							{% if user.get_profile.in_staff_group %}
 								<a href="{% url wouso.interface.cpanel.views.dashboard %}" id="header-control-panel">Panou de control</a>
 							{% endif %}
 						{% else %}

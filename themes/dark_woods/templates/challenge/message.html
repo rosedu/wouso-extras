@@ -1,0 +1,23 @@
+{% extends base_template %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Challenge result' %}{% endblock %}
+
+{% block content %}
+	<div class="section">
+		{% if base_template != 'interface/ajax_message.html' %}
+			<h2>{% trans 'Challenge' %}</h2>
+		{% endif %}
+
+		<div class="section-content">
+			{% if error %}
+				<p class="wrong">{{ error }}</p>
+			{% endif %}
+
+			{% if message %}
+				<p class="ok">{{ message }}</p>
+			{% endif %}
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+{% endblock %}

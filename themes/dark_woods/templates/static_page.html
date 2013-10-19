@@ -1,0 +1,21 @@
+<div id="static-page">
+	<a href="javascript:void(0);" id="static-page-logo"></a>
+
+	<div class="spacer-small">
+		<!-- -->
+	</div><!-- .spacer-small -->
+
+	<div class="scroll-pane">
+		{% block content %}
+			<h2>{{ staticpage.title }}</h2>
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			{% autoescape off %}
+				{{ staticpage.html_contents }}
+			{% endautoescape %}
+		{% endblock %}
+	</div><!-- .scroll-pane -->
+</div><!-- #static-page -->
