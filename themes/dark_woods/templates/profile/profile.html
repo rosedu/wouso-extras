@@ -111,6 +111,17 @@
 				{% endif %}
 			    {% endifnotequal %}
  
+			    {% if specialquest_button.MATE %}
+				<span class="button">{% trans 'Special mate' %}</span>
+			    {% elif specialquest_button.OTHER %}
+				<span class="button">{% trans 'Other group' %}</span>
+			    {% elif specialquest_button.ALREADY_INVITED %}
+				<span class="button">{% trans 'Invited' %}</span>
+			    {% elif specialquest_button.INVITE %}
+				<a href="{% url specialquest_invite profile.id %}"
+				    title="{% trans 'Invite in my Special Quest group' %}">{% trans 'Invite' %}</a>
+			    {% endif %}
+
 			    <a class="button" href="{% url report_player profile.id%}">Report</a>
 			</div>
 
