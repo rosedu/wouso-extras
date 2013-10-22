@@ -19,11 +19,15 @@
 			<div class="section-content">
 				<form method="post">
 					{% csrf_token %}
-					{% trans 'Cast: ' %}<select name="spell" id="spell-selector">
-					<option></option>
-					{% for s in player.spells_available.all %}
-						<option value="{{ s.spell.id }}">{{ s.spell.title }} ({{ s.amount }})</option>
-					{% endfor %}
+					{% trans 'Cast: ' %}
+					<select name="spell" id="spell-selector">
+					<option value=""></option>
+        				{% for s in player.magic.spells_available.all %}
+            					<option value="{{ s.spell.id }}"> {{ s.spell.title }} ({{ s.amount }})
+                					{% if s.mass %}[{% trans 'mass' %}]{% endif %}
+            					</option>
+        				{% endfor %}
+
 					</select>
 					{% trans 'on' %} {% player destination %}
 					<span id="more"></span>!
