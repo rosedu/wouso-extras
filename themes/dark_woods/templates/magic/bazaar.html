@@ -103,13 +103,13 @@
 					<!-- -->
 				</div><!-- .spacer-small -->
 
-				{% if theowner.spell_amounts.all %}
+				{% if theowner.magic.spell_amounts.all %}
 					<table cellpadding="0" cellspacing="0" class="custom" width="100%">
 						<tr>
 							<th>{% trans 'Spell' %}</th>
 							<th>{% trans 'Amount' %}</th>
 						</tr>
-						{% for s in theowner.spell_amounts.all %}
+						{% for s in theowner.magic.spell_amounts.all %}
 							<tr>
 								<td>{% artifact s.spell %} {{ s.spell.title }}</td>
 								<td align="right">{% spell_stock theowner s.spell %}</td>
@@ -120,7 +120,7 @@
 					{% trans 'None.' %}
 				{% endif %}
 
-				{% if theowner.spells.all %}
+				{% if theowner.magic.spells.all %}
 					<div class="spacer">
 						<!-- -->
 					</div><!-- .spacer -->
@@ -137,7 +137,7 @@
 							<th>{% trans 'Source' %}</th>
 							<th>{% trans 'Until' %}</th>
 						</tr>
-						{% for s in theowner.spells.all %}
+						{% for s in theowner.magic.spells.all %}
 							<tr>
 								<td>{% artifact s.spell %} {{ s.spell.title }}</td>
 								<td>{% player_simple s.source %}</td>
@@ -147,7 +147,7 @@
 					</table>
 				{% endif %}
 
-				{% if theowner.spells_cast.all %}
+				{% if theowner.magic.spells_cast.all %}
 					<div class="spacer">
 						<!-- -->
 					</div><!-- .spacer -->
@@ -164,7 +164,7 @@
 							<th>{% trans 'Target' %}</th>
 							<th>{% trans 'Until' %}</th>
 						</tr>
-						{% for s in theowner.spells_cast.all %}
+						{% for s in theowner.magic.spells_cast.all %}
 							<tr>
 								<td>{% artifact s.spell %} {{ s.spell.title }}</td>
 								<td>{% player_simple s.player %}</td>
