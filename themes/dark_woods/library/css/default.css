@@ -361,8 +361,7 @@ span.button-list {
 }
 
 .unread-count {
-    display: none;
-	background-color : red;
+    background-color : red;
 	border-radius : 5pt;
 	color : #ddd;
 	font-size : 0.7em;

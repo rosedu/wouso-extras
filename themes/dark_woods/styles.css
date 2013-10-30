@@ -951,3 +951,21 @@ div#content-cp {
     background: transparent url(library/images/content-middle.jpg) left top;
     min-height: 580px;;
 }
+
+sup.unread-count {
+    background-color : #f80000;
+	border-radius : 3px 3px 3px 3px;
+	color : #ffffff;
+	display : inline-block;
+	font-size : 8px;
+	font-weight : bold;
+	line-height : 8px;
+	padding : 2px 2px 2px 2px;
+	text-shadow : 0 -1px 0 #000000;
+	text-transform : uppercase;
+	vertical-align : top;
+
+	-khtml-border-radius : 3px 3px 3px 3px;
+	-moz-border-radius : 3px 3px 3px 3px;
+	-webkit-border-radius : 3px 3px 3px 3px;
+}
