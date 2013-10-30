@@ -140,6 +140,9 @@
 					{% autoescape off %}
 						{{ profile_superuser_actions }}
 					{% endautoescape %}
+                    {% if profile.user.is_superuser %}
+                    <a class="button" href="{% url impersonate profile.id %}">Impersonate</a>
+                    {% endif %}
 				</div>
 			{% endif %}
 
