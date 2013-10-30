@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 public class SummaryItemView extends LinearLayout{
 	private SummaryItem mItem;
-	static final String wouso = "http://wouso-next.rosedu.org";
+	static final String wouso = "https://wouso.cs.pub.ro/2013";
 	
 	public SummaryItemView(Context context, SummaryItem item) {
 		super(context);

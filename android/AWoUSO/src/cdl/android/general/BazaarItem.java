@@ -30,7 +30,7 @@ public class BazaarItem {
 		type = jobj.getString("type");
 		id = jobj.getInt("id");
 		dueDays = jobj.getInt("due_days");
-		imageURL = "http://wouso-next.rosedu.org" + jobj.getString("image_url");
+		imageURL = "https://wouso.cs.pub.ro/2013" + jobj.getString("image_url");
 		System.out.println(imageURL);
 		price = jobj.getInt("price");
 		description = jobj.getString("description");

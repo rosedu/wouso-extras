@@ -3,25 +3,28 @@ package cdl.android.server;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.basic.DefaultOAuthConsumer;
-import oauth.signpost.basic.DefaultOAuthProvider;
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import oauth.signpost.exception.OAuthException;
+import oauth.signpost.http.HttpParameters;
+import oauth.signpost.http.HttpRequest;
+import oauth.signpost.signature.OAuthMessageSigner;
 import oauth.signpost.signature.PlainTextMessageSigner;
 
 public class OAuthHelper {
 	public static final String CONSUMER_KEY = "key";
 	public static final String CONSUMER_SECRET = "secret";
-	final String SERVER_ADDRESS = "http://wouso-next.rosedu.org";
+	final String SERVER_ADDRESS = "https://wouso.cs.pub.ro/2013";
 	private OAuthConsumer mConsumer;
 	private OAuthProvider mProvider;
 	private String mCallbackURL;
 
 	public OAuthHelper() {
-		mConsumer = new DefaultOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
-		mProvider =	new DefaultOAuthProvider(
+		mConsumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
+		mProvider =	new MyCommonsHttpOAuthProvider(
 				SERVER_ADDRESS + "/api/oauth/request_token/",
 				SERVER_ADDRESS + "/api/oauth/access_token/",
 				SERVER_ADDRESS + "/api/oauth/authorize/");
-
 
 		mConsumer.setMessageSigner(new PlainTextMessageSigner());
 		mProvider.setOAuth10a(true);
@@ -53,4 +56,5 @@ public class OAuthHelper {
 
 		return new String[] { mConsumer.getToken(), mConsumer.getTokenSecret() };
 	}
+
 }

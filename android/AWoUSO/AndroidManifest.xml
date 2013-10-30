@@ -53,7 +53,7 @@
         </activity>
         <activity android:name=".ui.message.ReadMessageReceived" >
         </activity>
-        <activity android:name=".ui.message.ReadMessageSentAll">    
+        <activity android:name=".ui.message.ReadMessageSent">    
         </activity>
         <activity android:name=".ui.message.All" >
         </activity>

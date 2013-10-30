@@ -33,7 +33,7 @@ public class TopUsers extends Fragment{
 			
 			playerItems = new ArrayList<TopUsersItem>();
 			
-			ServerResponse resp = ApiHandler.getArray("http://wouso-next.rosedu.org/api/top/player/", view.getContext());
+			ServerResponse resp = ApiHandler.getArray("https://wouso.cs.pub.ro/2013/api/top/player/", view.getContext());
 			
 			
 			if(resp.getStatus() == false){

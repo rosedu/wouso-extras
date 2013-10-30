@@ -17,6 +17,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -36,7 +37,7 @@ import cdl.android.general.ServerResponse;
  */
 public class ApiHandler {
 
-	public static final String baseURL = "http://wouso-next.rosedu.org/api/";
+	public static final String baseURL = "https://wouso.cs.pub.ro/2013/api/";
 	public static final String userInfoURL = baseURL + "info/";
 	public static final String bazaarBuyURL = baseURL + "bazaar/buy/";
 	public static final String qotdInfoURL = baseURL + "qotd/today/";
@@ -84,7 +85,7 @@ public class ApiHandler {
 				mAppInfo.getString("auth_secret", null));
 
 		/** Send request */
-		DefaultHttpClient httpclient = new DefaultHttpClient();
+		HttpClient httpclient = HttpToHttps.getInstance().sslClient(new DefaultHttpClient());
 		HttpGet request = new HttpGet(url);
 		mConsumer.sign(request);
 		HttpResponse response = httpclient.execute(request);
@@ -184,7 +185,7 @@ public class ApiHandler {
 		String url = host;
 		HttpPost httpost = new HttpPost(url);
 		HttpResponse res = null;
-		DefaultHttpClient mHttpClient = new DefaultHttpClient();
+		HttpClient mHttpClient = HttpToHttps.getInstance().sslClient(new DefaultHttpClient());
 
 		/** Setup OAuth signer */
 		OAuthConsumer mConsumer = new CommonsHttpOAuthConsumer(
