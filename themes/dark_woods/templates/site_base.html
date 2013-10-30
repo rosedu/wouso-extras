@@ -58,7 +58,7 @@
 					selectOnly : 1
 				});
 
-				$(".footer-content-left a#page-special-statistics, .footer-content-left a#page-contact, .footer-content-left a#page-credits").fancybox({
+				$(".footer-content-left a#page-special-statistics").fancybox({
 					'autoDimensions' : false,
 					'autoScale' : false,
 					'centerOnScroll' : true,
@@ -288,7 +288,10 @@
 		<div id="footer">
 			<div id="footer-content">
 				<div class="footer-content-left">
-					{% render_footer %}
+                {% render_footer %}
+                {% autoescape off %}
+                    | {{ static_pages|join:" | " }}
+                {% endautoescape %}
 				</div><!-- .footer-content-left -->
 
 				<div class="footer-content-right">
