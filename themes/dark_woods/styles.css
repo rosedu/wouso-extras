@@ -969,3 +969,10 @@ sup.unread-count {
 	-moz-border-radius : 3px 3px 3px 3px;
 	-webkit-border-radius : 3px 3px 3px 3px;
 }
+
+table.pyramid td {
+    padding: 0;
+}
+table.pyramid td a.player-avatar {
+    margin: 0;
+}
