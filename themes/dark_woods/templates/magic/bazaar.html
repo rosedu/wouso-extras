@@ -72,19 +72,21 @@
 				</div><!-- .spacer -->
 
 				<form method="post" action="{% url bazaar_exchange %}">
-					<label class="label-small" for="exchange-points">{% trans 'Points' %}:</label> <input id="exchange-points" type="text" name="points" value="{{ rate }}" class="big" />
+					<label class="label"
+						for="exchange-points">{% trans 'Points for gold' %}:</label> <input id="exchange-points" type="text" name="points" value="10" class="big" />
 					<div class="actions">
 						<button type="submit">{% trans 'Exchange' %}</button>
 					</div>
 					{% csrf_token %}
 				</form>
 
-				<div class="spacer">
+				<div class="spacer-big">
 					<!-- -->
 				</div><!-- .spacer -->
 
 				<form method="post" style="clear:both" action="{% url bazaar_exchange %}">
-					<label class="label-small" for="exchange-gold">{% trans 'Gold' %}:</label> <input id="exchange-gold" type="text" name="gold" value="1" class="big" />
+					<label class="label"
+						for="exchange-gold">{% trans 'Gold for points' %}:</label> <input id="exchange-gold" type="text" name="gold" value="1" class="big" />
 					<div class="actions">
 						<button type="submit">{% trans 'Exchange' %}</button>
 					</div>

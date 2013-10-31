@@ -748,6 +748,10 @@ div.spacer-small {
 	height : 10px;
 }
 
+div.spacer-big {
+	height : 50px;
+}
+
 div.profile {
 	height : 127px;
 }
