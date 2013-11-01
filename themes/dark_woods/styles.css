@@ -888,6 +888,9 @@ div.group-others {
 	background : transparent url(library/images/icons/spells-curse.png) 0 center no-repeat;
 }
 
+.artifact-spells-top-disguise {
+	background : transparent url(library/images/icons/spells-disguise.png) 0 center no-repeat;
+}
 .artifact-spells-dispell {
 	background : transparent url(library/images/icons/spells-dispell.png) 0 center no-repeat;
 }
