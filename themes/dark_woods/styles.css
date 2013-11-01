@@ -891,6 +891,11 @@ div.group-others {
 .artifact-spells-top-disguise {
 	background : transparent url(library/images/icons/spells-disguise.png) 0 center no-repeat;
 }
+
+.artifact-spells-challenge-affect-scoring {
+	background : transparent url(library/images/icons/spells-frenzy.png) 0 center no-repeat;
+}
+
 .artifact-spells-dispell {
 	background : transparent url(library/images/icons/spells-dispell.png) 0 center no-repeat;
 }
