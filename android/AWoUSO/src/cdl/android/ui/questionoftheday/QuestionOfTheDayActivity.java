@@ -64,10 +64,6 @@ public class QuestionOfTheDayActivity extends Activity {
 		Boolean ans = qotd.hadAnswered();
 		if (ans == false) {
 			//** Launch QOTD *//*
-			//final CharSequence[] items = new String[qotd.getAnswers().size()];
-			//for (int i = 0; i < qotd.getAnswers().size(); i++) {
-			//	items[i] = qotd.getAnswers().get(i);
-			//}
 			question.setText(qotd.getQuestion());
 			for (int i=0; i<qotd.getAnswers().size(); i++) {
 				RadioButton radioButton = new RadioButton(this);

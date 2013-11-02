@@ -81,20 +81,20 @@ public class OtherProfile extends FragmentActivity{
 			int raceId = Integer.parseInt(userInfo.getRaceId());
 			RelativeLayout panel = (RelativeLayout ) this.findViewById(R.id.panel);
 			
-			Log.d("raceId", ""+raceId );
+			Log.d("Wouso", ""+raceId );
 			String serie;
 			switch(raceId){
 			
-				case 1:	panel.setBackgroundResource(R.drawable.profiles_ca); serie = "ca"; break;
-				case 2:	panel.setBackgroundResource(R.drawable.profiles_cb); serie = "cb"; break;
-				case 3:	panel.setBackgroundResource(R.drawable.profiles_cc); serie = "cc"; break;
+				case 2:	panel.setBackgroundResource(R.drawable.profiles_ca); serie = "ca"; break;
+				case 3:	panel.setBackgroundResource(R.drawable.profiles_cb); serie = "cb"; break;
+				case 4:	panel.setBackgroundResource(R.drawable.profiles_cc); serie = "cc"; break;
 				default: panel.setBackgroundResource(R.drawable.profiles_cc); serie = "NaN"; break;
 			
 			}
 			
 			
 			TextView nameField = (TextView) this.findViewById(R.id.name_field);
-			nameField.setText(userInfo.getFirstName());
+			nameField.setText(userInfo.getFirstName() + " " + userInfo.getLastName());
 			//Display name
 			
 			ImageView avatar = (ImageView) this.findViewById(R.id.user_pic);

@@ -242,9 +242,6 @@ public class Profile extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String toast = "";
 		switch (item.getItemId()) {
-		case R.id.special_quest:
-			weekQ.show();
-			break;
 		case R.id.map:
 			startActivity(new Intent(this, GroupsMap.class));
 			break;

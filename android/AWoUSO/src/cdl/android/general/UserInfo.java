@@ -62,6 +62,12 @@ public class UserInfo {
 		raceId = jObj.getString("race_id");
 		raceSlug = jObj.getString("race_slug");
 		username = jObj.getString("username");
+		
+		//if group is not null take only the title
+		if (!group.equals("null")) {
+			JSONObject groupJsonObject = new JSONObject(group);
+			group = groupJsonObject.getString("title");
+		}
 	}
 
 	// TODO: separate parse method with throw
