@@ -277,8 +277,10 @@ public class ActiveChallenge extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		isActivityDestroyed = true;
-		timer.cancel();
+		if (timer != null) {
+			timer.cancel();
+		}
+		super.onDestroy();
 	}
 }

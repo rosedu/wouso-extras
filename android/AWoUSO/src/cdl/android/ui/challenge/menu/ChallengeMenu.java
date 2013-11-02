@@ -94,6 +94,10 @@ public class ChallengeMenu extends ListActivity {
 				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 2);
 				currentSelected.setStatus("L");//was W. why?
 				Toast.makeText(getApplicationContext(), "Challenge denied!", 1).show();
+				if (listItems.size() == 0) {
+					TextView noChallenges = (TextView) findViewById(R.id.challenge_no_chal);
+					noChallenges.setVisibility(0);
+				}
 			}
 		});
 		
@@ -112,6 +116,10 @@ public class ChallengeMenu extends ListActivity {
 				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 1);
 				currentSelected.setStatus("L");//was W. why?
 				Toast.makeText(getApplicationContext(), "Challenge canceled!", 1).show();
+				if (listItems.size() == 0) {
+					TextView noChallenges = (TextView) findViewById(R.id.challenge_no_chal);
+					noChallenges.setVisibility(0);
+				}
 			}
 		});
 
