@@ -31,6 +31,10 @@
          <activity
             android:name=".ui.main.AuthorizeActivity">
          </activity>
+        <activity 
+            android:name=".ui.questionoftheday.QuestionOfTheDayActivity"
+            android:label="Question of the Day">
+        </activity>
         <activity android:name=".ui.bazaar.Bazaar" >
         </activity>
         <activity android:name=".ui.bazaar.Exchange" >

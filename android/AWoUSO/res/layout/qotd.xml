@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativ_layout_qotd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView
+        android:id="@+id/textview_qotd"
+       	android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:layout_alignParentTop="true" 
+       	android:textSize="17sp"/>
+    
+    <Button 
+   	    android:id="@+id/button_qotd"
+   	    android:layout_height="wrap_content"
+   	    android:layout_width="match_parent"
+   	    android:layout_alignParentBottom="true"
+   	    android:text="Submit answer"
+   	    android:textSize="17sp" />
+    
+   	<RadioGroup 
+   	    android:id="@+id/radiogrp_qotd"
+   	    android:layout_below="@id/textview_qotd"
+   	    android:layout_above="@id/button_qotd"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content">
+   	    
+   	</RadioGroup>
+
+</RelativeLayout>

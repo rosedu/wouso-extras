@@ -1,4 +1,4 @@
-package cdl.android.general;
+package cdl.android.ui.questionoftheday;
 
 import java.util.ArrayList;
 import java.util.Iterator;

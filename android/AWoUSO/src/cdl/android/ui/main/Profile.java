@@ -1,18 +1,11 @@
 package cdl.android.ui.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -32,7 +25,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
-import cdl.android.general.Qotd;
 import cdl.android.general.ServerResponse;
 import cdl.android.general.UserInfo;
 import cdl.android.server.ApiHandler;
@@ -40,6 +32,7 @@ import cdl.android.ui.bazaar.BazaarTabs;
 import cdl.android.ui.challenge.menu.ChallengeMenu;
 import cdl.android.ui.map.GroupsMap;
 import cdl.android.ui.message.MessageTabs;
+import cdl.android.ui.questionoftheday.QuestionOfTheDayActivity;
 import cdl.android.ui.tops.Tops;
 import cdl.android.ui.user.UserProfile;
 
@@ -60,8 +53,7 @@ public class Profile extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR); 
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+		
 		/** Gets user info from the server */
 		userInfo = new UserInfo();
 		ServerResponse resp = ApiHandler.get(ApiHandler.userInfoURL, this);
@@ -105,7 +97,6 @@ public class Profile extends Activity {
 						editor.putString("id", user.getString("id"));
 						editor.commit();
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -149,6 +140,7 @@ public class Profile extends Activity {
 		final Intent challMenu = new Intent(this, ChallengeMenu.class);
 		final Intent messageMenu = new Intent(this, MessageTabs.class);
 		final Intent topsMenu = new Intent(this, Tops.class);
+		final Intent qotdActivity = new Intent(this, QuestionOfTheDayActivity.class);
 		
 		TextView chalText = (TextView) findViewById(R.id.challenges_text);
 		chalText.setTypeface(myTypeface);
@@ -234,80 +226,11 @@ public class Profile extends Activity {
 		
 		qotd.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				launchQOTD();
+				startActivity(qotdActivity);
 			}
 		});
-
-		
 	}
-
-	public void launchQOTD() {
-		
-		/** Get QOTD from server */
-		final Qotd qotd = new Qotd();
-		ServerResponse resp = ApiHandler.get(ApiHandler.qotdInfoURL, this);
-		if (resp.getStatus() == false) {
-			Toast.makeText(this, resp.getError(), Toast.LENGTH_SHORT).show();
-			return;
-		} else {
-			if (!resp.getData().has("text")) {
-				Toast.makeText(this, "No question of the day today.",
-						Toast.LENGTH_SHORT).show();
-				return;
-			}
-			try {
-				qotd.parseContent(resp.getData());
-			} catch (JSONException e) {
-				Toast.makeText(this, "Server response format error.",
-						Toast.LENGTH_SHORT).show();
-				return;
-			}
-		}
-
-		Boolean ans = qotd.hadAnswered();
-		if (ans == false) {
-			/** Launch QOTD */
-			final CharSequence[] items = new String[qotd.getAnswers().size()];
-			for (int i = 0; i < qotd.getAnswers().size(); i++) {
-				items[i] = qotd.getAnswers().get(i);
-			}
-
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setIcon(R.drawable.androidicon_small);
-			builder.setTitle(qotd.getQuestion());
-			builder.setSingleChoiceItems(items, -1,
-					new DialogInterface.OnClickListener() {
-
-						public void onClick(DialogInterface dialog, int item) {
-
-							List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-							nameValuePairs.add(new BasicNameValuePair("answer",
-									qotd.getKeys().get(item)));
-							
-							ServerResponse res = ApiHandler.sendPost(ApiHandler.qotdInfoURL,
-									nameValuePairs, getApplicationContext());
-							if (res.getStatus() == false)
-								Toast.makeText(getApplicationContext(), res.getError(),
-										Toast.LENGTH_SHORT).show();
-							else
-								Toast.makeText(getApplicationContext(), "Qotd answered!",
-										Toast.LENGTH_SHORT).show();
-							
-							dialog.dismiss();
-						}
-					});
-
-			AlertDialog alert = builder.create();
-			alert.show();
-
-		}
-
-		else {
-			Toast.makeText(getApplicationContext(), "You already answered!",
-					Toast.LENGTH_SHORT).show();
-		}
-	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
