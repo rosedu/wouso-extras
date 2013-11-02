@@ -41,7 +41,8 @@
         </activity>
         <activity android:name=".ui.bazaar.Summary" >
         </activity>
-        <activity android:name=".ui.challenge.ActiveChallenge" >
+        <activity android:name=".ui.challenge.ActiveChallenge"
+            	  android:label="Challenges" >
         </activity>
         <activity android:name=".ui.bazaar.BazaarTabs" >
         </activity>
