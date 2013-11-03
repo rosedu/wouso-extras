@@ -3,12 +3,9 @@ package cdl.android.ui.tops;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import cdl.android.ui.user.OtherProfile;
 
 public class TopRacesAdapter extends BaseAdapter{
 	private ArrayList<TopRacesItem> items;

@@ -57,6 +57,7 @@ public class SearchActivity extends Activity {
 	/**
 	 * Displays search results 
 	 */
+	@SuppressWarnings("deprecation")
 	private void showResults(String query) {
 		Cursor cursor = managedQuery(UserProvider.CONTENT_URI, 
 				null, null, new String[] {query}, null);
@@ -65,11 +66,10 @@ public class SearchActivity extends Activity {
 			String[] from = new String[] {SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2};
 			int[] to = new int[] {R.id.resultFirstName, R.id.resultName};
 
-			final Vector<String> ids = new Vector();
+			final Vector<String> ids = new Vector<String>();
 			cursor.moveToFirst();
 			
 			do{
-			//	System.out.println(cursor.getCount());
 				if(cursor.getCount() == 0){
 					break;
 				}
@@ -87,7 +87,6 @@ public class SearchActivity extends Activity {
 			
 			mListView.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					//TODO: start user view using id from String.valueOf(id)
 					Intent intent = new Intent(activity, OtherProfile.class);
 					
 					intent.putExtra("id", ids.get(position));

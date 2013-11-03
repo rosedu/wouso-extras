@@ -13,11 +13,9 @@ import org.json.JSONObject;
 import android.support.v4.app.*;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -45,34 +43,25 @@ public class SummaryFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		//super.onCreate(savedInstanceState);
 		view =  inflater.inflate(R.layout.summary, container, false);
 		
 	    mListView = (ListView) view.findViewById(android.R.id.list);
 		mListView.setEmptyView(view.findViewById(android.R.id.empty));
 		
-		mItems = new ArrayList();
+		mItems = new ArrayList<SummaryItem>();
 
 		ServerResponse resp = ApiHandler.get(ApiHandler.baseURL + "bazaar/inventory/", view.getContext());
 
 		if(resp.getStatus() == false){
-		
 			Toast.makeText(view.getContext(), resp.getError() , Toast.LENGTH_SHORT).show();
-		
 		}else{
 			try {
-				Log.d("type", resp.getData().toString());
 				JSONArray spellData = (JSONArray) ((JSONObject)resp.getData()).get("spells_available");
-			
-				System.out.println(spellData.length());
 				for(int i = 0; i < spellData.length(); i++){
 					SummaryItem summaryItem = new SummaryItem();
-					
 					try{
-						
 						summaryItem.parseSpellsAvailable(spellData.getJSONObject(i));
 						mItems.add(summaryItem);
-
 					}catch(JSONException e){
 						Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 					}
@@ -97,25 +86,16 @@ public class SummaryFragment extends Fragment {
 		mItems.clear();
 		
 		ServerResponse resp = ApiHandler.get(ApiHandler.baseURL + "bazaar/inventory/", view.getContext());
-		Log.d("lololo", "mesaj1");
 		if(resp.getStatus() == false){
-			Log.d("lololo", "mesaj2");
 			Toast.makeText(view.getContext(), resp.getError() , Toast.LENGTH_SHORT).show();
-		
 		}else{
 			try {
 				JSONArray spellData = (JSONArray) ((JSONObject)resp.getData()).get("spells_available");
-			
-				Log.d("lololo", "mesaj3");
-				
 				for(int i = 0; i < spellData.length(); i++){
 					SummaryItem summaryItem = new SummaryItem();
-					
 					try{
-						
 						summaryItem.parseSpellsAvailable(spellData.getJSONObject(i));
 						mItems.add(summaryItem);
-
 					}catch(JSONException e){
 						Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 					}
@@ -123,18 +103,11 @@ public class SummaryFragment extends Fragment {
 			}catch(JSONException e){
 				e.printStackTrace();
 			}
-			
-			Log.d("lololo", "mesaj4");
 		}
 		
 		final Context con = view.getContext();
-		
-		Log.d("lololo", "mesaj5");
 		bundle.putString("action", "castspell");
-		
-		Log.d("lololo", "mesaj6");
 		mListView.setAdapter(new SummaryAdapter(con, mItems, bundle));
-		Log.d("lololo", "mesaj7");
 	}
 	
 	public static void castSpell(int playerID, int spellID,Context context, Method method){
@@ -146,22 +119,17 @@ public class SummaryFragment extends Fragment {
 		Object answer = null;
 		try{
 			answer = ApiHandler.sendPost(ApiHandler.baseURL + "player/" + playerID + "/cast/", nameValuePairs, context);
-			Log.d("aici", ApiHandler.baseURL + "player/" + playerID + "/cast/");
 		} catch(Exception e){
-			//Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+			
 		} finally {
 			if(((ServerResponse) answer).getStatus() == true){
 				Toast.makeText(context, "Witchcraft has been done", Toast.LENGTH_SHORT).show();
 				method.handleStuff();
 			} else {
 				Toast.makeText(context, "Spell casting failed", Toast.LENGTH_SHORT).show();
-				Log.d("Eroare spell", "" + ((ServerResponse) answer).getError());
 			}
-			
 		}
 	}	
-	
-
 }
 
 interface Method{

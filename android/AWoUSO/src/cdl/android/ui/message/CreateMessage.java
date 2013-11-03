@@ -8,11 +8,8 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -39,10 +36,6 @@ public class CreateMessage extends Activity {
 		final Editable subject = subjectEdit.getText();
 		final Editable text = textEdit.getText();
 		
-		/*SharedPreferences mPreferences = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		final String user = mPreferences.getString("username", null);
-		final String senderId = mPreferences.getString("id", null);*/
 		String messageId = null;
 		String topic = null;
 		String from_id = null;
@@ -67,7 +60,6 @@ public class CreateMessage extends Activity {
 			textEdit.requestFocus();
 		}
 		
-		Log.d("Wouso", from_id + " " + isItAReply);
 		final String recipient = from_id;
 		final String message = topic;
 		final boolean sendAsReply = isItAReply;

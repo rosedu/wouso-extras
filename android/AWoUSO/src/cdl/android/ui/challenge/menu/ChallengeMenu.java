@@ -58,7 +58,7 @@ public class ChallengeMenu extends ListActivity {
 				cancel.setVisibility(4);
 				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 0);
 				currentSelected.setStatus("L");//was W. why?
-				Toast.makeText(getApplicationContext(), "Challenge accepted!", 1).show();
+				Toast.makeText(getApplicationContext(), "Challenge accepted!", Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -93,7 +93,7 @@ public class ChallengeMenu extends ListActivity {
 				adapter.remove(currentSelectedName);
 				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 2);
 				currentSelected.setStatus("L");//was W. why?
-				Toast.makeText(getApplicationContext(), "Challenge denied!", 1).show();
+				Toast.makeText(getApplicationContext(), "Challenge denied!", Toast.LENGTH_SHORT).show();
 				if (listItems.size() == 0) {
 					TextView noChallenges = (TextView) findViewById(R.id.challenge_no_chal);
 					noChallenges.setVisibility(0);
@@ -115,7 +115,7 @@ public class ChallengeMenu extends ListActivity {
 				adapter.remove(currentSelectedName);
 				ChallengeHandler.changeChallengeState(view.getContext(), currentSelected.getChallengeId(), 1);
 				currentSelected.setStatus("L");//was W. why?
-				Toast.makeText(getApplicationContext(), "Challenge canceled!", 1).show();
+				Toast.makeText(getApplicationContext(), "Challenge canceled!", Toast.LENGTH_SHORT).show();
 				if (listItems.size() == 0) {
 					TextView noChallenges = (TextView) findViewById(R.id.challenge_no_chal);
 					noChallenges.setVisibility(0);

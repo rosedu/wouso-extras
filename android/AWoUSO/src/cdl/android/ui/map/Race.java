@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -19,6 +18,7 @@ import cdl.android.server.ApiHandler;
 public class Race extends FragmentActivity{
 	public RaceEnum crtRace;
 	
+	@SuppressWarnings("deprecation")
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -89,12 +89,14 @@ public class Race extends FragmentActivity{
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	public void  setAllUnselected(){
 		Resources r = this.getResources();
 		((Button)this.findViewById(R.id.race_members)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
 		((Button)this.findViewById(R.id.race_groups)).setBackgroundDrawable(r.getDrawable(R.drawable.round_tab_notselected));
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void changeFragmentTo(RaceEnum race){
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		Resources r = this.getResources();

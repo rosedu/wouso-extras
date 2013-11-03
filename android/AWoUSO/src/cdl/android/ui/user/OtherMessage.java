@@ -9,12 +9,9 @@ import org.apache.http.message.BasicNameValuePair;
 import cdl.android.R;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
-import cdl.android.ui.message.MessageTabs;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -40,11 +37,6 @@ public class OtherMessage extends Activity{
 		TextView usernameField = (TextView)this.findViewById(R.id.field1);
 		EditText subjectField = (EditText)this.findViewById(R.id.field2);
 		EditText contentField = (EditText)this.findViewById(R.id.field3);
-		
-		/*SharedPreferences mPreferences = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		final String username = mPreferences.getString("username", null);
-		final String senderId = mPreferences.getString("id", null);*/
 		
 		ServerResponse res = sendMessage(usernameField.getText().toString(),
 				subjectField.getText().toString(), contentField.getText().toString());

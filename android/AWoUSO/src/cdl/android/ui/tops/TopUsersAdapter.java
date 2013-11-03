@@ -2,12 +2,9 @@ package cdl.android.ui.tops;
 
 import java.util.ArrayList;
 
-import cdl.android.general.BazaarItem;
-import cdl.android.ui.bazaar.BazaarItemView;
 import cdl.android.ui.user.OtherProfile;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;

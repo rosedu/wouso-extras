@@ -7,7 +7,6 @@ import org.json.JSONException;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,20 +28,6 @@ public class MembersGroups extends Fragment{
         mListView = (ListView) view.findViewById(R.id.members_list);
         mListView.setEmptyView(view.findViewById(android.R.id.empty));
     
-        //String groupId = getArguments().getString("groupId");
-        //Log.d("TAG", groupId);
-        Log.d("TAG", "hello");
-        /*TextView serie = (TextView) getActivity().findViewById(R.id.serie);
-		String numeSerie = serie.getText().toString();
-		
-		String serieId = null;
-		if (numeSerie.equals("CA")){
-			serieId = "2";
-		}
-		else if (numeSerie.equals("CB")){
-			serieId = "3";
-		} else serieId = "4";*/
-		
 		ServerResponse resp = ApiHandler.getArray(
 				ApiHandler.groupInformationURL + DisplayGroup.groupId + "/members/", view.getContext());
        	mItems = new ArrayList<MemberItem>();

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import cdl.android.ui.user.OtherProfile;
 
 public class GroupAdapter extends BaseAdapter{
 	ArrayList<GroupItem> mItems;

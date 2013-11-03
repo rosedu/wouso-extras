@@ -6,12 +6,10 @@ import java.util.Map;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -66,10 +64,10 @@ public class ActiveChallenge extends Activity {
 		this.challenge_id = challenge_id;
 		info = ChallengeHandler.getChallengeInfo(this, challenge_id);
 
-		Log.d("Wouso", info.getSeconds() + "");
 		remainingSeconds = info.getSeconds();
 		if (remainingSeconds < 0) {
-			Toast.makeText(getApplication(), "The timer for this challenge has expired!", 1).show();
+			Toast.makeText(getApplication(), "The timer for this challenge has expired!", Toast.LENGTH_SHORT)
+					.show();
 			postAnswers();
 			finish();
 			return;
@@ -124,7 +122,6 @@ public class ActiveChallenge extends Activity {
 			
 			@Override
 			public void onFinish() {
-				//Toast.makeText(getApplicationContext(), "Done", 1).show();
 				if ( isActivityDestroyed == false){
 					saveCurrent();
 					postAnswers();
@@ -144,7 +141,8 @@ public class ActiveChallenge extends Activity {
 				activeChallengeQuestion--;
 				if (activeChallengeQuestion == -1) {
 					activeChallengeQuestion = 0;
-					Toast.makeText(getApplicationContext(), "How did you even do that? >__>", 1).show();
+					Toast.makeText(getApplicationContext(), "How did you even do that? >__>", Toast.LENGTH_SHORT)
+							.show();
 				}
 				refreshForActiveQuestion();
 			}

@@ -1,15 +1,7 @@
 package cdl.android.general;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.content.Context;
-import android.widget.Toast;
-import cdl.android.server.ApiHandler;
-import cdl.android.ui.bazaar.Bazaar;
 
 public class SummaryItem {
 	private int playerId;

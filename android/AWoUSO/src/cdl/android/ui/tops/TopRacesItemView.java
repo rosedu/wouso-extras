@@ -1,15 +1,12 @@
 package cdl.android.ui.tops;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cdl.android.R;
-import cdl.android.general.UserInfo;
 
-public class TopRacesItemView extends LinearLayout{
+public class TopRacesItemView extends LinearLayout {
 	public TopRacesItem item;
 	
 	public TopRacesItemView(final Context context, final TopRacesItem item) {

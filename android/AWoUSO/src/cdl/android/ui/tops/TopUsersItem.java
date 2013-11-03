@@ -1,14 +1,7 @@
 package cdl.android.ui.tops;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.content.Context;
-import android.widget.Toast;
-import cdl.android.general.ServerResponse;
-import cdl.android.general.UserInfo;
-import cdl.android.server.ApiHandler;
 
 public class TopUsersItem {
 	private String firstName;

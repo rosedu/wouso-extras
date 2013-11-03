@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cdl.android.R;
-import cdl.android.ui.message.MessageItem;
 
 public class MemberItemView extends LinearLayout {
 	MemberItem mItem;

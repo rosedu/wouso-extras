@@ -11,14 +11,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 import cdl.android.R;
@@ -35,16 +33,12 @@ public class OtherProfile extends FragmentActivity{
 		SHOWN, HIDDEN;
 	};
 	private SpellInventoryState state = SpellInventoryState.HIDDEN;
-	private boolean firstTime = true;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.otherprofile);
 		
-		firstTime = false;
-		
-		final RelativeLayout parentLayout = (RelativeLayout) this.findViewById(R.id.parent); 
 		final FrameLayout frameLayout = (FrameLayout) this.findViewById(R.id.other_summary); 
 		
 		Bundle bundle = new Bundle();
@@ -81,14 +75,13 @@ public class OtherProfile extends FragmentActivity{
 			int raceId = Integer.parseInt(userInfo.getRaceId());
 			RelativeLayout panel = (RelativeLayout ) this.findViewById(R.id.panel);
 			
-			Log.d("Wouso", ""+raceId );
 			String serie;
 			switch(raceId){
 			
 				case 2:	panel.setBackgroundResource(R.drawable.profiles_ca); serie = "ca"; break;
 				case 3:	panel.setBackgroundResource(R.drawable.profiles_cb); serie = "cb"; break;
 				case 4:	panel.setBackgroundResource(R.drawable.profiles_cc); serie = "cc"; break;
-				default: panel.setBackgroundResource(R.drawable.profiles_cc); serie = "NaN"; break;
+				default: panel.setBackgroundResource(R.drawable.profiles_cc); serie = "others"; break;
 			
 			}
 			
@@ -128,9 +121,7 @@ public class OtherProfile extends FragmentActivity{
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					Intent intent = new Intent(context, OtherMessage.class);
-
 					intent.putExtra("username", userInfo.getUserame());
 					startActivity(intent);
 				}});
@@ -153,7 +144,6 @@ public class OtherProfile extends FragmentActivity{
 				public void onClick(View v) {
 					if(state == SpellInventoryState.HIDDEN){
 						state = SpellInventoryState.SHOWN;
-						System.out.println("smthing");
 						FragmentTransaction ft = fm.beginTransaction();
 						ft.show(fragment);
 						ft.commit();

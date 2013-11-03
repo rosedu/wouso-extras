@@ -41,7 +41,6 @@ import cdl.android.ui.user.UserProfile;
  */
 public class Profile extends Activity {
 	UserInfo userInfo;
-	Toast weekQ;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -195,11 +194,6 @@ public class Profile extends Activity {
 		TextView groupText = (TextView) findViewById(R.id.groups1);
 		groupText.setTypeface(myTypeface);
 		
-		weekQ = Toast.makeText(getApplicationContext(),
-				"Sorry, no weekly quest!", Toast.LENGTH_SHORT);
-		weekQ.setGravity(Gravity.CENTER, 0, 0);
-		
-
 		bazaarButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				startActivity(bazaarMenu);

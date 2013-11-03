@@ -1,8 +1,5 @@
 package cdl.android.general;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * Bazaar item (spell) container class
  */

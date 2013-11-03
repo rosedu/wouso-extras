@@ -1,5 +1,6 @@
 package cdl.android.ui.main;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import cdl.android.R;
 
+@SuppressLint("SetJavaScriptEnabled")
 public class AuthorizeActivity extends Activity {
 	public final int REQ_OK = 1;
 
@@ -21,8 +23,6 @@ public class AuthorizeActivity extends Activity {
 		setContentView(R.layout.authorize);
 		String url = getIntent().getExtras().getString("url");
 		
-		//mwebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);  
-
 	    CookieSyncManager.createInstance(this); 
 	    CookieManager cookieManager = CookieManager.getInstance();
 	    cookieManager.removeAllCookie();
@@ -32,14 +32,11 @@ public class AuthorizeActivity extends Activity {
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				String requestTokenFragment = "request_token/";
 				String requestTokenReady = "request_token_ready/";
 
 				if (url.contains(requestTokenReady)) {
-					System.out.println("Aici vom preluca verifier" + url);
 					Uri uri = Uri.parse(url);
 					String verifier = uri.getQueryParameter("oauth_verifier");
-					System.out.println("Got verifier " + verifier);
 					((Activity)view.getContext()).setResult(REQ_OK, new Intent().putExtra("verifier", verifier));
 					((Activity)view.getContext()).finish();
 					return true;
@@ -53,7 +50,6 @@ public class AuthorizeActivity extends Activity {
 				handler.proceed();
 			}
 		});
-		System.out.println("load " + url);
 		authView.loadUrl(url);
 	}
 

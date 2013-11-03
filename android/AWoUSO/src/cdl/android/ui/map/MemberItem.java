@@ -3,8 +3,6 @@ package cdl.android.ui.map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 /**
 * Member item
 */

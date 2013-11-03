@@ -3,20 +3,16 @@ package cdl.android.ui.bazaar;
 import java.util.ArrayList;
 
 import cdl.android.R;
-import cdl.android.general.BazaarItem;
 import cdl.android.general.SummaryItem;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class SummaryAdapter extends BaseAdapter{
 	private ArrayList<SummaryItem> mItems;
-	private OnClickListener mOnItemClick;
 	private Context mContext;
 	private Bundle mArgs;
 	
@@ -72,12 +68,7 @@ public class SummaryAdapter extends BaseAdapter{
 								}
 							}
 						});
-						
-						
-						
-						
 					}
-					
 				}});
 				item.setClickable(true);
 	

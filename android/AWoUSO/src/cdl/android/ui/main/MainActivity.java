@@ -8,7 +8,6 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Window;
 import cdl.android.R;
 import cdl.android.server.OAuthHelper;
@@ -36,24 +35,17 @@ public class MainActivity extends Activity {
 		if (checkLogin()) {
 			goToProfile();
 		} else if (!getIntent().hasExtra("verifier")) {
-			System.out.println(" no verifier ");
 			accessToken = new String[2];
 			helper = new OAuthHelper();
-			Log.d("Wouso", "Hello");
 			String uri = helper.getRequestToken();
-			Log.d("Wouso", "Hello");
 			Intent authAct = new Intent(this, AuthorizeActivity.class);
-			Log.d("Wouso", "Hello");
 			authAct.putExtra("url", uri);
-			Log.d("Wouso", "Hello");
 			startActivityForResult(authAct, REQ_OK);
-			Log.d("Wouso", "Hello");
 		}
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		accessToken = helper.getAccessToken(data.getExtras().getString("verifier"));
 		doLogin();

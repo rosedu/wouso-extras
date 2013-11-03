@@ -2,13 +2,8 @@ package cdl.android.server;
 
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
-import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
-import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import oauth.signpost.exception.OAuthException;
-import oauth.signpost.http.HttpParameters;
-import oauth.signpost.http.HttpRequest;
-import oauth.signpost.signature.OAuthMessageSigner;
 import oauth.signpost.signature.PlainTextMessageSigner;
 
 public class OAuthHelper {
@@ -35,11 +30,9 @@ public class OAuthHelper {
 		String requestToken = null; 
 
 		try {
-			System.out.println("req token " + mProvider.getRequestTokenEndpointUrl());
 			requestToken = mProvider.retrieveRequestToken(mConsumer,
 					mCallbackURL);
 			requestToken += "&oauth_consumer_key=" + CONSUMER_KEY;
-			System.out.println("am primit " + requestToken);
 		} catch (OAuthException e) {
 			e.printStackTrace();
 		}

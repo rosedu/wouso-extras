@@ -1,17 +1,7 @@
 package cdl.android.general;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
-import cdl.android.R;
-import cdl.android.server.ApiHandler;
 
 public class BazaarItem {
 	private String name;
@@ -31,7 +21,6 @@ public class BazaarItem {
 		id = jobj.getInt("id");
 		dueDays = jobj.getInt("due_days");
 		imageURL = "https://wouso.cs.pub.ro/2013" + jobj.getString("image_url");
-		System.out.println(imageURL);
 		price = jobj.getInt("price");
 		description = jobj.getString("description");
 	}

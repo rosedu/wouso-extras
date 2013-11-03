@@ -3,8 +3,6 @@ package cdl.android.ui.message;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 /**
 * Message item
 */
@@ -29,7 +27,6 @@ public class MessageItem {
 		read = obj.getString("read");
 		from_id = obj.getString("from_id");
 		to_id = obj.getString("to_id");
-		Log.d("Wouso", obj.toString());
 	}
 
 	public String getAuthor() {

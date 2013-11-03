@@ -5,14 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 import cdl.android.general.ServerResponse;
 import cdl.android.ui.challenge.ActiveChallenge;
@@ -20,11 +17,8 @@ import cdl.android.ui.challenge.ChallengeInfo;
 import cdl.android.ui.challenge.menu.RChallengeList;
 
 public class ChallengeHandler {
-	private static HttpClient mHttpClient = new DefaultHttpClient();
 
-	private ChallengeHandler() {
-
-	}
+	private ChallengeHandler() {}
 
 	/**
 	 * Sends a challenge to the server using the data received as parameter
@@ -39,20 +33,15 @@ public class ChallengeHandler {
 		if (rsp != null){
 			if (rsp.getStatus() == true) {
 				try {
-					Log.d("Wouso", "Yey!! " + rsp.getData().getString("result"));
 					JSONObject jObject = new JSONObject(rsp.getData().getString("result"));
 					Toast.makeText(context, "Challenge finished! You got " + jObject.getInt("points") + " points!", Toast.LENGTH_LONG).show();
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
-			else {
-				Log.d("Wouso", "error " + rsp.getError());
-			}
+			else {}
 		}
-		else {
-			Log.d("Wouso", "ASKN*64");
-		}
+		else {}
 	}
 
 	/**
@@ -69,9 +58,6 @@ public class ChallengeHandler {
 		Map<String, String> wrapped = data.getWrappable();
 		for (String keySet : wrapped.keySet()) {
 			nameValuePairs.add(new BasicNameValuePair(keySet, wrapped.get(keySet)));
-		}
-		for (int i=0; i<nameValuePairs.size(); i++){
-			Log.d("Wouso", " nVP: " + nameValuePairs.get(i));
 		}
 		sendPost(context, data.getChallengeId(), nameValuePairs);
 	}
@@ -107,7 +93,6 @@ public class ChallengeHandler {
 	 * @return The parsed Challenge Info.
 	 */
 	public static ChallengeInfo getChallengeInfo(Context context, int challenge_id) {
-		//TODO: check errors
 		ServerResponse rsp = ApiHandler.get(ApiHandler.baseChallengeURL 
 				+ challenge_id + "/", context);
 		return new ChallengeInfo(rsp.getData());
@@ -121,7 +106,6 @@ public class ChallengeHandler {
 	 * @return whether the challenge was successfully started.
 	 */
 	public static boolean startChallenge(Context context, String otherPlayer) {
-		//TODO: check errors
 		ServerResponse rsp = ApiHandler.get(ApiHandler.challengeLaunchURL 
 				+ otherPlayer + "/", context);
 		return rsp.getData() != null;
@@ -133,7 +117,6 @@ public class ChallengeHandler {
 	 * @return A wrapper class describing all the challenges.
 	 */
 	public static RChallengeList getChallengeList(Context context) {
-		//TODO: check errors
 		ServerResponse rsp = ApiHandler.getArray(ApiHandler.challengeListURL, context);
 		return new RChallengeList(rsp.getArrayData(), context);
 	}

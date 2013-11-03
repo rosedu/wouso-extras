@@ -8,13 +8,11 @@ import cdl.android.R;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
 import android.support.v4.app.*;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,8 +26,6 @@ public class TopGroups extends Fragment{
 		
 		ListView mListView = (ListView) view.findViewById(R.id.top_races_list);
 		mListView.setEmptyView(view.findViewById(android.R.id.empty));
-		
-		
 		
 		groupsItems = new ArrayList<TopGroupsItem>();
 		
@@ -62,9 +58,7 @@ public class TopGroups extends Fragment{
 			}
 		}
 	
-		
 		mListView.setAdapter(new TopGroupsAdapter(this.getActivity().getApplicationContext(), groupsItems));
-		
 		
 		return view;
 	}

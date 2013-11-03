@@ -36,6 +36,7 @@ public class UserProfile extends Activity {
 	ImageView userAvatar, userLevelImage;
 	TextView userName, userPoints, userRank, userLevel, userRace, userGroup;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,7 +78,6 @@ public class UserProfile extends Activity {
 		File sdcard = Environment.getExternalStorageDirectory();
 		File background = new File(sdcard + File.separator + "awouso" + File.separator + "profiles", userInfo.getRace() + ".png");
 		Bitmap backgroundBitmap = BitmapFactory.decodeFile(background.toString());
-		@SuppressWarnings("deprecation")
 		Drawable backgroundImage = new BitmapDrawable(backgroundBitmap);
 		userInfoLayout.setBackgroundDrawable(backgroundImage);
 

@@ -3,33 +3,20 @@ package cdl.android.ui.bazaar;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import cdl.android.R;
-import cdl.android.general.BazaarItem;
-import cdl.android.general.ServerResponse;
 import cdl.android.general.SummaryItem;
-import cdl.android.server.ApiHandler;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SummaryItemView extends LinearLayout{
 	private SummaryItem mItem;
-	static final String wouso = "https://wouso.cs.pub.ro/2013";
+	static final String WOUSO = "https://wouso.cs.pub.ro/2013";
 	
 	public SummaryItemView(Context context, SummaryItem item) {
 		super(context);
@@ -48,7 +35,7 @@ public class SummaryItemView extends LinearLayout{
 		
 		ImageView image = (ImageView) findViewById(R.id.image);
 		
-		this.setSpellImg(image, wouso + item.getImageURL());
+		this.setSpellImg(image, WOUSO + item.getImageURL());
 	}
 	
 	public SummaryItem getItem(){

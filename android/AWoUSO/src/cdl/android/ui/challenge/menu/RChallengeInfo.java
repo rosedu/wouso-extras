@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 /**
  * Represents wrapped info about a specific challenge.
@@ -36,7 +35,6 @@ public class RChallengeInfo {
 			date = jo.getString("date");
 			challengeId = jo.getInt("id");
 			String id = PreferenceManager.getDefaultSharedPreferences(context).getString("id", null);
-			Log.d("Wouso", "From id " + fromUserId + " myId = " + id);
 			if (fromUserId == Integer.parseInt(id)){
 				myChallenge = true;
 			}
