@@ -35,7 +35,7 @@ public class TopRaces extends Fragment{
 		
 		raceItems = new ArrayList<TopRacesItem>();
 		
-		ServerResponse resp = ApiHandler.getArray("https://wouso.cs.pub.ro/2013/api/top/race/", view.getContext());
+		ServerResponse resp = ApiHandler.getArray(ApiHandler.topRaceURL, view.getContext());
 		
 		
 		if(resp.getStatus() == false){

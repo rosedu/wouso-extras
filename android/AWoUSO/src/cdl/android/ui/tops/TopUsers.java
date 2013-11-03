@@ -3,11 +3,7 @@ package cdl.android.ui.tops;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import cdl.android.R;
-import cdl.android.general.BazaarItem;
 import cdl.android.general.ServerResponse;
 import cdl.android.server.ApiHandler;
 import android.support.v4.app.*;
@@ -33,7 +29,7 @@ public class TopUsers extends Fragment{
 			
 			playerItems = new ArrayList<TopUsersItem>();
 			
-			ServerResponse resp = ApiHandler.getArray("https://wouso.cs.pub.ro/2013/api/top/player/", view.getContext());
+			ServerResponse resp = ApiHandler.getArray(ApiHandler.topUserURL, view.getContext());
 			
 			
 			if(resp.getStatus() == false){

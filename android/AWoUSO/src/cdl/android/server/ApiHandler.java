@@ -55,6 +55,9 @@ public class ApiHandler {
 	public static final String searchURL = baseURL + "search/";
 	public static final String groupInformationURL = baseURL + "group/";
 	public static final String raceURL = baseURL + "race/";
+	public static final String topGroupURL = baseURL + "top/group/";
+	public static final String topRaceURL = baseURL + "top/race/";
+	public static final String topUserURL = baseURL + "top/player/";
 
 	/**
 	 * Gets a general HTTP string.

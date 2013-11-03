@@ -78,6 +78,7 @@
         </activity>
         <activity
             android:name="cdl.android.ui.main.Profile"
+            android:screenOrientation="portrait"
           >
           <!--    android:screenOrientation="portrait" > -->
         </activity>

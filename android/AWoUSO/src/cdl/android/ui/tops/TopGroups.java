@@ -33,7 +33,7 @@ public class TopGroups extends Fragment{
 		
 		groupsItems = new ArrayList<TopGroupsItem>();
 		
-		ServerResponse resp = ApiHandler.getArray("https://wouso.cs.pub.ro/2013/api/top/group/", view.getContext());
+		ServerResponse resp = ApiHandler.getArray(ApiHandler.topGroupURL, view.getContext());
 		
 		
 		if(resp.getStatus() == false){
