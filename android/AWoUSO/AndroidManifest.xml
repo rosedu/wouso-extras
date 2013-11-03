@@ -6,7 +6,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-sdk android:minSdkVersion="11" />
+    <uses-sdk android:minSdkVersion="11" 
+        	  android:targetSdkVersion="18"/>
 
     <application
         android:icon="@drawable/androidicon"
@@ -80,7 +81,6 @@
             android:name="cdl.android.ui.main.Profile"
             android:screenOrientation="portrait"
           >
-          <!--    android:screenOrientation="portrait" > -->
         </activity>
         <activity android:name=".ui.challenge.menu.ChallengeMenu" >
         </activity>
