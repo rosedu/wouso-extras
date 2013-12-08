@@ -67,6 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family : 'EnigmaticRegular', Arial, sans-serif;
 	font-size : 24px;
 	font-weight : normal;
+    margin-top: 15px;
 	text-shadow : 0 -1px 0 #000000;
 }
 
@@ -623,9 +624,14 @@ div.section h2 {
 	width : 665px;
 }
 
+
+div.jsPane {
+    width: 635px !important;
+}
+
 div.section-content {
-	margin : 0 20px 0 20px;
-	width : 685px;
+	margin : 0 20px 0 30px;
+	width : 675px;
 }
 
 div.section-half-left {
@@ -643,19 +649,19 @@ div.section-half-left h2, div.section-half-right h2 {
 	height : 37px;
 	line-height : 35px;
 	margin : 0 0 5px 0;
-	padding : 5px 30px 10px 30px;
+	padding : 5px 20px 10px 30px;
 	width : 300px;
 }
 
 div.section-half-left div.section-content, div.section-half-right div.section-content {
-	margin : 0 20px 0 20px;
+	margin : 0 20px 0 30px;
 	width : 320px;
 }
 
 div#static-page {
 	background : #000000 url(library/images/static-page.jpg) no-repeat;
 	height : 470px;
-	padding : 10px 20px 20px 20px;
+	padding : 10px 20px 20px 30px;
 	width : 460px;
 }
 
@@ -773,6 +779,10 @@ div.group-cc {
 
 div.group-others {
 	background-position : left -381px;
+}
+
+.artifact-none {
+    display: none !important;
 }
 
 .artifact-ca-level-1 {
@@ -987,4 +997,20 @@ table.pyramid td {
 }
 table.pyramid td a.player-avatar {
     margin: 0;
+}
+
+ol {
+    margin: 0px 0px 0px 20px;
+}
+
+form, p {
+    margin-top: 10px
+}
+
+div.subgroups > *:first-child {
+    margin-top: 0px
+}
+
+#header-search form {
+    margin-top: 0px
 }

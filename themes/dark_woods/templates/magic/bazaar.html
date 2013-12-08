@@ -67,10 +67,6 @@
 				{% endautoescape %}
 				<p>{% trans 'Exchange points for gold or gold for points' %}</p>
 
-				<div class="spacer">
-					<!-- -->
-				</div><!-- .spacer -->
-
 				<form method="post" action="{% url bazaar_exchange %}">
 					<label class="label"
 						for="exchange-points">{% trans 'Points for gold' %}:</label> <input id="exchange-points" type="text" name="points" value="10" class="big" />
@@ -79,10 +75,6 @@
 					</div>
 					{% csrf_token %}
 				</form>
-
-				<div class="spacer-big">
-					<!-- -->
-				</div><!-- .spacer -->
 
 				<form method="post" style="clear:both" action="{% url bazaar_exchange %}">
 					<label class="label"
