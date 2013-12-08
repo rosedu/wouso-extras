@@ -10,14 +10,114 @@ th {
 	color : #ffffff;
 }
 
+div.paginator {
+    margin-top: 15px;
+}
+
+//Table - mostly stolen from bootstrap
+
 table.custom {
 	border-collapse : collapse;
 }
 
+table.custom {
+	border: 1px #000000 solid;
+    border-collapse: separate;
+    *border-collapse: collapse;
+    border-left: 0;
+    border-spacing: 0;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+}
+
 table.custom th, table.custom td {
-	background : transparent url(../images/tables.jpg) left top repeat-x;
-	border : 1px #000000 solid;
-	height : 35px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-left: 1px solid #000000;
+    border-top: 1px solid #000000;
+	height: 25px;
+}
+
+table.custom tbody + tbody {
+  border-top: 2px solid #000000;
+}
+
+table.custom caption + thead tr:first-child th,
+table.custom caption + tbody tr:first-child th,
+table.custom caption + tbody tr:first-child td,
+table.custom colgroup + thead tr:first-child th,
+table.custom colgroup + tbody tr:first-child th,
+table.custom colgroup + tbody tr:first-child td,
+table.custom thead:first-child tr:first-child th,
+table.custom tbody:first-child tr:first-child th,
+table.custom tbody:first-child tr:first-child td {
+  border-top: 0;
+}
+
+table.custom thead:first-child tr:first-child > th:first-child,
+table.custom tbody:first-child tr:first-child > td:first-child,
+table.custom tbody:first-child tr:first-child > th:first-child {
+  -webkit-border-top-left-radius: 6px;
+          border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+}
+
+table.custom thead:first-child tr:first-child > th:last-child,
+table.custom tbody:first-child tr:first-child > td:last-child,
+table.custom tbody:first-child tr:first-child > th:last-child {
+  -webkit-border-top-right-radius: 6px;
+          border-top-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+}
+
+table.custom thead:last-child tr:last-child > th:first-child,
+table.custom tbody:last-child tr:last-child > td:first-child,
+table.custom tbody:last-child tr:last-child > th:first-child,
+table.custom tfoot:last-child tr:last-child > td:first-child,
+table.custom tfoot:last-child tr:last-child > th:first-child {
+  -webkit-border-bottom-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomleft: 6px;
+}
+
+table.custom thead:last-child tr:last-child > th:last-child,
+table.custom tbody:last-child tr:last-child > td:last-child,
+table.custom tbody:last-child tr:last-child > th:last-child,
+table.custom tfoot:last-child tr:last-child > td:last-child,
+table.custom tfoot:last-child tr:last-child > th:last-child {
+  -webkit-border-bottom-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+}
+
+table.custom tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+}
+
+table.custom tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+}
+
+table.custom caption + thead tr:first-child th:first-child,
+table.custom caption + tbody tr:first-child td:first-child,
+table.custom colgroup + thead tr:first-child th:first-child,
+table.custom colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 6px;
+          border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+}
+
+table.custom caption + thead tr:first-child th:last-child,
+table.custom caption + tbody tr:first-child td:last-child,
+table.custom colgroup + thead tr:first-child th:last-child,
+table.custom colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 6px;
+          border-top-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
 }
 
 table.custom th {
@@ -37,6 +137,8 @@ table.no-side-padding th, table.no-side-padding td {
 td.td-artifact .artifact, td.td-artifact .artifact-container {
 	margin : 0;
 }
+
+//end of table
 
 ul {
 	list-style-type : none;
@@ -84,12 +186,29 @@ ol.top-left {
 	width: 920px;
 }
 
-input.big, input#id_answer {
-	background : transparent url(../images/inputs.png) left top no-repeat;
-	border : 0;
-	height : 35px;
-	line-height : 35px;
-	padding : 0 5px 0 5px;
+input.big, textarea {
+	//background : transparent url(../images/inputs.png) left top no-repeat;
+    height: 25px;
+    padding: 4px 6px;
+    font-size: 14px;
+    line-height: 25px;
+    color: #555555;
+    vertical-align: middle;
+    display: inline-block;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+       -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+textarea#id_answer {
+    width: 661px;
+    height: 30px;
 }
 
 input#exchange-points, input#exchange-gold {
@@ -97,8 +216,8 @@ input#exchange-points, input#exchange-gold {
 }
 
 textarea.big {
-	border : 0;
-	padding : 5px 5px 5px 5px;
+	//border : 0;
+	//padding : 5px 5px 5px 5px;
 }
 
 #ajax-message {
@@ -188,7 +307,8 @@ div#player-stats-focus .artifact-container {
 }
 
 span.points {
-	float : right
+	float : right;
+    //margin-top: 10px;
 }
 span.w50 {
 	width: 50px;
@@ -243,13 +363,12 @@ li label:hover {
 .profile .points {
 	float : right;
 	height : 90px;
-	text-align : center;
-	width : 140px;
+	text-align : right;
+	width : 200px;
 }
 
 .profile .points-big {
 	font-size : 42px;
-	margin : 10px 0 0 0;
 }
 
 img.avatar {
@@ -272,6 +391,10 @@ img.profile-avatar {
 	clear : both;
 }
 
+.profile {
+    margin: 20px 20px 20px 30px;
+}
+
 .graf {
 	height : 300px;
 	width : 500px;
@@ -287,11 +410,11 @@ img.profile-avatar {
 	background : transparent url(../images/buttons.png) left top no-repeat;
 	border : 0;
 	color : #ffffff;
-	display : block;
-	float : left;
+	display : inline-block;
+	//float : left;
 	height : 35px;
 	line-height : 35px;
-	margin : 0 0 0 10px;
+	margin : 0;
 	text-align : center;
 	text-decoration : none;
 	text-shadow : 0 -1px 0 #000000;
@@ -478,7 +601,7 @@ label.label-small {
 
 input#to_input, input#subject, input#id_answer {
 	background-position : right top;
-	width : 615px;
+	width : 591px;
 }
 
 input#id_answer {
@@ -491,10 +614,9 @@ p#id_answer_p {
 }
 
 textarea#text {
-	background : transparent url(../images/textarea-text.png) no-repeat;
 	height : 140px;
 	resize : none;
-	width : 615px;
+	width : 591px;
 }
 
 /* activity */
@@ -522,7 +644,7 @@ img.small {
 div#wall {
 	height : 270px;
 	padding : 0 10px 0 0;
-	width : 675px;
+	width : 655px;
 }
 
 div.activity-timestamp {
