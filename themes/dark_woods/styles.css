@@ -811,6 +811,18 @@ div.group-others {
 	background : transparent url(library/images/icons/oxynia-level-7.png) 0 center no-repeat;
 }
 
+.artifact-ca-level-8 {
+	background : transparent url(library/images/icons/oxynia-level-8.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-9 {
+	background : transparent url(library/images/icons/oxynia-level-9.png) 0 center no-repeat;
+}
+
+.artifact-ca-level-10 {
+	background : transparent url(library/images/icons/oxynia-level-10.png) 0 center no-repeat;
+}
+
 .artifact-cb-level-1 {
 	background : transparent url(library/images/icons/zota-level-1.png) 0 center no-repeat;
 }
@@ -837,6 +849,18 @@ div.group-others {
 
 .artifact-cb-level-7 {
 	background : transparent url(library/images/icons/zota-level-7.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-8 {
+	background : transparent url(library/images/icons/zota-level-8.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-9 {
+	background : transparent url(library/images/icons/zota-level-9.png) 0 center no-repeat;
+}
+
+.artifact-cb-level-10 {
+	background : transparent url(library/images/icons/zota-level-10.png) 0 center no-repeat;
 }
 
 .artifact-cc-level-1 {
@@ -866,6 +890,18 @@ div.group-others {
 
 .artifact-cc-level-7 {
 	background : transparent url(library/images/icons/nifes-level-7.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-8 {
+	background : transparent url(library/images/icons/nifes-level-8.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-9 {
+	background : transparent url(library/images/icons/nifes-level-9.png) 0 center no-repeat;
+}
+
+.artifact-cc-level-10 {
+	background : transparent url(library/images/icons/nifes-level-10.png) 0 center no-repeat;
 }
 
 .artifact-negative {
@@ -912,7 +948,7 @@ div.group-others {
 	background : transparent url(library/images/icons/spells-immunity.png) 0 center no-repeat;
 }
 
-.artifact-default-level-1, .artifact-default-level-2, .artifact-default-level-3, .artifact-default-level-4, .artifact-default-level-5, .artifact-default-level-6, .artifact-default-level-7, .artifact-unknown {
+.artifact-default-level-1, .artifact-default-level-2, .artifact-default-level-3, .artifact-default-level-4, .artifact-default-level-5, .artifact-default-level-6, .artifact-default-level-7, .artifact-default-level-8, .artifact-default-level-9, .artifact-default-level-10, .artifact-unknown {
 	background : transparent url(library/images/icons/default.png) 0 center no-repeat;
 }
 
