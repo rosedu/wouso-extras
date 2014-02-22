@@ -1,8 +1,6 @@
 /*
-THEME NAME: Blackout
+THEME NAME: Dark_woods
 VERSION: 1.0
-AUTHOR: Catalin Dogaru, Dorian Dogaru
-AUTHOR URI: http://swarm.cs.pub.ro/~cdogaru/
 */
 
 @font-face {
@@ -38,7 +36,7 @@ AUTHOR URI: http://swarm.cs.pub.ro/~cdogaru/
 
 body {
 	background-color : #ffffff;
-	background : #191d26 url(library/images/background.jpg) center top no-repeat;
+	background : #000000 url(library/images/background.jpg) center top no-repeat;
 	color : #969696;
 	font-family : Verdana, Geneva, sans-serif;
 	font-size : 12px;

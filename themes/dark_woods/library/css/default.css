@@ -392,7 +392,7 @@ img.profile-avatar {
 }
 
 .profile {
-    margin: 20px 20px 20px 30px;
+    margin: 20px 20px 20px 0px;
 }
 
 .graf {
@@ -523,7 +523,7 @@ ul.menu li a {
 div.second {
 	clear : both;
 	color : #646464;
-	font-size : 0.8em;
+	font-size : 1em;
 	text-align : right;
 }
 
