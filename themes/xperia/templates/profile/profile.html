@@ -105,7 +105,7 @@
         <!--<li><a href="#tab-0">{% trans 'Description' %}</a></li>-->
         <li><a href="#tab-1">{% trans 'Activity' %}</a></li>
         <li><a href="#tab-2">{% trans 'Position' %}</a></li>
-        <li><a href="#tab-3">{% trans 'Points' %}</a></li>
+        <!--<li><a href="#tab-3">{% trans 'Points' %}</a></li>-->
     </ul>
 
     <div class="tab_container">
@@ -172,7 +172,13 @@
         <div id="tab-3" class="tab_content">
             <div class="subgroups">
                 {% for source,coins in scoring.iteritems %}
-                <h3>{% trans source %}</h3>
+                <h3>
+                {% if source == 'wouso' }
+                  woso
+                {% else %}
+                  {% trans source %}
+                {% endif %}
+                </h3>
                 {% for coin, value in coins.iteritems %}
                 <p>{% coin_amount value coin %}</p>
                 {% endfor %}
