@@ -34,8 +34,10 @@ class WousoOAuthClient(oauth.OAuthClient):
         self.signature_method_hmac_sha1 = oauth.OAuthSignatureMethod_HMAC_SHA1()
 
     def fetch_request_token(self, oauth_request):
+        headers = oauth_request.to_header()
+        logging.debug("Request token headers: " + str(headers))
         self.connection.request(oauth_request.http_method, self.request_token_url,
-                                headers=oauth_request.to_header())
+                                headers=headers)
         response = self.connection.getresponse()
         data = response.read()
         if 'Invalid consumer' not in data:
@@ -60,7 +62,9 @@ class WousoOAuthClient(oauth.OAuthClient):
         self.connection.request(oauth_request.http_method, self.access_token_url,
                         headers=oauth_request.to_header())
         response = self.connection.getresponse()
-        return oauth.OAuthToken.from_string(response.read())
+        data = response.read()
+        logging.debug("Received authorization data: " + data)
+        return oauth.OAuthToken.from_string(data)
 
     def access_resource(self, oauth_request):
         oauth_request.http_url = self.path + oauth_request.http_url
@@ -129,6 +133,7 @@ class WousoClient(object):
 
         # Authorize access, get verifier
         url = self.client.authorize_token(oauth_request)
+        logging.debug('Opening url: ' + url)
         webbrowser.open_new(url)
 
         verifier = raw_input('Please enter verifier:')

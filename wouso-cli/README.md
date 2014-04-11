@@ -23,6 +23,9 @@ Run the shell using:
 
     python client.py --token 'oauth_token=xxxx...' localhost:8000 --shell
 
+Notice: in order to communicate to a https server, use the full address, 
+such as: `python client.py --authorize https://wouso.cs.pub.ro/2013`.
+
 
 ### With configuration
 
