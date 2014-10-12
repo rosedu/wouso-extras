@@ -1,0 +1,92 @@
+{% extends 'interface/section_base.html' %}
+{% load artifacts %}
+{% load i18n %}
+{% load user %}
+
+{% block title %}{% trans 'Top' %}{% endblock %}
+{% block sectiontitle %}{% trans 'Top' %}{% endblock %}
+
+{% block sidebar %}
+    {% include 'top/sidebar_series.html' %}
+    {% include 'top/sidebar_groups.html' %}
+    {% include 'top/sidebar.html' %}
+{% endblock %}
+
+{% block sectioncontent %}
+{% if top.disabled and not user.get_profile.in_staff_group %}
+    <p>{% trans 'Top has been disabled.' %}</p>
+{% else %}
+    <table id="clasament" class="custom">
+    <tr>
+    <th>#</th>
+    <th colspan="2" width = "100%" style="text-align:left" class="left">{% trans 'Player' %}</th>
+    <th> <a href="{% url view_top toptype=toptype sortcrit=0 page=1 %}">{% trans 'Points' %}</a> </th>
+    <th> <a href="{% url view_top toptype=toptype sortcrit=1 page=1 %}">{% trans 'Progress' %}</a> </th>
+    <th nowrap> <a href="{% url view_top toptype=toptype sortcrit=2 page=1 %}">{% trans 'Last seen' %}</a> </th>
+    </tr>
+
+    {% for user in allUsers.object_list %}
+    <tr>
+    <td>{{ forloop.counter|add:page_start }}</td>
+    <td class="avatar-col">
+        <a href="{% url player_profile user.id %}" class="player-avatar-small">
+            <img class="avatar small player-avatar-image" src="{% player_avatar user%}&s=24" />
+            <div class="player-avatar-race player-avatar-race-{{ user.race.name|lower }}"></div>
+        </a>
+    </td>
+    <td width="100%"  style="text-align:left" class="left">
+        {% player user %}
+        <div class = "artifacts">
+        {% for artf in user.artifacts.all %}
+            {% artifact artf %}
+        {% endfor %}
+        </div>
+    </td>
+    <td>{% coin_amount user.points %}</td>
+    <td align="center">
+    {% if toptype %}
+        {% if user.weeklyprogress == 0 %}
+                -
+            {% else %}
+                {% if user.weeklyprogress < 0 %}
+                    <span class="wrong">{{ user.weeklyprogress }}</span>
+                {% else %}
+                    <span class="ok">+{{ user.weeklyprogress }}</span>
+                {% endif %}
+            {% endif %}
+    {% else %}
+            {% if user.progress == 0 %}
+                -
+            {% else %}
+                {% if user.progress < 0 %}
+                    <span class="wrong">{{ user.progress }}</span>
+                {% else %}
+                    <span class="ok">+{{ user.progress }}</span>
+                {% endif %}
+            {% endif %}
+    {% endif %}
+    </td>
+    <td nowrap> {% if user.last_seen %}{{ user.last_seen }}{% else %}{% trans 'Never' %}{% endif %} </td>
+    </tr>
+    {% endfor %}
+    </table>
+    <div class='paginator'>
+            {% if allUsers.has_previous %}
+            <a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.previous_page_number %}"> Previous </a>
+            {% endif %}
+
+            {% for p in allUsers.paginator.page_range %}
+                {% if p == allUsers.number %}
+                    <strong>{{ p }}</strong>
+                {% else %}
+                <a href="{% url view_top sortcrit=sortcrit toptype=toptype page=p %}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if allUsers.has_next %}
+            <a href="{% url wouso.interface.top.views.gettop sortcrit=sortcrit toptype=toptype page=allUsers.next_page_number %}"> Next </a>
+            {% endif %}
+    </div>
+
+{% endif %}
+{% endblock %}
