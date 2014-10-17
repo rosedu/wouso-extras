@@ -427,7 +427,7 @@ span.player-gold {
 div.progress-bar {
 	background : transparent url(library/images/progress-bar.png) no-repeat;
 	height : 15px;
-	margin : 10px 0 0 0;
+	margin : 7px 0 0 0;
 	width : 195px;
 }
 
@@ -762,17 +762,18 @@ div.profile {
 
 div.group-ca, div.group-cb, div.group-cc, div.group-others {
 	background : transparent url(library/images/profile.png) left top no-repeat;
+    background-position : left -381px;
 	height : 90px;
 	padding : 15px 30px 22px 30px;
 	width : 665px;
 }
 
 div.group-cb {
-	background-position : left -127px;
+	background-position : left -381px;
 }
 
 div.group-cc {
-	background-position : left -254px;
+	background-position : left -381px;
 }
 
 div.group-others {
@@ -948,7 +949,9 @@ div.group-others {
 .artifact-default-ach-win-fast {
 	background : transparent url(library/images/icons/ach-win-fast.png) 0 center no-repeat;
 }
-
+.artifact-default-ach-head-start {
+	background : transparent url(library/images/icons/ach-head-start.png) 0 center no-repeat;
+}
 .artifact-negative {
 	background : transparent url(library/images/icons/spells-negative.png) 0 center no-repeat;
 }

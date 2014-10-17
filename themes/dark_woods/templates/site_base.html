@@ -94,7 +94,7 @@
 							<a href="{% url logout_view %}" id="header-logout">{% trans 'Logout' %}</a>
 
 							{% if user.get_profile.in_staff_group %}
-								<a href="{% url wouso.interface.cpanel.views.dashboard %}" id="header-control-panel">Panou de control</a>
+								<a href="{% url wouso.interface.cpanel.views.status %}" id="header-control-panel">Panou de control</a>
 							{% endif %}
 						{% else %}
 							<a href="{% url login_view %}" id="header-logout">{% trans 'Login' %}</a>

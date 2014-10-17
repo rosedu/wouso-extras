@@ -11,6 +11,7 @@ target
 *.so
 *.dex
 *.ap_
+*.swp
 /android/AWoUSO/gen/
 
 # Git #
