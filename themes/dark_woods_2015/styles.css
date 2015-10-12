@@ -760,7 +760,7 @@ div.profile {
 	height : 127px;
 }
 
-div.group-ca, div.group-cb, div.group-cc, div.group-others {
+div.group-ca, div.group-cb, div.group-cc, div.group-cd, div.group-others {
 	background : transparent url(library/images/profile.png) left top no-repeat;
     background-position : left -381px;
 	height : 90px;
@@ -773,6 +773,10 @@ div.group-cb {
 }
 
 div.group-cc {
+	background-position : left -381px;
+}
+
+div.group-cd {
 	background-position : left -381px;
 }
 
