@@ -804,16 +804,21 @@ div#story ul {
 }
 
 .player-avatar-race-ca {
-	background-position : left top;
+	background-position : left 0px;
 }
 
 .player-avatar-race-cb {
-	background-position : left center;
+	background-position : left -15px;
 }
 
 .player-avatar-race-cc {
-	background-position : left bottom;
+	background-position : left -30px;
 }
+
+.player-avatar-race-cd {
+	background-position : left -45px;
+}
+
 .player-avatar-race-others {
 	background: none;
 }
