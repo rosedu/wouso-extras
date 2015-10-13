@@ -421,6 +421,7 @@ img.profile-avatar {
 	text-transform : uppercase;
 	text-wrap : suppress;
 	width : 120px;
+	font-weight: bold;
 }
 
 .actions a:hover, a.button:hover, button:hover {

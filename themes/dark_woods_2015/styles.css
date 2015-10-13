@@ -43,17 +43,13 @@ body {
 }
 
 a {
-	color : #196cc2;
-	font-weight:200;
+	color : #55f25d;
+	font-weight:250;
 	text-decoration : none;
 }
 
 a:hover {
-	color : #1f85ee;
-}
-
-a:visited {
-	color : #145598;
+	color : #c0f786;
 }
 
 b, strong {

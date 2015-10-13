@@ -44,7 +44,7 @@
 }
 
 .jspDrag {
-	background : #1470cc;
+	background : #55f25d;
 	cursor : pointer;
 	left : 0;
 	position : relative;
@@ -52,7 +52,7 @@
 }
 
 .jspDrag:hover {
-	background : #3399ff;
+	background : #c0f786;
 }
 
 .jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag {
