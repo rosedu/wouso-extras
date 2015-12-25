@@ -267,6 +267,8 @@ a#header-logo {
 	display : inline-block;
 	height : 145px;
 	width : 215px;
+	padding-bottom: 10px;
+	margin-top: -10px;
 }
 
 div#header-right {
