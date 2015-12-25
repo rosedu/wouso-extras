@@ -26,6 +26,12 @@
 			{% endif %}
 			{% block css %}{% endblock %}
 		</style>
+		<script src="/static/themes/{{ config_theme }}/library/js/snowstorm.js" type="text/javascript"></script>
+		<script>
+			snowStorm.flakesMaxActive = 50;    // show more snow on screen at once
+			snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+		</script>
+
 		<script src="/static/js/jquery-1.6.2.min.js" type="text/javascript"></script>
 		<script src="/static/js/jquery-ui.min.js" type="text/javascript"></script>
 		<script src="/static/js/jquery.autocomplete.js" type="text/javascript"></script>
