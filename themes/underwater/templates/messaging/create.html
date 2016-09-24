@@ -1,0 +1,53 @@
+{% extends base_template %}
+{% load user %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create message' %}{% endblock %}
+
+{% block content %}
+
+<div class="section">
+
+<h2>{% trans 'Create message' %}</h2>
+
+<div class="section-content">
+
+<form id="msg" onsubmit="messagingSubmit();" method="post" action="{% url create %}" data-ajax="false">
+    <table>
+    <tr><td>To:</td><td valign="top">
+            {% if to %}
+                <input type="text" id="to_input" class="hidden">
+                <input type="hidden" id="to" name="to" value="{{ to.id }}" />
+                <span class="to_user">{% player_simple to %}</span>
+            {% else %}
+                <input type="text" id="to_input" class="big" /> <div id="to_container"></div>
+            {% endif %}
+    </td></tr>
+    <tr><td>{% trans 'Subject' %}: </td><td valign="top">
+            <input type="text" id="subject" name="subject" class="big" size="50" value="{{ subject }}"/>
+    </td></tr>
+    <tr><td valign="top">Text:</td>
+    <td>
+        <textarea id="text" name="text" class="big" cols="50" rows="5"></textarea>
+    </td>
+    </tr>
+    </table>
+    <div class="actions">
+        <a href="{% url messaging %}">{% trans 'Cancel' %}</a>
+        <button type="submit" class="default">{% trans 'Send' %}</button>
+    </div>
+    {% csrf_token %}
+    <input type="hidden" name="reply_to" value="{{ reply_to.id }}" />
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#to_input").autocomplete("{{ basepath }}/instantsearch/", { minChars:3, matchSubset:1, matchContains:1, cacheLength:10, formatItem:formatItem, onItemSelect:selectItemMessaging, selectOnly:1 });
+    });
+    $("#to_input").bind('focusout', messagingOut);
+    $("#to_input").bind('focusin', function(){ $("#to_input").css('color', 'black') } )
+</script>
+
+</div>
+</div>
+{% endblock %}
