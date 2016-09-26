@@ -1,0 +1,67 @@
+{% load i18n %}
+
+<div id="static-page">
+	<a href="javascript:void(0);" id="static-page-logo"></a>
+
+	<div class="spacer-small">
+		<!-- -->
+	</div><!-- .spacer-small -->
+
+	<div class="scroll-pane">
+		{% block content %}
+			<h2>{% trans 'Statistics' %}</h2>
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<h3>Now</h3>
+
+			<p>
+				Users online: {{ users_online_now }}
+			</p>
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<h3>Today</h3>
+
+			<p>
+				Users online: {{ users_online_today }}
+				<br />
+				Challenges played: {{ challenges_played_today }}
+				<br />
+				Qotd answers: {{ qotd_answers_today }}
+			</p>
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<h3>This week</h3>
+
+			<p>
+				Users online: {{ users_online_week }}
+				<br />
+				Challenges played: {{ challenges_played_week }}
+				<br />
+				Qotd answers: {{ qotd_answers_week }}
+			</p>
+
+			<div class="spacer">
+				<!-- -->
+			</div><!-- .spacer -->
+
+			<h3>Ever</h3>
+
+			<p>
+				Users online: {{ users_online_ever }}
+				<br />
+				Challenges played: {{ challenges_played_ever }}
+				<br />
+				Qotd answers: {{ qotd_answers_ever }}
+			</p>
+		{% endblock %}
+	</div><!-- .scroll-pane -->
+</div><!-- #static-page -->

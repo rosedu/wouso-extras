@@ -1,0 +1,68 @@
+{% extends 'site_base.html' %}
+
+{% load user %}
+{% load artifacts %}
+{% load i18n %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+	<div class="section" id="wall-container">
+		<h2>{% trans 'Activity' %}</h2>
+
+		<div class="section-content">
+			<div class="scroll-pane" id="wall">
+				{% include 'activity/stream.html' %}
+			</div><!-- #wall -->
+
+			<div class="clear spacer-small">
+				<!-- -->
+			</div><!-- .clear spacer-small -->
+
+			<div id="wall-navigation">
+				{% if activity.has_previous %}
+					<a href="{% url wouso.interface.views.homepage %}"> &raquo; </a>
+				{% endif %}
+
+				{% if activity.has_next %}
+					<a href="{% url wouso.interface.views.homepage page=activity.next_page_number %}"> &laquo;</a>
+				{% endif %}
+			</div><!-- #wall-navigation -->
+		</div><!-- .section-content -->
+	</div><!-- .section #wall-container -->
+
+	<div class="spacer">
+		<!-- -->
+	</div><!-- .spacer -->
+
+	<div class="section-half-left">
+		<h2>{% trans 'News' %}</h2>
+
+		<div class="section-content">
+		<ul class="simple">
+			{% for n in news %}
+				<li><a href="{% url news_item_view n.pk %}">{{ n }}</a></li>
+			{% empty %}
+				<li class="empty">{% trans "No news." %}</li>
+			{% endfor %}
+		</ul>
+		</div><!-- .section-content -->
+	</div><!-- .section-half-left -->
+
+	<div class="section-half-right">
+		<h2>{% trans 'Online players' %}<span class="points">{{ last10|length }}</span></h2>
+
+		<div class="section-content">
+			{% for u in last10 %}
+				{% player u %}
+			{% empty %}
+				{% trans 'Nobody' %}
+			{% endfor %}
+		</div><!-- .section-content -->
+	</div><!-- .section-half-right -->
+
+	<div class="clear">
+		<!-- -->
+	</div><!-- .clear -->
+{% endblock %}

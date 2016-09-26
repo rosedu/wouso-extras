@@ -1,0 +1,17 @@
+{% extends base_template %}
+
+{% load i18n %}
+{% load artifacts %}
+
+{% block title %}{% trans 'Bazaar' %}{% endblock %}
+
+{% block content %}
+	<div class="section">
+		<div class="section-content">
+			<div class="wrong error">{{ error }}</div>
+			<div class="ok message">{{ message }}</div>
+
+			<a href="{% url bazaar_home %}#{{tab}}">{% trans 'Bazaar' %}</a>
+		</div><!-- .section-content -->
+	</div><!-- .section -->
+{% endblock %}
