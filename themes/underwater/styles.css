@@ -292,6 +292,15 @@ div#header-top-links a {
 	text-transform : uppercase;
 }
 
+a#header-forum {
+	background : transparent url(library/images/header-top-links.png) no-repeat;
+	width : 130px;
+}
+
+a#header-forum:hover {
+	background-position : 0 -25px;
+}
+
 a#header-control-panel {
 	background : transparent url(library/images/header-top-links.png) no-repeat;
 	width : 130px;
