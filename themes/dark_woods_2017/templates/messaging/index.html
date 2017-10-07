@@ -1,0 +1,93 @@
+{% extends base_template %}
+{% load i18n %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ basepath }}/static/js/tabs.js"></script>
+    <script type="text/javascript" src="{{ basepath }}/static/js/format.item.js"></script>
+    <link href="/static/themes/{{ config_theme }}/library/css/tabs.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}{% trans 'Messaging' %}{% endblock %}
+
+{% block content %}
+<div class="section">
+
+<h2>{% trans 'Messages' %}</h2>
+
+<div class="section-content">
+<div class="actions">
+<a href="{% url create %}">{% trans 'Compose' %}</a>
+</div>
+
+<ul class="tabs">
+        <li><a href="#rec"  class="no-redir">{% trans 'Received' %}</a></li>
+        <li><a href="#sent" class="no-redir">{% trans 'Sent' %}</a></li>
+        <li><a href="#all"  class="no-redir">{% trans 'All' %}</a></li>
+</ul>
+
+<div class="tab_container">
+    <div id="rec" class="tab_content">
+        <table id="Messages">
+            <tr>
+                <th>From</td>
+                <th>To</td>
+                <th>Subject</td>
+            </tr>
+            {% for msg in messages_rec %}
+                <tr>
+                    <td>{% if msg.sender %}{{msg.sender}}{% else %}{% trans 'System' %}{% endif %}</td>
+                    <td>{{msg.receiver}}</td>
+                    <td>{{msg.subject}}</td>
+                </tr>
+            {% empty %} <tr> <td colspan=3>No messages.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div id="sent" class="tab_content">
+        <table id="Messages">
+            <tr>
+                <th>From</td>
+                <th>To</td>
+                <th>Subject</td>
+            </tr>
+            {% for msg in messages_sent %}
+                <tr>
+                    <td>{% if msg.sender %}{{msg.sender}}{% else %}{% trans 'System' %}{% endif %}</td>
+                    <td>{{msg.receiver}}</td>
+                    <td>{{msg.subject}}</td>
+                </tr>
+            {% empty %} <tr> <td colspan=3>No messages.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div id="all" class="tab_content">
+        <table id="Messages">
+            <tr>
+                <th>From</td>
+                <th>To</td>
+                <th>Subject</td>
+            </tr>
+            {% for msg in messages_all %}
+                <tr>
+                    <td>{% if msg.sender %}{{msg.sender}}{% else %}{% trans 'System' %}{% endif %}</td>
+                    <td>{{msg.receiver}}</td>
+                    <td>{{msg.subject}}</td>
+                </tr>
+            {% empty %} <tr> <td colspan=3>No messages.</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div id="message"></div>
+
+    <script language="javascript" type="text/javascript">
+        tabToURL("rec", "{% url quiet_home box='rec' quiet='q' %}")
+        tabToURL("sent", "{% url quiet_home box="sent" quiet='q' %}")
+        tabToURL("all", "{% url quiet_home box="all" quiet='q' %}")
+        $('#rec').trigger('custom')
+    </script>
+</div>
+</div>
+</div>
+{% endblock %}
