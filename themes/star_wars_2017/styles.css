@@ -37,13 +37,14 @@ VERSION: 1.0
 body {
 	background-color : #ffffff;
 	background : #000000 url(library/images/background.jpg) center top no-repeat;
-	color : #969696;
+	color : #ffffff;;
 	font-family : Verdana, Geneva, sans-serif;
 	font-size : 12px;
+	text-align: justify;
 }
 
 a {
-	color : #55f25d;
+	color : #ffd700;
 	font-weight:250;
 	text-decoration : none;
 }
@@ -227,7 +228,7 @@ input[type=submit]#button-login {
 	background : transparent url(library/images/button-login.png) left top no-repeat;
 	display : block;
 	height : 55px;
-	margin : 0 0 0 81px;
+	margin : 20px 0 0 81px;
 	overflow : hidden;
 	text-indent : -999px;
 	width : 140px;
