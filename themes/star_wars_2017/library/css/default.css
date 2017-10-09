@@ -409,7 +409,7 @@ img.profile-avatar {
 .actions a, a.button, button {
 	background : transparent url(../images/buttons.png) left top no-repeat;
 	border : 0;
-	color : #ffffff;
+	color : #000000;
 	display : inline-block;
 	//float : left;
 	height : 35px;
