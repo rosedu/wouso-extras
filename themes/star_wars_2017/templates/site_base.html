@@ -290,7 +290,7 @@
 				<div class="footer-content-left">
                 {% render_footer %}
                 {% autoescape off %}
-                    | {{ static_pages|join:" | " }}
+                {{ static_pages|join:" | " }}
                 {% endautoescape %}
 				</div><!-- .footer-content-left -->
 
