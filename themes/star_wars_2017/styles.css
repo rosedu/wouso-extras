@@ -675,8 +675,8 @@ div#static-page .scroll-pane {
 
 div#footer {
 	background-color : #ffffff;
-	background : #000000 url(library/images/footer.jpg) repeat-x;
-	height : 200px;
+	background : #000000 url(library/images/footer.jpg) no-repeat;
+	height : 150px;
 }
 
 div#footer-content {
