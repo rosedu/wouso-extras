@@ -127,6 +127,8 @@
 										</p>
 
 										<div class="progress-bar">
+											<div class="progress-bar-image">
+												</div>
 											<div class="progress" style="width : {{ player.level_progress.percent|floatformat }}%;">
 												<!-- -->
 											</div><!-- .progress-bar-value -->
@@ -204,7 +206,7 @@
 
 							<div id="player-avatar">
 								{% if user.is_authenticated %}
-									<div id="gravatar" style="background-image : url({% player_avatar player %}&s=96&d=http://wouso.eftimie.ro/static/themes/{{ config_theme }}/library/images/avatar.jpg);">
+									<div id="gravatar">
 										<a href="{% url player_profile player.id %}" id="avatar-overlay"></a>
 									</div><!-- #gravatar -->
 								{% else %}
@@ -290,7 +292,7 @@
 				<div class="footer-content-left">
                 {% render_footer %}
                 {% autoescape off %}
-                    | {{ static_pages|join:" | " }}
+                {{ static_pages|join:" | " }}
                 {% endautoescape %}
 				</div><!-- .footer-content-left -->
 

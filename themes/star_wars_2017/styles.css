@@ -424,8 +424,17 @@ span.player-gold {
 div.progress-bar {
 	background : transparent url(library/images/progress-bar.png) no-repeat;
 	height : 15px;
-	margin : 7px 0 0 0;
-	width : 195px;
+	margin : 7px 0 0 66px;
+	width : 129px;
+	float:right;
+}
+
+div.progress-bar-image {
+	background : transparent url(library/images/progress-bar-image.png) no-repeat;
+	height : 15px;
+	margin : 1px 0 0 -66px;
+	width : 66px;
+	float:left;
 }
 
 div.progress {
@@ -577,7 +586,7 @@ div.widget-top {
 }
 
 div.widget-middle {
-	background : transparent url(library/images/widget-middle.jpg) repeat-y;
+	background : transparent url(library/images/widget-middle.png) repeat-y;
 	width : 235px;
 }
 
@@ -675,8 +684,8 @@ div#static-page .scroll-pane {
 
 div#footer {
 	background-color : #ffffff;
-	background : #000000 url(library/images/footer.jpg) repeat-x;
-	height : 200px;
+	background : #000000 url(library/images/footer.jpg) no-repeat;
+	height : 150px;
 }
 
 div#footer-content {
