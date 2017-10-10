@@ -424,8 +424,17 @@ span.player-gold {
 div.progress-bar {
 	background : transparent url(library/images/progress-bar.png) no-repeat;
 	height : 15px;
-	margin : 7px 0 0 0;
-	width : 195px;
+	margin : 7px 0 0 66px;
+	width : 129px;
+	float:right;
+}
+
+div.progress-bar-image {
+	background : transparent url(library/images/progress-bar-image.png) no-repeat;
+	height : 15px;
+	margin : 1px 0 0 -66px;
+	width : 66px;
+	float:left;
 }
 
 div.progress {
