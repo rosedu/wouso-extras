@@ -473,6 +473,9 @@ div#player-avatar {
 div#gravatar {
 	height : 96px;
 	width : 96px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 a#avatar-overlay {
