@@ -471,9 +471,11 @@ div#player-avatar {
 }
 
 div#gravatar {
-	background : transparent url(library/images/avatar.jpg) no-repeat;
 	height : 96px;
 	width : 96px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 a#avatar-overlay {
