@@ -206,7 +206,7 @@
 
 							<div id="player-avatar">
 								{% if user.is_authenticated %}
-									<div id="gravatar">
+									<div id="gravatar" style="background-image : url({% player_avatar player %}?d=https://wouso.cs.pub.ro/2017/static/themes/{{ config_theme }}/library/images/avatar.jpg);">
 										<a href="{% url player_profile player.id %}" id="avatar-overlay"></a>
 									</div><!-- #gravatar -->
 								{% else %}
