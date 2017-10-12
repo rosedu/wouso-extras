@@ -765,7 +765,11 @@ div.spacer-big {
 }
 
 div.profile {
+	background : transparent url(library/images/profile.png) left top no-repeat;
+    background-position : left -381px;
 	height : 127px;
+	padding : 15px 30px 22px 30px;
+	width : 665px;
 }
 
 div.group-ca, div.group-cb, div.group-cc, div.group-cd, div.group-others {
