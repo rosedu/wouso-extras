@@ -765,31 +765,37 @@ div.spacer-big {
 }
 
 div.profile {
+	background : transparent url(library/images/profile.png) left top no-repeat;
 	height : 127px;
+	padding : 15px 30px 22px 30px;
+	width : 754px;
 }
 
-div.group-ca, div.group-cb, div.group-cc, div.group-cd, div.group-others {
+div.group-ca, div.group-cb, div.group-cc, div.group-cd, div.group-ac, div.group-others {
 	background : transparent url(library/images/profile.png) left top no-repeat;
-    background-position : left -381px;
 	height : 90px;
 	padding : 15px 30px 22px 30px;
 	width : 665px;
 }
 
 div.group-cb {
-	background-position : left -381px;
+	background-position : left -125px;
 }
 
 div.group-cc {
-	background-position : left -381px;
+	background-position : left -250px;
 }
 
 div.group-cd {
-	background-position : left -381px;
+	background-position : left -375px;
+}
+
+div.group-ac {
+	background-position : left -500px;
 }
 
 div.group-others {
-	background-position : left -381px;
+	background-position : left -625px;
 }
 
 .artifact-none {
