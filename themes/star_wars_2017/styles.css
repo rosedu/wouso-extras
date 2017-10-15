@@ -771,7 +771,7 @@ div.profile {
 	width : 754px;
 }
 
-div.group-ca, div.group-cb, div.group-cc, div.group-cd, div.group-ac, div.group-others {
+div.group-ca, div.group-cb, div.group-cc, div.group-cd, div.group-ac, div.group-unaffiliated, div.group-others {
 	background : transparent url(library/images/profile.png) left top no-repeat;
 	height : 90px;
 	padding : 15px 30px 22px 30px;
@@ -794,7 +794,7 @@ div.group-ac {
 	background-position : left -500px;
 }
 
-div.group-others {
+div.group-unaffiliated, div.group-others {
 	background-position : left -625px;
 }
 
