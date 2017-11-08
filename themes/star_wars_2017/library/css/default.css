@@ -229,8 +229,7 @@ textarea.big {
 }
 
 #ajax-message p {
-	background-color : #eeeeee;
-	border : 1px solid #aaaaaa;
+	background-color : rgba(0, 0, 0, 0.59);
 	border-radius : 5px 5px 5px 5px;
 	height : 33px;
 	line-height : 33px;
@@ -683,8 +682,7 @@ ul.answers {
 }
 
 div.timer {
-	background-color : white;
-	border : 2px solid #ddd;
+	background-color : rgba(0, 0, 0, 0.59);
 	border-radius : 20px;
 	font-size : 42px;
 	left : 50%;
